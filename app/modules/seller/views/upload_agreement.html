@@ -1,0 +1,31 @@
+<md-dialog>
+    <form name="agreementForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Add Agreements</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll> 
+            <input name="agreement" class="ng-hide" id="input-file-id" type="file" required select-ng-files ng-model="file" />
+            <label for="input-file-id" class="md-button md-raised md-primary">Choose File</label>
+            <div ng-if="file">{{file.name}}</div>
+            <p>Only PDF file is allowed!</p>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <md-button type="submit"  ng-click="addAgreement()"
+                       class="send-button md-primary md-raised"
+                       ng-disabled="agreementForm.$invalid"
+                       aria-label="SAVE">
+                SAVE
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+
+</style>

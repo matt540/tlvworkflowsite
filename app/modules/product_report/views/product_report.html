@@ -1,0 +1,706 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent">Product Report</span>
+                </div>
+                <button ng-click="goBack()"  type="button" class="md-fab md-primary md-button  md-custom-theme md-ink-ripple" style="width: 36px !important; height: 36px !important;"   aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline" class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-layers" class="md-custom-theme md-font material-icons icon-layers" aria-hidden="true"></md-icon></span>
+                    <div layout="column">
+                        <span class="logo-text ">Product Report</span>
+                        <!--                        <span> 
+                                                    <span ng-if="seller.address.trim() != ''">{{seller.address}} |</span>
+                                                    <span ng-if="seller.email.trim() != ''">{{seller.email}}</span>
+                                                    <span ng-if="seller.phone != '0'">| {{seller.phone}} </span>
+                        
+                                                </span>-->
+                    </div>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+
+                </div>
+            </div>
+        </div>
+        <!--        <button  type="button" class="add-event-button md-fab md-warn md-button  md-custom-theme md-ink-ripple" ng-click="openProductQuotationAddDialog()">
+                    <md-icon md-font-icon="icon-plus" class="md-custom-theme md-font material-icons icon-plus" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>Add Product</span></md-tooltip>
+                </button>-->
+    </div>
+    <div class="content" id="content1">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp" layout="column">
+                <div layout="row">
+                    <!--                    <div layout="row" layout-xs="column">-->
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Seller Name</label>
+                            <md-select ng-model="product_report.seller_id">
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm1" type="search" placeholder="Search for a seller" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-repeat="s in sellers| filter:searchTerm1" value="{{s.id}}">
+                                    <em ng-if="s.displayname.trim() != ''">{{s.displayname}}</em> 
+                                    <em ng-if="s.displayname.trim() == ''">{{s.firstname}} {{s.lastname}}</em>
+                                </md-option>
+                            </md-select> 
+                            <div ng-messages="productReportForm.seller_id.$error" ng-show="productReportForm.seller_id.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>Seller Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <!--                    <div flex>
+                                            <md-input-container class="md-block">
+                                                <label>Product State</label>
+                                                <md-select ng-model="product_report.state">
+                                                    <md-select-header class="demo-select-header">
+                                                        <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm2" type="search" placeholder="Search for a State" class="demo-header-searchbox md-text">
+                                                    </md-select-header>
+                                                    <md-option ng-repeat="s in states| filter:searchTerm2" value="{{s.key}}">
+                                                        <em>{{s.value}}</em>
+                                                    </md-option>
+                                                </md-select> 
+                                                <div ng-messages="productReportForm.state.$error" ng-show="productReportForm.state.$invalid" role="alert">
+                                                    <div ng-message="required">
+                                                        <span>State is required</span>
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>-->
+                    <!--</div>-->
+                </div>
+                <div layout="row">
+                    <mdp-date-picker style="margin:10px;" mdp-open-on-click name="dateFormat" mdp-placeholder="Start Date" mdp-format="M/D/YYYY" ng-model="product_report.start_date" required>
+                    </mdp-date-picker>
+                    <mdp-date-picker style="margin:10px;" mdp-open-on-click name="dateFormat" mdp-placeholder="End Date" mdp-format="M/D/YYYY" ng-model="product_report.end_date" required>
+                    </mdp-date-picker>
+                    <button style="height: 40px;" sglclick="generateReport()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button">
+                        Generate
+                        <div class="md-ripple-container"></div>
+                    </button>
+                    <button style="height: 40px;" sglclick="generateReportExcel()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button">
+                        Export Excel
+                        <div class="md-ripple-container"></div>
+                    </button>
+
+                </div>
+
+                <div layout="row" ng-if="product_report.seller_id">
+                    <div class="white-bg md-whiteframe-4dp" layout="column">
+                        <div layout="row">
+                            <span>Seller Name: </span>
+                            <span ng-if="renderSeller(product_report.seller_id).displayname.trim() != ''"><b><em>{{renderSeller(product_report.seller_id).displayname}}</em></b></span>
+                            <span ng-if="renderSeller(product_report.seller_id).displayname.trim() == ''"><b><em>{{{renderSeller(product_report.seller_id).firstname}} {{renderSeller(product_report.seller_id).lastname}}</em></b></span>
+                            <!--                            <em ng-if="s.displayname.trim() != ''">{{s.displayname}}</em> 
+                                                        <em ng-if="s.displayname.trim() == ''">{{s.firstname}} {{s.lastname}}</em>-->
+
+                        </div>
+                        <div layout="row">
+                            <span>Address: </span>
+                            <span><b><em>{{renderSeller(product_report.seller_id).address}}</em></b></span>
+
+                        </div>
+                        <div layout="row">
+                            <span>Email: </span>
+                            <span><b><em>{{renderSeller(product_report.seller_id).email}}</em></b></span>
+
+                        </div>
+                        <div layout="row" ng-if="renderSeller(product_report.seller_id).phone && renderSeller(product_report.seller_id).phone != 0">
+                            <span>Phone: </span>
+                            <span><b><em>{{renderSeller(product_report.seller_id).phone}}</em></b></span>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div ng-if="is_generate_report" layout="column">
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column"  flex ng-click="expand_product = !expand_product">
+                            <div layout="row">
+
+                                <h3 flex>Pending Review Total :{{details_all['product']['recordsTotal']}}
+                                </h3>
+                                <md-button type="submit" style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_product" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_product" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div>
+                                <table ng-show="expand_product" class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['product']['data']">
+                                            <td>
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td>
+                                                {{renderDate(product.created_at)}}
+                                            </td>
+                                            <td>
+                                                {{product.status_value}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column" flex ng-click="expand_product_for_awaiting_contract = !expand_product_for_awaiting_contract">
+                            <div layout="row">
+                                <!--<h3 flex>Proposal/ For Production Total :{{total?total:totalAmount(details_all['proposal']['recordsTotal'],details_all['product_for_production']['recordsTotal'])}}</h3>-->
+                                <h3 flex>For Awaiting Contract Total :{{details_all['awaiting_contract']['recordsTotal']}}</h3>
+                                <md-button type="submit" style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_product_for_awaiting_contract" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_product_for_awaiting_contract" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div ng-show="expand_product_for_awaiting_contract">
+                                <table  class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['awaiting_contract']['data']">
+                                            <td>
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td>
+                                                {{renderdDate(product.quote_created_at)}}
+                                            </td>
+                                            <td>
+                                                {{product.is_send_mail==2?'Rejected':'Pending'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column" flex ng-click="expand_proposal_for_production = !expand_proposal_for_production">
+                            <div layout="row">
+                                <!--<h3 flex>Proposal/ For Production Total :{{total?total:totalAmount(details_all['proposal']['recordsTotal'],details_all['product_for_production']['recordsTotal'])}}</h3>-->
+                                <h3 flex>For Production Total :{{details_all['product_for_production']['recordsTotal']}}</h3>
+                                <md-button type="submit" style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_proposal_for_production" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_proposal_for_production" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div ng-show="expand_proposal_for_production">
+                                <table  class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['product_for_production']['data']">
+                                            <td>
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td>
+                                                {{renderdDate(product.quote_created_at)}}
+                                            </td>
+                                            <td>
+                                                {{product.is_send_mail == 2|| product.is_product_for_production==2?'Rejected':'Pending'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column" flex ng-click="expand_product_for_pricing = !expand_product_for_pricing">
+                            <div layout="row">
+                                <!--<h3 flex>Proposal/ For Production Total :{{total?total:totalAmount(details_all['proposal']['recordsTotal'],details_all['product_for_production']['recordsTotal'])}}</h3>-->
+                                <h3 flex>For Pricing Total :{{details_all['product_for_pricing']['recordsTotal']}}</h3>
+                                <md-button type="submit" style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_product_for_pricing" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_product_for_pricing" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div ng-show="expand_product_for_pricing">
+                                <table  class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['product_for_pricing']['data']">
+                                            <td>
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td>
+                                                {{renderdDate(product.quote_created_at)}}
+                                            </td>
+                                            <td>
+                                                {{product.is_send_mail==2?'Rejected':'Pending'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <!--                    <div flex class="product" layout="column">
+                                            <div layout="column" class="accordian" flex ng-click="expand_proposal = !expand_proposal">
+                                                <div layout="row">
+                                                    <h3 flex>Proposal Total :{{details_all['proposal']['recordsTotal']}}</h3>
+                                                    <md-button type="submit" style="min-width:20px !important;"
+                                                               class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                                               aria-label="Add Product">
+                                                        <i ng-if="expand_proposal" class="fa fa-minus"></i>
+                                                        <i ng-if="!expand_proposal" class="fa fa-plus"></i>
+                                                    </md-button>
+                                                </div>
+                    
+                                                <div ng-show="expand_proposal">
+                                                    <table  class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Product Name
+                                                                </th>
+                                                                <th>
+                                                                    Internal Note
+                                                                </th>
+                                                                <th>
+                                                                    Date
+                                                                </th>
+                    
+                                                                <th>
+                                                                    Status
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="product in details_all['proposal']['data']">
+                                                                <td>
+                                                                    {{product.name}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.note}}
+                                                                </td>
+                                                                <td>
+                                                                    {{renderdDate(product.quote_created_at)}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.is_send_mail==2?'Rejected':'Pending'}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+
+
+                    <!--                    <div flex class="product" layout="column">
+                                            <div layout="column" class="accordian" flex ng-click="expand_product_for_production = !expand_product_for_production">
+                                                <div layout="row">
+                                                    <h3 flex>For Production Total :{{details_all['product_for_production']['recordsTotal']}}</h3>
+                                                    <md-button style="min-width:20px !important;"
+                                                               class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                                               aria-label="Add Product">
+                                                        <i ng-if="expand_product_for_production" class="fa fa-minus"></i>
+                                                        <i ng-if="!expand_product_for_production" class="fa fa-plus"></i>
+                                                    </md-button>
+                                                </div>
+                                                <div ng-show="expand_product_for_production">
+                                                    <table class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Product Name
+                                                                </th>
+                                                                 <th>
+                                                                    Internal Note
+                                                                </th>
+                                                                <th>
+                                                                    Date
+                                                                </th>
+                    
+                                                                <th>
+                                                                    Status
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="product in details_all['product_for_production']['data']">
+                                                                <td>
+                                                                    {{product.name}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.note}}
+                                                                </td>
+                                                                <td>
+                                                                    {{renderDate(product.for_production_created_at)}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.is_product_for_production == 2?'Rejected':'Pending'}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+
+                    <!--                    <div flex class="product accordian" layout="column">
+                                            <div layout="column" flex ng-click="expand_copyright = !expand_copyright">
+                                                <div layout="row">
+                                                    <h3 flex> Copywriter Total :{{details_all['copyright']['recordsTotal']}}</h3>
+                                                    <md-button style="min-width:20px !important;"
+                                                               class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                                               aria-label="Add Product">
+                                                        <i ng-if="expand_copyright" class="fa fa-minus"></i>
+                                                        <i ng-if="!expand_copyright" class="fa fa-plus"></i>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                            <div class="padding-10">
+                                                <div ng-show="expand_copyright">
+                                                    <table class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Product Name
+                                                                </th>
+                                                                <th>
+                                                                    Internal Note
+                                                                </th>
+                                                                <th>
+                                                                    Date
+                                                                </th>
+                                                                <th>
+                                                                    Status
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="product in details_all['copyright']['data']">
+                                                                <td>
+                                                                    {{product.name}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.note}}
+                                                                </td>
+                                                                <td>
+                                                                    {{renderDate(product.copyright_created_at)}}
+                                                                </td>
+                                                                <td>
+                                                                    {{product.is_copyright == 2?'Rejected':'Pending'}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column"  flex ng-click="expand_approvalproducts = !expand_approvalproducts">
+                            <div layout="row">
+                                <h3 flex> Approval Total :{{details_all['approvalproducts']['recordsTotal']}}</h3>
+                                <md-button style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_approvalproducts" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_approvalproducts" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div ng-show="expand_approvalproducts">
+                                <table class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['approvalproducts']['data']">
+                                            <td>
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td>
+                                                <span ng-if="product.approved_created_at">
+                                                    {{renderDate(product.approved_created_at)}}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{product.status_id == 19?'Rejected':'Pending'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div flex class="product accordian" layout="column">
+                        <div layout="column"  flex ng-click="expand_approved = !expand_approved">
+                            <div layout="row">
+                                <h3 flex> Synced Total :{{details_all['approved']['recordsTotal']}}</h3>
+                                <md-button style="min-width:20px !important;"
+                                           class="send-button md-primary md-raised add-event-button md-warn md-button md-custom-theme"
+                                           aria-label="Add Product">
+                                    <i ng-if="expand_approved" class="fa fa-minus"></i>
+                                    <i ng-if="!expand_approved" class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="padding-10">
+                            <div ng-show="expand_approved">
+                                <table class="row-border hover ng-isolate-scope dataTable no-footer proposal_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Product Name
+                                            </th>
+                                            <th>
+                                                Internal Note
+                                            </th>
+                                            <th>
+                                                SKU
+                                            </th>
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="product in details_all['approved']['data']">
+                                            <td style="min-width: 100px;">
+                                                {{product.name}}
+                                            </td>
+                                            <td>
+                                                {{product.note}}
+                                            </td>
+                                            <td style="width: 100px;">
+                                                {{product.sku}}
+                                            </td>
+                                            <td>
+                                                {{product.price}}
+                                            </td>
+                                            <td style="width:80px;">
+                                                {{renderDate(product.updated_at)}}
+                                            </td>
+
+                                            <td>
+                                                {{product.status_id == 18?'Synced':'---'}}
+                                            </td>
+                                            <td>
+                                                <span ng-click="openProductQuotationViewDialog(product.id);" class="text-boxed m-0 deep-blue-bg white-fg" style="cursor: pointer; background-color: #126491 !important;">VIEW</span>
+                                                <!--                                    <md-button aria-label="VIEW" ng-click="openProductQuotationViewDialog(product.id);" class="md-fab md-accent md-raised md-mini">
+                                                                                        <md-icon  md-font-icon="icon-eye" aria-label="VIEW"></md-icon>
+                                                                                        <md-tooltip md-direction="top" md-visible="tooltipVisible">VIEW</md-tooltip>
+                                                                                    </md-button>-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .padding-10{
+        padding: 10px;
+    }
+    .product{
+        margin-bottom: 15px;
+    }
+    .accordian{
+        background-color: silver;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .proposal_table tbody tr td
+    {
+        /*height: 40px !important;*/
+        padding: 10px;
+    }
+    .proposal_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .proposal_table tr td:last-child
+    {
+        /*        position:relative;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+                margin-top:0 !important;
+                margin-bottom:0 !important;*/
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    td{
+        word-break: break-word;
+        min-width: 50px;
+    }
+    /*    md-fab-speed-dial.md-fab-top-right {
+            transform: unset;
+        }*/
+
+
+</style>

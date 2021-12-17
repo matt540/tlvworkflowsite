@@ -1,0 +1,162 @@
+<md-dialog style="width: 60%;" class="task-dialog" aria-label="New Task">
+    <form name="productForm" class="md-inline-form" novalidate enctype="multipart/form-data">
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Bulk Import </span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+
+
+            <div layout="column" layout-xs="row" flex="100">
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <label>Product File</label><br/>
+                        <input id="product_file" type="file" name="product_file" ng-model="product_data.product_file" required>
+                    </div>   
+
+                </div>
+
+            </div><br/><br/>
+            <div layout="column" layout-xs="row" flex="100">
+                <div layout="row" layout-xs="column">
+
+                    <div flex>
+                        <a href="/assets/upload_template_demo.xlsx" target="_blank" class="md-raised md-primary md-button md-default-theme md-ink-ripple"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                            Upload Template</a><br/>
+                    </div>     
+                    <div flex>
+                        <a href="/assets/product_field_referance.xlsx" target="_blank" class="md-raised md-primary md-button md-default-theme md-ink-ripple"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                            Product Field Reference</a><br/>
+                    </div> 
+                </div>
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit"  ng-click="importProductForExcel()"
+                           class="send-button md-primary md-raised"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+
+
+
+            </div>
+
+            <div layout="row">
+
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .optionDouble{
+        height: 78px;
+        border-bottom: 1px solid;
+    }
+    md-optgroup label {
+        display: none !important;
+    }
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        /*        margin:0;
+                left: 0;*/
+        text-align: center;
+        display: block !important;
+        top: 45%;
+        /*transform: none;*/
+    }
+    .dropzone .dz-message span{
+        font-size: 12px;
+        color: #666666;
+    }
+    .dropzone .dz-message img{
+        margin-left: 15px;
+        border-radius: 20px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/100px arial;
+        height: 250px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 800px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin-top: 25px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+
+
+
+    #dropzone {
+
+        /*//change*/
+        height: 50px !important;
+        width: 200px !important;
+        /*//change*/
+    }
+    .dropzone .dz-message{
+        /*//change*/
+        height: 94px !important;
+        width: 100% !important;
+        /*//change*/
+    }
+
+    /*//change*/
+    .dropzone.dz-started .dz-message {
+        display: block; 
+    }
+    /*//change*/
+    /*//change*/
+    .dropzone{
+        min-height: 50px !important;
+    }
+    /*//change*/
+    .dropzone .dz-preview
+    {
+        display: none; 
+    }
+    .auto_scroll textarea {
+        height: initial !important;
+        max-height: 100px !important;
+        overflow: auto !important;
+    }
+
+
+</style>

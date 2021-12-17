@@ -1,0 +1,262 @@
+<md-dialog style="width: 60%;" class="task-dialog" aria-label="New Task">
+    <form name="productForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">{{ action}} Product</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+
+            <div layout="row" layout-xs="column">
+<!--                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Sell Name</label>
+                        <input name="sell_name" ng-model="product.sell_name" required md-autofocus>
+                        <div ng-messages="productForm.sell_name.$error" ng-show="productForm.sell_now.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>Sell Name is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>-->
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Seller Name</label>
+                        <md-select ng-model="product.seller_id">
+                            <md-select-header class="demo-select-header">
+                                <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" type="search" placeholder="Search for a seller" class="demo-header-searchbox md-text">
+                            </md-select-header>
+
+                            <md-option ng-click="addNewSeller()"><em>Add New</em></md-option>
+                            <md-option ng-repeat="seller in sellers| filter:searchTerm" value="{{seller.ID}}"><em>{{seller.data.display_name}}</em></md-option>
+                            <!--                            <md-option value="1"><em>Robert</em></md-option>
+                                                        <md-option value="2"><em>Tom</em></md-option>
+                                                        <md-option value="3"><em>Peter</em></md-option>
+                                                        <md-option value="4"><em>Smith</em></md-option>-->
+                        </md-select> 
+                        <div ng-messages="productForm.seller_id.$error" ng-show="productForm.seller_id.$touched" role="alert">
+                            <div ng-message="required">
+                                <span>Seller Name is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div layout="column" layout-xs="row" flex="100">
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Product Name</label>
+                            <input type="text" name="name" ng-model="product.name" required>
+                            <div ng-messages="productForm.name.$error" ng-show="productForm.name.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Product Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row" layout-xs="column" flex>
+                        <md-input-container class="md-block" flex="50">
+                            <label>Product Price</label>
+                            <input type="text" name="price" ng-model="product.price" required>
+                            <div ng-messages="productForm.price.$error" ng-show="productForm.price.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Product Price is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="50">
+                            <label>Quantity</label>
+                            <input type="text" name="quantity" ng-model="product.quantity" required>
+                            <div ng-messages="productForm.quantity.$error" ng-show="productForm.quantity.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Quantity is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>TLV Staff Suggested Price</label>
+                            <input name="tlv_suggested_price" ng-model="product.tlv_suggested_price" required md-autofocus>
+                            <div ng-messages="productForm.tlv_suggested_price.$error" ng-show="productForm.tlv_suggested_price.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>TLV Staff Suggested Price is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Dimensions</label>
+                            <input name="diamensions" ng-model="product.diamensions" required md-autofocus>
+                            <div ng-messages="productForm.diamensions.$error" ng-show="productForm.diamensions.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Dimensions is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Materials</label>
+                            <input name="materials" ng-model="product.materials" required md-autofocus>
+                            <div ng-messages="productForm.materials.$error" ng-show="productForm.materials.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Materials Price is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div ng-repeat="c in categorys" flex="15">
+                        <md-input-container class="md-block" flex>
+                            <label>{{ c.category_name}}</label>
+                            <md-select ng-model="product.cat[c.category_name]">
+                                <md-option ng-if="c.id == sc.category_id" ng-repeat="sc in subcategorys" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select>                                
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Description</label>
+                            <textarea name="description"  ng-model="product.description" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Short Description</label>
+                            <textarea name="sort_description"  ng-model="product.sort_description" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container flex="100" flex-gt-xs="33">
+                            <span class="radioValue">Images From?</span><br>
+                            <md-radio-group ng-model="product.images_from" name="images_from" required>
+                                <md-radio-button value="1">Schedule</md-radio-button>
+                                <md-radio-button value="0">Client Already Sent Images</md-radio-button>
+                            </md-radio-group>
+                            <div ng-messages="OrderForm1.images_from.$error" role="alert"></div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <div class="dropzone" id="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-dropzone>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--            <div layout="column" layout-xs="row" flex="100">
+                            
+                        </div>-->
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                <md-button type="submit"  ng-click="saveProduct()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="productForm.$invalid || productForm.$pristine"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+
+
+
+            </div>
+
+            <div layout="row">
+
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        /*        margin:0;
+                left: 0;*/
+        text-align: center;
+        display: block !important;
+        top: 45%;
+        /*transform: none;*/
+    }
+    .dropzone .dz-message span{
+        font-size: 15px;
+        color: #666666;
+    }
+    .dropzone .dz-message img{
+        margin-left: 15px;
+        border-radius: 20px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/100px arial;
+        height: 150px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 550px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin-top: 25px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+
+
+</style>

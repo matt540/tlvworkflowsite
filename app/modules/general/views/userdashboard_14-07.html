@@ -1,0 +1,156 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent" ui-sref="dashboard">Dashboard</span>
+                </div>
+                <!--                <button ng-click="sync_users()"  type="button" class="md-icon-button md-button  md-custom-theme md-ink-ripple"  aria-label="Search">
+                                    <md-icon md-font-icon="icon-sync" class=" md-custom-theme md-font material-icons icon-sync" aria-hidden="true"></md-icon>
+                                    <md-tooltip><span translate="USERS.SYNC">Sync Users</span></md-tooltip>
+                                </button>-->
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-tile-four" class="md-custom-theme md-font material-icons icon-tile-four" aria-hidden="true"></md-icon></span><span class="logo-text ">Dashboard</span>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+
+        <div calendar="main" id="calendarView1" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false" >
+            <div class="widget-group" layout="row" flex="100" layout-wrap>
+                <ms-widget-front class="ms-widget-front m-l-20 md-whiteframe-4dp cursor" ng-click="openProductAddDialog()" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Add New Product</div>
+                    </div>
+
+                    <!--                    <div class="p-16 border-top" layout="row" layout-align="space-between start">
+                                            <span class="h4">In / Scheduled:</span>
+                                            <span class="h4 ml-8">{{attendance.todays_present_total}} / {{attendance.children_total}}</span>
+                                                                    <md-progress-linear md-mode="determinate"
+                                                                                        value="50"></md-progress-linear>
+                                        </div>
+                                        <div class="p-16 border-top" layout="row" layout-align="space-between start">
+                                            <span class="h4">Not Present:</span>
+                                            <span class="h4 ml-8">{{attendance.absent_total}}</span>
+                                        </div>
+                                        <div class="p-16 border-top" layout="row" layout-align="space-between start">
+                                            <span class="h4">Absent:</span>
+                                            <span class="h4 ml-8">{{attendance.absent_total}}</span>
+                                        </div>
+                                        <div class="p-16 border-top" layout="row" layout-align="space-between start">
+                                            <span class="h4">Checked Out</span>
+                                            <span class="h4 ml-8">{{attendance.todays_checked_out_total}}</span>
+                                        </div>-->
+                </ms-widget-front>
+                <ms-widget-front class="ms-widget-front height-150 m-l-20 md-whiteframe-4dp cursor" ui-sref="sellerproduct({name: 'product'})" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Products for Review</div>
+                    </div>
+                </ms-widget-front>
+               
+            </div>
+<!--            <div class="widget-group" layout="row" flex="100" layout-wrap>
+                 <ms-widget-front class="ms-widget-front height-150 m-l-20 md-whiteframe-4dp cursor" ui-sref="schedule()" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Seller Appointments</div>
+                    </div>
+                </ms-widget-front>
+                 <ms-widget-front class="ms-widget-front height-150 m-l-20 md-whiteframe-4dp cursor" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Import/Export</div>
+                    </div>
+                </ms-widget-front>
+            </div>-->
+            <div class="widget-group" layout="row" flex="100" layout-wrap>
+                 <ms-widget-front class="ms-widget-front height-150 m-l-20 md-whiteframe-4dp cursor" ui-sref="sellerproduct({name: 'proposal'})" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Proposals</div>
+                    </div>
+                </ms-widget-front>
+                 <ms-widget-front class="ms-widget-front height-150 m-l-20 md-whiteframe-4dp cursor" ui-sref="sellerproduct({name: 'approvedproducts'})" flex>
+                    <div class=" pv-16 h-55 m-10" layout="row" layout-align="space-between center">
+                        <div class="h3">Approved Products</div>
+                    </div>
+                </ms-widget-front>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .box_dashboard{
+        cursor: pointer;
+        margin-bottom: 10px; min-height: 100px; display: inline-block; width:49%;
+    }
+    .secondary-text{
+        color: black;
+    }
+    .p10p{
+        padding: 10%;
+    }
+    .last_incident tr td{
+        text-align: center;
+    }
+    .alarm_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .alarm_table tr td:last-child
+    {
+        position:relative;
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+        margin-top:0 !important;
+        margin-bottom:0 !important;
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    ms-widget-front{
+        margin: 10px;
+        padding: 30px 0px;
+
+    }
+    .h3{
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+    }
+    .m-l-20{
+        margin-left: 20px;
+    }
+    .m-10{
+        margin: 10px;
+    }
+    .height-150{
+        min-height: 150px;
+        
+    }
+    .cursor:hover{
+        cursor: pointer;
+        background-color: #95d60a;
+    }
+
+</style>

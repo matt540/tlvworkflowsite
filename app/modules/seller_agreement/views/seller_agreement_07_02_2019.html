@@ -1,0 +1,742 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <!--<div class="logo md-accent-bg">-->
+            <!--<span>F</span>-->
+            <img src="../../../../assets/images/site_logo.png" height="100px" width="200px">
+            <!--</div>-->
+
+            <div class="title">STANDARD CLIENT SALE AGREEMENT</div>
+            <form name="SellerAgreementForm" novalidate method="POST" ng-submit="SaveSellerAgreement(SellerAgreementForm.$valid)">
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Consignor​’​s Name</label>
+                            <input name="consignor_name" ng-model="seller_agreement.consignor_name"  ng-required="!seller_agreement.consignor_name">
+                            <div ng-messages="SellerAgreementForm.consignor_name.$error" ng-show="ClientForm.consignor_name.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Consignor​’​s Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <textarea rows="2" name="address" ng-model="seller_agreement.address" ng-required="!seller_agreement.address">
+                            </textarea>                        
+                            <div ng-messages="SellerAgreementForm.address.$error" ng-show="SellerAgreementForm.address.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Address is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>City</label>
+                            <input name="city" ng-model="seller_agreement.city" ng-required="!seller_agreement.city">
+                            <div ng-messages="SellerAgreementForm.city.$error" ng-show="SellerAgreementForm.city.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>State</label>
+                            <input name="state" ng-model="seller_agreement.state"  ng-required="!seller_agreement.state" >
+                            <div ng-messages="SellerAgreementForm.state.$error" ng-show="SellerAgreementForm.state.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>State is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Zip</label>
+                            <input name="zip" ng-model="seller_agreement.zip" ng-required="!seller_agreement.zip" >
+                            <div ng-messages="SellerAgreementForm.zip.$error" ng-show="SellerAgreementForm.zip.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Zip is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Phone</label>
+                            <input type="number" name="phone" ng-model="seller_agreement.phone"   ng-required="!seller_agreement.phone">
+                            <div ng-messages="SellerAgreementForm.phone.$error" ng-show="SellerAgreementForm.phone.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Phone is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input type="email" name="email" ng-model="seller_agreement.email"  ng-required="!seller_agreement.email">
+                            <div ng-messages="SellerAgreementForm.email.$error" ng-show="SellerAgreementForm.email.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Email is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <p>
+                    This Agreement is made by and among <input name="consignor_name2" class="input_text_box" placeholder="Consignor Name" ng-model="seller_agreement.consignor_name2"  ng-required="!seller_agreement.consignor_name2">("Consignor") and
+                    The Local Vault, LLC, Greenwich CT ("TLV") on the <input type="number"  class="input_text_box" placeholder="Day" style="width: 60px;" name="day" ng-model="seller_agreement.day"  ng-required="!seller_agreement.day">day of<input type="number"  style="width: 60px;" class="input_text_box" placeholder="Month" name="month" ng-model="seller_agreement.month"  ng-required="!seller_agreement.month">&nbsp;20<input type="number"  style="width: 60px;" class="input_text_box" placeholder="Year" name="year" ng-model="seller_agreement.year"  ng-required="!seller_agreement.year">.
+                </p>
+                <p><br></p>
+                <p>
+                    Consignor grants unto TLV the authority to advertise, offer for sale and sell the Item(s) listed in the
+                    attached Sale Catalog. All Item(s) included in the Sale Catalog are generally described personal
+                    property belonging to the Consignor, or, the individual(s) or estate that Consignor is acting as the
+                    agent for. Hereinafter the personal property listed within the Sale Catalog will be described as
+                    “Item(s)”.
+                </p>
+                <p>
+                    The Item(s) are or will be available for pick-up at:
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <textarea required rows="2" name="available_item" ng-model="seller_agreement.available_item" >
+                            </textarea>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                    </div>
+                </div>
+                </p>
+                <p>
+                    The sale shall be conducted as described below on or about 2 weeks from: &nbsp;&nbsp;<input class="input_text_box" name="sale_weeks" ng-model="seller_agreement.sale_weeks"  required>.
+                </p>
+                <p>
+                    <b>Consignor and TLV agree as follows:</b>
+                <p>
+                    <!--                <ol style="list-style: bold;">
+                                        <li>
+                                            TLV will facilitate the sale of Items consigned through the use of an online (internet) sale
+                                            accessible through TLV’s website at www.thelocalvault.com, as well as through our partner
+                                            sites as appropriate. Our partner sites include but are not limited to: Houzz, eBay and 1stDibs.
+                                            TLV reserves the right to reject or decline to handle the sale of any Item. 
+                                        </li>
+                                        <li>
+                                            Consignors will have the option to provide their own high quality photos or to have TLV
+                                            photograph the Item(s). TLV charges a Photography fee of $150.00 for the first 20 items and
+                                            $50 for all additional items to be collected prior to the photoshoot. All Photographs of the
+                                            Item(s) whether taken by the Consignor or TLV can be used in TLV promotional, advertising
+                                            and marketing materials and activities including social media.
+                                        </li>
+                                        <li>
+                                            All Item(s) must be readily accessible to TLV Staff during the photoshoot. Any labor required
+                                            to support the listing of the Item(s) will be passed on to the Consignor and are not conditional
+                                            on the sale of the Item(s).
+                                        </li>
+                                        <li>
+                                            If the Consignor chooses to provide their own photographs for the Item(s) being consigned, all
+                                            photographs must be of high quality. TLV reserves the right to refuse any photos that don’t
+                                            meet the TLV standards as outlined in the TLV Self Photography Guide.
+                                        </li>
+                                        <li>
+                                            The online sale will be advertised and accessible from TLV's website for up to 90 days. If an
+                                            Item has not been purchased within the first 90 days of a sale, the listing may be extended with
+                                            both the Consignor and TLV’s agreement under the current contract at 30 day intervals. After 3
+                                            months TLV may extend the term of the agreement but exercises the right to include new
+                                            provisions. While the sale at TLV is running, Consignor agrees not to list the Item(s) for sale or
+                                            sell the item(s) through any means/channels including websites or social media sites. While the
+                                            sale at TLV is running, Consignor shall not, verbally or through any website or social media
+                                            sites, make any representations or warranties regarding the nature or quality of Item(s) listed for
+                                            sale, other than those representations or warranties set forth in writing in the Sale Catalog or
+                                            otherwise provided by Consignor to TLV in writing.
+                                        </li>
+                                        <li>
+                                            Consignor acknowledges that some Items will be grouped and sold as lots to facilitate their sale.
+                                            Items designated for sale cannot be withdrawn or removed by Consignor without penalty as
+                                            stated in Section 9 below.
+                                        </li>
+                                        <li>
+                                            TLV shall use its reasonable best efforts to promote the sales of the Item(s) but does not
+                                            guarantee any Item(s) will be sold.
+                                        </li>
+                                        <li>
+                                            The advertised price of each Item is set forth in the Sale Catalog, or will be mutually agreed
+                                            prior to commencement of the sale. All Item(s) will be priced with a range to allow for
+                                            discounting over the first 90 days. Prices listed for each Item exclude applicable sales tax, which
+                                            TLV will add to the buyer's invoice for each Item sold and collect from buyers with payment for
+                                            each Item.
+                                            <ul style="list-style: none;">
+                                                <li>
+                                                    <span><b>8.1. </b></span> TLV reserves the right to discount items after the first 30 days through the life of the
+                                                    Item(s) listing. The initial discounts during the first 90 days will be within the price range
+                                                    as per the Sale Catalog. All other discounting after the initial 90 days will be agreed with
+                                                    the Consignor.
+                                                </li>  
+                                                <li>
+                                                    <span><b>8.2. </b></span> At times TLV receives offers for items that are listed on the site. TLV reserves the right to
+                                                    negotiate with the buyer to receive the best offer within the price range as per the Sale
+                                                    Catalog. 
+                                                </li>
+                                                <li>
+                                                    <span><b>8.3. </b></span> TLV uses Sales Events, Trade Discounts and Coupons to help drive sales of Items.
+                                                    Discounts range from 10-15% to be shared evenly between TLV and the Consignor.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            If Consignor withdraws or requests TLV to remove any Item listed for sale 24 hours post
+                                            photoshoot, Consignor shall pay $50 per Item removed. Once Item(s) are posted online,
+                                            Consignor shall pay TLV a cancellation fee equal to 40% of the target sale price of each
+                                            cancelled sale or withdrawn Item.
+                                        </li>
+                                        <li>
+                                            Promptly after closing of each sale TLV will schedule with Consignor a date and time for
+                                            removal of sold Item(s) within a week after the close of each sale. Consignor will cooperate and
+                                            coordinate with TLV to ensure that sold Item(s) is(are) easily accessible for pick-up. Easily
+                                            accessible is defined as located on the first floor of a multi-story dwelling including the garage.
+                                            All items must be prepared for pick up (i.e. removal of all personal belongings from the Item(s)
+                                            sold). Beds must be disassembled. If items are not easily accessible or prepared for pickup,
+                                            TLV will deduct 10% from the Consignor’s commission
+                                        </li>
+                                        <li>
+                                            Promptly after closing of each sale TLV will schedule with Consignor a date and time for
+                                            removal of sold Item(s) within a week after the close of each sale. Consignor will cooperate and
+                                            coordinate with TLV to ensure that sold Item(s) is(are) easily accessible for pick-up. Easily
+                                            accessible is defined as located on the first floor of a multi-story dwelling including the garage.
+                                            All items must be prepared for pick up (i.e. removal of all personal belongings from the Item(s)
+                                            sold). Beds must be disassembled. If items are not easily accessible or prepared for pickup,
+                                            TLV will deduct 10% from the Consignor’s commission
+                                        </li>
+                                        <li>
+                                            Buyers may return any or all Consigned Items to the Consignor provided the Item(s) is returned
+                                            in the same condition as when removed form the Consignor's home or storage facility, and if it
+                                            takes place within two weeks of purchase and/or within 48 hours of receipt. All local pickups
+                                            must take place within two weeks of the sale unless arrangements are agreed upon with the
+                                            Consignor to store for a longer period. No returns will be accepted for any item picked up after
+                                            two-weeks from purchase. If the item is being shipped, Buyers must notify TLV of a return
+                                            within 2 days after delivery. Buyers will incur return shipping and restocking charges. Buyers
+                                            may not be reimbursed for returns that are not received in original condition. If the item is
+                                            delivered to a Buyer and is not in the same condition as it was during the time of the inspection
+                                            by TLV, the Consignor will bear the return shipping fee. If TLV has misrepresented the item,
+                                            TLV will bear the cost. 
+                                        </li>
+                                        <li>
+                                            TLV shall retain a commission of 40% of the net sale proceeds (calculated on the sales price,
+                                            excluding sales tax) for its services. TLV shall forward a statement of sale and the remaining
+                                            balance of the sales proceeds (excluding sales tax) less any agreed upon expenses to the
+                                            Consignor at the address provided within approximately 14 business days after the Item(s) sold
+                                            have been received by the buyer and the return period has passed.
+                                        </li>
+                                        <li>
+                                            TLV is not responsible for insuring Items, whether or not in TLV's possession, or any other
+                                            property or persons at Consignor's location(s) throughout the period of this Agreement or at any
+                                            other time. Consignor agrees to maintain adequate insurance coverage. TLV shall not be liable
+                                            for any loss or damage to items tendered, stored or handled, however caused, unless such loss or
+                                            damage resulted from the gross negligence or willful misconduct of TLV. TLV provides no
+                                            primary coverage against loss or damage to Consignor’s goods, however caused. The Consignor
+                                            declares that TLV’s liability for any damage to any Item is limited to $10 per Item. Any value in
+                                            excess of $10 per Item is solely the responsibility of the Consignor.
+                                        </li>
+                                        <li>
+                                            Consignor warrants that s/he has full authority to transfer all title and property rights in all listed
+                                            Item(s) free and clear of all liens, claims and encumbrances, and there are no reserved or hidden
+                                            security interests in any Item(s) that are the subject of this Agreement.
+                                        </li>
+                                        <li>
+                                            Consignor shall indemnify, defend and hold TLV harmless from and against any losses,
+                                            damages, liabilities, costs and expenses, including reasonable attorney’s fees, arising from or
+                                            relating to any claim, demand, suit, action or cause of action alleging any loss or damage to
+                                            persons or property resulting directly or indirectly from the handling, marketing, sale, delivery
+                                            or distribution of Items hereunder by TLV, its agents and employees, or the purchase, transfer,
+                                            ownership or use of Item(s) by any third party, including, without limitation, any breach of
+                                            warranty, misrepresentation or products liability claims made with respect of such Item(s).
+                                        </li>
+                                    </ol>-->
+                <ol style="list-style: bold;">
+                    <li>
+                        TLV will facilitate the sale of Items consigned through the use of an online 
+                        (internet) sale accessible through TLV website at ​www.thelocalvault.com​,as 
+                        well as through our partner sites as appropriate. Our partner sites include 
+                        but are not limited to: Houzz, eBay and 1stDibs. TLV reserves the right to 
+                        reject or decline to handle the sale of any Item.
+                    </li>
+                    <li>
+                        TLV charges a Production fee of $150.00 to send a team member(s) to photograph, 
+                        measure and catalog a Consignor’s Item(s). All Photographs of the Item(s) can be 
+                        used in TLV promotional, advertising and marketing materials and activities 
+                        including social media.
+                    </li>
+                    <li>
+                        All Item(s) must be readily accessible to TLV Staff during the photoshoot. 
+                        Any labor required to support the listing of the Item(s) will be passed on to the 
+                        Consignor and are not conditional on the sale of the Item(s).
+                    </li>
+                    <li>
+                        The online sale will be advertised and accessible from TLV website for 90 days. 
+                        If an Item has not been purchased within the first 90 days of a sale, the listing 
+                        will be automatically renewed under the current contract at 60 day intervals. 
+                        Consignors may opt out of the renewal and end their sale. While the sale at TLV is 
+                        running, Consignor agrees not to list the Item(s) for sale or sell the item(s) 
+                        through any means/channels including websites or social media sites. 
+                        While the sale at TLV is running, Consignor shall not, verbally or through any 
+                        website or social media sites, make any representations or warranties regarding 
+                        the nature or quality of Item(s) listed for sale, other than those representations 
+                        or warranties set forth in writing in the Sale Catalog or otherwise provided by 
+                        Consignor to TLV in writing.
+                    </li>
+                    <li>
+                        Consignor acknowledges that some Items will be grouped and sold as lots to 
+                        facilitate their sale. Items designated for sale cannot be withdrawn or removed 
+                        by Consignor without penalty as stated in Section 9 below.
+                    </li>
+                    <li>
+                        TLV shall use its reasonable best efforts to promote the sales of the Item(s) 
+                        but does not guarantee any Item(s) will be sold.
+                    </li>
+                    <li>
+                        The advertised price of each Item is set forth in the Sale Catalog, or will be 
+                        mutually agreed prior to commencement of the sale. All Item(s) will be priced with 
+                        a range to allow for discounting over the first 90 days. Prices listed for each 
+                        Item exclude applicable sales tax, which TLV will add to the buyer's invoice for 
+                        each Item sold and collect from buyers with payment for each Item.
+                        <ul style="list-style: none;">
+                            <li>
+                                <span><b>7.1. </b></span> TLV reserves the right to discount items after the first 
+                                30 days through the life of the Item(s) listing. The initial discounts during the 
+                                first 90 days will be within the price range as per the Sale Catalog. All other 
+                                discounting after the initial 90 days will be agreed with the Consignor.
+                            </li>  
+                            <li>
+                                <span><b>7.2. </b></span> At times TLV receives offers for items that are 
+                                listed on the site. TLV reserves the right to negotiate with the buyer to 
+                                receive the best offer within the price range as per the Sale Catalog.
+                            </li>
+                            <li>
+                                <span><b>7.3. </b></span> TLV uses Sales Events, Trade Discounts and Coupons to 
+                                help drive sales of Items. Discounts range from 10-15% to be shared evenly between 
+                                TLV and the Consignor.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>If Consignor withdraws or requests TLV to remove any Item listed for sale 
+                            24 hours post photoshoot, Consignor shall pay $50 per Item removed. Once 
+                            Item(s) are posted online, Consignor shall pay TLV a cancellation fee equal to 
+                            20% of the target sale price of each cancelled sale or withdrawn Item. 
+                            TLV will charge the credit card provided herein.</b>
+                    </li>
+                    <li>
+                        Promptly after closing of each sale TLV will schedule with Consignor a date and 
+                        time for removal of sold Item(s) within a week after the close of each sale. 
+                        Consignor will cooperate and coordinate with TLV to ensure that sold Item(s) 
+                        is(are) easily accessible for pick-up. Easily accessible is defined as located 
+                        on the first floor of a multi-story dwelling including the garage. All items 
+                        must be prepared for pick up (i.e. removal of all personal belongings from the 
+                        Item(s) sold). Beds must be disassembled. If items are not easily accessible or 
+                        prepared for pickup, consignor may incur costs related to making the item(s) 
+                        accessible.
+                    </li>
+                    <li>
+                        Buyers may return any or all Consigned Items to the Consignor provided the 
+                        Item(s) is returned in the same condition as when removed from the Consignor's 
+                        home or storage facility, and if it takes place within​two weeks of purchase 
+                        and/or within 48 hours of receipt. All local pickups must take place within 
+                        two weeks of the sale unless arrangements are agreed upon with the Consignor 
+                        to store for a longer period. No returns will be accepted for any item picked 
+                        up after two-weeks from purchase. If the item is being shipped, Buyers must 
+                        notify TLV of a return within 2 days after delivery. Buyers will incur return 
+                        shipping and restocking charges. Buyers may not be reimbursed for returns that 
+                        are not received in original condition. If the item is delivered to a Buyer and 
+                        is not in the same condition as it was during the time of the inspection by TLV, 
+                        the Consignor will bear the return shipping fee. If TLV has misrepresented the 
+                        item, TLV will bear the cost.
+                    </li>
+                    <li>
+                        TLV shall retain a commission of 40% of the net sale proceeds (calculated on 
+                        the sales price, excluding sales tax and credit card fees) for its services. 
+                        TLV shall forward a statement of sale and the remaining balance of the sales 
+                        proceeds (excluding sales tax and credit card fees) less any agreed upon 
+                        expenses to the Consignor at the address provided within approximately 14 
+                        business days after the Item(s) sold have been received by the buyer and the 
+                        return period has passed.
+                    </li>
+                    <li>
+                        TLV is not responsible for insuring Items, whether or not in TLV possession, 
+                        or any other property or persons at Consignor's location(s) throughout the 
+                        period of this Agreement or at any other time. Consignor agrees to maintain 
+                        adequate insurance coverage. TLV shall not be liable for any loss or damage 
+                        to items tendered, stored or handled, however caused, unless such loss or 
+                        damage resulted from the gross negligence or willful misconduct of TLV. 
+                        TLV provides no primary coverage against loss or damage to Consignor​’​s goods, 
+                        however caused. The Consignor declares that TLV liability for any damage to 
+                        any Item is limited to $10 per Item. Any value in excess of $10 per Item is 
+                        solely the responsibility of the Consignor.
+                    </li>
+                    <li>
+                        Consignor warrants that s/he has full authority to transfer all title and 
+                        property rights in all listed Item(s) free and clear of all liens, claims and 
+                        encumbrances, and there are no reserved or hidden security interests in any 
+                        Item(s) that are the subject of this Agreement.
+                    </li>
+                    <li>
+                        Consignor shall indemnify, defend and hold TLV harmless from and against any 
+                        losses, damages, liabilities, costs and expenses, including reasonable attorney​’​s 
+                        fees, arising from or relating to any claim, demand, suit, action or cause of 
+                        action alleging any loss or damage to persons or property resulting directly or 
+                        indirectly from the handling, marketing, sale, delivery or distribution of Items 
+                        hereunder by TLV, its agents and employees, or the purchase, transfer, ownership 
+                        or use of Item(s) by any third party, including, without limitation, any breach 
+                        of warranty, misrepresentation or products liability claims made with respect of 
+                        such Item(s).
+                    </li>
+                </ol>
+                <p>
+                    I have read the foregoing Agreement and understand the contents thereof; I further represent that
+                    the statements herein made by me are true to the best of my knowledge; that this Agreement
+                    contains and sets out the entire Agreement of the parties unless this is amended in writing signed
+                    by all parties to this Agreement. It is mutually agreed that this Agreement shall be binding and
+                    obligatory upon the undersigned, and the separate heirs, administrators, executors, assigns and
+                    successors of the undersigned:
+                </p>
+                <p>
+                    <b>IN WITNESS WHEREOF, the parties have executed this Agreement:</b>
+                </p>
+                <div layout="row" layout-xs="column">
+                    <div flex><b>Consignor:</b></div>
+                    <div flex><b>The Local Vault:</b></div>
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <div flex="50">
+                        <md-input-container class="md-block">
+                            <label>Name</label>
+                            <input name="consignor_name3" ng-model="seller_agreement.consignor_name3"   ng-required="!seller_agreement.consignor_name3">
+                            <div ng-messages="SellerAgreementForm.consignor_name3.$error" ng-show="SellerAgreementForm.consignor_name3.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <!--                    <div flex>
+                                            <md-input-container class="md-block">
+                                                <label>Name</label>
+                                                <input name="local_vault_name" ng-model="seller_agreement.local_vault_name"  ng-required="!seller_agreement.local_vault_name">
+                                                <div ng-messages="SellerAgreementForm.local_vault_name.$error" ng-show="SellerAgreementForm.local_vault_name.$touched" role="alert">
+                                                    <div ng-message="required">
+                                                        <span >Name is required</span>
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>-->
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-datepicker md-open-on-focus name="local_vault_date" ng-model="seller_agreement.local_vault_date" md-placeholder="Date"  ng-required="!seller_agreement.local_vault_date">
+                        </md-datepicker>
+                        <div ng-messages="SellerAgreementForm.local_vault_date.$error" ng-show="SellerAgreementForm.local_vault_date.$touched" role="alert">
+                            <div ng-message="required">
+                                <span  style="color:rgb(213,0,0);font-size: 12px;padding-left: 50px;">Date is required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex>
+                        <md-datepicker md-open-on-focus name="consignor_date" ng-model="seller_agreement.consignor_date"  ng-required="!seller_agreement.consignor_date">
+                        </md-datepicker>
+                        <div ng-messages="SellerAgreementForm.consignor_date.$error" ng-show="SellerAgreementForm.consignor_date.$touched" role="alert">
+                            <div ng-message="required">
+                                <span  style="color:rgb(213,0,0);font-size: 12px;padding-left: 50px;">Date is required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <b>Payment Information:</b>
+                </p>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Check payable to</label>
+                            <input name="check_payable" ng-model="seller_agreement.check_payable"  ng-required="!seller_agreement.check_payable">
+                            <div ng-messages="SellerAgreementForm.check_payable.$error" ng-show="SellerAgreementForm.check_payable.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Check payable to is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div> 
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Mailing Street Address</label>
+                            <textarea rows="2" name="mailing_street_address" ng-model="seller_agreement.mailing_street_address"  ng-required="!seller_agreement.mailing_street_address">
+                            </textarea>                        
+                            <div ng-messages="SellerAgreementForm.mailing_street_address.$error" ng-show="SellerAgreementForm.mailing_street_address.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Mailing Street Address is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div> 
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>City</label>
+                            <input name="payment_city" ng-model="seller_agreement.payment_city" ng-required="!seller_agreement.payment_city">
+                            <div ng-messages="SellerAgreementForm.payment_city.$error" ng-show="SellerAgreementForm.payment_city.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>State</label>
+                            <input name="payment_state" ng-model="seller_agreement.payment_state"  ng-required="!seller_agreement.payment_state" >
+                            <div ng-messages="SellerAgreementForm.payment_state.$error" ng-show="SellerAgreementForm.payment_state.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>State is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Zip</label>
+                            <input name="payment_zip" ng-model="seller_agreement.payment_zip" ng-required="!seller_agreement.payment_zip" >
+                            <div ng-messages="SellerAgreementForm.payment_zip.$error" ng-show="SellerAgreementForm.payment_zip.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Zip is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <p>
+                    <b>Credit Card Information:</b>
+                </p>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>CC#</label>
+                            <input name="credit_card_cc"  ng-model="seller_agreement.credit_card_cc"  ng-required="!seller_agreement.credit_card_cc">
+                            <div ng-messages="SellerAgreementForm.credit_card_cc.$error" ng-show="SellerAgreementForm.credit_card_cc.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>CC is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div> 
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <div layout="row" layout-xs="column">
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label>Expiry Month</label>
+                                    <input type="number"  name="credit_card_expiry_month" ng-model="seller_agreement.credit_card_expiry_month"  ng-required="!seller_agreement.credit_card_expiry_month">
+                                    <div ng-messages="SellerAgreementForm.credit_card_expiry_month.$error" ng-show="SellerAgreementForm.credit_card_expiry_month.$touched" role="alert">
+                                        <div ng-message="required">
+                                            <span>Expiry Month is required</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex>
+                                <md-input-container class="md-block">
+                                    <label>Expiry Year</label>
+                                    <input type="number"  name="credit_card_expiry_year" ng-model="seller_agreement.credit_card_expiry_year"  ng-required="!seller_agreement.credit_card_expiry_year">
+                                    <div ng-messages="SellerAgreementForm.credit_card_expiry_year.$error" ng-show="SellerAgreementForm.credit_card_expiry_year.$touched" role="alert">
+                                        <div ng-message="required">
+                                            <span>Expiry Year is required</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Security Code</label>
+                            <input name="credit_card_security_code" ng-model="seller_agreement.credit_card_security_code" ng-required="!seller_agreement.credit_card_security_code">
+                            <div ng-messages="SellerAgreementForm.credit_card_security_code.$error" ng-show="SellerAgreementForm.credit_card_security_code.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Security Code is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Billing Address</label>
+                            <textarea rows="2" name="credit_card_billing_address" ng-model="seller_agreement.credit_card_billing_address"  ng-required="!seller_agreement.credit_card_billing_address">
+                            </textarea>                        
+                            <div ng-messages="SellerAgreementForm.credit_card_billing_address.$error" ng-show="SellerAgreementForm.credit_card_billing_address.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Billing Address is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div> 
+                </div> 
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>City</label>
+                            <input name="credit_card_city" ng-model="seller_agreement.credit_card_city" ng-required="!seller_agreement.credit_card_city">
+                            <div ng-messages="SellerAgreementForm.credit_card_city.$error" ng-show="SellerAgreementForm.credit_card_city.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>State</label>
+                            <input name="credit_card_state" ng-model="seller_agreement.credit_card_state"  ng-required="!seller_agreement.credit_card_state" >
+                            <div ng-messages="SellerAgreementForm.credit_card_state.$error" ng-show="SellerAgreementForm.credit_card_state.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>State is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Zip</label>
+                            <input name="credit_card_zip" ng-model="seller_agreement.credit_card_zip" ng-required="!seller_agreement.credit_card_zip" >
+                            <div ng-messages="SellerAgreementForm.credit_card_zip.$error" ng-show="SellerAgreementForm.credit_card_zip.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Zip is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div style="margin: 30px auto 0 auto;height: 100px;width: 220px;">
+                        <signature-pad accept="accept" style="border: 1px solid;" clear="clear" height="100" width="250" dataurl="dataurl">
+                        </signature-pad>
+                        <div layout="row" flex class="buttons">
+                            <md-button flex type="button" ng-click="clear()" class="md-raised md-warn submit-button" aria-label="Clear">             
+                                Clear
+                            </md-button>
+                            <!--                            <md-button style="margin-left: 10px;" flex type="button" ng-click="dataurl = signature.dataUrl" ng-disabled="!signature" class="md-raised md-primary submit-button" aria-label="Reset">             
+                                                            Reset
+                                                        </md-button>-->
+                            <!--                            <md-button style="margin-left: 10px;" flex type="button" ng-click="signature = accept()" class="md-raised md-primary submit-button" aria-label="Use">             
+                                                            Use
+                                                        </md-button>-->
+                            <!--                            <button type="button" ng-click="clear()">Clear</button>
+                                                        <button type="button" ng-click="dataurl = signature.dataUrl" ng-disabled="!signature">Reset</button>
+                                                        <button type="button" ng-click="signature = accept()">Use</button>-->
+                        </div>
+
+                        <!--                    <div class="sizes">
+                                                <input type="text" ng-model="boundingBox.width"> x <input type="text" ng-model="boundingBox.height">
+                                            </div>-->
+                    </div>
+                    <!--<p></p>-->
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row" style="text-align: center;" >
+                        <!--<span style="font-weight: 500;">Use your mouse to sign your name. Click <b>Use</b> to commit your signature.</span>-->
+                        <span style="font-weight: 500;">Use your mouse to sign your name.</span>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="result" ng-show="signature">
+                    <img ng-src="{{ signature.dataUrl}}">
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-button type="submit" class="md-raised md-primary submit-button" aria-label="SUBMIT"
+                               >             
+                        Submit
+                    </md-button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    #login #login-form-wrapper #login-form{
+        width: 65% !important; 
+        max-width: none !important; 
+        padding: 50px;
+        background: #FFFFFF;
+        text-align: center;
+        border-radius: 8px;
+    }
+    ol {
+        margin:0 0 1.5em;
+        padding:0;
+        counter-reset:item;
+    }
+
+    ol>li {
+        margin:0;
+        padding:0 0 0 2em;
+        text-indent:-2em;
+        list-style-type:none;
+        counter-increment:item;
+    }
+
+    ol>li:before {
+        display:inline-block;
+        width:1.5em;
+        padding-right:0.5em;
+        font-weight:bold;
+        text-align:right;
+        content:counter(item) ".";
+    }
+    .input_text_box{
+        color: rgba(0, 0, 0, 0.87);
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-image: initial;
+        border-bottom: 1px solid;
+        border-color: #e3e3e3;
+        padding: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .md-datepicker-input{
+        width:328px;
+    }
+
+    .result {
+        border: 1px solid blue;
+        margin: 30px auto 0 auto;
+        height: 100px;
+        width: 220px;
+    }
+    input.ng-invalid{
+        border-color: rgb(213,0,0);
+    }
+</style>

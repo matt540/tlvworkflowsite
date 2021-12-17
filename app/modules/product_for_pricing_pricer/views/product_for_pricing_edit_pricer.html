@@ -1,0 +1,551 @@
+<md-dialog style="width: 70%;" class="task-dialog" aria-label="New Task">
+    <form name="productForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">{{ action}} </span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Seller Name</label>
+                        <md-select ng-model="product_quotation.product_id.seller_id" ng-disabled="true">
+                            <md-option ng-repeat="s in sellers| filter:searchTerm" value="{{s.id}}">
+                                <em ng-if="s.displayname.trim() != ''">{{s.displayname}}</em> 
+                                <em ng-if="s.displayname.trim() == ''">{{s.firstname}} {{s.lastname}}</em>
+                            </md-option>
+                        </md-select> 
+                    </md-input-container>
+                </div>
+                <div flex ng-if="product_quotation.product_id.sku">
+                    <md-input-container class="md-block">
+                        <label>SKU</label>
+                        <input type="text" name="sku" ng-model="product_quotation.product_id.sku" >
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div layout="column" layout-xs="row" flex="100">
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Product Name</label>
+                            <input type="text" name="name" ng-model="product_quotation.product_id.name" >
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Quantity</label>
+                            <md-select name="quantity" ng-model="product_quotation.quantity">
+                                <md-option ng-repeat="totalquantity in totalquantitys" value="{{totalquantity}}">{{totalquantity}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Retail Price</label>
+                            <input type="text"  name="price" ng-model="product_quotation.price">
+                            <div ng-messages="productForm.price.$error" ng-show="productForm.price.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>Retail Price is required</span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span>Retail Price is Invalid</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>TLV Price</label>
+                            <input type="text"  name="tlv_price" ng-model="product_quotation.tlv_price" >
+                        </md-input-container>
+                    </div>
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Storage Price</label>
+                            <input name="storage_pricing" ng-model="product_quotation.storage_pricing">
+                            <div ng-messages="productForm.storage_pricing.$error" ng-show="productForm.storage_pricing.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>Storage price is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Commission</label>
+<!--                            <md-select ng-model="product_quotation.commission" ng-disabled="true">
+                                <md-option ng-repeat="commission in commissions" value="{{commission}}">{{commission}}</md-option>
+                            </md-select>-->
+                            <input name="commission" ng-model="product_quotation.commission" required="" >
+                            <div ng-messages="productForm.commission.$error" ng-show="productForm.commission.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>Commission is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Age</label>
+                            <md-select ng-model="product_quotation.product_id.age">
+                                <md-option ng-repeat="age in ages" value="{{age.id}}"><em>{{age.sub_category_name}}</em></md-option>
+                            </md-select> 
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div ng-repeat="(k,c) in categorys" flex="25" ng-if="c.category_name != 'Age'">
+                        <md-input-container class="md-block" flex>
+                            <label ng-if="c.id == 2">Category</label>
+                            <label ng-if="c.id != 2">{{ c.category_name}}</label>
+                            <md-select ng-if="c.category_name != 'Room' && c.category_name != 'Color' && c.category_name != 'Condition' && c.category_name != 'Category' && c.category_name != 'Sub Category' && c.category_name != 'Collection' && c.category_name != 'Materials'" 
+                                       ng-model="product_quotation.product_id.cat[c.category_name]">
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]"  type="search" placeholder="Search for a {{removeSub(c.category_name)}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-if="c.id == sc.category_id && c.id != 2" ng-repeat="sc in subcategorys| filter:search[k]" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select>
+                            <md-select ng-change="MaincategorySelected(product_quotation.product_id.cat[c.category_name])" ng-if="c.category_name == 'Category'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple >
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{removeSub(c.category_name)}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-optgroup label="level 1" ng-if="c.id == sc.category_id.id && c.id == 2" ng-repeat="sc in sub_categorys| filter:search[k]">
+                                    <md-option value="{{sc.id}}" ng-if="sc.is_enable == 1">
+                                        <em>{{sc.sub_category_name}}</em>
+                                    </md-option>
+                                </md-optgroup>
+                            </md-select>
+
+                            <md-select ng-change="SubcategorySelected(product_quotation.product_id.cat[c.category_name])"  ng-if="c.category_name == 'Sub Category'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple >
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search1[k]" type="search" placeholder="Search for a {{removeSub(c.category_name)}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-optgroup label="level 1" ng-repeat="sc in product_sub_categorys| filter:search1[k]">
+                                    <span style="padding:10px;color:#000;">
+                                        <em>{{sc.sub_category_name}} :-</em>
+                                    </span>
+                                    <md-optgroup ng-if="sc.childrens && sc.childrens.length > 0" ng-repeat="child in sc.childrens" flex-offset="5" label="level 2">
+                                        <md-option  value="{{child.id}}">
+                                            <em>{{child.sub_category_name}}</em>
+                                        </md-option>
+                                        <md-optgroup ng-if="child.childrens && child.childrens.length > 0" flex-offset="5" label="level 3">
+                                            <md-option ng-repeat="child1 in child.childrens" value="{{child1.id}}">
+                                                <em>{{child1.sub_category_name}}</em>
+                                            </md-option>
+                                            <md-optgroup ng-if="child1.childrens && child1.childrens.length > 0" flex-offset="5" label="level 4">
+                                                <md-option ng-repeat="child2 in child1.childrens" value="{{child2.id}}">
+                                                    <em>{{child2.sub_category_name}}</em>
+                                                </md-option>
+                                                <md-optgroup ng-if="child2.childrens && child2.childrens.length > 0" flex-offset="5" label="level 5">
+                                                    <md-option ng-repeat="child3 in child2.childrens" value="{{child3.id}}">
+                                                        <em>{{child3.sub_category_name}}</em>
+                                                    </md-option>
+                                                </md-optgroup>
+                                            </md-optgroup>
+                                        </md-optgroup>
+                                    </md-optgroup>
+                                </md-optgroup>
+                            </md-select>
+
+                            <md-select ng-if="c.category_name == 'Collection'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple >
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-if="c.id == sc.category_id" ng-repeat="sc in subcategorys| filter:search[k]" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select>
+                            <md-select ng-if="c.category_name == 'Room'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple>
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-if="c.id == sc.category_id" ng-repeat="sc in subcategorys| filter:search[k]" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select>
+                            <md-select ng-if="c.category_name == 'Color'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple>
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-if="c.id == sc.category_id" ng-repeat="sc in subcategorys| filter:search[k]" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select> 
+
+                            <md-select ng-if="c.category_name == 'Materials'" ng-model="product_quotation.product_id.cat['product_materials']" multiple >
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-optgroup label="level 1" ng-repeat="pmc in product_material_categorys">
+                                    <md-option value="{{pmc.id}}">{{pmc.sub_category_name}}</md-option>
+                                    <md-option style="margin-left:10px;" ng-repeat="pmsc in pmc.childrens| filter:search[k]" value="{{pmsc.id}}" ng-if="pmc.is_enable == 1">
+                                        <em>{{pmsc.sub_category_name}}</em>
+                                    </md-option>
+                                </md-optgroup>
+                            </md-select>
+
+                            <md-select ng-if="c.category_name == 'Condition'" ng-model="product_quotation.product_id.cat[c.category_name]" multiple>
+                                <md-select-header class="demo-select-header">
+                                    <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                </md-select-header>
+                                <md-option ng-if="c.id == sc.category_id" ng-repeat="sc in subcategorys| filter:search[k]" value="{{sc.id}}"><em>{{sc.sub_category_name}}</em></md-option>
+                            </md-select> 
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Condition Notes</label>
+                            <textarea name="condition_note"  ng-model="product_quotation.condition_note" style="max-height: 100px;" rows="3"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">  
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Units</label>
+                            <input name="units" ng-model="product_quotation.units">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Width</label>
+                            <input name="width" ng-model="product_quotation.width">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Depth</label>
+                            <input name="depth" ng-model="product_quotation.depth">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Height</label>
+                            <input name="height" ng-model="product_quotation.height">
+                        </md-input-container>
+                    </div>                   
+                </div>
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Seat Height</label>
+                            <input name="seat_height" ng-model="product_quotation.seat_height">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Arm Height</label>
+                            <input name="arm_height" ng-model="product_quotation.arm_height">
+                        </md-input-container>
+                    </div>                  
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Inside Seat Depth</label>
+                            <input name="inside_seat_depth" ng-model="product_quotation.inside_seat_depth" ng-disabled="true">
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block auto_scroll" >
+                            <label>Dimensions/Product Details</label>
+                            <textarea name="dimension_description"  ng-model="product_quotation.dimension_description" style="max-height: 100px;" rows="3" ng-disabled="!isCopywriterUser"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Shipping Size</label>
+                            <md-select ng-model="product_quotation.product_id.ship_size" >
+                                <md-option ng-repeat="size in ship_sizes" value="{{size.value_text}}"><em>{{size.value_text}}</em></md-option>
+                            </md-select>                                
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <label style="display: block;margin-top: -8px;">Material</label>
+                        <md-checkbox style="margin-top: 0px;" ng-model="product_quotation.product_id.ship_material" >GLASS/MARBLE/STONE</md-checkbox>                               
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <label style="display: block;margin-top: -8px;">Local Pickup</label>
+                        <md-checkbox style="margin-top: 0px;" ng-model="product_quotation.product_id.local_pickup_available">Local Pickup Available</md-checkbox>                               
+                    </div>
+                    <div flex>
+                        <label style="display: block;margin-top: -8px;">Product Location</label>
+                        <md-checkbox style="margin-top: 0px;" ng-model="product_quotation.seller_to_drop_off">Seller to drop off</md-checkbox>                               
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+              
+                    <div flex>
+                        <label style="display: block;margin-top: -8px;">Shipping Calculator</label>
+                        <md-checkbox style="margin-top: 0px;" ng-model="product_quotation.shipping_calculator" >Hide Shipping Calculator</md-checkbox>                               
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Shipping Category</label>
+                            <md-select ng-model="product_quotation.product_id.ship_cat" >
+                                <md-option value="1"><em>SEATING</em></md-option>
+                                <md-option value="2"><em>LIGHTING</em></md-option>
+                                <md-option value="3"><em>STORAGE</em></md-option>
+                                <md-option value="4"><em>RUGS</em></md-option>
+                                <md-option value="5"><em>ART</em></md-option>
+                                <md-option value="6"><em>ACCESSORIES</em></md-option>
+                                <md-option value="7"><em>TABLES</em></md-option>
+                            </md-select>                                
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Flat Rate Packaging fee </label>
+                            <input placeholder="Enter if It's applicable" name="flat_rate_packaging_fee" ng-model="product_quotation.product_id.flat_rate_packaging_fee">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div  layout="row" layout-xs="column" style="margin-bottom:10px;">
+                    <div flex="50">
+                        <md-input-container class="md-block" >
+                            <label>Deliver Option</label>
+                            <md-select ng-model="product_quotation.delivery_option" >
+                                <md-option class="optionDouble" value="Professional Delivery, quote upon request">
+                                    <em>Professional delivery required<br> Quote upon request</em>
+                                </md-option>
+                                <md-option class="optionDouble" value="Free Local Pickup, professional delivery available, quote upon request">
+                                    <em>Free local pickup <br> Professional delivery available<br>Quote upon request</em>
+                                </md-option>
+                                <md-option class="optionDouble" value="Free Local Pickup, shipping available, quote upon request">
+                                    <em>Free local pickup<br>Shipping available<br>Quote upon request</em>
+                                </md-option>
+                            </md-select>  
+                        </md-input-container>
+                    </div>
+                    <div style="margin-top: -10px;" flex="50">
+                        <md-input-container class="md-block" flex>
+                            <span class="radioValue">Is this a pet free home?</span><br>
+                            <md-radio-group ng-model="product_quotation.product_id.pet_free" name="pet_free">
+                                <md-radio-button value="yes">yes</md-radio-button>
+                                <md-radio-button value="no">No</md-radio-button>
+                            </md-radio-group>                            
+                        </md-input-container>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Location</label>
+                            <md-select ng-model="product_quotation.product_id.cities" ng-disabled="true">
+                                <md-option value="TLV Storage - Bridgeport"><em>TLV Storage - Bridgeport</em></md-option>   
+                                <md-option value="TLV Storage - Cos Cob"><em>TLV Storage - Cos Cob</em></md-option>   
+                                <md-option value="Non - Storage Location"><em>Non - Storage Location</em></md-option>                               
+                            </md-select>        
+                        </md-input-container>
+                    </div>
+                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob Office' && product_quotation.product_id.cities != ''">
+                        <md-input-container class="md-block" >
+                            <label>City</label>
+                            <input type="text" name="city"  ng-model="product_quotation.product_id.city" ng-disabled="true">
+                            <div ng-messages="productForm.city.$error" ng-show="productForm.city.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob Office'">
+                        <md-input-container class="md-block" >
+                            <label>State</label>
+                            <md-select name="state" ng-model="product_quotation.product_id.state" ng-disabled="true">
+                                <md-option ng-repeat="state in states" value="{{state.abbreviation}}"><em>{{state.abbreviation}}</em></md-option>
+                            </md-select>
+                            <div ng-messages="productForm.state.$error" ng-show="productForm.state.$invalid" role="alert">
+                                <div ng-message="required">
+                                    <span>State is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <label style="display: block;margin-top: -8px;">Local Drop-Off</label>
+                        <md-checkbox style="margin-top: 0px;" ng-model="product_quotation.product_id.local_drop_off" ng-disabled="true">Local Drop-Off Required</md-checkbox>                               
+                    </div>
+                    <div flex ng-show="product_quotation.product_id.local_drop_off">
+                        <md-input-container class="md-block" flex>
+                            <label>Location</label>
+                            <md-select ng-model="product_quotation.product_id.local_drop_off_city" ng-disabled="true">
+                                <md-option value="TLV - Bridgeport"><em>TLV - Bridgeport</em></md-option>   
+                                <md-option value="TLV - Cos Cob"><em>TLV - Cos Cob</em></md-option>
+                            </md-select>        
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Curator or Referral Name</label>
+                            <input type="text" name="curator_name" ng-model="product_quotation.curator_name">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Curator or Referral Commission</label>
+                            <md-select ng-model="product_quotation.curator_commission" >
+                                <md-option ng-repeat="commission in [5, 10, 15, 20, 25]" value="{{commission}}">{{commission}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Internal Note</label>
+                            <textarea name="note"  ng-model="product_quotation.note" style="max-height: 100px;" rows="3" ></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <md-card ng-if="product_pending_images_name.length > 0">
+                    <md-card-header class="md-primary-fg">
+                        Images
+                    </md-card-header>
+                    <md-card-content class="center_images" ng-model="product_pending_images_name">
+                        <div layout="row" style="display: inline-block;"  ng-repeat="image in product_pending_images_name" class="display_inline">
+                            <a style="    display: inline-block;" href="/Uploads/product/{{image.filename}}" fancyboxable >
+                                <img src="/Uploads/product/thumb/{{image.filename}}" style="height: 200px; width: 200px;">
+                            </a>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit"  ng-click="saveProductForProduction()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="productForm.$invalid"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+            </div>
+            <div layout="row"></div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .optionDouble{
+        height: 78px;
+        border-bottom: 1px solid;
+    }
+    md-optgroup label {
+        display: none !important;
+    }
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        /*        margin:0;
+                left: 0;*/
+        text-align: center;
+        display: block !important;
+        top: 45%;
+        /*transform: none;*/
+    }
+    .dropzone .dz-message span{
+        font-size: 12px;
+        color: #666666;
+    }
+    .dropzone .dz-message img{
+        margin-left: 15px;
+        border-radius: 20px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/100px arial;
+        height: 250px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 800px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin-top: 25px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+
+
+
+    #dropzone {
+
+        /*//change*/
+        height: 50px !important;
+        width: 200px !important;
+        /*//change*/
+    }
+    .dropzone .dz-message{
+        /*//change*/
+        height: 94px !important;
+        width: 100% !important;
+        /*//change*/
+    }
+
+    /*//change*/
+    .dropzone.dz-started .dz-message {
+        display: block; 
+    }
+    /*//change*/
+    /*//change*/
+    .dropzone{
+        min-height: 50px !important;
+    }
+    /*//change*/
+    .dropzone .dz-preview
+    {
+        display: none; 
+    }
+
+
+</style>

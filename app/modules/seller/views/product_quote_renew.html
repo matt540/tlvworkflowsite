@@ -1,0 +1,114 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="userForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Seller Agreements Renew</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll> 
+
+            <!--            <div class="dropzone" id="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-dropzone>
+                        </div>-->
+
+
+            <table style="width: 100%;" class="datatable" ng-if="product_quote_renews.length > 0">
+                <thead>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Product Name
+                </th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="agreement_renew in product_quote_renews">
+                        <td>
+                            <span ng-if="agreement_renew.created_at">{{renderDate(agreement_renew.created_at)}}</span>
+                        </td>
+                        <td>
+                            {{((agreement_renew.name) ? agreement_renew.name : '---')}}
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <div ng-if="product_quote_renews.length < total" layout="row" layout-xs="column">
+                <md-button flex-offset="40"  ng-click="getAllMyProductQuoteRenews()"
+                           class="send-button md-primary md-raised"
+                           aria-label="SAVE">
+                    Load More
+                </md-button>
+
+            </div>
+            <div ng-if="product_quote_renews.length == 0" layout="row" layout-xs="column">
+                No data available
+
+            </div>
+
+
+
+        </md-dialog-content>
+
+    </form>
+</md-dialog>
+<style>
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        margin:0;
+        left: 0;
+
+        top: 0;
+        transform: none;
+    }
+    .dropzone .dz-message img{
+        border-radius: 10px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/150px arial;
+        height: 150px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 150px;
+        margin-bottom: 50px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin:0
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+    table tbody tr td{
+        padding: 10px;
+    }
+
+
+</style>

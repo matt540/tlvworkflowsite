@@ -1,0 +1,39 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="brand_form" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Add Brand</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll> 
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Brand Name</label>
+                        <input name="brand_name" ng-model="brand_name" required md-autofocus>
+                        <div ng-messages="brand_form.brand_name.$error" ng-show="brand_form.brand_name.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>Brand Name is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit"  sglclick="addBrand()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="brand_form.$invalid"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

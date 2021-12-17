@@ -1,0 +1,124 @@
+<style>
+    td
+    {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    .page-layout.simple.left-sidenav > .center .header
+    {
+        height:100px;
+        min-height:100px;
+        max-height:100px;
+    }
+    md-card{
+        box-shadow:3px 3px 3px 3px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.082)
+    }
+</style>
+<div class="page-layout simple left-sidenav" layout="row">
+
+    <!-- SIDENAV -->
+    <md-sidenav class="sidenav" md-is-locked-open="$mdMedia('gt-md')" md-component-id="sidenav" ms-scroll
+                ms-sidenav-helper>
+
+        <!-- DEMO SIDENAV -->
+        <div class="demo-sidenav">
+            <md-list>
+                <md-subheader class="md-no-sticky md-primary-fg">Roles</md-subheader>
+
+                <md-divider></md-divider>
+
+                <md-list-item ng-class="role==r.id ? ' md-accent-bg' :''" ng-repeat="r in roles" ng-click="setRole(r.id)">
+                    <p>{{r.name}}</p>
+                    <md-divider></md-divider>
+
+                </md-list-item>
+
+
+
+            </md-list>
+        </div>
+
+        <!-- / DEMO SIDENAV -->
+
+    </md-sidenav>
+    <!-- / SIDENAV -->
+
+    <!-- CENTER -->
+    <div class="center" flex ms-scroll>
+
+        <!-- HEADER -->
+        <div id="calendar" class="page-layout simple fullwidth ng-scope layout-column" layout="column">
+
+            <div class="header Dec">
+
+
+
+
+
+
+
+                <div class="header-content layout-align-space-between-stretch layout-column" layout="column" layout-align="space-between">
+                    <div class="header-top layout-xs-column layout-align-space-between-center layout-row" layout="row" layout-align="space-between center" layout-xs="column">
+
+                        <div layout-align="start center" layout="row" class="breadcrumb layout-align-start-center layout-row">
+<!--                            <md-icon class="s16 md-jd-theme md-font material-icons icon-home" ui-sref="dashboard" md-font-icon="icon-home" href="/dashboard" aria-hidden="true"></md-icon>
+                            <md-icon class="s16 separator md-jd-theme md-font material-icons icon-chevron-right" md-font-icon="icon-chevron-right" aria-hidden="true"></md-icon>
+                            <span ui-sref="permissions" class="parent" href="/permissions">Permissions</span>-->
+                        </div>
+
+                    </div>
+                    <div class="header-top layout-xs-column layout-align-space-between-center layout-row" layout="row" layout-align="space-between center" layout-xs="column">
+
+
+                        <div class="logo layout-align-start-center layout-row" layout="row" layout-align="start center"><span class="logo-icon">
+                                <md-icon aria-hidden="true" class="md-custom-theme md-font material-icons md-jd-theme icon-people" md-font-icon="icon-people"></md-icon></span><span class="logo-text ng-scope">PERMISSIONS</span>
+                        </div>
+                        <div class="toolbar layout-align-start-center layout-row" layout="row" layout-align="start center">
+
+
+                        </div>
+                    </div>
+                </div>
+                <a style="" type="button" class="add-event-button md-fab md-warn md-button  md-custom-theme md-ink-ripple" ng-href="permissionList">
+                    <md-icon md-font-icon="icon-view-list" class="" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>List Permission</span></md-tooltip>
+
+
+                </a>
+               
+            </div>
+            <div class=" layout-align-space-between-stretch layout-column" layout="column" layout-align="space-between">
+                <md-card ng-if="role!=''"  ng-repeat="(k_p,v_p) in permissions">
+
+                    <md-card-header class="md-primary-fg">
+                        {{v_p.name}}
+                    </md-card-header>
+                    <md-card-content>
+                        <div class="text pt-16"  ng-repeat="c in v_p.data">
+
+                            <!--<md-checkbox class="md-accent-fg" ng-model="c.id" ng-checked="exists(c.id, card.selected)" ng-click="setPermission(c.id,card.selected);">-->
+                            <md-checkbox class="md-accent-fg"  ng-model="selected[c.id]" ng-click="setPermission(c.id,!selected[c.id]);">
+                                {{c.title}}
+                            </md-checkbox>
+                        </div>
+                    </md-card-content>
+
+                </md-card>
+                
+                <md-card ng-if="role==''">
+
+                    <md-card-header class="md-primary-fg">
+                        Please Select role to set Permissions.
+                    </md-card-header>
+                   
+
+                </md-card>
+                
+            </div>            
+        </div>
+    </div>
+    <!-- / CENTER -->
+
+</div>

@@ -1,0 +1,76 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent" ui-sref="users">Reject To Auction</span>
+                </div>
+                <button ng-click="goBack()"  type="button" class="md-fab md-primary md-button  md-custom-theme md-ink-ripple" style="width: 36px !important; height: 36px !important;"   aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline" class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-people" class="md-custom-theme md-font material-icons icon-people" aria-hidden="true"></md-icon></span><span class="logo-text ">Reject To Auction Seller</span>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+                <div>
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"  class="row-border hover user_table">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+     .user_table tbody tr td
+    {
+        height: 40px !important;
+    }
+    .user_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .user_table tr td:last-child
+    {
+        position:relative;
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+        margin-top:0 !important;
+        margin-bottom:0 !important;
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    /*    md-fab-speed-dial.md-fab-top-right {
+            transform: unset;
+        }*/
+
+
+</style>

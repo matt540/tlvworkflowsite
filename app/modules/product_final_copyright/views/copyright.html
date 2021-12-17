@@ -1,0 +1,108 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent">Copywriter</span>
+                </div>
+                <button ng-click="goBack()"  type="button" class="md-fab md-primary md-button  md-custom-theme md-ink-ripple" style="width: 36px !important; height: 36px !important;"   aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline" class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-layers" class="md-custom-theme md-font material-icons icon-layers" aria-hidden="true"></md-icon></span>
+                    <div layout="column">
+                        <span class="logo-text ">{{seller.firstname}} {{seller.lastname}}</span>
+                        <span> 
+                            <span ng-if="seller.address.trim() != ''">{{seller.address}} |</span>
+                            <span ng-if="seller.email.trim() != ''">{{seller.email}}</span>
+                            <span ng-if="seller.phone != 0">| {{seller.phone}} </span>
+
+                        </span>
+                    </div>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+
+                </div>
+            </div>
+        </div>
+        <!--        <button  type="button" class="add-event-button md-fab md-warn md-button  md-custom-theme md-ink-ripple" ng-click="openProductAddDialog()">
+                    <md-icon md-font-icon="icon-plus" class="md-custom-theme md-font material-icons icon-plus" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>Add Product</span></md-tooltip>
+                </button>-->
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+                <div>
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"  class="row-border hover copywriter_table">
+                        <button sglclick="changeCopyrightStatus()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button">
+                            Submit for Approval
+                            <div class="md-ripple-container"></div>
+                        </button>
+                        <button sglclick="changeRejectCopyrightStatus()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button">
+                            Reject
+                            <div class="md-ripple-container"></div>
+                        </button>
+                        <button sglclick="DeleteSelectedProducts()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button">
+                            Delete
+                            <div class="md-ripple-container"></div>
+                        </button>
+                         <br><br>
+                        <div>
+                            <label>Select All :- &nbsp;&nbsp;&nbsp;</label>
+                            <md-checkbox ng-model="Approve" ng-change="AllApproveProductSelected()">Approve</md-checkbox>
+                            <md-checkbox ng-model="Reject" ng-change="AllRejectProductSelected()">Reject</md-checkbox>
+                            <md-checkbox ng-model="Delete" ng-change="AllDeleteProductSelected()">Delete</md-checkbox>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .copywriter_table tr td
+    {
+        /*height: 40px;*/
+        padding: 10px;
+    }
+    .copywriter_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .copywriter_table tr td:last-child
+    {
+        /*        position:relative;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+                margin-top:0 !important;
+                margin-bottom:0 !important;*/
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    /*    md-fab-speed-dial.md-fab-top-right {
+            transform: unset;
+        }*/
+
+
+</style>

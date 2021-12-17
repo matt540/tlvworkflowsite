@@ -1,0 +1,376 @@
+<md-dialog style="width: 60%;" class="task-dialog" aria-label="New Task">
+    <form name="productForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">{{ action}} Product</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Seller Name</label> 
+                        <input type="text" name="seller_id" ng-value="(product_quotation.product_id.sellerid.displayname.trim()!='')?product_quotation.product_id.sellerid.displayname:(product_quotation.product_id.sellerid.firstname+' '+product_quotation.product_id.sellerid.lastname)" disabled>
+                    </md-input-container>
+                </div>
+                <div flex ng-if="product_quotation.product_id.sku">
+                    <md-input-container class="md-block">
+                        <label>SKU</label>
+                        <input type="text" name="sku" ng-model="product_quotation.product_id.sku" disabled>
+                        <div ng-messages="productForm.sku.$error" ng-show="productForm.sku.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>SKU is required</span>
+                            </div>
+                        </div>
+
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div layout="column" layout-xs="row" flex="100">
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Product Name</label>
+                            <input disabled type="text" name="name" ng-model="product_quotation.product_id.name"  ng-maxlength="65">
+
+                        </md-input-container>
+                    </div>
+                    <div layout="row" layout-xs="column" flex>
+                        <md-input-container class="md-block" flex="50">
+                            <label>Retail Price</label>
+                            <!--<input type="text" ng-pattern="/^[0-9]{1,7}$/" name="price" ng-model="product_quotation.price">-->
+                            <input disabled type="text"  name="price" ng-model="product_quotation.price">
+
+                        </md-input-container>
+                        <md-input-container class="md-block" flex="50">
+                            <label>Quantity</label>
+                            <input disabled type="text"  name="quantity" ng-model="product_quotation.quantity">
+
+                        </md-input-container>
+                    </div>
+
+
+                </div>
+
+                <div layout="row" layout-xs="column">
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Max</label>
+                            <input disabled name="tlv_suggested_price_max" ng-model="product_quotation.tlv_suggested_price_max" >
+
+                        </md-input-container>
+                    </div>
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Min</label>
+                            <input disabled name="tlv_suggested_price_min" ng-model="product_quotation.tlv_suggested_price_min" >
+
+                        </md-input-container>
+                    </div>
+
+
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Commission</label>
+                            <input disabled name="commission" ng-model="product_quotation.commission" >
+                        </md-input-container>
+                    </div>
+
+                </div>
+
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Customer Brand</label>
+                            <input disabled type="text" name="brand_local" ng-model="product_quotation.product_id.brand_local">
+
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Age</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.age.sub_category_name">
+
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Brand</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.brand.sub_category_name">
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Category</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_category_name">
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Collection</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_collection_name">
+                        </md-input-container>
+
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Room</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_room_name">
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Look</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_look_name">
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Color</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_color_name">
+                        </md-input-container>
+
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" flex>
+                            <label>Condition</label>
+                            <input disabled type="text" name="age" ng-model="product_quotation.product_id.product_con_name">
+                        </md-input-container>
+
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;" layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Dimensions/Product Details</label>
+                            <textarea disabled name="dimension_description"  ng-model="product_quotation.dimension_description" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Condition Notes</label>
+                            <textarea disabled name="condition_note"  ng-model="product_quotation.condition_note" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Short Description</label>
+                            <textarea disabled name="sort_description"  ng-model="product_quotation.sort_description" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+                <div  layout="row" layout-xs="column" style="margin-bottom:10px;">
+                    <div flex="50">
+                        <md-input-container class="md-block" >
+                            <label>Pick-up Location</label>
+                            <input disabled type="text" name="pick_up_location" ng-model="product_quotation.product_id.pick_up_location.value_text">
+
+                        </md-input-container>
+                    </div>
+                    <div style="margin-top: -10px;" flex="50">
+                        <md-input-container class="md-block" flex>
+                            <label>Is this a pet free home?</label>
+                            <input disabled type="text" name="pet_free" ng-model="product_quotation.product_id.pet_free">
+
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Deliver Option</label>
+                            <md-select disabled ng-model="product_quotation.delivery_option">
+                                <!--                                    <md-select-header class="demo-select-header">
+                                                                        <input ng-keydown="$event.stopPropagation()" ng-model="search[k]" type="search" placeholder="Search for a {{c.category_name}}" class="demo-header-searchbox md-text">
+                                                                    </md-select-header>-->
+                                <md-option class="optionDouble" value="Professional Delivery, quote upon request">
+                                    <em>Professional delivery <br> Quote upon request</em>
+                                </md-option>
+                                <md-option class="optionDouble" value="Free Local Pickup, professional delivery available, quote upon request">
+                                    <em>Free local pickup <br> Professional delivery available<br>Quote upon request</em>
+                                </md-option>
+                                <md-option class="optionDouble" value="Free Local Pickup, shipping available, quote upon request">
+                                    <em>Free local pickup<br>Shipping available<br>Quote upon request</em>
+                                </md-option>
+
+                            </md-select>  
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Delivery Description</label>
+                            <textarea disabled name="delivery_description"  ng-model="product_quotation.delivery_description" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block" >
+                            <label>Internal Note</label>
+                            <textarea disabled name="note"  ng-model="product_quotation.note" style="max-height: 100px;"></textarea> 
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <md-card ng-if="product_pending_images_name.length > 0">
+                    <md-card-header class="md-primary-fg">
+                        Images
+                    </md-card-header>
+                    <md-card-content class="center_images">
+                        <div layout="row" style="display: inline-block;"  ng-repeat="image in product_pending_images_name" class="display_inline">
+                            <a style="    display: inline-block;" href="/Uploads/product/{{image.filename}}" fancyboxable >
+                                <img src="/Uploads/product/thumb/{{image.filename}}" style="height: 200px; width: 200px;">
+                            </a>
+
+                        </div>
+                    </md-card-content>
+                </md-card>
+
+
+            </div>
+
+
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                <md-button type="submit"  ng-click="closeDialog()"
+                           class="send-button md-primary md-raised"
+
+                           aria-label="SAVE">
+                    close
+                </md-button>
+
+
+
+            </div>
+
+            <div layout="row">
+
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .optionDouble{
+        height: 78px;
+        border-bottom: 1px solid;
+    }
+    md-optgroup label {
+        display: none !important;
+    }
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        /*        margin:0;
+                left: 0;*/
+        text-align: center;
+        display: block !important;
+        top: 45%;
+        /*transform: none;*/
+    }
+    .dropzone .dz-message span{
+        font-size: 12px;
+        color: #666666;
+    }
+    .dropzone .dz-message img{
+        margin-left: 15px;
+        border-radius: 20px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/100px arial;
+        height: 250px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 800px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin-top: 25px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+
+
+
+    #dropzone {
+
+        /*//change*/
+        height: 50px !important;
+        width: 200px !important;
+        /*//change*/
+    }
+    .dropzone .dz-message{
+        /*//change*/
+        height: 94px !important;
+        width: 100% !important;
+        /*//change*/
+    }
+
+    /*//change*/
+    .dropzone.dz-started .dz-message {
+        display: block; 
+    }
+    /*//change*/
+    /*//change*/
+    .dropzone{
+        min-height: 50px !important;
+    }
+    /*//change*/
+    .dropzone .dz-preview
+    {
+        display: none; 
+    }
+
+
+</style>

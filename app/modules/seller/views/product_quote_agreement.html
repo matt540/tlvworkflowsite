@@ -1,0 +1,154 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="userForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Agreements</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll> 
+
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Seller Agreements">
+                    <md-content class="md-padding">
+                        <md-button class="md-raised md-primary" ng-click="openAddAgreementDialog('product_quote_agreements')">Add Agreement</md-button>
+                        <table style="width: 100%;" class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        PDF
+                                    </th>
+                                    <th>
+                                        Submitted outside the workflow?
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="agreement in product_quote_agreements">
+                                    <td>
+                                        <span ng-if="agreement.pdf != ''">{{renderDate(agreement.updated_at)}}</span>
+                                        <span ng-if="agreement.pdf == ''">---</span>
+                                    </td>
+                                    <td>
+                                        <a ng-if="agreement.pdf != ''" download target="_blank" href="/Uploads/user_agreement_pdf/{{agreement.pdf}}">
+                                            {{agreement.pdf}}
+                                        </a>
+                                        <span ng-if="agreement.pdf == ''">No Pdf Available</span>
+                                    </td>
+                                    <td>
+                                        {{((agreement.externally_filled) ? 'Yes' : 'No')}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="product_quote_agreements.length == 0">
+                                    <td colspan="3">
+                                        No data available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Storage Agreements">
+                    <md-content class="md-padding">
+                        <md-button class="md-raised md-primary" ng-click="openAddAgreementDialog('product_storage_agreements')">Add Agreement</md-button>
+                        <table style="width: 100%;" class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        PDF
+                                    </th>
+                                    <th>
+                                        Submitted outside the workflow?
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="agreement in product_storage_agreements">
+                                    <td>
+                                        <span ng-if="agreement.pdf != ''">{{renderDate(agreement.updated_at)}}</span>
+                                        <span ng-if="agreement.pdf == ''">---</span>
+                                    </td>
+                                    <td>
+                                        <a ng-if="agreement.pdf != ''" download target="_blank" href="/Uploads/storage_agreement_pdf/{{agreement.pdf}}">
+                                            {{agreement.pdf}}
+                                        </a>
+                                        <span ng-if="agreement.pdf == ''">No Pdf Available</span>
+                                    </td>
+                                    <td>
+                                        {{((agreement.externally_filled) ? 'Yes' : 'No')}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="product_storage_agreements.length == 0">
+                                    <td colspan="3">
+                                        No data available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Seller Agreements With Storage">
+                    <md-content class="md-padding">
+                        <md-button class="md-raised md-primary" ng-click="openAddAgreementDialog('consignment_with_storage_agreements')">Add Agreement</md-button>
+                        <table style="width: 100%;" class="datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        PDF
+                                    </th>
+                                    <th>
+                                        Submitted outside the workflow?
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="agreement in consignment_with_storage_agreements">
+                                    <td>
+                                        <span ng-if="agreement.pdf != ''">{{renderDate(agreement.updated_at)}}</span>
+                                        <span ng-if="agreement.pdf == ''">---</span>
+                                    </td>
+                                    <td>
+                                        <a ng-if="agreement.pdf != ''" download target="_blank" href="/Uploads/consignment_agreement_with_storage_pdf/{{agreement.pdf}}">
+                                            {{agreement.pdf}}
+                                        </a>
+                                        <span ng-if="agreement.pdf == ''">No Pdf Available</span>
+                                    </td>
+                                    <td>
+                                        {{((agreement.externally_filled) ? 'Yes' : 'No')}}
+                                    </td>
+                                </tr>
+                                <tr ng-if="consignment_with_storage_agreements.length == 0">
+                                    <td colspan="3">
+                                        No data available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+<style>
+    table tbody tr td,th{
+        padding: 10px;
+    }
+    
+    md-tabs.md-jd-theme .md-tab.md-active{
+        color: #7bad10;
+    }
+
+</style>

@@ -1,0 +1,48 @@
+md-dialog.compose-dialog {
+    max-width: 720px;
+    width: 720px; }
+md-dialog.compose-dialog md-dialog-content {
+    display: block;
+    position: relative; }
+md-dialog.compose-dialog md-toolbar .title {
+    font-size: 17px; }
+md-dialog.compose-dialog .to {
+    position: relative; }
+md-dialog.compose-dialog .to.hidden-cc input {
+    padding-right: 32px; }
+md-dialog.compose-dialog .to.hidden-cc.hidden-bcc input {
+    padding-right: 56px; }
+md-dialog.compose-dialog .to.hidden-bcc input {
+    padding-right: 32px; }
+md-dialog.compose-dialog .to .cc-bcc {
+    position: absolute;
+    bottom: 8px;
+    right: 0; }
+md-dialog.compose-dialog .to .cc-bcc .show-cc,
+md-dialog.compose-dialog .to .cc-bcc .show-bcc {
+    cursor: pointer;
+    font-size: 12px; }
+md-dialog.compose-dialog .to .cc-bcc .show-bcc {
+    margin-left: 8px; }
+md-dialog.compose-dialog .attachment-list {
+    font-size: 13px;
+    padding-top: 16px; }
+md-dialog.compose-dialog .attachment-list .attachment {
+    background-color: rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    padding-left: 16px;
+    margin-top: 8px;
+    border-radius: 2px; }
+md-dialog.compose-dialog .attachment-list .attachment .filename {
+    font-weight: 500; }
+md-dialog.compose-dialog .attachment-list .attachment .md-button {
+    margin: 0; }
+md-dialog.compose-dialog .attachment-list .attachment:last-child {
+    margin-bottom: 0; }
+md-dialog.compose-dialog md-dialog-actions {
+    position: relative;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.03); }
+
+/*# sourceMappingURL=s.css.map */

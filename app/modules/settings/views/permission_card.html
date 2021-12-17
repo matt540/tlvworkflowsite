@@ -1,0 +1,18 @@
+<div class="template-1">
+    <!--<div class="media">-->
+    <!--<img class="image" ng-src="{{card.media.image.src}}" alt="{{card.media.image.alt}}" ng-show="card.media.image">-->
+    <!--</div>-->
+
+    <div class="content pv-24 ph-16 ">
+        <div class="title h3 md-primary-fg" ng-if="card.name">
+               {{card.name}}
+        </div>
+        <div class="text pt-16"  ng-repeat="c in card.data">
+        
+            <!--<md-checkbox class="md-accent-fg" ng-model="c.id" ng-checked="exists(c.id, card.selected)" ng-click="setPermission(c.id,card.selected);">-->
+            <md-checkbox class="md-accent-fg" ng-model="[c.id]" ng-change="setPermission(c.id);">
+                {{c.title}}
+            </md-checkbox>
+        </div>
+    </div>
+</div>

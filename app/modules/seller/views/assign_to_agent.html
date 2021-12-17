@@ -1,0 +1,53 @@
+<md-dialog style="width: 25%;" class="task-dialog" aria-label="New Task">
+    <form name="productForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">Assign to Agent</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div layout="column" layout-xs="row" flex>
+                <md-input-container class="md-block" flex>
+                    <label>Assign to Agent</label>
+                    <md-select name="agent_id" ng-model="agent_id" required>
+                        <md-select-header class="demo-select-header">
+                            <input ng-keydown="$event.stopPropagation()" ng-model="search"  type="search" placeholder="Search for a Agent" class="demo-header-searchbox md-text">
+                        </md-select-header>
+                        <md-option ng-repeat="agent in agents|filter:search" value="{{agent.id}}">{{agent.firstname}} {{agent.lastname}}</md-option>
+                    </md-select>
+                    <div ng-messages="productForm.assign_agent_id.$error" ng-show="productForm.agent_id.$invalid" role="alert">
+                        <div ng-message="required">
+                            <span>Assign to Agent is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit"  ng-click="assignAgent()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="productForm.$invalid"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+            </div>
+            <div layout="row">
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .optionDouble{
+        height: 78px;
+        border-bottom: 1px solid;
+    }
+    md-optgroup label {
+        display: none !important;
+    }
+</style>

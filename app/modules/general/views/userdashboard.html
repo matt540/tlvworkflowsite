@@ -1,0 +1,253 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+                <div class="breadcrumb" layout="row" layout-align="start center">
+
+                </div>
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-tile-four" class="md-custom-theme md-font material-icons icon-tile-four" aria-hidden="true"></md-icon></span><span class="logo-text ">TLV WorkFlow Dashboard</span>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+
+        <div calendar="main" id="calendarView1" 
+             class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false" 
+             ng-if="!hideDashboardItems">
+            <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                <ms-widget-front class=" flex" ui-sref="sellerproduct({name: 'product'})" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{product_for_review_stage_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Product Requests To be Reviewed</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class=" flex" ui-sref="sellerproduct({name: 'awaiting_contract'})" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{awaiting_contract_stage_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Awaiting Contract</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class=" flex" ui-sref="sellerproduct({name: 'proposal_for_production'})" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{for_production_stage_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Products in for Production</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class=" flex" ui-sref="sellerproduct({name: 'product_for_pricing'})" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{pricing_stage_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Products in Pricing</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class=" flex " flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{pricing_proposal_sent_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Pricing Proposal Sent</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class="flex " flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{pricing_proposal_approved_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Pricing Approved</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class=" flex " ui-sref="sellerproduct({name: 'copyright'})" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{copywriter_stage_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Products in Copywriting</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+                <ms-widget-front class="flex" flex="50">
+                    <div class="wrapper-div md-whiteframe-4dp cursor">
+                        <div class="pt-32 pb-32" layout="column" layout-align="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{storage_propsal_report_count}}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500"></div>
+                        </div>
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">Products Needing Estimate for Storage Move</span>
+                        </div>
+                    </div>
+                </ms-widget-front>
+
+            </div>
+
+            <div class="white-bg md-whiteframe-4dp">
+                <div>
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"  class="row-border hover seller_product_status_table">
+                        <div layout="row">
+                            <div flex style="font-weight: 500;font-size: 23px; margin-top: 30px; margin-left: 30px;">
+                                Seller Requests
+                            </div>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div ng-if="hideDashboardItems"><h3>Welcome</h3></div>
+    </div>
+</div>
+<style>
+
+    .seller_product_status_table tbody tr td
+    {
+        /*height: 40px !important;*/
+        padding: 10px;
+    }
+    .seller_product_status_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .seller_product_status_table tr td:last-child
+    {
+        /*        position:relative;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+                margin-top:0 !important;
+                margin-bottom:0 !important;*/
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    .box_dashboard{
+        cursor: pointer;
+        margin-bottom: 10px; min-height: 100px; display: inline-block; width:49%;
+    }
+    .secondary-text{
+        color: black;
+    }
+    .p10p{
+        padding: 10%;
+    }
+    .last_incident tr td{
+        text-align: center;
+    }
+    .alarm_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .alarm_table tr td:last-child
+    {
+        position:relative;
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+        margin-top:0 !important;
+        margin-bottom:0 !important;
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    ms-widget-front{
+        padding: 10px 10px;
+    }
+    .h3{
+        text-align: center;
+        width: 100%;
+        font-size: 20px;
+    }
+    .m-l-20{
+        margin-left: 20px;
+    }
+    .m-10{
+        margin: 10px;
+    }
+    .height-150{
+        min-height: 150px;
+
+    }
+    .cursor:hover{
+        cursor: pointer;
+        background-color: #1a5632;
+    }
+
+    .pb-0{
+        padding-bottom: 0px
+    }
+
+</style>

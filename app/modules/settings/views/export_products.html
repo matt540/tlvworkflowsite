@@ -1,0 +1,48 @@
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
+
+
+
+    <!-- CONTENT -->
+    <div class="content" layout="column">
+
+
+
+
+        <div layout="row">
+
+            <!-- BASIC FORM -->
+            <div class="form-wrapper md-whiteframe-1dp" flex="100">
+
+
+                <div  class="md-priam-bg" ng-show="success_exist">{{success_exist_text}}</div>
+                <div  class="md-warn-bg" ng-repeat="error in errors_text" >{{error[0]}}</div>
+                <form  ng-submit="export_products();" name="editForm" class="md-inline-form" novalidate>
+
+                    <div class="form-title">Export Products</div>
+                    <div style='margin-top: 15px;'>
+                        <mdp-date-picker mdp-open-on-click flex="100" flex-gt-xs="50" mdp-format="YYYY-MM-DD" ng-model="export.start_date" title="Start Date" mdp-placeholder="Start Date" required></mdp-date-picker>
+                        <mdp-date-picker mdp-open-on-click flex="100" flex-gt-xs="50" mdp-format="YYYY-MM-DD" ng-model="export.end_date" title="End Date" mdp-placeholder="End Date" required></mdp-date-picker>
+                    </div>
+                    <md-button type="submit" class="md-raised md-accent" aria-label="Submit" ng-disabled="editForm.$invalid || editForm.$pristine">
+                        Export
+                    </md-button>
+
+                </form>
+                
+                
+                <md-button ng-click="export_today_products();" type="button" class="md-raised md-accent" aria-label="Export Today's Product">
+                    Export Today's Product
+                </md-button>
+
+            </div>
+
+            <!-- / BASIC FORM -->
+
+
+            <!-- / BASIC FORM DATA -->
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

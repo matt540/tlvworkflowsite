@@ -1,0 +1,409 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent">Synced Products Details</span>
+                </div>
+                <button ng-click="goBack()"  type="button" class="md-fab md-primary md-button  md-custom-theme md-ink-ripple" style="width: 36px !important; height: 36px !important;"   aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline" class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+                <div class=" layout-align-space-between-stretch layout-column" layout="column" layout-align="space-between">
+
+
+                    <md-card>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+
+                                                <tbody>
+                                                    <tr>
+
+                                                        <td style="width:15%"><strong>Seller Name</strong></td>
+                                                        <td style="width:35%">{{product.product_id.sellerid.firstname}} {{product.product_id.sellerid.lastname}}</td>
+
+                                                        <td style="width:15%"><strong>Product</strong></td>
+                                                        <td style="width:35%">{{product.product_id.name}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>SKU</strong></td>
+                                                        <td style="width:35%">{{product.product_id.sku}} </td>
+
+                                                        <td style="width:15%"><strong>Quantity</strong></td>
+                                                        <td style="width:35%">{{product.product_id.quantity}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Sort Description</strong></td>
+                                                        <td style="width:35%">{{product.sort_description}} </td>
+
+                                                        <td style="width:15%"><strong>Dimensions/Product Details</strong></td>
+                                                        <td style="width:35%">
+                                                            <span ng-bind-html="product.dimension_description"></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Category</strong></td>
+                                                       <td style="width:35%">
+                                                         <span ng-repeat="category in product.product_id.product_category" ng-if="category.is_enable == '1'">
+
+                                                                {{category.sub_category_name}}<br/>
+                                                                
+                                                            </span>
+                                                        </td>
+
+                                                        <td style="width:15%"><strong>Sub category</strong></td>
+                                                        <td style="width:35%">
+                                                            <span ng-repeat="subcategory in product.product_id.product_category"  ng-if="subcategory.is_enable == '0'">
+                                                                {{subcategory.sub_category_name}}<br/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Brand</strong></td>
+                                                        <td style="width:35%">{{product.product_id.brand.sub_category_name}}</td>
+
+                                                        <td style="width:15%"><strong>Published Date</strong></td>
+                                                        <td style="width:35%">{{wp_published_date}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Condition Notes</strong></td>
+                                                        <td style="width:35%">{{product.condition_note}} </td>
+
+                                                        <td style="width:15%"><strong>Internal Note</strong></td>
+                                                        <td style="width:35%">{{product.note}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Retail Price</strong></td>
+                                                        <td style="width:35%">{{product.price}} </td>
+
+                                                        <td style="width:15%"><strong>TLV Price</strong></td>
+                                                        <td style="width:35%">{{product.tlv_price}}</td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td style="width:15%"><strong>Sale Price</strong></td>
+                                                        <td style="width:35%">{{product.wp_sale_price}} </td>
+
+                                                        <td style="width:15%"><strong>Stock Status</strong></td>
+                                                        <td style="width:35%">{{product.wp_stock_status}} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Storage Price</strong></td>
+                                                        <td style="width:35%">{{product.storage_pricing}} </td>
+
+                                                        <td style="width:15%"><strong>Commission</strong></td>
+                                                        <td style="width:35%">{{product.commission}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Units</strong></td>
+                                                        <td style="width:35%">{{product.units}} </td>
+
+                                                        <td style="width:15%"><strong>Width</strong></td>
+                                                        <td style="width:35%">{{product.width}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Depth</strong></td>
+                                                        <td style="width:35%">{{product.depth}} </td>
+
+                                                        <td style="width:15%"><strong>Height</strong></td>
+                                                        <td style="width:35%">{{product.height}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Seat Height</strong></td>
+                                                        <td style="width:35%">{{product.seat_height}} </td>
+
+                                                        <td style="width:15%"><strong>Arm Height</strong></td>
+                                                        <td style="width:35%">{{product.arm_height}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Shipping Size</strong></td>
+                                                        <td style="width:35%">{{product.product_id.ship_size}} </td>
+
+                                                        <td style="width:15%"><strong>Is this a pet free home?</strong></td>
+                                                        <td style="width:35%">{{product.product_id.pet_free}} </td>
+
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Delivery Option</strong></td>
+                                                        <td style="width:35%">{{product.delivery_option}}</td>
+
+                                                        <td style="width:15%"><strong>Flat Rate Packaging Fee</strong></td>
+                                                        <td style="width:35%">{{product.product_id.flat_rate_packaging_fee}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>City</strong></td>
+                                                        <td style="width:35%">{{product.product_id.city}} </td>
+
+                                                        <td style="width:15%"><strong>State</strong></td>
+                                                        <td style="width:35%">{{product.product_id.state}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Curator or Referral Name</strong></td>
+                                                        <td style="width:35%">{{product.curator_name}} </td>
+
+                                                        <td style="width:15%"><strong>Curator or Referral Commission</strong></td>
+                                                        <td style="width:35%">{{product.curator_commission}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Product Location</strong></td>
+                                                        <td style="width:35%">{{product.seller_to_drop_off}} </td>
+                                                        <td style="width:15%"><strong>Shipping Calculator</strong></td>
+                                                        <td style="width:35%">{{product.shipping_calculator}} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Website Stock Quantity</strong></td>
+                                                        <td style="width:35%">{{product.wp_stock_quantity}} </td>
+                                                   
+                                                        <td style="width:15%"><strong>Manage Stock</strong></td>
+                                                        <td style="width:35%">{{product.wp_manage_stock}} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width:15%"><strong>Inside Seat Depth</strong></td>
+                                                        <td style="width:35%">{{product.inside_seat_depthsu}} </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </md-card>
+
+
+                    <md-card ng-if="role != ''"  ng-repeat="orderdetail in orders">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="invoice-title">
+                                    <h2></h2><h3 class="pull-right">Order #  {{orderdetail.order_number}}</h3>
+                                     
+                                </div>
+                                <hr>
+                                <div class="row">
+
+                                    <div class="col-xs-4">
+                                        <address>
+
+                                            <strong>Billing</strong><br>
+                                            {{ orderdetail.billing.first_name}} {{ orderdetail.billing.last_name}} <br>
+                                            {{ orderdetail.billing.company}}<br>
+                                            {{ orderdetail.billing.address_1}}<br>
+                                            {{ orderdetail.billing.city}}, {{ orderdetail.billing.state}} {{ orderdetail.billing.postcode}}<br>
+                                            Email : {{ orderdetail.billing.email}} <br>
+                                            Phone : {{ orderdetail.billing.phone}} <br>
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-4 ">
+                                        <address>
+                                            <strong>Shipping</strong><br>
+                                            {{ orderdetail.shipping.first_name}} {{ orderdetail.shipping.last_name}} <br>
+                                            {{ orderdetail.shipping.company}}<br>
+                                            {{ orderdetail.shipping.address_1}}<br>
+                                            {{ orderdetail.shipping.city}}, {{ orderdetail.shipping.state}} {{ orderdetail.shipping.postcode}}<br>
+                                        </address>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <address>
+                                            <strong>General</strong><br>
+                                            Date created : {{ orderdetail.date_created}} <br>
+                                            Status : {{orderdetail.status}}<br>
+
+                                        </address>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="text-center"><strong>User Name</strong></td>
+                                                        <td class="text-center"><strong>Buyer Type</strong></td>
+                                                        <td class="text-center"><strong>Make an Offer order</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center">{{orderdetail.customer_username != '' ? orderdetail.customer_username : "-"}}</td>
+                                                        <td class="text-center">{{orderdetail.buyer_user_role}}</td>
+                                                        <td class="text-center">{{orderdetail.tlv_make_an_offer == 1 ? "Yes" : "No"}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="text-center"><strong>Payment Method</strong></td>
+                                                        <td class="text-center"><strong>Payment Method Title</strong></td>
+                                                        <td class="text-center"><strong>Transaction Id</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center">{{orderdetail.payment_method}}</td>
+                                                        <td class="text-center">{{orderdetail.payment_method_title}}</td>
+                                                        <td class="text-center">{{orderdetail.transaction_id}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Commission Information</h2>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="text-center"><strong>Seller</strong></td>
+                                                        <td class="text-center"><strong>Product</strong></td>
+                                                        <td class="text-center"><strong>Sale Price</strong></td>
+                                                        <td class="text-center"><strong>Quantity</strong></td>
+                                                        <td class="text-center"><strong>Sub Total</strong></td>
+                                                        <td class="text-center"><strong>Commission (%)</strong></td>
+                                                        <td class="text-center"><strong>Commission</strong></td>
+                                                        <td class="text-center"><strong>Total</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+
+<!--                                                    <td class="text-center">{{orderdetail.metadata.seller}}</td>
+                                                        <td class="text-center">{{orderdetail.metadata.product}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.metadata.subtotal}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.metadata.original_total}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.metadata.original_total}}</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-center"></td>-->
+                                                        
+                                                        <td class="text-center">{{orderdetail.order_list.lv_order_comm_seller}}</td>
+                                                        <td class="text-center">{{orderdetail.order_list.lv_order_comm_product}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.order_list.lv_order_comm_sub_total}}</td>
+                                                        <td class="text-center">{{orderdetail.order_list.lv_no_of_items}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.order_list.lv_order_comm_sub_total}}</td>
+                                                        <td class="text-center">{{orderdetail.order_list.lv_order_comm_commission}}%</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.order_list.lv_order_comm_total}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{orderdetail.order_list.lv_order_orignal_total}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Shipping Information</h2>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <td class="text-center"><strong>Shipping Category</strong></td>
+                                                        <td class="text-center"><strong>Shipping Charge</strong></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="shipping_lines in orderdetail.shipping_lines">
+                                                        <td class="text-center">{{shipping_lines.method_title}}</td>
+                                                        <td class="text-center">{{orderdetail.currency_symbol}}{{shipping_lines.total}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </md-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    md-card{
+        box-shadow:3px 3px 3px 3px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.082);
+        margin-bottom: 15px;
+    }
+    .invoice-title h2, .invoice-title h3 {
+        display: inline-block;
+    }
+
+    .table > tbody > tr > .no-line {
+        border-top: none;
+    }
+
+    .table > thead > tr > .no-line {
+        border-bottom: none;
+    }
+
+    .table > tbody > tr > .thick-line {
+        border-top: 2px solid;
+    }
+
+    .row {
+        margin-right: 0px; 
+        margin-left: 0px; 
+    }
+</style>

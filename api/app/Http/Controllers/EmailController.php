@@ -1,0 +1,614 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Repository\EmailSendRecordRepository as email_send_record_repo;
+use App\Repository\UserRepository as user_repo;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
+class EmailController extends Controller
+{
+
+    public function __construct(email_send_record_repo $email_send_record_repo, user_repo $user_repo)
+    {
+
+        $this->user_repo = $user_repo;
+
+        $this->email_send_record_repo = $email_send_record_repo;
+    }
+
+    public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
+    {
+        /*
+        $mail = null;
+
+        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+
+        try
+        {
+
+//            $mail->isSMTP(); // tell to use smtp
+//            $mail->CharSet = "utf-8"; // set charset to utf8
+//            $mail->SMTPDebug = 2;
+
+            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->SMTPSecure = config('MAIL_ENCRYPTION'); // or ssl
+//            $mail->Host = 'mail.eworkdemo.com';
+
+            $mail->Host = 'smtp.mandrillapp.com';
+
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+
+            $mail->Username = 'The Local Vault';
+
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+
+            $folder_path = '../Uploads/default_pdf/';
+
+            if (count($attachments) > 0)
+            {
+
+                foreach ($attachments as $key => $value)
+                {
+
+                    $mail->AddAttachment($folder_path . $value, 'File');
+                }
+            }
+
+//            $mail->setFrom("noreply@eworkdemo.com", "Tlv 2.0");
+
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+            $mail->Subject = $subject;
+
+            $mail->MsgHTML($message);
+
+            $mail->addAddress($email);
+
+            $mail->addBCC('webdeveloper1011@gmail.com');
+
+//            $mail->addBCC('darpan.mistry@esparkinfo.com');
+
+            if (isset($bccs) && count($bccs) > 0)
+            {
+
+                foreach ($bccs as $key => $email_address)
+                {
+
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+
+            if (isset($ccs) && count($ccs) > 0)
+            {
+
+                foreach ($ccs as $key => $email_address2)
+                {
+
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+
+            if (isset($other_emails) && count($other_emails) > 0)
+            {
+
+
+
+                foreach ($other_emails as $key => $email_address3)
+                {
+
+                    $mail->addAddress($email_address3);
+                }
+            }
+
+//            $mail->addCC('thelocalvaultcomproduction@thelocalvault.freshdesk.com');
+//            $mail->addCC('sell@thelocalvault.com');
+//            $mail->addAddress('sell@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addAddress('sandip.patel@esparkinfo.com');
+//            $mail->addAddress('bhumin.vadalia@esparkinfo.com');
+            if ($mail->send())
+
+            {
+
+                try
+
+                {
+
+                    $data = [];
+
+                    $data['created_by'] = JWTAuth::parseToken()->authenticate();
+
+                    $data['email'] = $email;
+
+                    $data['subject'] = $subject;
+
+                    $data['body'] = $message;
+
+                    $email_obj = $this->email_send_record_repo->prepareData($data);
+
+                    $this->email_send_record_repo->create($email_obj);
+
+                }
+
+                catch (\RuntimeException $e)
+
+                {
+
+
+
+                    // Content is not encrypted.
+
+                }
+
+                catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e)
+
+                {
+
+
+
+                    // Content is not encrypted.
+
+                }
+
+                catch (\Tymon\JWTAuth\Exceptions\JWTException $e)
+
+                {
+
+                    
+
+                }
+
+                catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e)
+
+                {
+
+                    
+
+                }
+
+            }
+        } catch (phpmailerException $e)
+        {
+
+            return 0;
+        } catch (Exception $e)
+        {
+
+            return 0;
+        }
+        */
+        return 1;
+    }
+
+    public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
+    {
+        /*
+        $mail = null;
+
+        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+
+        try
+        {
+
+//            $mail->isSMTP(); // tell to use smtp
+//            $mail->CharSet = "utf-8"; // set charset to utf8
+//            $mail->SMTPDebug = 2;
+
+            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->SMTPSecure = config('MAIL_ENCRYPTION'); // or ssl
+//            $mail->Host = 'mail.eworkdemo.com';
+
+            $mail->Host = 'smtp.mandrillapp.com';
+
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+
+            $folder_path = '../Uploads/default_pdf/';
+
+            if (count($attachments) > 0)
+            {
+
+                foreach ($attachments as $key => $value)
+                {
+
+                    $mail->AddAttachment($folder_path . $value, 'File');
+                }
+            }
+
+//            $mail->setFrom("noreply@eworkdemo.com", "Tlv 2.0");
+
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+            $mail->Subject = $subject;
+
+            $mail->MsgHTML($message);
+
+            $mail->addAddress($email);
+
+            $mail->addBCC('webdeveloper1011@gmail.com');
+
+//            $mail->addBCC('darpan.mistry@esparkinfo.com');
+
+            if (isset($bccs) && count($bccs) > 0)
+            {
+
+                foreach ($bccs as $key => $email_address)
+                {
+
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+
+            if (isset($ccs) && count($ccs) > 0)
+            {
+
+                foreach ($ccs as $key => $email_address2)
+                {
+
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+
+            if (isset($other_emails) && count($other_emails) > 0)
+            {
+
+
+
+                foreach ($other_emails as $key => $email_address3)
+                {
+
+                    $mail->addAddress($email_address3);
+                }
+            }
+
+//            $mail->addCC('thelocalvaultcomproduction@thelocalvault.freshdesk.com');
+//            $mail->addCC('sell@thelocalvault.com');
+//            $mail->addAddress('sell@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addAddress('sandip.patel@esparkinfo.com');
+//            $mail->addAddress('bhumin.vadalia@esparkinfo.com');
+
+            if ($mail->send())
+            {
+
+                try
+                {
+
+                    $data = [];
+
+                    $data['created_by'] = JWTAuth::parseToken()->authenticate();
+
+                    $data['email'] = $email;
+
+                    $data['subject'] = $subject;
+
+                    $data['body'] = $message;
+
+                    $email_obj = $this->email_send_record_repo->prepareData($data);
+
+                    $this->email_send_record_repo->create($email_obj);
+                } catch (\RuntimeException $e)
+                {
+
+
+
+                    // Content is not encrypted.
+                } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e)
+                {
+
+
+
+                    // Content is not encrypted.
+                } catch (\Tymon\JWTAuth\Exceptions\JWTException $e)
+                {
+                    
+                } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e)
+                {
+                    
+                }
+            }
+        } catch (phpmailerException $e)
+        {
+
+            return 0;
+        } catch (Exception $e)
+        {
+
+            return 0;
+        }
+        */
+        return 1;
+    }
+
+    public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
+    {
+        /*
+        $mail = null;
+
+        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+
+        try
+        {
+
+//            $mail->isSMTP(); // tell to use smtp
+//            $mail->CharSet = "utf-8"; // set charset to utf8
+//            $mail->SMTPDebug = 2;
+
+            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->SMTPSecure = config('MAIL_ENCRYPTION'); // or ssl
+//            $mail->Host = 'mail.eworkdemo.com';
+
+            $mail->Host = 'smtp.mandrillapp.com';
+
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+
+            $folder_path = '../Uploads/default_pdf/';
+
+            if (count($attachments) > 0)
+            {
+
+                foreach ($attachments as $key => $value)
+                {
+
+                    $mail->AddAttachment($folder_path . $value, 'File');
+                }
+            }
+
+//            $mail->setFrom("noreply@eworkdemo.com", "Tlv 2.0");
+
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+            $mail->Subject = $subject;
+
+            $mail->MsgHTML($message);
+
+            $mail->addAddress($email);
+
+            $mail->addBCC('webdeveloper1011@gmail.com');
+
+//            $mail->addBCC('darpan.mistry@esparkinfo.com');
+
+            if (isset($bccs) && count($bccs) > 0)
+            {
+
+                foreach ($bccs as $key => $email_address)
+                {
+
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+
+            if (isset($ccs) && count($ccs) > 0)
+            {
+
+                foreach ($ccs as $key => $email_address2)
+                {
+
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+
+            if (isset($other_emails) && count($other_emails) > 0)
+            {
+
+
+
+                foreach ($other_emails as $key => $email_address3)
+                {
+
+                    $mail->addAddress($email_address3);
+                }
+            }
+
+//            $mail->addCC('thelocalvaultcomproduction@thelocalvault.freshdesk.com');
+//            $mail->addCC('sell@thelocalvault.com');
+//            $mail->addAddress('sell@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addBCC('production@thelocalvault.com');
+//            $mail->addAddress('sandip.patel@esparkinfo.com');
+//            $mail->addAddress('bhumin.vadalia@esparkinfo.com');
+            if ($mail->send())
+
+            {
+
+                
+
+            }
+        } catch (phpmailerException $e)
+        {
+
+            return 0;
+        } catch (Exception $e)
+        {
+
+            return 0;
+        }
+        */
+        return 1;
+    }
+
+    public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
+    {
+        /*
+        $mail = null;
+
+        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+
+        try
+        {
+
+
+
+//            $mail->isSMTP(); // tell to use smtp
+//            $mail->CharSet = "utf-8"; // set charset to utf8
+//            $mail->SMTPDebug = 2;
+
+            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->SMTPSecure = config('MAIL_ENCRYPTION'); // or ssl
+//            $mail->Host = 'mail.eworkdemo.com';
+
+            $mail->Host = 'smtp.mandrillapp.com';
+
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+//            $mail->Host = 'smtp.mandrillapp.com';
+//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+//            $mail->Username = 'The Local Vault';
+//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+//            $folder_path = '../Uploads/default_pdf/';
+//            if (count($attachments) > 0)
+//            {
+//                foreach ($attachments as $key => $value)
+//                {
+//                    $mail->AddAttachment($folder_path . $value, 'File');
+//                }
+//            }
+//            $mail->setFrom("noreply@eworkdemo.com", "Tlv 2.0");
+//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+            $mail->Subject = $subject;
+
+            $mail->MsgHTML($message);
+
+            $mail->addAddress('sell@thelocalvault.com');
+
+            $mail->addAddress('matt@540designstudio.com');
+
+            $mail->addAddress($email);
+            if(isset($bccs) && count($bccs)>0)
+            {
+                foreach ($bccs as $key => $email)
+                {
+                     $mail->addCC($email,'The Local Vault');
+                }
+                
+            }
+//            $mail->addBCC('sell@thelocalvault.com');
+//            $mail->addAddress('sandip.patel@esparkinfo.com');
+//            $mail->addAddress('bhumin.vadalia@esparkinfo.com');
+            if ($mail->send())
+
+            {
+//                $data = [];
+//                $data['created_by'] = JWTAuth::parseToken()->authenticate();
+//                $data['email'] = $email;
+//                $data['subject'] = $subject;
+//                $data['body'] = $message;
+//                $email_obj = $this->email_send_record_repo->prepareData($data);
+//                $this->email_send_record_repo->create($email_obj);
+            }
+        } catch (phpmailerException $e)
+        {
+
+            return 0;
+        } catch (Exception $e)
+        {
+
+            return 0;
+        }
+        */
+        return 1;
+    }
+
+    public function sendMailWithMultipleAttachments($email, $subject, $message, $path, $attachments = array(), $directors = array())
+    {
+        /*
+
+
+
+
+        $mail = null;
+
+        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+
+        try
+        {
+
+            //maildrill
+
+            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->SMTPSecure = config('MAIL_ENCRYPTION'); // or ssl
+//            $mail->Host = 'mail.eworkdemo.com';
+
+            $mail->Host = 'smtp.mandrillapp.com';
+
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            //old
+//            $mail->SMTPDebug = 2;
+//            $mail->SMTPAuth = true;  // use smpt auth
+//            $mail->Host = 'mail.tlv-workflow.com';
+//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing. 
+//            $mail->Username = 'noreply@tlv-workflow.com';
+//            $mail->Password = '2.c)qPvZ{T2b';
+
+            if (count($attachments) > 0)
+            {
+
+                foreach ($attachments as $key => $value)
+                {
+
+                    $mail->AddAttachment($path . $value, 'File');
+                }
+            }
+
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+            //old
+//            $mail->setFrom("noreply@tlv-workflow.com", "The Local Vault");
+
+            $mail->Subject = $subject;
+
+            $mail->MsgHTML($message);
+
+            $mail->addAddress($email);
+
+
+
+            if (count($directors) > 0)
+            {
+
+                foreach ($directors as $key => $value)
+                {
+
+                    $mail->addCC($value['email'], $value['fullname']);
+                }
+            }
+
+//            $mail->addCC('thelocalvaultcomproduction@thelocalvault.freshdesk.com');
+//             $mail->addCC('sell@thelocalvault.com');
+//             $mail->addAddress('sell@thelocalvault.com');
+//             $mail->addBCC('production@thelocalvault.com');
+
+            $mail->addBCC('production@thelocalvault.com');
+
+            $mail->send();
+        } catch (phpmailerException $e)
+        {
+
+
+
+            return 0;
+        } catch (Exception $e)
+        {
+
+            return 0;
+        }
+        */
+        return 1;
+    }
+
+}

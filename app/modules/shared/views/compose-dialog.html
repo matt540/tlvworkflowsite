@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="app/modules/shared/views/compose-dialog1.css">
+<md-dialog class="compose-dialog" aria-label="New Message">
+    <form name="mailForm" class="md-inline-form">
+        <md-toolbar class="header_otog_popup md-accent md-hue-2">
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">New Mail</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()" aria-label="Close dialog" tranlate
+                           translate-aria-label="MAIL.CLOSE_DIALOG">
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+<!--            <md-input-container class="md-block">
+                <label>From</label>
+                <input ng-model="user.email" type="email" disabled>
+            </md-input-container>-->
+
+            <md-input-container class="md-block">
+                <label>To</label>
+                <input ng-model="seller.email" type="email" disabled>
+<!--                <md-select name="to" ng-model="form.to_id" multiple required>
+                    <md-select-header class="demo-select-header">
+                        <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" type="search" placeholder="Search for a Email" class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-option  ng-repeat="user in otherusers| filter:searchTerm" value="{{user.id}}" ><em>{{user.email}}</em></md-option>
+                </md-select>-->
+                <!--<input ng-model="form.to" type="email" md-autofocus>-->
+
+                <!--                <div class="cc-bcc" layout="row" layout-align="start center">
+                                    <div class="show-cc" ng-show="hiddenCC" ng-click="hiddenCC = false">CC</div>
+                                    <div class="show-bcc" ng-show="hiddenBCC" ng-click="hiddenBCC = false">BCC</div>
+                                </div>-->
+            </md-input-container>
+            <md-input-container class="md-block">
+            </md-input-container>
+
+            <!--            <md-input-container class="md-block" ng-hide="hiddenCC">
+                            <label translate="MAIL.CC">Cc</label>
+                            <input ng-model="form.cc" type="email">
+                        </md-input-container>
+            
+                        <md-input-container class="md-block" ng-hide="hiddenBCC">
+                            <label translate="MAIL.BCC">Bcc</label>
+                            <input ng-model="form.bcc" type="t">
+                        </md-input-container>-->
+
+            <md-input-container class="md-block">
+                <label>Subject</label>
+                <input ng-model="form.subject" required type="text">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <textarea rows="3" placeholder="Message" required ng-model="form.message">
+                    
+                </textarea>
+            </md-input-container>
+            <!--            <div layout="row" layout-xs="column">
+                            <div flex>
+                                <div class="dropzone" id="dropzone" options="dzOptionsMail" callbacks="dzCallbacks" methods="dzMethods" ng-dropzone>
+                                </div>
+                            </div>
+                        </div>-->
+            <!--<text-angular ng-model="form.message"></text-angular>-->
+
+            <div class="attachment-list">
+                <div class="attachment" layout="row" layout-align="space-between center">
+                    <div>
+                        <span class="filename">{{form.attachment}}</span>
+                        <span class="size"></span>
+                    </div>
+
+                    <md-button style="opacity: 0;" class="md-icon-button" aria-label="Delete attachment" translate
+                               translate-attr-aria-label="MAIL.DELETE_ATTACHMENT">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>
+
+<!--                <div class="attachment" layout="row" layout-align="space-between center">
+                    <div>
+                        <span class="filename">attachment-1.jpg</span>
+                        <span class="size">(350 Kb)</span>
+                    </div>
+
+                    <md-button class="md-icon-button" aria-label="Delete attachment" translate
+                               translate-attr-aria-label="MAIL.DELETE_ATTACHMENT">
+                        <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                    </md-button>
+                </div>-->
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button ng-click="sendMail()" class="send-button md-primary md-raised" aria-label="Send"
+                           ng-disabled="mailForm.$invalid"
+                           translate-attr-aria-label="MAIL.SEND">
+                    SEND
+                </md-button>
+
+                <!--                <md-button class="md-icon-button" aria-label="Attach file"
+                                           translate-attr-aria-label="MAIL.ATTACH_FILE">
+                                    <md-icon md-font-icon="icon-paperclip"></md-icon>
+                                    <md-tooltip><span translate="MAIL.ATTACH_FILE"></span></md-tooltip>
+                                </md-button>-->
+            </div>
+
+            <!--            <div layout="row">
+                            <md-button class="md-icon-button" aria-label="Delete"
+                                       translate-attr-aria-label="MAIL.DELETE">
+                                <md-icon md-font-icon="icon-delete"></md-icon>
+                                <md-tooltip><span translate="MAIL.DELETE"></span></md-tooltip>
+                            </md-button>
+                        </div>-->
+        </md-dialog-actions>
+    </form>
+</md-dialog>

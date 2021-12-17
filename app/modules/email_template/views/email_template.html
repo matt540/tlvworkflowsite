@@ -1,0 +1,93 @@
+
+
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+<!--                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent" ui-sref="users">Email Template</span>-->
+                </div>
+
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-email" class="md-custom-theme md-font material-icons icon-email" aria-hidden="true"></md-icon></span><span class="logo-text ">Email Template</span>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="content" flex>
+        <div class="white-bg md-whiteframe-4dp">
+
+            <form style="padding: 15px;" name="productForm" class="md-inline-form" novalidate>
+
+                <div layout="column" layout-xs="row" style="margin-bottom: 20px;">
+                    <div flex>
+                        <label>{{ email_template.name}}</label>
+                    </div>
+                </div>
+
+
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Subject</label>
+                            <input name="sell_name" ng-model="email_template.subject" required md-autofocus>
+                            <div ng-messages="productForm.subject.$error" ng-show="productForm.subject.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Subject is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                </div>
+                <div layout="row" layout-xs="column">
+
+
+                    <div flex>
+                        <!--                        <md-input-container class="md-block">
+                                                    <label>Description</label>
+                                                    <textarea name="description" ng-model="email_template.description" required md-autofocus>
+                                                    </textarea>
+                                                </md-input-container>-->
+
+                        <div layout="column" layout-gt-sm="row">
+                            <summernote height="300" ng-model="email_template.description"></summernote>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div layout="row" layout-align="start center">
+                    <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                    <md-button type="submit"  ng-click="saveEmailTemplate()"
+                               class="send-button md-primary md-raised"
+                               ng-disabled="productForm.$invalid || productForm.$pristine"
+                               aria-label="SAVE">
+                        SAVE
+                    </md-button>
+
+                </div>
+
+                <div layout="row">
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

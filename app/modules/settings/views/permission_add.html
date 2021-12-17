@@ -1,0 +1,70 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="permissionForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_jan" layout="row" layout-align="space-between center">
+                <span class="title flex" ng-if="permission.id">Edit Permission</span>
+                <span class="title flex" ng-if="!permission.id">Add Permission</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label>Category</label>
+                <md-select name="category" ng-model="permission.category" required >
+                    <md-option ng-repeat="permission_cat in permission_categories" value="{{permission_cat.id}}">{{permission_cat.value_text}}</md-option>
+                </md-select>
+                <div ng-messages="permissionForm.name.$error"  ng-show="permissionForm.name.$touched" permission="alert">
+                    <div ng-message="required">
+                        <span>Permission Category is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" >
+                <label >Name</label>
+                <input name="name" ng-model="permission.name" required >
+                <div ng-messages="permissionForm.name.$error" ng-show="permissionForm.name.$touched" permission="alert">
+                    <div ng-message="required">
+                        <span>Permission Name is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input name="title" ng-model="permission.title" required >
+                <div ng-messages="permissionForm.title.$error" ng-show="permissionForm.title.$touched" permission="alert">
+                    <div ng-message="required">
+                        <span>Permission Title is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+
+          
+
+          
+
+                
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                <md-button type="submit"  ng-click="savePermission()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="permissionForm.$invalid || permissionForm.$pristine"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+
+             
+
+            </div>
+
+            <div layout="row">
+              
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

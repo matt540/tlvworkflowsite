@@ -1,0 +1,153 @@
+<md-dialog style="width: 60%;" class="task-dialog" aria-label="New Task">
+    <form name="agentsLogsForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">{{ action}} Agent Log</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> 
+
+        <md-dialog-content ms-scroll>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Assign to Agent</label>
+                        <md-select name="agent_id" ng-model="agent_log.agent_id" ng-required="isAdminUser" ng-disabled="!isAdminUser">
+                            <md-select-header class="demo-select-header">
+                                <input ng-keydown="$event.stopPropagation()" ng-model="search"  type="search" placeholder="Search for a Agent" class="demo-header-searchbox md-text">
+                            </md-select-header>
+                            <md-option ng-repeat="agent in agents|filter:search" value="{{agent.id}}">{{agent.firstname}} {{agent.lastname}}</md-option>
+                        </md-select>
+                        <div ng-messages="agentsLogsForm.agent_id.$error" ng-show="agentsLogsForm.agent_id.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>Agent is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Seller</label>
+                        <md-select name="seller_id" ng-model="agent_log.seller_id" required>
+                            <md-select-header class="demo-select-header">
+                                <input ng-keydown="$event.stopPropagation()" ng-model="sellerSearch"  type="search" placeholder="Search for a seller" class="demo-header-searchbox md-text">
+                            </md-select-header>
+                            <md-option ng-repeat="seller in sellers|filter:sellerSearch" value="{{seller.id}}">
+                                <em ng-if="seller.displayname.trim() != ''">{{seller.displayname}}</em> 
+                                <em ng-if="seller.displayname.trim() == ''">{{seller.firstname}} {{seller.lastname}}</em>
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="agentsLogsForm.seller_id.$error" ng-show="agentsLogsForm.seller_id.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>Seller is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column" flex>
+                <md-input-container class="md-block" flex="50">
+                    <label>Photo Shoot Location</label>
+                    <input type="text"  name="photo_shoot_location" ng-model="agent_log.photo_shoot_location">
+                    <div ng-messages="agentsLogsForm.photo_shoot_location.$error" ng-show="agentsLogsForm.photo_shoot_location.$invalid" role="alert">
+                        <div ng-message="required">
+                            <span>Photo Shoot Location is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex="50">
+                    <span>Photo Shoot Date</span>
+                    <md-datepicker ng-model="agent_log.photo_shoot_date"></md-datepicker>
+                    <div ng-messages="agentsLogsForm.photo_shoot_date.$error" ng-show="agentsLogsForm.photo_shoot_date.$invalid" role="alert">
+                        <div ng-message="required">
+                            <span>Photo Shoot Date is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column" flex>
+                <md-input-container class="md-block" flex="50">
+                    <label>Total Products</label>
+                    <input type="number"  name="total_products_photographed" ng-model="agent_log.total_products_photographed">                    
+                </md-input-container>
+                <md-input-container class="md-block" flex="50">
+                    <label>Payment Total</label>
+                    <input type="number"  name="payment_total" ng-model="agent_log.payment_total" required>
+                    <div ng-messages="agentsLogsForm.payment_total.$error" ng-show="agentsLogsForm.payment_total.$invalid" role="alert">
+                        <div ng-message="required">
+                            <span>Payment Total required</span>
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Total Vignettes</label>
+                        <input type="text"  name="vignettes" ng-model="agent_log.vignettes">
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <md-checkbox ng-model="agent_log.is_paid" ng-disabled="!isAdminUser">is Paid ?</md-checkbox>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column" flex>
+                <md-input-container class="md-block" flex="50">
+                    <label>Payment Made By</label>
+                    <input type="text"  name="photo_shoot_location" ng-model="agent_log.payment_made_by" ng-disabled="!isAdminUser">
+                </md-input-container>
+                <md-input-container class="md-block" flex="50">
+                    <span>Payment Date</span>
+                    <md-datepicker ng-model="agent_log.payment_date" ng-disabled="!isAdminUser"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Additional Details</label>
+                        <textarea  name="aditional_details" ng-model="agent_log.aditional_details"></textarea>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <div class="dropzone" id="dropzone" options="dzOptionsAddAgentLogInvoice" 
+                         callbacks="dzCallbacks" methods="dzMethods" ng-dropzone>
+                        Upload Invoice
+                    </div>
+                </div>
+            </div> 
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit"  sglclick="saveAgentLog()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="agentsLogsForm.$invalid"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+            </div>
+            <div layout="row">
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .hint {
+        position: absolute;
+        left: 5px;
+        right: auto;
+        bottom: -15px;
+        font-size: 14px;
+        line-height: 14px;
+        transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+        color: grey; 
+    }
+</style>

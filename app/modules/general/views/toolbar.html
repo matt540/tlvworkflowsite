@@ -1,0 +1,116 @@
+<div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex>
+        <md-button id="navigation-toggle" class="md-icon-button" ng-click="toggleSidenav('navigation')"
+                   hide-gt-sm aria-label="Toggle navigation" 
+                   >
+            <md-icon md-font-icon="icon-menu" class="icon  md-accent-fg md-hue-2"></md-icon>
+        </md-button>
+
+        <ms-shortcuts></ms-shortcuts>
+
+        <div class="toolbar-separator"></div>
+    </div>
+
+    <div layout="row" layout-align="start center">
+        <md-progress-circular id="toolbar-progress" ng-disabled="!$root.loadingProgress"  class="md-accent" md-diameter="32">
+        </md-progress-circular>
+
+
+        <lable>
+            {{authuser.roles[0].name}}
+        </lable>
+        <!-- end notificatons -->
+
+        <md-menu  md-offset="0 72" md-position-mode="target-right target">
+            <md-button show-if-has-permit="noti.show" class="language-button" ng-click="$mdOpenMenu()"
+                       aria-label="Language" md-menu-origin md-menu-align-target>
+                <div layout="row" layout-align="center center">
+                    <img class="flag" ng-src="assets/images/notifications.png"><span>{{ count}}</span>
+                </div>
+            </md-button>
+            <md-menu-content width="3">
+
+                <!--<md-menu-item style="cursor: pointer" ng-repeat="notification in notifications" ng-click="readNotification(notification.id)">-->
+                    <!--<md-button flex="50">-->
+                    <!--<div class="md-list-item-text" style="border-bottom: 1px #000 solid;padding:10px;" ng-repeat="notification in pending_products" ui-sref="product_final({id: '{{notification.product_id.sellerid.id}}'})">-->
+                    <div class="md-list-item-text" style="border-bottom: 1px #000 solid;padding:10px;" ng-repeat="notification in pending_products" ui-sref="product_for_production({id: '{{notification.product_id.sellerid.id}}'})">
+                        <h3 style="padding:0;margin:0;cursor: pointer;" class="name ng-binding">{{ notification.product_id.sellerid.displayname}}'s product {{ notification.product_id.name}} status is pending yet</h3>
+                            <!--<p class="last-message text-truncate ng-binding">{{notification.time}}</p>-->
+                        </div>
+                    <!--</md-button>-->
+
+
+
+
+
+                <!--</md-menu-item>-->
+                <!--<md-menu-divider></md-menu-divider>-->
+
+<!--                <md-button ng-show="viewMore" class="view-more-button" ng-click="loadNotifications()" aria-label="ViewMore">
+                    <div layout="row" layout-align="center center">
+                        view more
+                    </div>
+                </md-button>-->
+
+            </md-menu-content>
+
+        </md-menu>
+        
+        <md-menu-bar id="user-menu">
+            <!--                        <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
+                                        <md-button class="language-button" ng-click="$mdOpenMenu()"
+                                                   aria-label="Language" md-menu-origin md-menu-align-target>
+                                            <div layout="row" layout-align="center center">
+                                                <img class="flag" ng-src="assets/images/flags/{{selectedLanguage.flag}}.png">
+                                                <span class="iso">{{selectedLanguage.code}}</span>
+                                            </div>
+                                        </md-button>
+                        
+                                        <md-menu-content width="3" id="language-menu-content">
+                                            <md-menu-item ng-repeat="(iso, lang) in languages">
+                                                <md-button ng-click="changeLanguage(lang)" aria-label="{{lang.title}}" translate
+                                                           translate-attr-aria-label="{{lang.title}}">
+                                                    <span layout="row" layout-align="start center">
+                                                        <img class="flag" ng-src="assets/images/flags/{{lang.flag}}.png">
+                                                        <span translate="{{lang.translation}}">{{lang.title}}</span>
+                                                    </span>
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>-->
+
+            <md-menu md-position-mode="left bottom">
+                <md-button class="user-button" ng-click="$mdOpenMenu()"
+                           aria-label="User settings"
+                           translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
+                    <div layout="row" layout-align="space-between center">
+                        <div class="avatar-wrapper">
+                            <img ng-if="authuser.profile_image!=''" md-menu-align-target class="avatar" ng-src="Uploads/profile/thumb/{{authuser.profile_image}}">
+                            <img ng-if="authuser.profile_image==''" md-menu-align-target class="avatar" ng-src="/assets/images/avatars/profile.jpg">
+                            <md-icon md-font-icon ng-class="userStatus.icon"
+                                     ng-style="{
+                                                 'color': userStatus.color }"
+                                     class="icon status s16">
+                            </md-icon>
+                        </div>
+                        <span class="username"  show-gt-sm>{{authuser.firstname}} {{authuser.lastname}}</span>
+                        <md-icon md-font-icon="icon-chevron-down"
+                                 class="icon s16" hide-xs></md-icon>
+                    </div>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <!--<md-menu-item class="md-indent" ui-sref="edit_profile({id:'{{profile.id}}'})">-->
+                    <md-menu-item ng-click="openAuthUserEditDialog();" class="md-indent">
+                        <md-icon md-font-icon="icon-account" class="icon"></md-icon>
+                        <md-button >My Profile</md-button>
+                    </md-menu-item>
+                    <md-menu-item class="md-indent">
+                        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+                        <md-button data-signout>Logout</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    </div>
+</div>

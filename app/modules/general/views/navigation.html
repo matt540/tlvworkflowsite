@@ -1,0 +1,13 @@
+<md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="space-between center">
+    <div class="logo" layout="row" layout-align="start center">
+        
+        <span class="logo-text">{{site_settings.project_name}}</span>
+    </div>
+
+<!--    <md-icon style="color: #545454 !important;" class="fold-toggle s18" md-font-icon="icon-backburger" hide show-gt-sm
+             ng-click="toggleMsNavigationFolded()"></md-icon>-->
+    <md-icon style="color: #fff !important;" class="fold-toggle s18" md-font-icon="icon-backburger" show-gt-sm
+             ng-click="toggleMsNavigationFolded()"></md-icon>
+</md-toolbar>
+<!--<ms-navigation class="scrollable" ng-mouseenter="toggleMsNavigationEnter()"  ms-scroll="msScrollOptions"></ms-navigation>-->
+<ms-navigation ng-mouseenter="toggleMsNavigationEnter();" ng-init="navigation_menu();" class="scrollable" md-is-locked-open="$mdMedia('gt-md')" folded="folded" ms-scroll="msScrollOptions"></ms-navigation>

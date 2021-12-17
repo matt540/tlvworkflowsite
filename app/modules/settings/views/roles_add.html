@@ -1,0 +1,49 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="roleForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_jan" layout="row" layout-align="space-between center">
+                <span class="title flex" translate="ROLES.ADD.ROLE">Add Role</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+                <label translate="ROLES.NAME">Name</label>
+                <input name="title" ng-model="role.name" required md-autofocus>
+                <div ng-messages="roleForm.title.$error" ng-show="roleForm.title.$touched" role="alert">
+                    <div ng-message="required">
+                        <span translate="ROLES.ERRORS.NAME_REQUIRED">Role Name is required</span>
+                    </div>
+                </div>
+            </md-input-container>
+
+          
+
+          
+
+                
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                <md-button type="submit"  ng-click="saveRole()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="roleForm.$invalid || roleForm.$pristine"
+                           aria-label="SAVE" translate="ROLES.SAVE" translate-attr-aria-label="ROLES.SAVE">
+                    SAVE
+                </md-button>
+
+             
+
+            </div>
+
+            <div layout="row">
+              
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

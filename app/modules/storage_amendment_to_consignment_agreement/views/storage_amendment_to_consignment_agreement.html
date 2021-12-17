@@ -1,0 +1,301 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <img src="../../../../assets/images/long_logo.png" height="100" style="margin-bottom: 20px;">
+            <div class="title">STORAGE AMENDMENT to CONSIGNMENT AGREEMENT</div>
+            <form name="SellerAgreementForm" novalidate method="POST" ng-submit="SaveSellerAgreement(SellerAgreementForm.$valid)" autocomplete="off">
+                <p>
+                    <b>
+                        On the <input type="number" class="input_text_box" placeholder="Day" style="width: 60px;" name="day" ng-model="seller_agreement.day"  ng-required="!seller_agreement.day"  ng-disabled="true">day of<input type="number"  style="width: 60px;" class="input_text_box" placeholder="Month" name="month" ng-model="seller_agreement.month"  ng-required="!seller_agreement.month"  ng-disabled="true">,&nbsp;20<input type="number"  style="width: 60px;" class="input_text_box" placeholder="Year" name="year" ng-model="seller_agreement.year"  ng-required="!seller_agreement.year"  ng-disabled="true"> this amendment (“Amendment”) to your
+                        Consignment Agreement “Agreement” is made by and among <br/>
+                        The Local Vault, LLC, 301 Valley Rd, Cos Cob, CT 06807 ("TLV") and :
+                    </b>
+                </p>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Consignor’s Name (“Consignor”)</label>
+                            <input name="consignor_name" ng-model="seller_agreement.consignor_name"  ng-required="!seller_agreement.consignor_name">
+                            <div ng-messages="SellerAgreementForm.consignor_name.$error" ng-show="ClientForm.consignor_name.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Consignor​’​s Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <textarea rows="2" name="address" ng-model="seller_agreement.address" ng-required="!seller_agreement.address">
+                            </textarea>                        
+                            <div ng-messages="SellerAgreementForm.address.$error" ng-show="SellerAgreementForm.address.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Address is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>City</label>
+                            <input name="city" ng-model="seller_agreement.city" ng-required="!seller_agreement.city">
+                            <div ng-messages="SellerAgreementForm.city.$error" ng-show="SellerAgreementForm.city.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>City is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>State</label>
+                            <input name="state" ng-model="seller_agreement.state"  ng-required="!seller_agreement.state" >
+                            <div ng-messages="SellerAgreementForm.state.$error" ng-show="SellerAgreementForm.state.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>State is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Zip</label>
+                            <input name="zip" ng-model="seller_agreement.zip" ng-required="!seller_agreement.zip" >
+                            <div ng-messages="SellerAgreementForm.zip.$error" ng-show="SellerAgreementForm.zip.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Zip is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Cell Phone</label>
+                            <input type="number" name="phone" ng-model="seller_agreement.phone"   ng-required="!seller_agreement.phone">
+                            <div ng-messages="SellerAgreementForm.phone.$error" ng-show="SellerAgreementForm.phone.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Phone is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input type="email" name="email" ng-model="seller_agreement.email"  ng-required="!seller_agreement.email">
+                            <div ng-messages="SellerAgreementForm.email.$error" ng-show="SellerAgreementForm.email.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Email is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+
+                <p>
+                    The Local Vault agrees to provide storage of one or more of your Items while the Item(s) are listed for
+                    sale by TLV. This Amendment is supplemental to the Consignment Agreement agreed by Consignor and
+                    TLV. Terms and conditions agreed in this Amendment shall become part of the Consignment Agreement.
+                    <b>Consignment Agreement shall be therefore be considered to be amended to include the terms and
+                        conditions in Amendment.</b>
+                </p>
+                <p>
+                    <b>Consignor and TLV agree as follows:</b>
+                </p>
+
+                <ol style="list-style: bold;">
+                    <li>
+                        The “Initial Term” will be that which is defined in the Consignment Agreement.
+                    </li>
+                    <li><b>For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price.</b></li>
+                    <li>
+                        For any Item(s) that IS in Storage, the Consignor may choose to pick up the Item(s) from Storage
+                        at the end of the Initial Term. For any Item(s) where the Consignor chooses to leave the Item(s) in
+                        Storage TLV shall continue the sale on thelocalvault.com for an additional 3 months – the
+                        “Extended Term”. During this period any Offer(s) received on the Item(s) will be managed by
+                        TLV and TLV has the sole authority to accept, reject, or counter the Offer(s).
+                        <br/><br/>
+                        For any Item(s) that remains in Storage at the conclusion of the Extended Term the Consignor
+                        may pick up the Item(s) from Storage within 2 weeks. Should the Item(s) not be picked up TLV
+                        has the right to auction, donate or otherwise dispose of the Property. In all such events TLV shall
+                        be relieved of any liability with respect to the Property therefore or thereafter.
+                    </li>
+                    <li>
+                        Consignor acknowledges and accepts these Storage Terms & Conditions
+                        <br/><br/>
+                        “Storage Facility” or “Facility” – 480 and/or 510 Barnum Ave, Bridgeport, CT or any additional
+                        property leased or owned by TLV for the purpose of storage.
+                        <br/><br/>
+                        Stored Item(s) -At the Storage Facility TLV only plans to accept delivery of Items for which TLV
+                        has agreed to accept consignment of and provide storage. Delivery of any other Item(s) may be
+                        refused by TLV, and the delivery provider must return the Item(s) to the Consignor. In the event 
+                        an Item(s) is delivered to the Storage Facility for which TLV did not agree to provide storage,
+                        that Item(s) becomes the property of TLV and Consignor agrees to compensate TLV for any costs
+                        related to the disposal of such Item(s) should such costs be incurred. Such costs will be either
+                        charged to Consignor’s credit card or deducted from Net Sale Proceeds. 
+                        <br/><br/>
+                        “Storage Period” - Storage shall commence on the day the Property arrives at the Storage Facility
+                        and shall continue until Consignor takes back the Property or the Property is otherwise removed
+                        from Storage Facility, due to sale or otherwise, as provided for in Consignment Agreement and
+                        Amendment.
+                        <br/><br/>
+                        Ownership of the Property - Nothing contained in this Agreement shall be construed or
+                        interpreted as conveying title to, or any interest in, the Property to the TLV.
+                        <br/><br/>
+                        Consignor’s Property Insurance Requirement - Consignor agrees to maintain adequate insurance
+coverage for Property. TLV shall not be liable for any loss or damage to Item(s) tendered, stored
+or handled, however caused, unless such loss or damage resulted from the gross negligence or
+willful misconduct of TLV. TLV provides no primary coverage against loss or damage to
+Property, unless such loss or damage is caused by TLV’s gross negligence or willful misconduct. 
+                        <br/><br/>
+                        Warranty Disclaimer - TLV PROVIDES THE FACILITY AND THE SERVICES "AS IS"
+                        WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS, IMPLIED OR STATUTORY
+                    </li>
+
+
+                </ol>
+                <p>
+                    I have read the foregoing Amendment and understand the contents thereof. I further represent that the
+                    statements herein made by me are true to the best of my knowledge and that this Amendment shall now
+                    be considered to be included as part of the Consignment Agreement. It is mutually agreed that this
+                    Amendment shall be binding and obligatory upon the undersigned, and the separate heirs, administrators,
+                    executors, assigns and successors of the undersigned: 
+                </p>
+
+                <p>
+                    <b>IN WITNESS WHEREOF, the parties have executed this Agreement: </b>
+                </p>
+                <p>
+                    <b>The Local Vault, LLC and</b>
+                </p>
+                <p>
+                    <b>Consignor:</b>
+                </p>
+                <div layout="row" layout-xs="column">
+                    <div flex="50">
+                        <md-input-container class="md-block">
+                            <label>Name</label>
+                            <input name="consignor_name3" ng-model="seller_agreement.consignor_name3"   ng-required="!seller_agreement.consignor_name3">
+                            <div ng-messages="SellerAgreementForm.consignor_name3.$error" ng-show="SellerAgreementForm.consignor_name3.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>Name is required</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex="20">Date : </div>
+                    <div flex>
+                        <md-datepicker md-open-on-focus name="consignor_date" ng-model="seller_agreement.consignor_date"  ng-required="!seller_agreement.consignor_date">
+                        </md-datepicker>
+                        <div ng-messages="SellerAgreementForm.consignor_date.$error" ng-show="SellerAgreementForm.consignor_date.$touched" role="alert">
+                            <div ng-message="required">
+                                <span  style="color:rgb(213,0,0);font-size: 12px;padding-left: 50px;">Date is required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row" >
+                    <div style="margin: 30px auto 0 auto;height: 100px;width: 220px;">
+                        <signature-pad accept="accept" style="border: 1px solid;" clear="clear" height="100" width="250" dataurl="dataurl">
+                        </signature-pad>
+                        <div layout="row" flex class="buttons">
+                            <md-button flex type="button" ng-click="clear()" class="md-raised md-warn submit-button" aria-label="Clear">             
+                                Clear
+                            </md-button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row" style="text-align: center;" >
+                        <span style="font-weight: 500;">Use your mouse to sign your name.</span>
+                    </div>
+                </div>
+
+                <div class="result" ng-show="signature">
+                    <img ng-src="{{ signature.dataUrl}}">
+                </div>
+                <div layout="row" layout-xs="column">
+                    <md-button type="submit" class="md-raised md-primary submit-button" aria-label="SUBMIT">             
+                        Submit
+                    </md-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    #login #login-form-wrapper #login-form{
+        width: 65% !important; 
+        max-width: none !important; 
+        padding: 50px;
+        background: #FFFFFF;
+        text-align: center;
+        border-radius: 8px;
+    }
+    ol {
+        margin:0 0 1.5em;
+        padding:0;
+        counter-reset:item;
+    }
+
+    ol>li {
+        margin:0;
+        padding:0 0 0 2em;
+        text-indent:-2em;
+        list-style-type:none;
+        counter-increment:item;
+    }
+
+    ol>li:before {
+        display:inline-block;
+        width:1.5em;
+        padding-right:0.5em;
+        font-weight:bold;
+        text-align:right;
+        content:counter(item) ".";
+    }
+    .input_text_box{
+        color: rgba(0, 0, 0, 0.87);
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-image: initial;
+        border-bottom: 1px solid;
+        border-color: #e3e3e3;
+        padding: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .md-datepicker-input{
+        width:328px;
+    }
+
+    .result {
+        border: 1px solid blue;
+        margin: 30px auto 0 auto;
+        height: 100px;
+        width: 220px;
+    }
+    input.ng-invalid{
+        border-color: rgb(213,0,0);
+    }
+</style>

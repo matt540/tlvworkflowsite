@@ -1,0 +1,55 @@
+<style>
+    td
+     {
+         padding-top: 0 !important;
+         padding-bottom: 0 !important;
+         margin-top: 0 !important;
+         margin-bottom: 0 !important;
+     }
+</style>
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header Nov">
+
+
+
+
+
+
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent" ui-sref="roles">Roles</span>
+                </div>
+    
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row"><span class="logo-icon">
+                        <md-icon md-font-icon="icon-people" class="md-custom-theme md-font material-icons icon-people" aria-hidden="true"></md-icon></span><span translate="ROLES.ROLES" class="logo-text ">Roles</span>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+                    
+
+                </div>
+            </div>
+        </div>
+        <button  type="button" class="add-event-button md-fab md-warn md-button  md-custom-theme md-ink-ripple"  aria-label="Add event" ng-click="openAddRoleDialog()">
+            <md-icon md-svg-icon="social:group-add" class="" aria-hidden="true"></md-icon>
+            <md-tooltip><span translate="ROLES.ADD.ROLE">Add Role</span></md-tooltip>
+        </button>
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+            
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"  class="row-border hover"></table>
+                
+            </div>
+        </div>
+    </div>
+</div>

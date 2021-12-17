@@ -1,0 +1,195 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div  class="header header_nov">
+
+        <div layout-align="space-between" layout="column" class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row" class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent">Synced Products</span>
+                </div>
+                <button ng-click="goBack()"  type="button" class="md-fab md-primary md-button  md-custom-theme md-ink-ripple" style="width: 36px !important; height: 36px !important;"   aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline" class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline" aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed" aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+                <div>
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"  class="row-border hover for_production_table">
+                        <div class="row">
+                        <div class="col-md-3">
+                            <md-input-container class="md-block">
+                                <label>Seller Name</label>
+                                <md-select ng-model="sellerid" ng-change="filterproductseller()" >
+
+                                    <md-select-header class="demo-select-header">
+                                        <input ng-keydown="$event.stopPropagation()" ng-model="searchTerm" type="search" ng-change="searchSellers()" placeholder="Enter name or email (more than 2 characters) to search seller" class="demo-header-searchbox md-text">
+                                    </md-select-header>
+                                    <md-option value="0" selected="selected">All</md-option>
+                                    <md-option ng-repeat="s in sellers| filter:searchTerm" value="{{s.id}}">
+                                        <em ng-if="s.displayname.trim() != ''">{{s.displayname}}</em> 
+                                        <em ng-if="s.displayname.trim() == ''">{{s.firstname}} {{s.lastname}}</em>
+                                    </md-option>
+                                </md-select> 
+
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-2">
+                            <md-input-container class="md-block" >
+                                <label>Brand</label>
+                                <md-select ng-model="brand" ng-change="filterproductseller()">
+                                    <md-option value="0" selected="selected">All</md-option>
+                                    <md-option ng-repeat="b in brands" value="{{b.id}}">
+                                        {{b.sub_category_name}}</em>
+                                    </md-option>
+                                </md-select>                                
+                            </md-input-container>
+                        </div>
+                       
+                        <div class="col-md-2">
+                            <md-input-container class="md-block" >
+                                <label>Category</label>
+                                    <md-select ng-model="category" ng-change="filterproductseller();filtersubcat()" multiple>
+<!--                                        <md-option value="0" selected="selected">All</md-option>-->
+                                        <md-option   ng-repeat="cat in categorys" value="{{cat.id}}" ng-if="cat.is_enable == '1'">
+                                            {{cat.sub_category_name}}
+                                    </md-option>
+                                </md-select>                                
+                            </md-input-container>
+                        </div>
+                        
+                            <div class="col-md-2">
+                                <md-input-container class="md-block" >
+                                    <label>Sub Category </label>
+                                    <md-select ng-model="subcategoryid" ng-change="filterproductseller()" multiple>
+                                        <md-option ng-repeat="subcat in childrens" value="{{subcat.id}}">
+                                            {{subcat.sub_category_name}}
+                                        </md-option>
+                                    </md-select>                                
+                                </md-input-container>
+                            </div> 
+
+
+
+                         <div class="col-md-2">
+                            <md-input-container class="md-block" >
+                                <label>Shipping Size</label>
+                                <md-select ng-model="shipping_size" ng-change="filterproductseller()">
+                                    <md-option value="0" selected="selected">All</md-option>
+                                    <md-option ng-repeat="ship_size in ship_sizes" value="{{ship_size.value_text}}">
+                                        {{ship_size.value_text}}</em>
+                                    </md-option>
+                                </md-select>                                
+                            </md-input-container>
+                        </div>
+                        
+
+
+                        </div>
+                        <div class="row" style="margin-top: 25px;">
+                         <div class="col-md-2">
+                            <md-input-container class="md-block" >
+                                <label>Flat Rate Shipping</label>
+                                <md-select ng-model="flatrate" ng-change="filterproductseller()">
+                                        <md-option value="all" selected="selected">All</md-option>
+                                        <md-option value="0">No</md-option>
+                                    <md-option value="1">Yes</md-option>
+                                    
+                                </md-select>                                
+                            </md-input-container>
+                        </div>
+                            <div class="col-md-2">
+                                <md-input-container class="md-block" >
+                                    <label>Sold</label>
+                                    <md-select ng-model="sold" ng-change="filterproductseller()">
+                                        <md-option value="0" selected="selected">All</md-option>
+                                        <md-option value="instock">In Stock</md-option>
+                                        <md-option value="outofstock">Out Of Stock</md-option>
+                                        <md-option value="sold">Sold</md-option>
+
+                                    </md-select>                                
+                                </md-input-container>
+                            </div>
+                            <div class="col-md-3">
+                                    <mdp-date-picker  mdp-open-on-click  mdp-placeholder="Product Publish Start Date" mdp-format="M/D/YYYY" ng-model="start_date" ng-change="filterproductseller()" >
+                                </mdp-date-picker>
+                            </div>
+                            <div class="col-md-3">
+                                <mdp-date-picker mdp-open-on-click mdp-placeholder="Product Publish End Date" mdp-format="M/D/YYYY" ng-model="end_date" ng-change="filterproductseller()">
+                                </mdp-date-picker>
+                            </div>
+
+                            <div class="col-md-3">
+                                    <mdp-date-picker  mdp-open-on-click  mdp-placeholder="Order Start Date" mdp-format="M/D/YYYY" ng-model="start_date_ord" ng-change="filterproductseller()" >
+                                </mdp-date-picker>
+                            </div>
+                            <div class="col-md-3">
+                                <mdp-date-picker mdp-open-on-click mdp-placeholder="Order End Date" mdp-format="M/D/YYYY" ng-model="end_date_ord" ng-change="filterproductseller()">
+                                </mdp-date-picker>
+                            </div>
+
+
+
+                        <div class="col-md-1" style="margin-left: -20px;">
+                                <button style="height: 40px;" sglclick="generateReportSyncProduct()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button"  ng-disabled="sellerid === '0' && brand === '0'  && shipping_size === '0' && flatrate === 'all' && sold === '0' && category.length === 0 && subcategoryid.length === 0 && start_date === null && end_date === null && start_date_ord === null && end_date_ord === null">
+<!--                                <button style="height: 40px;" sglclick="generateReportSyncProduct()" class="md-raised md-primary md-button md-default-theme md-ink-ripple" type="button"  ng-disabled="sellerid === '0' && brand === '0'  && shipping_size === '0' && flatrate === 'all' && sold === '0'">-->
+                                Export 
+                                <div class="md-ripple-container"></div>
+                            </button>
+                        </div>
+                        </div>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .for_production_table tr td:before
+    {
+        /*padding: 10px;*/
+    }
+    .for_production_table tr td
+    {
+        /*height: 40px;*/
+        padding: 10px !important;
+        /*margin-top: 10px;*/
+    }
+    .for_production_table tr td:first-child
+    {
+        padding-top:0 !important;
+        margin-top:0 !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+    }
+    .for_production_table tr td:last-child
+    {
+        /*        position:relative;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+                margin-top:0 !important;
+                margin-bottom:0 !important;*/
+    }
+    md-fab-speed-dial.md-fab-top-right
+    {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left:0;
+        top:0;
+    }
+    /*    md-fab-speed-dial.md-fab-top-right {
+            transform: unset;
+        }*/
+
+
+</style>

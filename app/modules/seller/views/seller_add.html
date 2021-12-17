@@ -1,0 +1,216 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="userForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2 ">
+            <div class="md-toolbar-tools md-accent-fg md-hue-3 header_otog_popup" layout="row" layout-align="space-between center">
+                <span class="title flex">{{action}} Seller</span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll> 
+
+            <div layout="row" layout-xs="column">
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>First Name</label>
+                        <input name="firstname" ng-model="user.firstname" required md-autofocus>
+                        <div ng-messages="userForm.firstname.$error" ng-show="userForm.firstname.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>First Name is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Last Name</label>
+                        <input name="lastname" ng-model="user.lastname" required >
+                        <div ng-messages="userForm.lastname.$error" ng-show="userForm.lastname.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>Last Name is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="row" layout-xs="column">
+                <!--                <div flex>
+                                    <md-input-container class="md-block">
+                                        <label>Shop Name</label>
+                                        <input  name="shopname" ng-model="user.shopname" required>
+                                        <div ng-messages="userForm.shopname.$error" ng-show="userForm.shopname.$invalid" role="alert">
+                                            <div ng-message="required">
+                                                <span>Shop Name is required</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>-->
+                <!--                <div flex ng-if="action == 'ADD'">
+                                    <md-input-container class="md-block">
+                                        <label>Shop URL1212</label>
+                                        <input type="text" ng-pattern="regex" name="shopurl" ng-model="user.shopurl" ng-blur="IsShopUrlAvailable(user.shopurl, userForm.shopurl.$valid)" required >
+                                        <div ng-messages="userForm.shopurl.$error || user.not_available" ng-show="userForm.shopurl.$invalid || user.not_available" role="alert">
+                                            <div ng-message="required">
+                                                <span>Shop URL is required</span>
+                                            </div>
+                                            <div ng-message="pattern">
+                                                <span>Shop URL is Invalid</span>
+                                            </div>
+                                            <div ng-show="user.not_available" style="font-size: 12px;">
+                                                <span>Shop URL is already in use</span>
+                                            </div>
+                                        </div>
+                
+                                    </md-input-container>
+                                </div>-->
+                <!--                <div flex ng-if="action == 'EDIT'">
+                                    <md-input-container class="md-block">
+                                        <label>Shop URL</label>
+                                        <input type="text" name="shopurl" ng-model="user.shopurl" readonly>
+                
+                                    </md-input-container>
+                                </div>-->
+            </div>
+            <div layout="row" layout-xs="column">
+                <div flex ng-if="action == 'ADD'">
+                    <md-input-container class="md-block" flex>
+                        <label>Email</label>
+                        <input type="email" ng-pattern="/^.+@.+\..+$/" name="email" ng-model="user.email" ng-blur="IsEmailAvailable(user.email, userForm.email.$valid)" required >
+                        <div ng-messages="userForm.email.$error || user.not_available_email" role="alert">
+                            <div ng-message="required">
+                                <span>Email is required</span>
+                            </div>
+                            <div ng-message="pattern">
+                                <span>Email must be a valid e-mail address</span>
+                            </div>
+                            <div ng-show="user.not_available_email" style="font-size: 12px;">
+                                <span>Email is already in use</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div flex ng-if="action == 'EDIT'">
+                    <md-input-container class="md-block" flex>
+                        <label>Email</label>
+                        <input type="email" ng-pattern="/^.+@.+\..+$/" name="email" ng-model="user.email" readonly  >
+
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-block" >
+                        <label translate="USERS.PASSWORD">Password</label>
+                        <input type="password" value="********" name="password" ng-model="user.password" required >
+                        <div ng-messages="userForm.password.$error" ng-show="userForm.password.$invalid" role="alert">
+                            <div ng-message="required">
+                                <span>Password is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+
+            </div>
+
+            <div layout="row" layout-xs="column">
+                <!--                <div flex>
+                                    <md-input-container class="md-block" >
+                                        <label>Address</label>
+                                        <input name="address"  ng-model="user.address"> 
+                                        <div ng-messages="userForm.address.$error" ng-show="userForm.address.$invalid" role="alert">
+                
+                                            <div ng-message="required">
+                                                <span>Address Required</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>-->
+                <div flex>
+                    <md-input-container class="md-block" >
+                        <label>Phone</label>
+                        <input name="phone"  ng-model="user.phone"> 
+                    </md-input-container>
+                </div>
+                <div flex ng-if="!user.id">
+                    <md-input-container class="md-block" >
+                        <label>Roles</label>
+                        <md-select ng-model="user.seller_roles" required>
+                            <md-option ng-repeat="seller_role in seller_roles" value="{{seller_role.id}}"><em>{{seller_role.value_text}}</em></md-option>
+                        </md-select> 
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<md-button type="submit" ng-if="!vm.newTask" ng-click="saveTask()"-->
+                <md-button type="submit"  ng-click="saveUser()"
+                           class="send-button md-primary md-raised"
+                           ng-disabled="userForm.$invalid || user.not_available_email"
+                           aria-label="SAVE">
+                    SAVE
+                </md-button>
+            </div>
+
+            <div layout="row">
+
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+<style>
+    .datepickerdemo md-content {
+        padding-bottom: 200px; 
+    }
+    .datepickerdemo .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin: 10px 0 0 25px; 
+    }
+
+    .dropzone .dz-message{
+        margin:0;
+        left: 0;
+
+        top: 0;
+        transform: none;
+    }
+    .dropzone .dz-message img{
+        border-radius: 10px;
+    }
+    #dropzone {
+        position: relative;
+        border: 3px solid #ccc;
+        border-radius: 20px;
+        color: #ccc;
+        font: bold 24px/150px arial;
+        height: 150px;
+        margin: 0px auto;
+        padding: 0  ;
+        text-align: center;
+        width: 150px;
+        margin-bottom: 50px;
+    }
+
+    #dropzone.hover {
+        border: 10px solid #FE5;
+        color: #FE5;
+    }
+
+
+    .dropzone .dz-preview
+    {
+        width: auto;
+        padding:0;
+        margin:0
+    }
+    .dropzone .dz-preview img,.dropzone .dz-preview .dz-image
+    {
+        width: auto;
+        height: auto;
+    }
+
+
+</style>

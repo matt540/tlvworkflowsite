@@ -1,0 +1,212 @@
+<div id="login" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="login-form-wrapper" layout="column" layout-align="center center">
+        <div id="login-form" class="md-whiteframe-8dp">
+            <!--<div class="logo md-accent-bg">-->
+            <!--<span>F</span>-->
+            <img src="../../../../assets/images/site_logo.png">
+            <!--</div>-->
+
+            <div class="title">Register your account</div>
+
+            <form name="signupForm" novalidate method="POST" ng-submit="signup()">
+                <md-input-container class="md-block" md-no-float>
+                    <input type="email" name="email" ng-model="signupData.email" placeholder="Email"
+                           ng-pattern="/^.+@.+\..+$/" required>
+                    <div ng-messages="signupForm.email.$error" role="alert" multiple>
+                        <div ng-message="required">
+                            <span>Email field is required</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span>Email must be a valid e-mail address</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <div layout="column" layout-gt-xs="row" flex>
+                    <md-input-container ng-if="company_temp" class="md-block" md-no-float flex="50">
+                        
+                        <input ng-if="company_temp" type="text" name="companyname1" ng-model="signupData.companyname1" placeholder="Company Name" required>
+
+                        <div ng-messages="signupForm.companyname1.$error" role="alert" multiple>
+                            <div ng-message="required">
+                                <span>Company Name field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container ng-if="!company_temp" class="md-block" md-no-float flex="50">
+                        
+                        <md-select ng-if="!company_temp" placeholder="Company Name" name="companyname1" ng-model="signupData.companyname1" required>
+                            <md-option ng-repeat="u in allcompany" ng-value="{{u.id}}"><em>{{u.company_name}}</em></md-option>
+                            <md-option ng-click="changeSelect()" ng-value="0"><em>other</em></md-option>
+                        </md-select>
+
+                        <div ng-messages="signupForm.companyname1.$error" role="alert" multiple>
+                            <div ng-message="required">
+                                <span>Company Name field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float flex="50">
+                        <input type="text" name="contactname" ng-model="signupData.contactname" placeholder="Contact Name" required>
+                        <div ng-messages="signupForm.contactname.$error" role="alert" multiple>
+                            <div ng-message="required">
+                                <span>Contact Name field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="column" layout-gt-xs="row" flex>
+                    <md-input-container class="md-block" md-no-float>
+                        <input type="text" name="phone" ng-model="signupData.phone" placeholder="Phone">
+<!--                        <div ng-messages="signupForm.phone.$error" role="alert" multiple>
+                            
+                            <div ng-message="pattern">
+                                <span>Invalid Phone number</span>
+                            </div>
+                        </div>-->
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float>
+                        <input type="text" name="alternate_phone" ng-model="signupData.alternate_phone" placeholder="Alternate Phone">
+<!--                        <div ng-messages="signupForm.alternate_phone.$error" role="alert" multiple>
+
+                            <div ng-message="pattern">
+                                <span>Invalid Phone number</span>
+                            </div>
+                        </div>-->
+                    </md-input-container>
+                </div>
+
+                <div layout="column" layout-gt-xs="row" flex>
+                    <md-input-container flex="50" class="md-block" md-no-float>
+
+                        <md-select ng-model="signupData.paymenttype" name="paymenttype" placeholder="Payment Type" required>
+                            <md-option ng-value="{{po.id}}" ng-repeat="po in payment_option">{{ po.value_text}}</md-option>
+                        </md-select>
+
+                        <div ng-messages="signupForm.paymenttype.$error" role="alert" multiple>
+                            <div ng-message="required">
+                                <span>Payment Type field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container flex="50" class="md-block" md-no-float>
+                        <md-select ng-model="signupData.usertype" name="usertype" placeholder="User Type" required>
+                            <md-option ng-value="role.id" ng-repeat="role in roles">{{ role.name}}</md-option>
+                        </md-select>
+
+                        <div ng-messages="signupForm.usertype.$error" role="alert" multiple>
+                            <div ng-message="required">
+                                <span>User Type field is required</span>
+                            </div>
+                        </div>
+
+                    </md-input-container>
+                </div>
+
+                <div layout="column" layout-gt-xs="row" flex>
+                    <md-input-container class="md-block" md-no-float flex="50">
+                        <input type="text" name="username" ng-model="signupData.username" placeholder="User Name"
+                               required>
+                        <div ng-messages="signupForm.username.$error" role="alert">
+                            <div ng-message="required">
+                                <span>Username field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float flex="50">
+                        <input type="password" name="password" ng-model="signupData.password" placeholder="Password"
+                               required>
+                        <div ng-messages="signupForm.password.$error" role="alert">
+                            <div ng-message="required">
+                                <span>Password field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <!--                <div layout="column" layout-gt-xs="row" flex>
+                                    
+                                </div>-->
+
+                <div ng-if="signupData.paymenttype == 33" layout="column" layout-gt-xs="row" flex>
+
+                    <md-input-container class="md-block" md-no-float>
+                        <input ng-if="signupData.paymenttype == 33" type="text" name="cc" ng-model="signupData.cc" placeholder="CC" required>
+                        <input ng-if="signupData.paymenttype == 34" type="text" name="cc" ng-model="signupData.cc" placeholder="CC">
+                        <div ng-messages="signupForm.cc.$error" role="alert">
+                            <div ng-message="required">
+                                <span>CC field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float>
+                        <input ng-if="signupData.paymenttype == 33" type="text" name="card_name" ng-model="signupData.card_name" placeholder="Name" required>
+                        <input ng-if="signupData.paymenttype == 34" type="text" name="card_name" ng-model="signupData.card_name" placeholder="Name">
+                        <div ng-messages="signupForm.card_name.$error" role="alert">
+                            <div ng-message="required">
+                                <span>Name field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float>
+                        <input ng-if="signupData.paymenttype == 33" type="text" name="exp" ng-model="signupData.exp" placeholder="EXP" required>
+                        <input ng-if="signupData.paymenttype == 34" type="text" name="exp" ng-model="signupData.exp" placeholder="EXP">
+                        <div ng-messages="signupForm.exp.$error" role="alert">
+                            <div ng-message="required">
+                                <span>EXP field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div ng-if="signupData.paymenttype == 33" layout="column" layout-gt-xs="row" flex>
+
+                    <md-input-container class="md-block" md-no-float>
+                        <input ng-if="signupData.paymenttype == 33" type="text" name="sec_code" ng-model="signupData.sec_code" placeholder="Sec Code" required>
+                        <input ng-if="signupData.paymenttype == 34" type="text" name="sec_code" ng-model="signupData.sec_code" placeholder="Sec Code">
+                        <div ng-messages="signupForm.sec_code.$error" role="alert">
+                            <div ng-message="required">
+                                <span>Sec Code is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" md-no-float>
+                        <input ng-if="signupData.paymenttype == 33" type="text" name="card_type" ng-model="signupData.card_type" placeholder="Card Type" required>
+                        <input ng-if="signupData.paymenttype == 34" type="text" name="card_type" ng-model="signupData.card_type" placeholder="Card Type">
+                        <div ng-messages="signupForm.card_type.$error" role="alert">
+                            <div ng-message="required">
+                                <span>Card Type field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="column" layout-gt-xs="row" flex>
+
+                    <md-input-container class="md-block" md-no-float flex="100">
+                        <textarea type="text" name="note" ng-model="signupData.note" placeholder="Note"></textarea>
+                    </md-input-container>
+
+                </div>
+
+                <md-button type="submit" class="md-raised md-primary submit-button" aria-label="LOG IN"
+                           ng-disabled="signupForm.$invalid || signupForm.$pristine">
+                    Sign Up
+                </md-button>
+            </form>
+
+            <div class="separator">
+                <span class="text">OR</span>
+            </div>
+
+
+
+            <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                <span class="text">Already have an account?</span>
+                <a class="link md-accent-fg " ui-sref="login()">Sign In</a>
+            </div>
+        </div>
+    </div>
+</div>
