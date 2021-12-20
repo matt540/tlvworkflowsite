@@ -42,7 +42,7 @@ class SellerRepository extends EntityRepository {
 
     public function update(Seller $option, $data) {
 
-
+        
 
 //        if (isset($data['update_seller_roles']))
 //        {
@@ -164,7 +164,7 @@ class SellerRepository extends EntityRepository {
         $this->em->persist($option);
         
         $this->em->flush();
-
+        
         $soft = $this->em->getFilters()->enable('soft-deleteable');
 
         $soft->enableForEntity('App\Entities\Seller');
@@ -2100,6 +2100,7 @@ class SellerRepository extends EntityRepository {
 
         $authUser = JWTAuth::parseToken()->authenticate();
 
+// dd($authUser);
         $role_id = $authUser->getRoles()[0]->getId();
         $user_id = $authUser->getId();
 

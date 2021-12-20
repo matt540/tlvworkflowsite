@@ -53,7 +53,7 @@ class Users extends Authenticatable implements HasRolesContract, JWTSubject
      */
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->getId();
     }
 
     /**

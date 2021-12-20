@@ -3077,9 +3077,14 @@ and successors of the undersigned:
     }
 
     public function saveSeller(Request $request) {
-        
+
         $data = $request->all();
 
+        // $data['assign_agent_id'] = '';
+        if (isset($request->assign_agent_id['id'])) {
+            $data['assign_agent_id'] = $this->user_repo->UserOfId($request->assign_agent_id['id']);
+        }
+        
         if ($request->id) {
 
             $data['firstname'] = str_replace(' ', '', $data['firstname']);
@@ -3101,9 +3106,10 @@ and successors of the undersigned:
             }
 
             $details = $this->seller_repo->SellerOfId($request->id);
+            // dd($details);
 
             if ($this->seller_repo->update($details, $data)) {
-
+                
                 $seller_details = array();
 
                 $seller_details['data'] = json_encode($data);
@@ -3700,9 +3706,7 @@ and successors of the undersigned:
         $filter = $request->all();
 
 
-
         $data['draw'] = $filter['draw'];
-
 
 
         if ($filter['name'] == 'product') {
@@ -3764,7 +3768,6 @@ and successors of the undersigned:
 
             $data['recordsFiltered'] = $this->seller_repo->getSellerProposalForPricingTotal($filter);
         } else if ($filter['name'] == 'proposal_for_production') {
-
             $users_data_total = $this->seller_repo->getSellerProposalForProduction($filter);
 
             foreach ($users_data_total['data'] as $key => $value) {

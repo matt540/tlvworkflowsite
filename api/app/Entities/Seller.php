@@ -159,7 +159,7 @@ class Seller {
      * @ORM\ManyToOne(targetEntity="Users",inversedBy="Seller")
      * @ORM\JOinColumn(name="assign_agent_id",referencedColumnName="id")
      */
-    protected $assign_agent_id;
+    public $assign_agent_id;
 
 
     public function __construct($data) {

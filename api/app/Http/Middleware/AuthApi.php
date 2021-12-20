@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use DoctrineExtensions\Query\Mysql\Log;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;

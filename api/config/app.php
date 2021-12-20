@@ -190,6 +190,7 @@ return [
         LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
 
         /*
          * Application Service Providers...
