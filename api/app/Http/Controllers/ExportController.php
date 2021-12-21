@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductWordProposalExport;
 use Illuminate\Http\Request;
 use App\Repository\RoleRepository as role_repo;
 use App\Repository\UserRepository as user_repo;
@@ -16,11 +17,12 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\File;
 use Auth;
 use View;
-use Excel;
+// use Excel;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Style_Fill;
 use PDF;
 use TCPDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller {
 
@@ -1044,6 +1046,49 @@ EOF;
         $details = $request->all();
 
         $seller = $this->seller_repo->SellerOfId($details['seller']);
+
+        $seller_name = '';
+        if ($seller->getFirstname() != '' && $seller->getLastname() != '') {
+            $seller_name = trim($seller->getFirstname()) . trim($seller->getLastname());
+        } else {
+            $seller_name = trim($seller->getDisplayname());
+        }
+        $number = $this->mail_record_repo->countOfSellerProposalType($seller->getId());
+        $number += 1;
+
+        if ($number < 100) {
+            if ($number < 10) {
+                $number = '00' . $number;
+            } else {
+                $number = '0' . $number;
+            }
+        }
+        $seller_name = str_replace(" ", "", $seller_name);
+
+        if (isset($details['isForClient']) && $details['isForClient'] == true) {
+            $number = 'client_' . $number;
+        }
+
+        $file = $seller_name . '_pricingproposal_' . $number;
+        $data = array();
+        $data['details'] = $details;
+        $data['seller'] = $seller;
+
+dd($data);
+        return Excel::download(new ProductWordProposalExport, 'users.xlsx');
+        // $details = $request->all();
+        // dd($details);
+        // $seller = $this->seller_repo->SellerOfId($details['seller']);
+        // dd($seller);
+    }
+
+    public function downloadProductWordProposal_Old(Request $request) {
+        ini_set('max_execution_time', 900);
+        ini_set('memory_limit', '4096M');
+
+        $details = $request->all();
+
+        $seller = $this->seller_repo->SellerOfId($details['seller']);
 //        $file = 'tlv_word_product_' . time();
 //        $filename = public_path() . '/../../Uploads/word/' . $file;
 
@@ -1749,10 +1794,10 @@ EOF;
         while ($zip_entry = zip_read($zip)) {
 
             if (zip_entry_open($zip, $zip_entry) == FALSE)
-                continue 2;
+                continue;
 
             if (zip_entry_name($zip_entry) != "word/document.xml")
-                continue 2;
+                continue;
 
             $content .= zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 

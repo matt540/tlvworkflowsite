@@ -80,6 +80,7 @@ Route::post('storage_agreement/get_storage_agreement_report', 'ProductReportCont
 Route::post('storage_report/get_storage_products', 'ProductReportController@getStorageProductsReports');
 
 Route::post('storage_agreement/export_storage_report', 'ProductReportController@exportStorageProducts');
+// Route::get('storage_agreement/export_storage_report', 'ProductReportController@exportStorageProducts');
 
 Route::post('seller_agreement/save_seller_agreement', 'SellerController@saveSellerAgreement');
 //Route::post('seller_agreement/save_new_seller_agreement', 'SellerController@saveNewSellerAgreement');
