@@ -1331,11 +1331,62 @@ EOF;
         $data['details'] = $details;
         $data['seller'] = $seller;
 
-        $file_name = 'demo.xlsx';
-        $file = 'public/exports/'.$file_name;
-// dd($data);
+        $export_data = [];
+        $suggested_tlv_price_rows = [];
+        $count = 11;
+        foreach ($data['details']['products'] as $key => $value) {
+            
+            if ($value['is_send_mail'] == 1) {
+                $product_quote = $this->product_quotation_repo->getProductQuotationById($value['id']);
+
+
+                $row = [
+                    [
+                        'SKU',
+                        $product_quote['product_id']['sku'],
+                    ],
+                    [
+                        'Name',
+                        $product_quote['product_id']['name'],
+                    ],
+                    [
+                        'Suggested TLV Price',
+                        '$' . $product_quote['tlv_price'],
+                    ],
+                    [
+                        'Internal Note',
+                        $product_quote['note'],
+                    ],
+                    [
+                        'Proposal Date',
+                        $product_quote['created_at']->format('m/d/Y'),
+                    ],
+                ];
+
+                $export_data = array_merge($export_data, $row);
+
+                array_push($export_data, [[]]);
+                array_push($export_data, [[]]);
+
+                if ($key != 0) {
+                    $count = $count + 7;
+                }
+
+                // $count = $count + 2;
+                array_push($suggested_tlv_price_rows, $count);
+
+                // array_push($export_data, );
+                // dd($product_quote);
+            }
+        }
+// dd($export_data);
+// dd($suggested_tlv_price_rows);
+
+        // $file_name = 'demo.xlsx';
+        // $file = 'public/exports/'.$file_name;
+        
         // $export = new ProductWordProposalExport($data);
-        $export = new ProductWordProposalExport($data);
+        $export = new ProductWordProposalExport($export_data, $data['seller'], $suggested_tlv_price_rows);
 // dd($file);
 
         // dd($products);
@@ -1529,7 +1580,6 @@ EOF;
                             'Proposal Date',
                             $product_quote['created_at']->format('m/d/Y'),
                         ));
-
 
 
                         $sheet->cells('A' . $i . ':D' . ($j) . '', function($cells) {

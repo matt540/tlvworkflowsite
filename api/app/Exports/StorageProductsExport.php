@@ -80,6 +80,7 @@ class StorageProductsExport implements FromArray, WithMapping, WithHeadings, Sho
         return [
             AfterSheet::class => function(AfterSheet $event) {
                 // $event->sheet->getDelegate()->getParent()->getDefaultStyle()->getFont()->setName('Calibri' );
+                // $event->sheet->getDelegate()->getParent()->getDefaultStyle()->getFont()->setName('Calibri');
                 $event->sheet->getDelegate()->mergeCells('A1:E1');
                 $event->sheet->getDelegate()->getStyle('A1:E2')->getAlignment()->setHorizontal('center');
             },
