@@ -158,7 +158,7 @@ Route::post('get_all_sync_order', 'ProductsQuotationController@getAllSyncOrder')
 Route::post('get_sync_order_detail', 'ProductsQuotationController@getSyncOrderDetail');
 Route::post('get_sync_order_report', 'ProductsQuotationController@getSyncOrderReport');
 
-
+Route::post('import_product', 'ProductsImportController@importProduct');
 
 Route::get('getProposalInProposalProduction', 'ProductsQuotationController@getProposalInProposalProduction');
 Route::get('getProductsInProduction', 'ProductsQuotationController@getProductsInProduction');
@@ -240,7 +240,7 @@ Route::post('product/set-storage-price-to-products', 'WordpressAPIController@set
 Route::post('seller/products-for-wp', 'WordpressAPIController@getSellerProductOfStage');
 
 
-// WebHooks // 
+// WebHooks //
 
 
 
