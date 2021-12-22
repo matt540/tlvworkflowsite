@@ -447,10 +447,70 @@ Buyer.';
         return 1;
     }
 
-
-    
     public function savePricingProposalAwaitingcontract(Request $request) {
+        ini_set('max_execution_time', 300);
+        $products = $request->all();
 
+        $approved_product_quots = array();
+        $seller = $this->seller_repo->SellerOfId($products['seller']);
+        $product_quot_ids = [];
+
+        foreach ($products['products'] as $key => $value) {
+            $product_quot_ids[] = $value['id'];
+            $product_quot = $this->product_quotation_repo->ProductQuotationOfId($value['id']);
+            $approved_product_quots[] = $product_quot;
+            $data['is_send_mail'] = $value['is_send_mail'];
+            $data['is_for_production_create_date'] = 'Yes';
+            //17 for pending
+            $data['status_quot'] = $this->option_repo->OptionOfId(17);
+        }
+
+        $file_name = app('App\Http\Controllers\ExportController')->downloadProductWordProposal($request);
+
+        $request->merge([
+            'isForClient' => true
+        ]);
+        $file_name_client = app('App\Http\Controllers\ExportController')->downloadProductPdfProposal($request);
+
+        $link = config('app.url') . 'api/storage/exports/' . $file_name_client;
+        $greeting = "Dear " . $seller->getFirstName() . ',';
+
+        $introLines = array();
+        $introLines[0] = 'We are excited to provide you with your TLV "Pricing Proposal". As discussed, we have priced your Item(s) based upon condition, market trends, and TLV sales data. As outlined in the TLV Consignment Agreement, an Item is listed at the "Advertised Price", which is the agreed "TLV Price" shown below for the first 3 months of the listing. If the "Item" has not sold after 3 months, the Advertised Price will be reduced by 30%.';
+        $note_text = '* If an Item(s) is is noted as "Dropoff by Consignor Required" in the Pricing Proposal then Consignor must drop it off at The Local Vault Office in Cos Cob, CT within 2 weeks from the date the Item was purchased.';
+        $line1 = "As stated in the TLV Consignment Agreement, Consignor has 48 hours after the Pricing Proposal is sent to withdraw any Item(s) from the consignment.";
+        $line2 = "";
+        $line3 = "We look forward to featuring your Item(s) on the site!";
+        $attachments = array();
+        //$attachments[] = 'TLV Client Sale Agreement_04_05_2020.pdf';
+        $myViewData = \View::make('emails.product_proposal', [
+//                    'agreement_link' => $agreement_link,
+                    'link' => $link,
+                    'product_quots' => $approved_product_quots,
+                    'line1' => $line1,
+                    'line2' => $line2,
+                    'line3' => $line3,
+                    'greeting' => $greeting,
+                    'seller' => $seller,
+                    'level' => 'success',
+                    'outroLines' => [0 => ''],
+                    'introLines' => $introLines,
+                    'note_text' => $note_text
+                ])->render();
+        $bccs = [];
+        $ccs = [];
+        $ccs[] = 'sell@thelocalvault.com';
+        $other_emails = [];
+        $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
+        if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Pricing Proposal: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
+            
+        }
+
+        return $file_name;
+    }
+    
+    public function savePricingProposalAwaitingcontract_Old(Request $request) {
+        // Working
         ini_set('max_execution_time', 300);
         $products = $request->all();
 
