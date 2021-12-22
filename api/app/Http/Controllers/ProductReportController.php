@@ -1169,8 +1169,6 @@ class ProductReportController extends Controller {
         return response()->json($data, 200);
     }
 
-    // public function exportStorageProducts() {
-        // dd('jijij');
     public function exportStorageProducts(Request $request) {
         $filter = $request->all();
         $filteredData = $this->product_quote_repo->getStorageProductReport($filter);
@@ -1196,7 +1194,7 @@ class ProductReportController extends Controller {
         $file = 'public/exports/'.$file_name;
 
         $export = new StorageProductsExport($products);
-        dd($products);
+        // dd($products);
         ob_end_clean(); // this
         ob_start(); // and this
         // Excel::store(new StorageProductsExport, $file);

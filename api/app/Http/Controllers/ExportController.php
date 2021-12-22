@@ -396,6 +396,260 @@ class ExportController extends Controller {
 
         $details = $request->all();
         $seller = $this->seller_repo->SellerOfId($details['seller']);
+
+        $seller_name = '';
+        if ($seller->getFirstname() != '' && $seller->getLastname() != '') {
+            $seller_name = trim($seller->getFirstname()) . trim($seller->getLastname());
+        } else {
+            $seller_name = trim($seller->getDisplayname());
+        }
+
+        $number = $this->mail_record_repo->countOfSellerProposalType($seller->getId());
+        $number += 1;
+        if ($number < 100) {
+            if ($number < 10) {
+                $number = '00' . $number;
+            } else {
+                $number = '0' . $number;
+            }
+        }
+        $seller_name = str_replace(" ", "", $seller_name);
+
+        if (isset($details['isForClient']) && $details['isForClient'] == true) {
+            $number = 'client_' . $number;
+        }
+
+        $file = $seller_name . '_pricingproposal_' . $number;
+        $data = array();
+
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Smit Vora');
+        $pdf->SetTitle('The Local Vault');
+        $pdf->SetSubject('Product Details');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+        $pdf->SetHeaderData('../../../../../../assets/images/site_logo.png', PDF_HEADER_LOGO_WIDTH, '', '');
+
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+
+
+        $pdf->SetFont('helvetica', '', 10);
+
+        $pdf->AddPage();
+
+        $html = <<<EOF
+<!-- EXAMPLE OF CSS STYLE -->
+<style>
+    .special_td{
+      color:#00B050;
+          }
+    .border_top{
+        border-top: 1px;
+    }
+    .border_left{
+        border-left: 1px;
+    }
+    .border_top{
+        border-top: 1px;
+    }
+    .border_right{
+        border-right: 1px;
+    }
+    .border_bottom{
+        border-bottom: 1px;
+    }
+                
+                
+</style>            
+EOF;
+        $html = '';
+        $html .= '<table width="100%" cellpadding="2" cellspacing="2">';
+
+        $html .= '<tr>';
+        $html .= '  <td align="center" colspan="4">';
+        $html .= '<b>' . $seller->getFirstname() . ' ' . $seller->getLastname() . '</b>';
+        $html .= '  </td>';
+        $html .= '</tr>';
+
+        $html .= '<tr>';
+        $html .= '  <td align="center" colspan="4">';
+        $html .= '<b>' . $seller->getAddress() . '</b>';
+        $html .= '  </td>';
+        $html .= '</tr>';
+
+        $html .= '<tr>';
+        $html .= '  <td align="center" colspan="4">';
+        if ($seller->getPhone() != 0) {
+            $html .= '<b>' . $seller->getPhone() . '</b>';
+        }
+        $html .= '  </td>';
+        $html .= '</tr>';
+
+        $html .= '<tr>';
+        $html .= '  <td align="center" colspan="4">';
+        $html .= '<b>' . $seller->getEmail() . '</b>';
+        $html .= '  </td>';
+        $html .= '</tr>';
+
+
+        $html .= '<tr>';
+        $html .= '  <td colspan="4">';
+        $html .= '  </td>';
+        $html .= '</tr>';
+
+        foreach ($details['products'] as $key => $value) {
+            if ($value['is_send_mail'] == 1) {
+                $product_quote = $this->product_quotation_repo->getProductQuotationById($value['id']);
+
+                $rowspan = 6;
+                if (isset($details['isForClient']) && $details['isForClient'] == true) {
+                    $rowspan = 5;
+                } else {
+                    $rowspan = 6;
+                }
+
+
+                $html .= '<tr>';
+                $html .= '  <th align="center" style="border-top: 1px solid black;border-left: 1px solid black;">';
+                $html .= '  <b>SKU</b>';
+                $html .= '  </th>';
+                $html .= '  <td style="border-top: 1px solid black;">';
+                $html .= $product_quote['product_id']['sku'];
+                $html .= '  </td>';
+
+                $html .= '  <td style="border-top: 1px solid black;border-right: 1px solid black;border-bottom: 1px solid black;" colspan="2" rowspan="' . $rowspan . '">';
+                if (isset($product_quote['product_id']['product_pending_images'][0]['name'])) {
+                    $offset = 0;
+                    foreach ($product_quote['product_id']['product_pending_images'] as $key2 => $value2) {
+                        $html .= '<img height="80" width="80" src="' . config('app.url') . 'Uploads/product/thumb/' . $value2['name'] . '">';
+                    }
+                }
+                $html .= '  </td>';
+                $html .= '</tr>';
+
+
+                $html .= '<tr>';
+                $html .= '  <th align="center" style="border-left: 1px solid black;">';
+                $html .= '  <b>Name</b>';
+                $html .= '  </th>';
+                $html .= '  <td>';
+                $html .= $product_quote['product_id']['name'];
+                $html .= '  </td>';
+                $html .= '</tr>';
+
+                $html .= '<tr>';
+                $html .= '  <th align="center" style="border-left:1px solid black;">';
+                $html .= '  <b>TLV price</b>';
+                $html .= '  </th>';
+                $html .= '  <td>';
+                $html .= '$' . $product_quote['tlv_price'];
+                $html .= '  </td>';
+                $html .= '</tr>';
+                
+                 $html .= '<tr>';
+                $html .= '  <th align="center" style="border-left:1px solid black;">';
+                $html .= '  <b>Dropoff by Consignor Required </b>';
+                $html .= '  </th>';
+                $html .= '  <td>';
+                if($product_quote['seller_to_drop_off'] == 1){
+                    $html .=   'Yes';
+                }else{
+                    $html .=   '-';
+                }
+                
+                $html .= '  </td>';
+                $html .= '</tr>';
+
+                if (isset($details['isForClient']) && $details['isForClient'] == true) {
+                    
+                } else {
+                    $html .= '<tr>';
+                    $html .= '  <th align="center" style="border-left:1px solid black;">';
+                    $html .= '  <b>Internal Note</b>';
+                    $html .= '  </th>';
+                    $html .= '  <td>';
+                    $html .= $product_quote['note'];
+                    $html .= '  </td>';
+                    $html .= '</tr>';
+                }
+
+                $html .= '<tr>';
+                $html .= '  <th align="center" style="border-left:1px solid black;border-bottom:1px solid black;" >';
+                $html .= '  <b>Proposal Date</b>';
+                $html .= '  </th>';
+                $html .= '  <td style="border-bottom: 1px solid black;">';
+                $html .= $product_quote['created_at']->format('m/d/Y');
+                $html .= '  </td>';
+                $html .= '</tr>';
+
+
+                $html .= '<tr>';
+                $html .= '  <td colspan="4">';
+                $html .= '  </td>';
+                $html .= '</tr>';
+            }
+        }
+        $html .= '</table>';
+
+        $pdf->writeHTML($html, true, false, true, false, '');
+        $pdf->lastPage();
+
+        $filename = public_path('storage/exports/' . $file . '.pdf');
+        $pdf->output($filename, 'F');
+
+        $stream_opts = [
+            "ssl" => [
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ]
+        ];
+        
+        $content = file_get_contents($filename, false, stream_context_create($stream_opts));
+        
+        $file_size = \File::size($filename);
+
+        // 68 mb
+        if ($file_size < 68952992 && isset($details['isForClient']) && $details['isForClient'] == true) {
+            $content = file_get_contents($filename, false, stream_context_create($stream_opts));
+        }
+
+        if (isset($details['isForClient']) && $details['isForClient'] == true) {
+            $data_update['last_proposal_file_name'] = $file . '.pdf';
+
+            $this->seller_repo->update($seller, $data_update);
+
+            $data2['seller_id'] = $seller;
+            $data2['file_name'] = $file . '.pdf';
+            $data2['from_state'] = 'proposal';
+            $prepared_data2 = $this->mail_record_repo->prepareData($data2);
+
+            $this->mail_record_repo->create($prepared_data2);
+        }
+
+        return $file . '.pdf';
+    }
+
+    public function downloadProductPdfProposal_Old(Request $request) {
+        ini_set('memory_limit', '4096M');
+        ini_set('max_execution_time', 0);
+
+        $details = $request->all();
+        $seller = $this->seller_repo->SellerOfId($details['seller']);
 //        $file = 'tlv_word_product_' . time();
 //        $filename = public_path() . '/../../Uploads/word/' . $file;
 
@@ -1053,6 +1307,7 @@ EOF;
         } else {
             $seller_name = trim($seller->getDisplayname());
         }
+
         $number = $this->mail_record_repo->countOfSellerProposalType($seller->getId());
         $number += 1;
 
@@ -1069,13 +1324,32 @@ EOF;
             $number = 'client_' . $number;
         }
 
-        $file = $seller_name . '_pricingproposal_' . $number;
+        $file_name = $seller_name . '_pricingproposal_' . $number . '.xlsx';
+        $file = 'public/exports/'.$file_name;
+
         $data = array();
         $data['details'] = $details;
         $data['seller'] = $seller;
 
-dd($data);
-        return Excel::download(new ProductWordProposalExport, 'users.xlsx');
+        $file_name = 'demo.xlsx';
+        $file = 'public/exports/'.$file_name;
+// dd($data);
+        // $export = new ProductWordProposalExport($data);
+        $export = new ProductWordProposalExport($data);
+// dd($file);
+
+        // dd($products);
+        ob_end_clean(); // this
+        ob_start(); // and this
+        // Excel::store(new StorageProductsExport, $file);
+        Excel::store($export, $file);
+        
+        $path = asset('api/storage/exports/'.$file_name);
+        return $path;
+        
+
+// dd($data);
+        // return Excel::download(new ProductWordProposalExport, 'users.xlsx');
         // $details = $request->all();
         // dd($details);
         // $seller = $this->seller_repo->SellerOfId($details['seller']);

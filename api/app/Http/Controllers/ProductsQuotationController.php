@@ -488,6 +488,7 @@ Buyer.';
             'isForClient' => true
         ]);
         $file_name_client = app('App\Http\Controllers\ExportController')->downloadProductPdfProposal($request);
+        
         $link = config('app.url') . 'api/storage/exports/' . $file_name_client;
         $greeting = "Dear " . $seller->getFirstName() . ',';
 
