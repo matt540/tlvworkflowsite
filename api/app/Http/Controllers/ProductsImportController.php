@@ -25,6 +25,7 @@ use Excel;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Style_Fill;
 use Validator;
+use App\Imports\ProductsImport;
 
 class ProductsImportController extends Controller {
 
@@ -63,10 +64,15 @@ class ProductsImportController extends Controller {
             if ($extension == 'xlsx' || $extension == 'xls') {
 
 
-                $data_excel = Excel::load($data['product_file']->getRealPath());
+                //$data_excel = Excel::load($data['product_file']->getRealPath());
+//                $data_excel = Excel::import(new ProductsImport,$data['product_file']->getRealPath());
 
-                foreach ($data_excel->toArray() as $key => $data) {
+                $productData = new ProductsImport();
+                $productData->import(request()->file('product_file'));
+                $pro_data = $productData->data;
 
+
+                foreach ($pro_data as $key => $data) {
 
                     if (isset($data['product_name']) && $data['product_name'] != '') {
 
@@ -107,15 +113,15 @@ class ProductsImportController extends Controller {
                             $data_product['product_category'] = [];
 
                             $product_category = $this->sub_category_repo->SubCategoryOfName($data['category']);
-                       
+
                             if ($product_category != NULL || $product_category != '') {
                                 $data_product['product_category'][] = $product_category;
                             }
-                            
+
                         }
 
                         if (isset($data['sub_category']) && $data['sub_category'] != '') {
-                            
+
                             $product_category = $this->sub_category_repo->SubCategoryOfName($data['sub_category']);
 
                             if ($product_category != NULL || $product_category != '') {
@@ -156,7 +162,7 @@ class ProductsImportController extends Controller {
 //                        }
 //                        if (isset($data['material']) && $data['material'] != '') {
 //                            $data_product['ship_material'] = $data['material'];
-//                        } 
+//                        }
 //                        if (isset($data['local_pickup']) && $data['local_pickup'] != '') {
 //                            $data_product['local_pickup_available'] = $data['local_pickup'];
 //                        }
