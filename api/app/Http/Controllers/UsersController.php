@@ -312,7 +312,7 @@ class UsersController extends Controller
 
     {
 
-        
+
 
     }
 
@@ -341,7 +341,7 @@ class UsersController extends Controller
         $data = array('name' => 'Ross', 'php_master' => true);
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php?userurl=' . $dd['shop_url'];
-        $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-user.php?userurl=' . $dd['shop_url'];
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php?userurl=' . $dd['shop_url'];
 
         $ch = curl_init();
 
@@ -388,7 +388,7 @@ class UsersController extends Controller
         $data = array('name' => 'Ross', 'php_master' => true);
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php?useremail=' . $dd['useremail'];
-        $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-user.php?useremail=' . $dd['useremail'];
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php?useremail=' . $dd['useremail'];
 
         $ch = curl_init();
 
@@ -429,7 +429,7 @@ class UsersController extends Controller
 
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php';
-        $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-user.php';
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php';
 
         $ch = curl_init();
 
@@ -497,7 +497,7 @@ class UsersController extends Controller
 
 
     public function getAllAgents(){
-        
+
         return $this->user_repo->getAllAgents();
     }
 

@@ -306,7 +306,8 @@ app.controller('SyncProductListController', function ($document, $mdDialog, $roo
 //                    a.download = b;
                     a.target = '_blank';
                     a.id = b;
-                    a.href = 'api/storage/exports/' + b;
+                    // a.href = 'api/storage/exports/' + b;
+                    a.href = b;
                     a.click();
                     document.body.removeChild(a);
                     $rootScope.loader = false;
