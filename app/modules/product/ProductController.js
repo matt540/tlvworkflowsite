@@ -2049,7 +2049,8 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
         {
 
             console.log($scope.current_dropzone_index);
-            var xhrJson = JSON.parse(xhr);
+            // var xhrJson = JSON.parse(xhr);
+            var xhrJson = xhr;
 
             if ($scope.products_combo[$scope.current_dropzone_index]['images'] != undefined)
             {
@@ -3472,7 +3473,8 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
         },
         'success': function (file, xhr)
         {
-            var xhrjson = JSON.parse(xhr);
+            // var xhrjson = JSON.parse(xhr);
+            var xhrjson = xhr;
             $scope.product_pending_images.push(xhrjson.id);
             $scope.product_pending_images_name.push(xhrjson);
             $scope.setPriorities();

@@ -472,10 +472,11 @@ app.controller('ProductFinalController', function ($document, $mdDialog, $rootSc
                             $scope.productStatus = [];
                             var b = response.data;
                             var a = document.createElement('a');
-                            a.download = b;
+                            // a.download = b;
                             a.target = '_blank';
                             a.id = b;
-                            a.href = 'api/storage/exports/' + b;
+                            // a.href = 'api/storage/exports/' + b;
+                            a.href = b;
                             a.click();
 
                             $rootScope.message = 'Proposal Successfully Sent';
@@ -2262,7 +2263,8 @@ app.controller('ProductFinalAddController', function (product_quotation, $parse,
         },
         'success': function (file, xhr)
         {
-            var jsonXhr = JSON.parse(xhr);
+            // var jsonXhr = JSON.parse(xhr);
+            var jsonXhr = xhr;
 
             $scope.product_pending_images.push(jsonXhr.id);
 

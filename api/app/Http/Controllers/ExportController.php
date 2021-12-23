@@ -1379,18 +1379,14 @@ EOF;
                 // dd($product_quote);
             }
         }
-// dd($export_data);
-// dd($suggested_tlv_price_rows);
 
         // $file_name = 'demo.xlsx';
         // $file = 'public/exports/'.$file_name;
         
         // $export = new ProductWordProposalExport($data);
         $export = new ProductWordProposalExport($export_data, $data['seller'], $suggested_tlv_price_rows);
-// dd($file);
 
-        // dd($products);
-        ob_end_clean(); // this
+        ob_end_clean();
         ob_start(); // and this
         // Excel::store(new StorageProductsExport, $file);
         Excel::store($export, $file);

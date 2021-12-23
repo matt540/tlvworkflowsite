@@ -2349,7 +2349,8 @@ app.controller('ProposalForProductionAddController', function (product_quotation
         'success': function (file, xhr)
         {
 
-            var jsonXhr = JSON.parse(xhr);
+            // var jsonXhr = JSON.parse(xhr);
+            var jsonXhr = xhr;
             $scope.product_pending_images.push(jsonXhr.id);
 
             jsonXhr.name = jsonXhr.filename;

@@ -110,7 +110,7 @@ class UploadController extends Controller {
     public function uploadProductImages(Request $request) {
 
 //     ini_set('upload_max_filesize', '20M');
-   
+
         $file = $request->file('photo');
 
         $size = File::size($file);
@@ -147,6 +147,7 @@ class UploadController extends Controller {
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
  \Log::info('Ext:'.$ext);
 //        $upload_success = $request->file('photo')->move($destinationPath, $filename);
+
         $upload_success = $image_original->save($destinationPath . $filename);
 
        
@@ -154,6 +155,7 @@ class UploadController extends Controller {
             if ($ext == 'pdf') {
                 
             } else {
+                
                  \Log::info('filename:'.$filename);
                 @mkdir($destinationPath . 'thumb', 0777);
                   

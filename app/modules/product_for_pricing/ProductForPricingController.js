@@ -2266,7 +2266,8 @@ app.controller('ProductForPricingAddController', function (product_quotation, $p
         'success': function (file, xhr)
         {
 
-            var jsonXHR = JSON.parse(xhr);
+            // var jsonXHR = JSON.parse(xhr);
+            var jsonXHR = xhr;
             $scope.product_pending_images.push(jsonXHR.id);
 
             jsonXHR.name = jsonXHR.filename;

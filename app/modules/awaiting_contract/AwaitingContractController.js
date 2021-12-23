@@ -2271,7 +2271,8 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
         {
 
 //            console.log($scope.current_dropzone_index);
-            var jsonXhr = JSON.parse(xhr);
+            // var jsonXhr = JSON.parse(xhr);
+            var jsonXhr = xhr;
 
             $scope.product_pending_images.push(jsonXhr.id);
 

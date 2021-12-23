@@ -60,7 +60,8 @@ app.controller('ProductReportController', function ($document, $mdDialog, $rootS
 //                    a.download = b;
                     a.target = '_blank';
                     a.id = b;
-                    a.href = 'api/storage/exports/' + b;
+                    // a.href = 'api/storage/exports/' + b;
+                    a.href = b;
 
                     setTimeout(function () {
                         a.click();

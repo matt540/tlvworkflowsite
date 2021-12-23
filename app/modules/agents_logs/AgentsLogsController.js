@@ -527,7 +527,8 @@ app.controller('AgentLogAddController', function ($parse, $document, $timeout, $
         },
         success: function (file, xhr)
         {
-            var jsonXhr = JSON.parse(xhr);
+            // var jsonXhr = JSON.parse(xhr);
+            var jsonXhr = xhr;
             $scope.agent_log_images.push(jsonXhr.id);
 
             jsonXhr.name = jsonXhr.filename;
@@ -673,9 +674,11 @@ app.controller('AgentLogUpdateController', function (id, $parse, $document, $tim
         },
         success: function (file, xhr)
         {
-            $scope.agent_log.invoice = JSON.parse(xhr).filename;
+            // $scope.agent_log.invoice = JSON.parse(xhr).filename;
+            $scope.agent_log.invoice = xhr.filename;
 
-            var jsonXhr = JSON.parse(xhr);
+            // var jsonXhr = JSON.parse(xhr);
+            var jsonXhr = xhr;
             $scope.agent_log_images.push(jsonXhr.id);
 
             jsonXhr.name = jsonXhr.filename;
