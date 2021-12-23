@@ -241,7 +241,7 @@ class ProductsQuotationController extends Controller {
                     $pro['is_proposal_for_production'] = 1;
                     $pro['for_proposal_for_production_created_at'] = 1;
 
-                    //changed 
+                    //changed
 
                     $pro['is_send_mail'] = 1;
 
@@ -263,7 +263,7 @@ class ProductsQuotationController extends Controller {
 //                        $option = $this->option_repo->OptionOfId(80);
 //                        if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Copyright Request ', $myViewData))
 //                        {
-//                            
+//
 //                        }
                         //additional 18-03
 
@@ -316,7 +316,7 @@ class ProductsQuotationController extends Controller {
             $option = $this->option_repo->OptionOfId(80);
 
             if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Copyright Request ', $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                
+
             }
         }
     }
@@ -440,7 +440,7 @@ Buyer.';
                 $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
 
                 if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Products for Sale Acknowledgement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                    
+
                 }
             }
         }
@@ -503,12 +503,12 @@ Buyer.';
         $other_emails = [];
         $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Pricing Proposal: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return $file_name;
     }
-    
+
     public function savePricingProposalAwaitingcontract_Old(Request $request) {
         // Working
         ini_set('max_execution_time', 300);
@@ -548,7 +548,7 @@ Buyer.';
             'isForClient' => true
         ]);
         $file_name_client = app('App\Http\Controllers\ExportController')->downloadProductPdfProposal($request);
-        
+
         $link = config('app.url') . 'api/storage/exports/' . $file_name_client;
         $greeting = "Dear " . $seller->getFirstName() . ',';
 
@@ -580,7 +580,7 @@ Buyer.';
         $other_emails = [];
         $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Pricing Proposal: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return $file_name;
@@ -622,7 +622,7 @@ Buyer.';
         $product_quote_agreement_enc_id = \Crypt::encrypt($product_quote_agreement_obj->getId());
         $agreement_link = config('app.url') . 'seller_agreement/' . $product_quote_agreement_enc_id;
         $file_name = app('App\Http\Controllers\ExportController')->downloadProductWordProposal($request);
-        
+
         //proposal for client without internal note
         $request->merge([
             'isForClient' => true
@@ -665,7 +665,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
         $other_emails = [];
         $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Preliminary Pricing Proposal: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return $file_name;
@@ -742,7 +742,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
         $other_emails = [];
         $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Proposal Agreement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return $file_name;
@@ -838,10 +838,10 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
     public function AllSyncProduct(Request $request) {
 
-       
-            
+
+
         $getAllSellers = $this->seller_repo->getAllQueueSeller();
-        
+
         $response = json_encode(['in']);
 
         if (count($getAllSellers) > 0) {
@@ -856,7 +856,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
             $product_quot_new = $this->product_quotation_repo->getProductQuotationQueueByOptionId(83, $seller['id']);
 
-   
+
 
             $product_quot_new_array = [];
 
@@ -936,7 +936,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
 //                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-product-loop.php';
-                $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-product-loop.php';
+                $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-product-loop.php';
 
                 $ch = curl_init();
 
@@ -1156,7 +1156,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //            $temp = curl_exec($ch);
 //            $quote_wp_ids = json_decode($temp);
 //
-//         
+//
 //
 //            if (count($quote_wp_ids) > 0)
 //            {
@@ -1172,7 +1172,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //            }
 //            else
 //            {
-//                
+//
 //            }
 //        }
         //    return 1;
@@ -1181,15 +1181,15 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
     public function changeProductFinalStatus(Request $request) {
 
         $data = $request->all();
-        
-        
+
+
 
         $product_quot_new_array = [];
 
         $temp_product_final_status_id = "";
 
         foreach ($data['product_status'] as $key => $value) {
-            
+
 
             if (isset($value['product_quotation_id'])) {
 
@@ -1205,7 +1205,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 } else {
 
                     $data_t['status_quot'] = $this->option_repo->OptionOfId($value['product_final_status_id']);
-                        
+
                     $this->product_quotation_repo->update($product_quot, $data_t);
 
                     if ($data_t['status_quot']->getId() == 18) {
@@ -1232,8 +1232,8 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 }
             }
         }
-        
-        
+
+
         if (count($product_quot_new_array) > 0) {
 
             $product_quot_new_array_json['data'] = json_encode($product_quot_new_array);
@@ -1243,7 +1243,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
 //            $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-product-loop.php';
-            $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-product-loop.php';
+            $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-product-loop.php';
 
             $ch = curl_init();
 
@@ -1275,7 +1275,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //                    $this->product_quotation_repo->update($product_quot, $data_t);
 //                    $this->saveWPIds($qid, $temp);
             } else {
-                
+
             }
         }
 
@@ -1324,7 +1324,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $other_emails = [];
             $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
             if (app('App\Http\Controllers\EmailController')->sendMail($seller_data->getEmail(), 'You are almost there!', $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                
+
             }
         }
 
@@ -1414,7 +1414,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $other_emails = [];
             $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
             if (app('App\Http\Controllers\EmailController')->sendMail($seller_data->getEmail(), 'You are almost there!', $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                
+
             }
         }
 
@@ -1598,7 +1598,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //        $line1 = "In order to list your pieces on TLV, we require a signed copy of our Client Agreement. Once we receive your signed contract we will contact you to schedule a date to come and photograph, measure and catalog your collection. Please send your Client Agreement to ";
 //        $line2 = "sell@thelocalvault.com.";
 //        $line3 = "We are looking forward to working with you!";
-//        
+//
 //        old content 26-06-2019
 //        $introLines[0] = 'Please see below for your TLV Pricing Proposal. As discussed, we have priced your Item(s) based upon condition, market trends, and TLV sales data. This pricing is subject to change upon closer inspection. TLV will notify you of any change in pricing subsequent to the photoshoot. Any change in pricing must be mutually agreed upon prior to listing on the website. Items are priced at the "List Price" for the first 3 months of the listing. If the item has not sold after 3 months, the price will be reduced by 30% for the 4th month. In order to list your items on TLV, we require a signed copy of our Client Agreement.';
 //        $line1 = "Once we receive a signed copy of our agreement, we will contact you to schedule a date to come and photograph, measure and catalog your collection.";
@@ -1615,7 +1615,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
         $line3 = "We look forward to working with you!";
 
-//        } 
+//        }
 
         $attachments = array();
 
@@ -1644,7 +1644,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //        if (app('App\Http\Controllers\EmailController')->sendMail('webdeveloper1011@gmail.com', 'Proposal Agreement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails))
 
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Proposal Agreement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
 
@@ -1778,7 +1778,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //        $line1 = "In order to list your pieces on TLV, we require a signed copy of our Client Agreement. Once we receive your signed contract we will contact you to schedule a date to come and photograph, measure and catalog your collection. Please send your Client Agreement to ";
 //        $line2 = "sell@thelocalvault.com.";
 //        $line3 = "We are looking forward to working with you!";
-//        
+//
 //        old content 26-06-2019
 //        $introLines[0] = 'Please see below for your TLV Pricing Proposal. As discussed, we have priced your Item(s) based upon condition, market trends, and TLV sales data. This pricing is subject to change upon closer inspection. TLV will notify you of any change in pricing subsequent to the photoshoot. Any change in pricing must be mutually agreed upon prior to listing on the website. Items are priced at the "List Price" for the first 3 months of the listing. If the item has not sold after 3 months, the price will be reduced by 30% for the 4th month. In order to list your items on TLV, we require a signed copy of our Client Agreement.';
 //        $line1 = "Once we receive a signed copy of our agreement, we will contact you to schedule a date to come and photograph, measure and catalog your collection.";
@@ -1795,7 +1795,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
         $line3 = "We look forward to working with you!";
 
-//        } 
+//        }
 
         $attachments = array();
 
@@ -1824,7 +1824,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //        if (app('App\Http\Controllers\EmailController')->sendMail('webdeveloper1011@gmail.com', 'Proposal Agreement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails))
 
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Proposal Agreement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
 
@@ -1863,7 +1863,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
         if (app('App\Http\Controllers\EmailController')->sendMail($data['seller_id']->getEmail(), $data['subject'], $myViewData)) {
-            
+
         }
 
         $prepared = $this->mail_record_repo->prepareData($data);
@@ -1910,7 +1910,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 $myViewData = \View::make('emails.proposal_status_reject', ['product_quots' => $product_quots, 'greeting' => $greeting, 'seller' => $seller, 'level' => 'success', 'outroLines' => [0 => ''], 'introLines' => $introLines])->render();
 
                 if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Thank you for reaching out to us at TLV!', $myViewData)) {
-                    
+
                 }
             }
         }
@@ -2141,7 +2141,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //                    {
 //                        $data_product['con'] = $this->sub_category_repo->SubCategoryOfId($y);
 //                    }
-//                    else 
+//                    else
 
                     if ($x == 'Collection') {
 
@@ -2270,7 +2270,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
 
                 if (app('App\Http\Controllers\EmailController')->sendMailONLY($seller_data->getEmail(), 'TLV Storage Proposal: ' . $seller_data->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                    
+
                 }
             }
             return response()->json('Storage Proposal send Successfully', 200);
@@ -2462,7 +2462,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                         } else if ($x == 'Look') {
 
                             $data_product['product_look'][] = $this->sub_category_repo->SubCategoryOfId($y);
-    
+
                             // foreach ($y as $y_key => $y_value) {
 
                             //     $data_product['product_look'][] = $this->sub_category_repo->SubCategoryOfId($y_value);
@@ -2601,7 +2601,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 //                            $data = array('name' => 'Ross', 'php_master' => true);
 //                                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-product-temp.php';
-                                $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-product-temp.php';
+                                $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-product-temp.php';
 
                                 $ch = curl_init();
 
@@ -2627,7 +2627,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                                     $this->saveWPId($qid, $temp);
                                 } else {
-                                    
+
                                 }
                             }
                         }
@@ -2766,7 +2766,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //                    {
 //                        $data_product['con'] = $this->sub_category_repo->SubCategoryOfId($y);
 //                    }
-//                    else 
+//                    else
 
                     if ($x == 'Collection') {
 
@@ -2993,7 +2993,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //            $option = $this->option_repo->OptionOfId(79);
 //            if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Product Sell Request ', $myViewData))
 //            {
-//                
+//
 //            }
 
             $product_created = $this->product_repo->ProductOfId($product_id);
@@ -3451,7 +3451,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 //                            $data = array('name' => 'Ross', 'php_master' => true);
 //                                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-product-temp.php';
-                                $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-product-temp.php';
+                                $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-product-temp.php';
 
                                 $ch = curl_init();
 
@@ -3477,7 +3477,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                                     $this->saveWPId($qid, $temp);
                                 } else {
-                                    
+
                                 }
                             }
                         }
@@ -3645,7 +3645,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //                    {
 //                        $data_product['con'] = $this->sub_category_repo->SubCategoryOfId($y);
 //                    }
-//                    else 
+//                    else
 
                     if ($x == 'Collection') {
 
@@ -3868,7 +3868,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //            $option = $this->option_repo->OptionOfId(79);
 //            if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Product Sell Request ', $myViewData))
 //            {
-//                
+//
 //            }
 
 
@@ -4344,7 +4344,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 //                            $data = array('name' => 'Ross', 'php_master' => true);
 //                                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-product-temp.php';
-                                $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-product-temp.php';
+                                $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-product-temp.php';
 
                                 $ch = curl_init();
 
@@ -4370,7 +4370,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                                     $this->saveWPId($qid, $temp);
                                 } else {
-                                    
+
                                 }
                             }
                         }
@@ -4502,7 +4502,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //                    {
 //                        $data_product['con'] = $this->sub_category_repo->SubCategoryOfId($y);
 //                    }
-//                    else 
+//                    else
 
                     if ($x == 'Collection') {
 
@@ -4704,7 +4704,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 //            $option = $this->option_repo->OptionOfId(79);
 //            if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Product Sell Request ', $myViewData))
 //            {
-//                
+//
 //            }
 
             $product_created = $this->product_repo->ProductOfId($product_id);
@@ -4922,7 +4922,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 //            if ($data['with_send_mail'] != 1)
 //                {
-//                    
+//
 //                }
 //                else
 //                {
@@ -5085,7 +5085,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
                         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Proposal Agreement', $myViewData, $attachments)) {
-                            
+
                         }
 
 
@@ -5121,7 +5121,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
                             if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Proposal Agreement', $myViewData)) {
-                                
+
                             }
                         }
                     }
@@ -5351,7 +5351,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $option = $this->option_repo->OptionOfId(79);
 
             if (app('App\Http\Controllers\EmailController')->sendMail($option->getValueText(), 'TLV Workflow: Product Sell Request ', $myViewData)) {
-                
+
             }
 
 
@@ -5544,7 +5544,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
     }
 
     public function getAllSyncProduct(Request $request) {
-        
+
         ini_set('max_execution_time', 300000);
 
 
@@ -5753,7 +5753,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                     if ($value['wp_product_id'] != '' && $value['wp_product_id'] != '0') {
 
                         $order = $this->product_quotation_repo->getSyncProductOrder($value['wp_product_id']);
-                        
+
 
                         if (count($order['data']) > 0) {
 
@@ -5762,22 +5762,22 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                             foreach ($orders as $orders_key => $orders_value) {
 
                                 $order_list = json_decode($orders_value['order_list'], true);
-                                
-                                 
+
+
                                         $lv_product_sale_price = '';
                                         $lv_no_of_items = '';
                                         $lv_order_comm_sub_total = '';
                                         $lv_order_comm_commission = '';
                                         $lv_order_comm_total = '';
                                         $lv_order_orignal_total = '';
-                                        
+
                                //Log::info($order_list);
                                 if($order_list != '' &&  $order_list != null){
                                     foreach ($order_list as $key => $order_list_val){
                                                 //Log::info($order_list_val['lv_order_comm_sub_total']);
-                                       
-                                        
-                                         
+
+
+
                                         if($order_list_val['lv_order_product_id'] == $value['wp_product_id'])
                                         {
                                             if ($order_list_val['lv_order_comm_sub_total']) {
@@ -5818,7 +5818,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                                         }
                                     }
                                 }
-                               
+
 
                                 $billings = json_decode($orders_value['billing']);
                                 $buyer_name = $billings->first_name . ' ' . $billings->last_name;
@@ -5835,16 +5835,16 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                                 $tlv_make_an_offer = $orders_value['tlv_make_an_offer'] == 1 ? "Yes" : "No";
                                 $customer_username = $orders_value['customer_username'] != '' ? $orders_value['customer_username'] : "-";
 
-                                
+
                                 if (isset($shippings_lines[0]->method_title)) {
-                                        
+
                                     $shipping_method_title = $shippings_lines[0]->method_title;
                                     $shipping_total = $shippings_lines[0]->total;
                                 } else {
                                     $shipping_method_title = '';
                                     $shipping_total = '';
                                 }
-                               
+
 
 
                                 $sheet->row($i, array(
@@ -5897,7 +5897,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                                     $customer_username,
                                     $buyer_name,
                                     $buyer_email,
-                                    $billing,                                    
+                                    $billing,
                                     $shipping,
                                     $orders_value['buyer_user_role'],
                                     $tlv_make_an_offer,
