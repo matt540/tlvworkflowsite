@@ -189,6 +189,7 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
+        /*
         $email = "webdeveloper1011@gmail.com";
         $mail = null;
         $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
@@ -249,11 +250,13 @@ class EmailController extends Controller
         } catch (Exception $e) {
             return 0;
         }
+        */
         return 1;
     }
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
+        /*
         $email = "webdeveloper1011@gmail.com";
         $mail = null;
         $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
@@ -297,11 +300,13 @@ class EmailController extends Controller
         } catch (Exception $e) {
             return 0;
         }
+        */
         return 1;
     }
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
+        /*
         $email = "webdeveloper1011@gmail.com";
         $mail = null;
         $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
@@ -329,11 +334,13 @@ class EmailController extends Controller
         } catch (Exception $e) {
             return 0;
         }
+        */
         return 1;
     }
 
     public function sendMailWithMultipleAttachments($email, $subject, $message, $path, $attachments = array(), $directors = array())
     {
+        /*
         $email = "webdeveloper1011@gmail.com";
         $mail = null;
         $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
@@ -364,6 +371,7 @@ class EmailController extends Controller
         } catch (Exception $e) {
             return 0;
         }
+        */
         return 1;
     }
 }
