@@ -503,7 +503,7 @@ class ProductReportController extends Controller {
 
                 $export = new ProductReportExport($export_data, $data_final['seller'], $data_final['filter'], $title_rows, $section_data_rows);
 
-                ob_end_clean();
+                if (ob_get_contents()) ob_end_clean();
                 ob_start();
                 Excel::store($export, $file);
                 
@@ -2161,7 +2161,7 @@ class ProductReportController extends Controller {
         $export = new StorageProductsExport($products);
         // dd($products);
         if (ob_get_contents()) ob_end_clean();
-        ob_start(); // and this
+        ob_start();
         // Excel::store(new StorageProductsExport, $file);
         Excel::store($export, $file);
 

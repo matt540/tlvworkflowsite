@@ -5500,8 +5500,8 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
         $export = new SyncProductExport($products);
 
-        ob_end_clean(); // this
-        ob_start(); // and this
+        if (ob_get_contents()) ob_end_clean();
+        ob_start();
 
         Excel::store($export, $file);
 
