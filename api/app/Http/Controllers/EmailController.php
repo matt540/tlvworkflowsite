@@ -7,6 +7,10 @@ use App\Http\Requests;
 use App\Repository\EmailSendRecordRepository as email_send_record_repo;
 use App\Repository\UserRepository as user_repo;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 
 class EmailController extends Controller
 {
@@ -24,7 +28,7 @@ class EmailController extends Controller
         $email = 'webdeveloper1011@gmail.com';
         $mail = null;
 
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
             $mail->SMTPAuth = true;  // use smpt auth
@@ -92,7 +96,7 @@ class EmailController extends Controller
         $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -158,7 +162,7 @@ class EmailController extends Controller
         $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -207,7 +211,7 @@ class EmailController extends Controller
         $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -240,7 +244,7 @@ class EmailController extends Controller
         $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
