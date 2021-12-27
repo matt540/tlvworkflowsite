@@ -7,6 +7,10 @@ use App\Http\Requests;
 use App\Repository\EmailSendRecordRepository as email_send_record_repo;
 use App\Repository\UserRepository as user_repo;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 
 class EmailController extends Controller
 {
@@ -21,10 +25,10 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = "webdeveloper1011@gmail.com";
+        $email = 'webdeveloper1011@gmail.com';
         $mail = null;
 
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
             $mail->SMTPAuth = true;  // use smpt auth
@@ -89,9 +93,10 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = "webdeveloper1011@gmail.com";
+        $email = 'webdeveloper1011@gmail.com';
+
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -154,9 +159,10 @@ class EmailController extends Controller
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = "webdeveloper1011@gmail.com";
+        $email = 'webdeveloper1011@gmail.com';
+
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -202,9 +208,10 @@ class EmailController extends Controller
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
-        $email = "webdeveloper1011@gmail.com";
+        $email = 'webdeveloper1011@gmail.com';
+
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -234,9 +241,10 @@ class EmailController extends Controller
 
     public function sendMailWithMultipleAttachments($email, $subject, $message, $path, $attachments = array(), $directors = array())
     {
-        $email = "webdeveloper1011@gmail.com";
+        $email = 'webdeveloper1011@gmail.com';
+
         $mail = null;
-        $mail = new \PHPMailer(true); // notice the \  you have to use root namespace here
+        $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
@@ -257,7 +265,7 @@ class EmailController extends Controller
 //                    $mail->addCC($value['email'], $value['fullname']);
 //                }
 //            }
-        //    $mail->addBCC('production@thelocalvault.com');
+            //    $mail->addBCC('production@thelocalvault.com');
             $mail->send();
         } catch (phpmailerException $e) {
             return 0;
