@@ -2160,7 +2160,7 @@ class ProductReportController extends Controller {
 
         $export = new StorageProductsExport($products);
         // dd($products);
-        ob_end_clean(); // this
+        if (ob_get_contents()) ob_end_clean();
         ob_start(); // and this
         // Excel::store(new StorageProductsExport, $file);
         Excel::store($export, $file);
