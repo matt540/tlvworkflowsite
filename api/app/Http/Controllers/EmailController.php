@@ -25,12 +25,21 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'webdeveloper1011@gmail.com';
+        $email = 'ashvinpatel1695@gmail.com';
         $mail = null;
 
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
+//            $mail->SMTPDebug = 1;
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
+
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
@@ -43,6 +52,7 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
+           // $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
             $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
