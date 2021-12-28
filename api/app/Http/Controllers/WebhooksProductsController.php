@@ -24,7 +24,7 @@ class WebhooksProductsController extends Controller {
 
     public function WebhooksProducts(Request $request) {
 
-       // Log::info(json_encode($request->all()));
+        Log::info(json_encode($request->all()));
 
 
 
@@ -137,9 +137,9 @@ class WebhooksProductsController extends Controller {
                     } else {
                         $data_product_quo[$colum1] = $meta_data_val1['value'];
                     }
-                    
+
                 }
-                
+
                 if ($meta_data_val1['key'] == 'txt_pen_seller_flat_rate_en') {
                     if ($meta_data_val1['value'] == '') {
                         $data_product_quo['wp_flat_rate'] = '0';
@@ -147,8 +147,8 @@ class WebhooksProductsController extends Controller {
                         $data_product_quo['wp_flat_rate'] = $meta_data_val1['value'];
                     }
                 }
-                
-                
+
+
             }
 
 
@@ -215,7 +215,7 @@ class WebhooksProductsController extends Controller {
 //            if (isset($request->seller_to_drop_off)) {
 //                $data_product_quo['seller_to_drop_off'] = $request->seller_to_drop_off;
 //            }
-//                
+//
 //
             //  Log::info(json_encode($data_product_quo));
 

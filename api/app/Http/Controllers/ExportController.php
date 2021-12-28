@@ -1386,8 +1386,8 @@ EOF;
         // $export = new ProductWordProposalExport($data);
         $export = new ProductWordProposalExport($export_data, $data['seller'], $suggested_tlv_price_rows);
 
-        ob_end_clean();
-        ob_start(); // and this
+        if (ob_get_contents()) ob_end_clean();
+        ob_start();
         // Excel::store(new StorageProductsExport, $file);
         Excel::store($export, $file);
         
