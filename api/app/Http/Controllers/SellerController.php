@@ -15,8 +15,7 @@ use App\Repository\OptionRepository as option_repo;
 use App\Repository\ProductQuoteAgreementRepository as product_quote_agreement_repo;
 use App\Repository\ProductStorageAgreementRepository as product_storage_agreement_repo;
 use App\Repository\ProductQuoteRenewRepository as product_quote_renew_repo;
-use Auth;
-use Log;
+use Auth,Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerController extends Controller {
