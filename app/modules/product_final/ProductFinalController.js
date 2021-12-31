@@ -2829,7 +2829,7 @@ app.controller('BrandAddController', function ($timeout, $mdDialog, $rootScope, 
             "name": $scope.brand_name
         };
 
-        $http.post('https://thelocalvault.com/wp-json/tlv_create_brand/create_brand', postValues)
+        $http.post('https://tlvdev.wpengine.com/wp-json/tlv_create_brand/create_brand', postValues)
                 .then(function (response)
                 {
                     var responseData = response.data;

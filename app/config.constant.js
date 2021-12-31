@@ -11,5 +11,5 @@ app.constant('site_settings', {
     project_name: 'The Local Vault',
     angular_base_upload_url: '../api/public/Uploads/',
     api_url: '../api/',
-    wp_api_url: 'https://thelocalvault.com/wp-content/themes/thelocalvault/'
+    wp_api_url: 'https://tlvdev.wpengine.com/wp-content/themes/thelocalvault/'
 });

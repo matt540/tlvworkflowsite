@@ -27,7 +27,7 @@ var app = angular.module("ng-app", [
         .config(function ($httpProvider, jwtOptionsProvider, $sceDelegateProvider) {
 
             jwtOptionsProvider.config({
-                whiteListedDomains: ['https://thelocalvault.com']
+                whiteListedDomains: ['https://tlvdev.wpengine.com']
             });
 
             // deleget whitelist : https://docs.angularjs.org/error/$sce/insecurl?p0=http:%2F%2Flocalvault.staging.wpengine.com%2Fwp-content%2Fthemes%2Flocalvault%2Fseller-api.php%3Fcallback%3DJSON_CALLBACK
@@ -36,7 +36,7 @@ var app = angular.module("ng-app", [
                 // Allow same origin resource loads.
                 'self',
                 // Allow loading from our assets domain.  Notice the difference between * and **.
-                'https://thelocalvault.com/**'
+                'https://tlvdev.wpengine.com/**'
             ]);
 
 //            $httpProvider.defaults.useXDomain = true;
