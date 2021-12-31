@@ -66,8 +66,8 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-     //       $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
-            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+      //      $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
