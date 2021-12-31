@@ -3114,7 +3114,12 @@ and successors of the undersigned:
                 $seller_details['data'] = json_encode($data);
 
 //                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-update.php';
+<<<<<<< HEAD
                 $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/seller-update.php';
+=======
+
+                $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-update.php';
+>>>>>>> 08f2a4456b7f37e03b3ec7d199b82a2b30db10ec
 
                 $ch = curl_init();
 
@@ -3167,7 +3172,9 @@ and successors of the undersigned:
 
 
 //            $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php';
-            $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/new-user.php';
+
+            $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php';
+
 
             $ch = curl_init();
 
@@ -3592,7 +3599,12 @@ and successors of the undersigned:
         ];
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-location-api.php';
+<<<<<<< HEAD
         $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/seller-location-api.php';
+=======
+
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-location-api.php';
+>>>>>>> 08f2a4456b7f37e03b3ec7d199b82a2b30db10ec
 
         $ch = curl_init();
 
@@ -3842,7 +3854,12 @@ and successors of the undersigned:
 
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
+<<<<<<< HEAD
         $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/seller-api.php';
+=======
+
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
+>>>>>>> 08f2a4456b7f37e03b3ec7d199b82a2b30db10ec
 
         $ch = curl_init();
 
@@ -4211,7 +4228,12 @@ and successors of the undersigned:
 
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
+<<<<<<< HEAD
         $host = 'https://thelocalvault.com/wp-content/themes/thelocalvault/seller-api.php';
+=======
+
+        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
+>>>>>>> 08f2a4456b7f37e03b3ec7d199b82a2b30db10ec
 
         $ch = curl_init();
 
@@ -4271,6 +4293,7 @@ and successors of the undersigned:
         ];
 
         $host = 'https://thelocalvault.com/wp-json/tlv_update_agreement/update_agreement';
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $host);
