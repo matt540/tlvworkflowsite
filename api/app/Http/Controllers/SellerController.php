@@ -4273,7 +4273,7 @@ and successors of the undersigned:
             "is_storage_proposal" => 1
         ];
 
-        $host = 'https://thelocalvault.com/wp-json/tlv_update_agreement/update_agreement';
+        $host = env('WP_URL') . '/wp-json/tlv_update_agreement/update_agreement';
 
 
         $ch = curl_init();
