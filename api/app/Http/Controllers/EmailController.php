@@ -9,6 +9,7 @@ use App\Repository\UserRepository as user_repo;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Log;
 
 
 
@@ -32,19 +33,31 @@ class EmailController extends Controller
 
         try {
            // $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
+            $mail->isSMTP();
+            $mail->Host = 'smtp.mandrillapp.com'; // smtp host
+            $mail->SMTPAuth = true;
+            $mail->Username = 'The Local Vault'; // sender username
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA'; // sender password
+            $mail->SMTPSecure = 'tls'; // encryption - ssl/tls
+            $mail->Port = 587; // port - 587/465
+
+//            $mail->isSMTP();
 //            $mail->SMTPAuth = true;  // use smpt auth
 //            $mail->Host = 'smtp.mandrillapp.com';
 //            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+//            $mail->SMTPSecure = 'tls';
 //            $mail->Username = 'The Local Vault';
 //            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+
+
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -53,12 +66,12 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
-//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+     //       $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-            $mail->addBCC('webdeveloper1011@gmail.com');
+            $mail->addBCC('ashvinpatel1695@gmail.com');
 
 //            if (isset($bccs) && count($bccs) > 0) {
 //                foreach ($bccs as $key => $email_address) {
@@ -79,6 +92,7 @@ class EmailController extends Controller
 //            }
 
             if ($mail->send()) {
+
                 try {
                     $data = [];
                     $data['created_by'] = JWTAuth::parseToken()->authenticate();
@@ -87,18 +101,27 @@ class EmailController extends Controller
                     $data['body'] = $message;
                     $email_obj = $this->email_send_record_repo->prepareData($data);
                     $this->email_send_record_repo->create($email_obj);
+
                 } catch (\RuntimeException $e) {
+                    Log::info($e);
                     // Content is not encrypted.
-                } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {                    // Content is not encrypted.
+                } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                    Log::info($e);
+                   // Content is not encrypted.
                 } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+                    Log::info($e);
                 } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                    Log::info($e);
                 }
             }
         } catch (phpmailerException $e) {
+            Log::info($e);
             return 0;
         } catch (Exception $e) {
+           Log::info($e);
             return 0;
         }
+
         return 1;
     }
 
