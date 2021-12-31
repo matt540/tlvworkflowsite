@@ -130,7 +130,7 @@ class AuthenticateController extends Controller
 
                     }
 
-                    
+
 
                 }
 
@@ -169,7 +169,7 @@ class AuthenticateController extends Controller
                 }
 
                 $user = Auth::user();
-                
+
 //
 
 //        $sess['user'] = $user;
@@ -181,9 +181,9 @@ class AuthenticateController extends Controller
 //        if ($user->hasRole([$this->role_repo->RoleOfId(1)]))
 
 //        {
-    
-                $user = $this->user_repo->getUserById($user->getId()); 
-                
+
+                $user = $this->user_repo->getUserById($user->getId());
+
                 $user['permissions'] = $this->user_repo->getPermissions($user['id']);
 
 //        $user = Auth::user();
