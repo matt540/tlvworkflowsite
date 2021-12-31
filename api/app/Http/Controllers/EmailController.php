@@ -26,28 +26,28 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+     //   $email = 'ashvin.dudhat@esparkbizmail.com';
         $mail = null;
 
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
            // $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
-//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-//            $mail->SMTPAuth = true;
-//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-//            $mail->Password = 'Chits@1.'; // sender password
-//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-//            $mail->Port = 465; // port - 587/465
-
             $mail->isSMTP();
-            $mail->Host = 'smtp.mandrillapp.com'; // smtp host
+            $mail->Host = 'smtp.dreamhost.com'; // smtp host
             $mail->SMTPAuth = true;
-            $mail->Username = 'The Local Vault'; // sender username
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA'; // sender password
-            $mail->SMTPSecure = 'tls'; // encryption - ssl/tls
-            $mail->Port = 587; // port - 587/465
+            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+            $mail->Password = 'Chits@1.'; // sender password
+            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+            $mail->Port = 465; // port - 587/465
+
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.mandrillapp.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'The Local Vault'; // sender username
+//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA'; // sender password
+//            $mail->SMTPSecure = 'tls'; // encryption - ssl/tls
+//            $mail->Port = 587; // port - 587/465
 
 //            $mail->isSMTP();
 //            $mail->SMTPAuth = true;  // use smpt auth
@@ -127,7 +127,7 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+      //  $email = 'ashvin.dudhat@esparkbizmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -205,7 +205,7 @@ class EmailController extends Controller
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+       // $email = 'ashvin.dudhat@esparkbizmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -267,7 +267,7 @@ class EmailController extends Controller
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+     //   $email = 'ashvin.dudhat@esparkbizmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -312,7 +312,7 @@ class EmailController extends Controller
 
     public function sendMailWithMultipleAttachments($email, $subject, $message, $path, $attachments = array(), $directors = array())
     {
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+      //  $email = 'ashvin.dudhat@esparkbizmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
