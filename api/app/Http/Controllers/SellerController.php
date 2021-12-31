@@ -81,7 +81,7 @@ class SellerController extends Controller {
 //            if (app('App\Http\Controllers\EmailController')->sendMailSellerAgreement('sell@thelocalvault.com', 'TLV Workflow: Seller Agreements Accepts:' . $seller->getLastname(), $myViewData))
 
             if (app('App\Http\Controllers\EmailController')->sendMailSellerAgreement('sell@thelocalvault.com', 'Seller agreement accepted:' . $seller->getLastname(), $myViewData)) {
-                
+
             }
         } catch (\RuntimeException $e) {
 
@@ -112,7 +112,7 @@ class SellerController extends Controller {
         $myViewData = \View::make('emails.seller_agreements_email', ['level' => 'success', 'outroLines' => [0 => ''], 'form_url' => $form_url, 'greeting' => $greeting, 'introLines' => $introLines])->render();
 
         if (app('App\Http\Controllers\EmailController')->sendMailSellerAgreement($seller->getEmail(), 'TLV Workflow: Seller Agreements ', $myViewData)) {
-            
+
         }
 
         return response()->json('Send Mail Successfully', 200);
@@ -647,7 +647,7 @@ class SellerController extends Controller {
 
     td {
 
-       padding: 10px;         
+       padding: 10px;
 
     }
 
@@ -695,13 +695,13 @@ class SellerController extends Controller {
 
  <div style="width: 100%;display: block;text-align: center;">
 
-     
+
 
   </div>
 
-  
 
-                
+
+
 
 EOF;
 
@@ -940,7 +940,7 @@ EOF;
 
                     <li>
 
-                       ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 1) ? "I am comfortable with pick-ups taking place at my residence without a TLV Member present." : "") . ' 
+                       ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 1) ? "I am comfortable with pick-ups taking place at my residence without a TLV Member present." : "") . '
 
                        ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 2) ? "I am willing to drop off small items at The Local Vault Headquarters in Cos Cob, CT within a week from purchase." : "") . '
 
@@ -987,7 +987,7 @@ EOF;
 //                        TLV will facilitate the sale of Items consigned through the use of an online (internet) sale
 //                        accessible through TLV’s website at www.thelocalvault.com, as well as through our partner
 //                        sites as appropriate. Our partner sites include but are not limited to: Houzz, eBay and 1stDibs.
-//                        TLV reserves the right to reject or decline to handle the sale of any Item. 
+//                        TLV reserves the right to reject or decline to handle the sale of any Item.
 //                    </li>
 //                    <li>
 //                        Consignors will have the option to provide their own high quality photos or to have TLV
@@ -1039,11 +1039,11 @@ EOF;
 //                                Item(s) listing. The initial discounts during the first 90 days will be within the price range
 //                                as per the Sale Catalog. All other discounting after the initial 90 days will be agreed with
 //                                the Consignor.
-//                            </p>  
+//                            </p>
 //                            <p>
 //                                <span><b>8.2. </b></span> At times TLV receives offers for items that are listed on the site. TLV reserves the right to
 //                                negotiate with the buyer to receive the best offer within the price range as per the Sale
-//                                Catalog. 
+//                                Catalog.
 //                            </p>
 //                            <p>
 //                                <span><b>8.3. </b></span> TLV uses Sales Events, Trade Discounts and Coupons to help drive sales of Items.
@@ -1086,7 +1086,7 @@ EOF;
 //                        may not be reimbursed for returns that are not received in original condition. If the item is
 //                        delivered to a Buyer and is not in the same condition as it was during the time of the inspection
 //                        by TLV, the Consignor will bear the return shipping fee. If TLV has misrepresented the item,
-//                        TLV will bear the cost. 
+//                        TLV will bear the cost.
 //                    </li>
 //                    <li>
 //                        TLV shall retain a commission of 40% of the net sale proceeds (calculated on the sales price,
@@ -1135,13 +1135,13 @@ EOF;
 
                     <li>
 
-                        TLV will facilitate the sale of Items consigned through the use of an online 
+                        TLV will facilitate the sale of Items consigned through the use of an online
 
-                        (internet) sale accessible through TLV website at ​www.thelocalvault.com​,as 
+                        (internet) sale accessible through TLV website at ​www.thelocalvault.com​,as
 
-                        well as through our partner sites as appropriate. Our partner sites include 
+                        well as through our partner sites as appropriate. Our partner sites include
 
-                        but are not limited to: Houzz, eBay and 1stDibs. TLV reserves the right to 
+                        but are not limited to: Houzz, eBay and 1stDibs. TLV reserves the right to
 
                         reject or decline to handle the sale of any Item.
 
@@ -1149,11 +1149,11 @@ EOF;
 
                     <li>
 
-                        TLV charges a Production fee of $150.00 to send a team member(s) to photograph, 
+                        TLV charges a Production fee of $150.00 to send a team member(s) to photograph,
 
-                        measure and catalog a Consignor’s Item(s). All Photographs of the Item(s) can be 
+                        measure and catalog a Consignor’s Item(s). All Photographs of the Item(s) can be
 
-                        used in TLV promotional, advertising and marketing materials and activities 
+                        used in TLV promotional, advertising and marketing materials and activities
 
                         including social media.
 
@@ -1161,9 +1161,9 @@ EOF;
 
                     <li>
 
-                        All Item(s) must be readily accessible to TLV Staff during the photoshoot. 
+                        All Item(s) must be readily accessible to TLV Staff during the photoshoot.
 
-                        Any labor required to support the listing of the Item(s) will be passed on to the 
+                        Any labor required to support the listing of the Item(s) will be passed on to the
 
                         Consignor and are not conditional on the sale of the Item(s).
 
@@ -1171,25 +1171,25 @@ EOF;
 
                     <li>
 
-                        The online sale will be advertised and accessible from TLV website for 90 days. 
+                        The online sale will be advertised and accessible from TLV website for 90 days.
 
-                        If an Item has not been purchased within the first 90 days of a sale, the listing 
+                        If an Item has not been purchased within the first 90 days of a sale, the listing
 
-                        will be automatically renewed under the current contract at 60 day intervals. 
+                        will be automatically renewed under the current contract at 60 day intervals.
 
-                        Consignors may opt out of the renewal and end their sale. While the sale at TLV is 
+                        Consignors may opt out of the renewal and end their sale. While the sale at TLV is
 
-                        running, Consignor agrees not to list the Item(s) for sale or sell the item(s) 
+                        running, Consignor agrees not to list the Item(s) for sale or sell the item(s)
 
-                        through any means/channels including websites or social media sites. 
+                        through any means/channels including websites or social media sites.
 
-                        While the sale at TLV is running, Consignor shall not, verbally or through any 
+                        While the sale at TLV is running, Consignor shall not, verbally or through any
 
-                        website or social media sites, make any representations or warranties regarding 
+                        website or social media sites, make any representations or warranties regarding
 
-                        the nature or quality of Item(s) listed for sale, other than those representations 
+                        the nature or quality of Item(s) listed for sale, other than those representations
 
-                        or warranties set forth in writing in the Sale Catalog or otherwise provided by 
+                        or warranties set forth in writing in the Sale Catalog or otherwise provided by
 
                         Consignor to TLV in writing.
 
@@ -1197,9 +1197,9 @@ EOF;
 
                     <li>
 
-                        Consignor acknowledges that some Items will be grouped and sold as lots to 
+                        Consignor acknowledges that some Items will be grouped and sold as lots to
 
-                        facilitate their sale. Items designated for sale cannot be withdrawn or removed 
+                        facilitate their sale. Items designated for sale cannot be withdrawn or removed
 
                         by Consignor without penalty as stated in Section 9 below.
 
@@ -1207,7 +1207,7 @@ EOF;
 
                     <li>
 
-                        TLV shall use its reasonable best efforts to promote the sales of the Item(s) 
+                        TLV shall use its reasonable best efforts to promote the sales of the Item(s)
 
                         but does not guarantee any Item(s) will be sold.
 
@@ -1215,13 +1215,13 @@ EOF;
 
                     <li>
 
-                        The advertised price of each Item is set forth in the Sale Catalog, or will be 
+                        The advertised price of each Item is set forth in the Sale Catalog, or will be
 
-                        mutually agreed prior to commencement of the sale. All Item(s) will be priced with 
+                        mutually agreed prior to commencement of the sale. All Item(s) will be priced with
 
-                        a range to allow for discounting over the first 90 days. Prices listed for each 
+                        a range to allow for discounting over the first 90 days. Prices listed for each
 
-                        Item exclude applicable sales tax, which TLV will add to the buyer\'s invoice for 
+                        Item exclude applicable sales tax, which TLV will add to the buyer\'s invoice for
 
                         each Item sold and collect from buyers with payment for each Item.
 
@@ -1229,21 +1229,21 @@ EOF;
 
                             <p>
 
-                                <span><b>7.1. </b></span> TLV reserves the right to discount items after the first 
+                                <span><b>7.1. </b></span> TLV reserves the right to discount items after the first
 
-                                30 days through the life of the Item(s) listing. The initial discounts during the 
+                                30 days through the life of the Item(s) listing. The initial discounts during the
 
-                                first 90 days will be within the price range as per the Sale Catalog. All other 
+                                first 90 days will be within the price range as per the Sale Catalog. All other
 
                                 discounting after the initial 90 days will be agreed with the Consignor.
 
-                            </p>  
+                            </p>
 
                             <p>
 
-                                <span><b>7.2. </b></span> At times TLV receives offers for items that are 
+                                <span><b>7.2. </b></span> At times TLV receives offers for items that are
 
-                                listed on the site. TLV reserves the right to negotiate with the buyer to 
+                                listed on the site. TLV reserves the right to negotiate with the buyer to
 
                                 receive the best offer within the price range as per the Sale Catalog.
 
@@ -1251,9 +1251,9 @@ EOF;
 
                             <p>
 
-                                <span><b>7.3. </b></span> TLV uses Sales Events, Trade Discounts and Coupons to 
+                                <span><b>7.3. </b></span> TLV uses Sales Events, Trade Discounts and Coupons to
 
-                                help drive sales of Items. Discounts range from 10-15% to be shared evenly between 
+                                help drive sales of Items. Discounts range from 10-15% to be shared evenly between
 
                                 TLV and the Consignor.
 
@@ -1265,13 +1265,13 @@ EOF;
 
                     <li>
 
-                        <b>If Consignor withdraws or requests TLV to remove any Item listed for sale 
+                        <b>If Consignor withdraws or requests TLV to remove any Item listed for sale
 
-                        24 hours post photoshoot, Consignor shall pay $50 per Item removed. Once 
+                        24 hours post photoshoot, Consignor shall pay $50 per Item removed. Once
 
-                        Item(s) are posted online, Consignor shall pay TLV a cancellation fee equal to 
+                        Item(s) are posted online, Consignor shall pay TLV a cancellation fee equal to
 
-                        20% of the target sale price of each cancelled sale or withdrawn Item. 
+                        20% of the target sale price of each cancelled sale or withdrawn Item.
 
                         TLV will charge the credit card provided herein.</b>
 
@@ -1285,21 +1285,21 @@ EOF;
 
                     <li>
 
-                       Promptly after closing of each sale TLV will schedule with Consignor a date and 
+                       Promptly after closing of each sale TLV will schedule with Consignor a date and
 
-                       time for removal of sold Item(s) within a week after the close of each sale. 
+                       time for removal of sold Item(s) within a week after the close of each sale.
 
-                       Consignor will cooperate and coordinate with TLV to ensure that sold Item(s) 
+                       Consignor will cooperate and coordinate with TLV to ensure that sold Item(s)
 
-                       is(are) easily accessible for pick-up. Easily accessible is defined as located 
+                       is(are) easily accessible for pick-up. Easily accessible is defined as located
 
-                       on the first floor of a multi-story dwelling including the garage. All items 
+                       on the first floor of a multi-story dwelling including the garage. All items
 
-                       must be prepared for pick up (i.e. removal of all personal belongings from the 
+                       must be prepared for pick up (i.e. removal of all personal belongings from the
 
-                       Item(s) sold). Beds must be disassembled. If items are not easily accessible or 
+                       Item(s) sold). Beds must be disassembled. If items are not easily accessible or
 
-                       prepared for pickup, consignor may incur costs related to making the item(s) 
+                       prepared for pickup, consignor may incur costs related to making the item(s)
 
                        accessible.
 
@@ -1307,29 +1307,29 @@ EOF;
 
                     <li>
 
-                        Buyers may return any or all Consigned Items to the Consignor provided the 
+                        Buyers may return any or all Consigned Items to the Consignor provided the
 
-                        Item(s) is returned in the same condition as when removed from the Consignor\'s 
+                        Item(s) is returned in the same condition as when removed from the Consignor\'s
 
-                        home or storage facility, and if it takes place within​two weeks of purchase 
+                        home or storage facility, and if it takes place within​two weeks of purchase
 
-                        and/or within 48 hours of receipt. All local pickups must take place within 
+                        and/or within 48 hours of receipt. All local pickups must take place within
 
-                        two weeks of the sale unless arrangements are agreed upon with the Consignor 
+                        two weeks of the sale unless arrangements are agreed upon with the Consignor
 
-                        to store for a longer period. No returns will be accepted for any item picked 
+                        to store for a longer period. No returns will be accepted for any item picked
 
-                        up after two-weeks from purchase. If the item is being shipped, Buyers must 
+                        up after two-weeks from purchase. If the item is being shipped, Buyers must
 
-                        notify TLV of a return within 2 days after delivery. Buyers will incur return 
+                        notify TLV of a return within 2 days after delivery. Buyers will incur return
 
-                        shipping and restocking charges. Buyers may not be reimbursed for returns that 
+                        shipping and restocking charges. Buyers may not be reimbursed for returns that
 
-                        are not received in original condition. If the item is delivered to a Buyer and 
+                        are not received in original condition. If the item is delivered to a Buyer and
 
-                        is not in the same condition as it was during the time of the inspection by TLV, 
+                        is not in the same condition as it was during the time of the inspection by TLV,
 
-                        the Consignor will bear the return shipping fee. If TLV has misrepresented the 
+                        the Consignor will bear the return shipping fee. If TLV has misrepresented the
 
                         item, TLV will bear the cost.
 
@@ -1337,17 +1337,17 @@ EOF;
 
                     <li>
 
-                        TLV shall retain a commission of 40% of the net sale proceeds (calculated on 
+                        TLV shall retain a commission of 40% of the net sale proceeds (calculated on
 
-                        the sales price, excluding sales tax and credit card fees) for its services. 
+                        the sales price, excluding sales tax and credit card fees) for its services.
 
-                        TLV shall forward a statement of sale and the remaining balance of the sales 
+                        TLV shall forward a statement of sale and the remaining balance of the sales
 
-                        proceeds (excluding sales tax and credit card fees) less any agreed upon 
+                        proceeds (excluding sales tax and credit card fees) less any agreed upon
 
-                        expenses to the Consignor at the address provided within approximately 14 
+                        expenses to the Consignor at the address provided within approximately 14
 
-                        business days after the Item(s) sold have been received by the buyer and the 
+                        business days after the Item(s) sold have been received by the buyer and the
 
                         return period has passed.
 
@@ -1355,23 +1355,23 @@ EOF;
 
                     <li>
 
-                        TLV is not responsible for insuring Items, whether or not in TLV possession, 
+                        TLV is not responsible for insuring Items, whether or not in TLV possession,
 
-                        or any other property or persons at Consignor\'s location(s) throughout the 
+                        or any other property or persons at Consignor\'s location(s) throughout the
 
-                        period of this Agreement or at any other time. Consignor agrees to maintain 
+                        period of this Agreement or at any other time. Consignor agrees to maintain
 
-                        adequate insurance coverage. TLV shall not be liable for any loss or damage 
+                        adequate insurance coverage. TLV shall not be liable for any loss or damage
 
-                        to items tendered, stored or handled, however caused, unless such loss or 
+                        to items tendered, stored or handled, however caused, unless such loss or
 
-                        damage resulted from the gross negligence or willful misconduct of TLV. 
+                        damage resulted from the gross negligence or willful misconduct of TLV.
 
-                        TLV provides no primary coverage against loss or damage to Consignor​’​s goods, 
+                        TLV provides no primary coverage against loss or damage to Consignor​’​s goods,
 
-                        however caused. The Consignor declares that TLV liability for any damage to 
+                        however caused. The Consignor declares that TLV liability for any damage to
 
-                        any Item is limited to $10 per Item. Any value in excess of $10 per Item is 
+                        any Item is limited to $10 per Item. Any value in excess of $10 per Item is
 
                         solely the responsibility of the Consignor.
 
@@ -1379,11 +1379,11 @@ EOF;
 
                     <li>
 
-                        Consignor warrants that s/he has full authority to transfer all title and 
+                        Consignor warrants that s/he has full authority to transfer all title and
 
-                        property rights in all listed Item(s) free and clear of all liens, claims and 
+                        property rights in all listed Item(s) free and clear of all liens, claims and
 
-                        encumbrances, and there are no reserved or hidden security interests in any 
+                        encumbrances, and there are no reserved or hidden security interests in any
 
                         Item(s) that are the subject of this Agreement.
 
@@ -1391,21 +1391,21 @@ EOF;
 
                     <li>
 
-                       Consignor shall indemnify, defend and hold TLV harmless from and against any 
+                       Consignor shall indemnify, defend and hold TLV harmless from and against any
 
-                       losses, damages, liabilities, costs and expenses, including reasonable attorney​’​s 
+                       losses, damages, liabilities, costs and expenses, including reasonable attorney​’​s
 
-                       fees, arising from or relating to any claim, demand, suit, action or cause of 
+                       fees, arising from or relating to any claim, demand, suit, action or cause of
 
-                       action alleging any loss or damage to persons or property resulting directly or 
+                       action alleging any loss or damage to persons or property resulting directly or
 
-                       indirectly from the handling, marketing, sale, delivery or distribution of Items 
+                       indirectly from the handling, marketing, sale, delivery or distribution of Items
 
-                       hereunder by TLV, its agents and employees, or the purchase, transfer, ownership 
+                       hereunder by TLV, its agents and employees, or the purchase, transfer, ownership
 
-                       or use of Item(s) by any third party, including, without limitation, any breach 
+                       or use of Item(s) by any third party, including, without limitation, any breach
 
-                       of warranty, misrepresentation or products liability claims made with respect of 
+                       of warranty, misrepresentation or products liability claims made with respect of
 
                        such Item(s).
 
@@ -1792,7 +1792,7 @@ EOF;
 
     td {
 
-       padding: 10px;         
+       padding: 10px;
 
     }
 
@@ -1840,13 +1840,13 @@ EOF;
 
  <div style="width: 100%;display: block;text-align: center;">
 
-     
+
 
   </div>
 
-  
 
-                
+
+
 
 EOF;
 
@@ -1868,7 +1868,7 @@ EOF;
         $html .= '<br><u>   ' . $data['consignor_address'] . '  </u>(Renter’s Address)';
         $html .= '<br>and is made effective as of the <u>   ' . $data['day'] . '    </u> day of <u> ' . $data['month'] . '  </u>, 20 <u>    ' . $data['year'] . '   </u>.';
 
-        $html .= ' 
+        $html .= '
                 <p>
                     In consideration of the respective covenants contained herein the parties hereto agree as follows:
                 </p>
@@ -2062,10 +2062,10 @@ EOF;
 
         $html .= '<ul style="list-style: bold;list-style: none;display:inline;">
                     <li style="display:inline;padding:5px">
-                      ' . ((isset($data['card_type']) && $data['card_type'] == "VISA") ? "VISA" : "") . ' 
-                      ' . ((isset($data['card_type']) && $data['card_type'] == "MASTERCARD") ? "MASTERCARD" : "") . ' 
-                      ' . ((isset($data['card_type']) && $data['card_type'] == "AMEX") ? "AMEX" : "") . ' 
-                      ' . ((isset($data['card_type']) && $data['card_type'] == "DISCOVER") ? "DISCOVER" : "") . ' 
+                      ' . ((isset($data['card_type']) && $data['card_type'] == "VISA") ? "VISA" : "") . '
+                      ' . ((isset($data['card_type']) && $data['card_type'] == "MASTERCARD") ? "MASTERCARD" : "") . '
+                      ' . ((isset($data['card_type']) && $data['card_type'] == "AMEX") ? "AMEX" : "") . '
+                      ' . ((isset($data['card_type']) && $data['card_type'] == "DISCOVER") ? "DISCOVER" : "") . '
                     </li>
                   </ul>';
         $html .= '<table>';
@@ -2335,7 +2335,7 @@ EOF;
 
     td {
 
-       padding: 10px;         
+       padding: 10px;
 
     }
 
@@ -2383,13 +2383,13 @@ EOF;
 
  <div style="width: 100%;display: block;text-align: center;">
 
-     
+
 
   </div>
 
-  
 
-                
+
+
 
 EOF;
 
@@ -2535,7 +2535,7 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 //
 //                    <li>
 //
-//                       ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 1) ? "I will allow pick-up of Item(s) to take place at the location designated below." : "") . ' 
+//                       ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 1) ? "I will allow pick-up of Item(s) to take place at the location designated below." : "") . '
 //
 //                       ' . ((isset($data['preferred_local_pick_up']) && $data['preferred_local_pick_up'] == 2) ? "If Item(s) are small, I am willing to drop them off at The Local Vault Office in Cos Cob, CT within a week from the date the Item was purchased by the Buyer." : "") . '
 //
@@ -2636,13 +2636,13 @@ weeks from the date the Pricing Proposal is sent.</b>
                  <li>
                         TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
 the TLV website at <a href="https://thelocalvault.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
-partner sites include, but are not limited to, Houzz, eBay and 1stDibs. 
+partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
 
                     </li>
 
                     <li>
 
-                       TLV reserves the right to decline to handle the sale of any Item(s). 
+                       TLV reserves the right to decline to handle the sale of any Item(s).
 
                     </li>
 
@@ -2659,7 +2659,7 @@ be discussed with buyer prior to TLV arranging pickup of the Item.</b>
 
                     <li>
                         All photographs and videos which capture the Item(s) can be used in TLV promotional, advertising and
-marketing materials and activities including use on websites, in social media and on other promotional platforms.   
+marketing materials and activities including use on websites, in social media and on other promotional platforms.
                     </li>
 
                     <li>
@@ -2670,12 +2670,12 @@ Consignor agrees not to make the Item(s) available for sale or sell the Item(s) 
 including but not limited to websites, social media sites and other consignors. While Item(s) is for sale through
 TLV, Consignor shall not, verbally or through any website or social media sites, make any representations or
 warranties regarding the nature or quality of Item(s) offered for sale other than those representations or
-warranties set forth in writing in the Pricing Proposal or otherwise provided by Consignor to TLV in writing. 
+warranties set forth in writing in the Pricing Proposal or otherwise provided by Consignor to TLV in writing.
                     </li>
 
                     <li>
                         TLV shall use its reasonable best efforts to promote the sale of the Item(s) but does not guarantee any Item(s)
-will be sold. 
+will be sold.
                     </li>
 
                     <li>
@@ -2698,7 +2698,7 @@ prospective buyers range from 10-15%. For a sold Item(s) any Discounts from the 
 shared between TLV and the Consignor.
                     </li>
 
-                    <li>              
+                    <li>
                     Item(s) made available for sale through TLV include the “Make-an-Offer” functionality. Make-an-Offer allows
 prospective buyers to “Offer” to buy an Item at a price below the Advertised Price. If such an Offer is made the
 Consignor will then have the ability to “accept”, “reject” or “counter” the Offer. Please note that Discounts will
@@ -2711,7 +2711,7 @@ not be applied when Buyer is utilizing the Make an Offer feature.
 Completed TLV shall retain a commission of 40% of the “Sale Price” for its services. The Sale Price is the price
 paid by the Buyer for the Item(s) less any transaction fees. The “Net Sale Proceeds” to be received by the
 Consignor is calculated as the Sale Price less TLV commission. The Net Sale Proceeds will be sent to the
-Consignor at the address provided within approximately 14 business days after the sale is Completed. 
+Consignor at the address provided within approximately 14 business days after the sale is Completed.
             </li>
 
             <li>
@@ -2729,9 +2729,9 @@ the same process at the end of each 3-month term.
 hours after the Pricing Proposal is sent. Thereafter, should Consignor request or demand that Item(s) is
 withdrawn from sale Consignor shall pay TLV a Cancellation Fee equal to 40% of the Advertised Price of
 any Item(s) in the event there is a sale agreed with a Buyer that is cancelled by Consignor OR where
-Item(s) is withdrawn by Consignor during the Initial Term or any subsequent extensions. In such event 
+Item(s) is withdrawn by Consignor during the Initial Term or any subsequent extensions. In such event
 TLV will charge the Consignor’s credit card provided herein or bill the Consignor for the Cancellation
-Fee. 
+Fee.
 
                 </b>
 
@@ -2864,7 +2864,7 @@ the buyer will be by a national shipper. Consignor will cooperate and coordinate
 Item is Easily Accessible for pick-up. “Easily Accessible” is defined as located on the first floor of a multi-story
 dwelling including the garage. All Items must be prepared for pick up (i.e. removal of all personal belongings
 from the Item(s) sold and beds must be disassembled). If Items are not Easily Accessible and prepared for
-pickup, Consignor may incur costs related to picking up the Items. 
+pickup, Consignor may incur costs related to picking up the Items.
                     </li>
 
                     <li>
@@ -2886,14 +2886,14 @@ insurance coverage.
                     <li>
                         Consignor warrants that he/she/it has full authority to transfer all title and property rights in the consigned
 Item(s) free and clear of all liens, claims and encumbrances, and there are no reserved or hidden security
-interests in any Item(s) that is the subject of this Agreement.  
+interests in any Item(s) that is the subject of this Agreement.
                     </li>
 
                     <li>
                         Consignor shall indemnify and defend TLV from and against any losses, damages, liabilities, and expenses,
 including reasonable attorney’s fees, arising from or relating to any claim alleging any loss or damage to persons
-or property, related to any transaction or interaction with TLV and its agents. 
- 
+or property, related to any transaction or interaction with TLV and its agents.
+
                     </li>
 
                 </ol>
@@ -2907,41 +2907,41 @@ unenforceable.
                 <p>
                    Successors and Assignees - This agreement binds and benefits the heirs, successors, and assignees of the parties.
                 </p>
-                
+
                 <p>
                 Governing Law -This agreement will be governed by and construed in accordance with the laws of the state of
 Connecticut.
                 </p>
-                
+
                 <p>
                 Dispute Resolution - Any controversy or claim arising out of or relating to this contract, the breach thereof, or the goods
-affected thereby, whether such claims be found in tort or contract shall be settled by arbitration under the rules of the 
+affected thereby, whether such claims be found in tort or contract shall be settled by arbitration under the rules of the
 American Arbitration Association, provided however, that upon any such arbitration the arbitrator(s) may not vary or
 modify any of the foregoing provisions.
                 </p>
-                
+
                 <p>
-                Modification - This agreement may be modified only by a written agreement signed by all the parties.   
+                Modification - This agreement may be modified only by a written agreement signed by all the parties.
                 </p>
-                
+
                 <p>
                 Waiver - If one party waives any term or provision of this agreement at any time, that waiver will only be effective for the
 specific instance and specific purpose for which the waiver was given. If either party fails to exercise or delays exercising
 any of its rights or remedies under this agreement, that party retains the right to enforce that term or provision at a later
 time.
                 </p>
-                
+
                 <p>
                 Entire Agreement - This document represents the entire agreement and understanding between the parties. It replaces and
 supersedes any and all oral agreements between the parties, as well as any prior written agreements
                 </p>
-                
+
                 <p>
                    I have read the foregoing Agreement and understand the contents thereof. I further represent that the statements herein
 made by me are true to the best of my knowledge and that this Agreement contains and sets out the entire Agreement of
 the parties unless this is amended in writing and signed by all parties to this Agreement. It is mutually agreed that this
 Agreement shall be binding and obligatory upon the undersigned, and the separate heirs, administrators, executors, assigns
-and successors of the undersigned:  
+and successors of the undersigned:
                 </p>
 
     ';
@@ -3083,7 +3083,7 @@ and successors of the undersigned:
         if (isset($request->assign_agent_id['id'])) {
             $data['assign_agent_id'] = $this->user_repo->UserOfId($request->assign_agent_id['id']);
         }
-        
+
         if ($request->id) {
 
             $data['firstname'] = str_replace(' ', '', $data['firstname']);
@@ -3108,14 +3108,12 @@ and successors of the undersigned:
             // dd($details);
 
             if ($this->seller_repo->update($details, $data)) {
-                
+
                 $seller_details = array();
 
                 $seller_details['data'] = json_encode($data);
 
 //                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-update.php';
-
-
                 $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-update.php';
 
 
@@ -3170,9 +3168,7 @@ and successors of the undersigned:
 
 
 //            $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php';
-
             $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php';
-
 
             $ch = curl_init();
 
@@ -3196,7 +3192,7 @@ and successors of the undersigned:
 
 //                $seller['firstname'] = $data['data']['firstname'];
 //                $seller['firstname'] = $data['data']['lastname'];
-//                $seller['shopname'] = $d['shopname']; 
+//                $seller['shopname'] = $d['shopname'];
 //                $seller['shopurl'] = $d['shopurl'];
 //                $seller['password'] = bcrypt($d['password']);
 //                $seller['wp_seller_id'] = $temp2->data->ID;
@@ -3597,7 +3593,6 @@ and successors of the undersigned:
         ];
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-location-api.php';
-
         $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-location-api.php';
 
 
@@ -3849,7 +3844,6 @@ and successors of the undersigned:
 
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
-
         $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
 
 
@@ -4104,7 +4098,7 @@ and successors of the undersigned:
             $seller = $this->seller_repo->SellerOfWpId($value['data']['ID']);
 
             if ($seller == null) {
-                
+
             } else {
 
                 $data = [];
@@ -4220,7 +4214,6 @@ and successors of the undersigned:
 
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
-
         $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
 
         $ch = curl_init();
