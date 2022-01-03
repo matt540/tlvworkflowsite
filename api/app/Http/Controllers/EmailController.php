@@ -26,7 +26,7 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-     //   $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'webdeveloper1011@gmail.com';
         $mail = null;
 
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -71,7 +71,7 @@ class EmailController extends Controller
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-            $mail->addBCC('ashvinpatel1695@gmail.com');
+            $mail->addBCC('webdeveloper1011@gmail.com');
 
 //            if (isset($bccs) && count($bccs) > 0) {
 //                foreach ($bccs as $key => $email_address) {
@@ -127,7 +127,7 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-      //  $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -161,7 +161,7 @@ class EmailController extends Controller
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-            $mail->addBCC('webdeveloper1011@gmail.com');
+          //  $mail->addBCC('webdeveloper1011@gmail.com');
 
 //            if (isset($bccs) && count($bccs) > 0) {
 //                foreach ($bccs as $key => $email_address) {
@@ -205,7 +205,7 @@ class EmailController extends Controller
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-       // $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -239,7 +239,7 @@ class EmailController extends Controller
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-            $mail->addBCC('webdeveloper1011@gmail.com');
+         //   $mail->addBCC('webdeveloper1011@gmail.com');
 //            if (isset($bccs) && count($bccs) > 0) {
 //                foreach ($bccs as $key => $email_address) {
 //                    $mail->addBCC($email_address, 'The Local Vault');
@@ -267,7 +267,7 @@ class EmailController extends Controller
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
-     //   $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
@@ -312,7 +312,7 @@ class EmailController extends Controller
 
     public function sendMailWithMultipleAttachments($email, $subject, $message, $path, $attachments = array(), $directors = array())
     {
-      //  $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
