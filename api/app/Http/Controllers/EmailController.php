@@ -71,7 +71,7 @@ class EmailController extends Controller
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-            $mail->addBCC('webdeveloper1011@gmail.com');
+          //  $mail->addBCC('webdeveloper1011@gmail.com');
 
 //            if (isset($bccs) && count($bccs) > 0) {
 //                foreach ($bccs as $key => $email_address) {
