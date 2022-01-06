@@ -878,17 +878,17 @@ app.controller('ProductForPricingController', function ($document, $mdDialog, $r
                 $http.post(site_settings.api_url + 'awaiting_contract/send_pricing_proposal', {products: approved, seller: $stateParams.id})
                         .then(function (response)
                         {
+
                             $rootScope.loader = false;
                             $scope.productStatus = [];
                             var b = response.data;
                             var a = document.createElement('a');
-
                             // a.download = b;
                             a.target = '_blank';
                             a.id = b;
+                            // a.href = 'api/storage/exports/' + b;
                             a.href = b;
                             a.click();
-                            document.body.removeChild(a);
 
 
 //                        $rootScope.message = 'Proposal has been successfully Accepted';
