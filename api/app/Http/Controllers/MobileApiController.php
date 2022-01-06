@@ -734,7 +734,7 @@ class MobileApiController {
         $pickUpLocations = [];
         foreach ($result as $key => $value) {
             if($value['id']==22){
-                continue 2;
+                continue;
             }
             $result[$key]['key_text'] = json_decode($value['key_text']);
             array_push($pickUpLocations,$result[$key]);
@@ -792,7 +792,7 @@ class MobileApiController {
 
         foreach ($data as $key => $value) {
             if($value['id']==22){
-                continue 2;
+                continue;
             }
             $data[$key]['key_text'] = json_decode($value['key_text']);
             array_push($filteredData, $data[$key]);
@@ -993,7 +993,7 @@ class MobileApiController {
         $pickUpLocations = [];
         foreach ($result as $key => $value) {
             if($value['id']==22){
-                continue 2;
+                continue;
             }
             $result[$key]['key_text'] = json_decode($value['key_text']);
             array_push($pickUpLocations,$result[$key]);
