@@ -15,5 +15,5 @@ yarn-error.log
 /.vscode
 /storage/framework/laravel-excel/*.tmp
 .idea/
-Uploads/*
+/Uploads
 api/storage/*
