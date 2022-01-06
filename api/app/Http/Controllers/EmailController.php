@@ -280,9 +280,15 @@ class EmailController extends Controller
            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
-            $mail->addAddress('sell@thelocalvault.com');
-            $mail->addAddress('matt@540designstudio.com');
-            $mail->addAddress($email);
+//            $mail->addAddress('sell@thelocalvault.com');
+//            $mail->addAddress('matt@540designstudio.com');
+//            $mail->addAddress($email);
+            if (isset($email) && count($email) > 0) {
+                foreach ($email as $key => $emails) {
+                    $mail->addAddress($emails);
+                }
+            }
+
             if (isset($bccs) && count($bccs) > 0) {
                 foreach ($bccs as $key => $email) {
                     $mail->addCC($email, 'The Local Vault');
