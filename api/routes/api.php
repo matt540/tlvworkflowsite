@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -735,23 +738,88 @@ Route::get('testroute', function()
 {
 //    if( $_SERVER['REMOTE_ADDR'] == '103.215.158.66' ){
     // $url = 'https://tlv-workflowapp.com/api/wp/taxonomy/update';
-    $url = 'http://tlv.local/';
-    $ch = curl_init();
-    $term_id = 5482;
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, ['test' => 'in']);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    $response = curl_exec($ch);
-    echo '<pre>';
-    print_r($url);
-    echo '</pre>';
-    echo '<pre>';
-    print_r($response);
-    echo '</pre>';
+//    $url = 'http://tlv.local/';
+//    $ch = curl_init();
+//    $term_id = 5482;
+//    curl_setopt($ch, CURLOPT_URL, $url);
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+//    curl_setopt($ch, CURLOPT_POSTFIELDS, ['test' => 'in']);
+//    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//    $response = curl_exec($ch);
+//    echo '<pre>';
+//    print_r($url);
+//    echo '</pre>';
+//    echo '<pre>';
+//    print_r($response);
+//    echo '</pre>';
 //    }
+
+    // $email = 'webdeveloper1011@gmail.com';
+    $mail = null;
+
+    $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
+    try {
+
+        $subject = 'test subject111';
+        $message = 'test message222';
+        $email = 'ashvin.dudhat@esparkbizmail.com';
+
+//        $mail->isSMTP();
+//        $mail->SMTPAuth = true;  // use smpt auth
+//        $mail->Host = 'smtp.mandrillapp.com';
+//        $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+//        $mail->SMTPSecure = 'tls';
+//        $mail->Username = 'The Local Vault';
+//        $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+//
+//        $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+
+        $mail->SMTPAuth = true;  // use smpt auth
+        $mail->Host = 'smtp.mandrillapp.com';
+        $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+        $mail->Username = 'The Local Vault';
+        $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+        $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+
+        $mail->Subject = $subject;
+        $mail->MsgHTML($message);
+        $mail->addAddress($email);
+        $mail->addBCC('webdeveloper1011@gmail.com');
+
+
+        if ($mail->send()) {
+
+            try {
+                $data = [];
+
+                Log::info('success');
+
+            } catch (\RuntimeException $e) {
+                Log::info($e);
+                // Content is not encrypted.
+            } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                Log::info($e);
+                // Content is not encrypted.
+            } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+                Log::info($e);
+            } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                Log::info($e);
+            }
+        }else{
+            Log::info('not send');
+        }
+    } catch (phpmailerException $e) {
+        Log::info($e);
+        return 0;
+    } catch (Exception $e) {
+        Log::info($e);
+        return 0;
+    }
+
+    return 1;
 });
 
 // ############################ API route end ######################

@@ -41,23 +41,11 @@ class EmailController extends Controller
 //            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
 //            $mail->Port = 465; // port - 587/465
 
-//            $mail->isSMTP();
-//            $mail->Host = 'smtp.mandrillapp.com'; // smtp host
-//            $mail->SMTPAuth = true;
-//            $mail->Username = 'The Local Vault'; // sender username
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA'; // sender password
-//            $mail->SMTPSecure = 'tls'; // encryption - ssl/tls
-//            $mail->Port = 587; // port - 587/465
-
-            $mail->isSMTP();
             $mail->SMTPAuth = true;  // use smpt auth
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-            $mail->SMTPSecure = 'tls';
             $mail->Username = 'The Local Vault';
             $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
-
-
 
             $folder_path = '../Uploads/default_pdf/';
 
