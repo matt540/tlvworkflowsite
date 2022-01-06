@@ -283,10 +283,12 @@ class EmailController extends Controller
 //            $mail->addAddress('sell@thelocalvault.com');
 //            $mail->addAddress('matt@540designstudio.com');
 //            $mail->addAddress($email);
-            if (isset($email) && count($email) > 0) {
+            if (isset($email) && count($email) > 0 && is_array($email)) {
                 foreach ($email as $key => $emails) {
                     $mail->addAddress($emails);
                 }
+            }else{
+                $mail->addAddress($email);
             }
 
             if (isset($bccs) && count($bccs) > 0) {
