@@ -26,20 +26,20 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'webdeveloper1011@gmail.com';
+       // $email = 'webdeveloper1011@gmail.com';
         $mail = null;
 
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
            // $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
 //            $mail->isSMTP();
 //            $mail->Host = 'smtp.mandrillapp.com'; // smtp host
@@ -49,13 +49,13 @@ class EmailController extends Controller
 //            $mail->SMTPSecure = 'tls'; // encryption - ssl/tls
 //            $mail->Port = 587; // port - 587/465
 
-//            $mail->isSMTP();
-//            $mail->SMTPAuth = true;  // use smpt auth
-//            $mail->Host = 'smtp.mandrillapp.com';
-//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-//            $mail->SMTPSecure = 'tls';
-//            $mail->Username = 'The Local Vault';
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;  // use smpt auth
+            $mail->Host = 'smtp.mandrillapp.com';
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+            $mail->SMTPSecure = 'tls';
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
 
 
 
@@ -66,30 +66,30 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
-      //      $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+      //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-          //  $mail->addBCC('webdeveloper1011@gmail.com');
+            $mail->addBCC('webdeveloper1011@gmail.com');
 
-//            if (isset($bccs) && count($bccs) > 0) {
-//                foreach ($bccs as $key => $email_address) {
-//                    $mail->addBCC($email_address, 'The Local Vault');
-//                }
-//            }
-//
-//            if (isset($ccs) && count($ccs) > 0) {
-//                foreach ($ccs as $key => $email_address2) {
-//                    $mail->addCC($email_address2, 'The Local Vault');
-//                }
-//            }
-//
-//            if (isset($other_emails) && count($other_emails) > 0) {
-//                foreach ($other_emails as $key => $email_address3) {
-//                    $mail->addAddress($email_address3);
-//                }
-//            }
+            if (isset($bccs) && count($bccs) > 0) {
+                foreach ($bccs as $key => $email_address) {
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+
+            if (isset($ccs) && count($ccs) > 0) {
+                foreach ($ccs as $key => $email_address2) {
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+
+            if (isset($other_emails) && count($other_emails) > 0) {
+                foreach ($other_emails as $key => $email_address3) {
+                    $mail->addAddress($email_address3);
+                }
+            }
 
             if ($mail->send()) {
 
@@ -127,25 +127,25 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'webdeveloper1011@gmail.com';
+     //   $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
            // $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
-//            $mail->SMTPAuth = true;  // use smpt auth
-//            $mail->Host = 'smtp.mandrillapp.com';
-//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-//            $mail->Username = 'The Local Vault';
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->SMTPAuth = true;  // use smpt auth
+            $mail->Host = 'smtp.mandrillapp.com';
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -155,29 +155,29 @@ class EmailController extends Controller
                 }
             }
 
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+    //        $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
-//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-          //  $mail->addBCC('webdeveloper1011@gmail.com');
+            $mail->addBCC('webdeveloper1011@gmail.com');
 
-//            if (isset($bccs) && count($bccs) > 0) {
-//                foreach ($bccs as $key => $email_address) {
-//                    $mail->addBCC($email_address, 'The Local Vault');
-//                }
-//            }
-//            if (isset($ccs) && count($ccs) > 0) {
-//                foreach ($ccs as $key => $email_address2) {
-//                    $mail->addCC($email_address2, 'The Local Vault');
-//                }
-//            }
-//            if (isset($other_emails) && count($other_emails) > 0) {
-//                foreach ($other_emails as $key => $email_address3) {
-//                    $mail->addAddress($email_address3);
-//                }
-//            }
+            if (isset($bccs) && count($bccs) > 0) {
+                foreach ($bccs as $key => $email_address) {
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+            if (isset($ccs) && count($ccs) > 0) {
+                foreach ($ccs as $key => $email_address2) {
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+            if (isset($other_emails) && count($other_emails) > 0) {
+                foreach ($other_emails as $key => $email_address3) {
+                    $mail->addAddress($email_address3);
+                }
+            }
             if ($mail->send()) {
                 try {
                     $data = [];
@@ -205,26 +205,26 @@ class EmailController extends Controller
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-        $email = 'webdeveloper1011@gmail.com';
+       // $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
 
            // $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
-//            $mail->SMTPAuth = true;  // use smpt auth
-//            $mail->Host = 'smtp.mandrillapp.com';
-//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-//            $mail->Username = 'The Local Vault';
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->SMTPAuth = true;  // use smpt auth
+            $mail->Host = 'smtp.mandrillapp.com';
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -233,28 +233,28 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+      //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
-//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-         //   $mail->addBCC('webdeveloper1011@gmail.com');
-//            if (isset($bccs) && count($bccs) > 0) {
-//                foreach ($bccs as $key => $email_address) {
-//                    $mail->addBCC($email_address, 'The Local Vault');
-//                }
-//            }
-//            if (isset($ccs) && count($ccs) > 0) {
-//                foreach ($ccs as $key => $email_address2) {
-//                    $mail->addCC($email_address2, 'The Local Vault');
-//                }
-//            }
-//            if (isset($other_emails) && count($other_emails) > 0) {
-//                foreach ($other_emails as $key => $email_address3) {
-//                    $mail->addAddress($email_address3);
-//                }
-//            }
+            $mail->addBCC('webdeveloper1011@gmail.com');
+            if (isset($bccs) && count($bccs) > 0) {
+                foreach ($bccs as $key => $email_address) {
+                    $mail->addBCC($email_address, 'The Local Vault');
+                }
+            }
+            if (isset($ccs) && count($ccs) > 0) {
+                foreach ($ccs as $key => $email_address2) {
+                    $mail->addCC($email_address2, 'The Local Vault');
+                }
+            }
+            if (isset($other_emails) && count($other_emails) > 0) {
+                foreach ($other_emails as $key => $email_address3) {
+                    $mail->addAddress($email_address3);
+                }
+            }
             if ($mail->send()) {
             }
         } catch (phpmailerException $e) {
@@ -267,39 +267,39 @@ class EmailController extends Controller
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
-        $email = 'webdeveloper1011@gmail.com';
+      //  $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
           //  $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
-//            $mail->SMTPAuth = true;  // use smpt auth
-//            $mail->Host = 'smtp.mandrillapp.com';
-//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-//            $mail->Username = 'The Local Vault';
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->SMTPAuth = true;  // use smpt auth
+            $mail->Host = 'smtp.mandrillapp.com';
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
 
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+         //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
-//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+           $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress('sell@thelocalvault.com');
             $mail->addAddress('matt@540designstudio.com');
             $mail->addAddress($email);
-//            if (isset($bccs) && count($bccs) > 0) {
-//                foreach ($bccs as $key => $email) {
-//                    $mail->addCC($email, 'The Local Vault');
-//                }
-//            }
+            if (isset($bccs) && count($bccs) > 0) {
+                foreach ($bccs as $key => $email) {
+                    $mail->addCC($email, 'The Local Vault');
+                }
+            }
             if ($mail->send()) {
             }
         } catch (phpmailerException $e) {
@@ -318,37 +318,37 @@ class EmailController extends Controller
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
          //   $mail->SMTPDebug = 1;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.dreamhost.com'; // smtp host
-            $mail->SMTPAuth = true;
-            $mail->Username = 'developer@esparkbizmail.com'; // sender username
-            $mail->Password = 'Chits@1.'; // sender password
-            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
-            $mail->Port = 465; // port - 587/465
+//            $mail->isSMTP();
+//            $mail->Host = 'smtp.dreamhost.com'; // smtp host
+//            $mail->SMTPAuth = true;
+//            $mail->Username = 'developer@esparkbizmail.com'; // sender username
+//            $mail->Password = 'Chits@1.'; // sender password
+//            $mail->SMTPSecure = 'ssl'; // encryption - ssl/tls
+//            $mail->Port = 465; // port - 587/465
 
-//            $mail->SMTPAuth = true;  // use smpt auth
-//            $mail->Host = 'smtp.mandrillapp.com';
-//            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
-//            $mail->Username = 'The Local Vault';
-//            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->SMTPAuth = true;  // use smpt auth
+            $mail->Host = 'smtp.mandrillapp.com';
+            $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
+            $mail->Username = 'The Local Vault';
+            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
 
             if (count($attachments) > 0) {
                 foreach ($attachments as $key => $value) {
                     $mail->AddAttachment($path . $value, 'File');
                 }
             }
-            $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+         //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
-//            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
             $mail->addAddress($email);
-//            if (count($directors) > 0) {
-//                foreach ($directors as $key => $value) {
-//                    $mail->addCC($value['email'], $value['fullname']);
-//                }
-//            }
-            //    $mail->addBCC('production@thelocalvault.com');
+            if (count($directors) > 0) {
+                foreach ($directors as $key => $value) {
+                    $mail->addCC($value['email'], $value['fullname']);
+                }
+            }
+                $mail->addBCC('production@thelocalvault.com');
             $mail->send();
         } catch (phpmailerException $e) {
             return 0;
