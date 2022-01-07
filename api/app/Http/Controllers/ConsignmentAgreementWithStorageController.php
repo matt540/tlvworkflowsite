@@ -106,7 +106,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
         $other_emails = [];
 //        $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Preliminary Pricing Proposal: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return $file_name;
@@ -248,7 +248,7 @@ Buyer.';
         $other_emails = [];
 //        $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'Consignment with The Local Vault: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return 1;
@@ -354,7 +354,7 @@ Buyer.';
 //            app('App\Http\Controllers\EmailController')->sendMail('vaibhav@esparkinfo.com', 'Seller Agreement: ' . $sellerLastname, $myViewData, $attachments, $bccs, $ccs);
 
             if (app('App\Http\Controllers\EmailController')->sendMail('Contract@thelocalvault.com', 'Seller Consignment Agreement with Storage: ' . $sellerLastname, $myViewData, $attachments, $bccs, $ccs)) {
-                
+
             }
 
             return response()->json('Product Quote Agreement Updated Successfully', 200);
@@ -362,6 +362,8 @@ Buyer.';
     }
 
     public function pdfGenerateSellerAgreement($data, $signature_image, $file = 'consigment_agreement_with_storage_', $hideCreditCard = false) {
+
+        Log::info( public_path() . '/../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image );
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
@@ -520,12 +522,12 @@ or about 2 weeks from the date the Pricing Proposal is sent.</b></p>';
                  <li>
                       TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
 the TLV website at <a href="http://tlv-workflowapp.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
-partner sites include, but are not limited to, Houzz, eBay and 1stDibs. 
+partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
                     </li>
 
                     <li>
 
-                       TLV reserves the right to decline to handle the sale of any Item(s). 
+                       TLV reserves the right to decline to handle the sale of any Item(s).
 
                     </li>
 
@@ -542,7 +544,7 @@ be discussed with buyer prior to TLV arranging pickup of the Item.</b>
 
                     <li>
                         All photographs and videos which capture the Item(s) can be used in TLV promotional, advertising and
-marketing materials and activities including use on websites, in social media and on other promotional platforms.   
+marketing materials and activities including use on websites, in social media and on other promotional platforms.
                     </li>
 
                     <li>
@@ -553,12 +555,12 @@ Consignor agrees not to make the Item(s) available for sale or sell the Item(s) 
 including but not limited to websites, social media sites and other consignors. While Item(s) is for sale through
 TLV, Consignor shall not, verbally or through any website or social media sites, make any representations or
 warranties regarding the nature or quality of Item(s) offered for sale other than those representations or
-warranties set forth in writing in the Pricing Proposal or otherwise provided by Consignor to TLV in writing. 
+warranties set forth in writing in the Pricing Proposal or otherwise provided by Consignor to TLV in writing.
                     </li>
 
                     <li>
                         TLV shall use its reasonable best efforts to promote the sale of the Item(s) but does not guarantee any Item(s)
-will be sold. 
+will be sold.
                     </li>
 
                     <li>
@@ -579,7 +581,7 @@ prospective buyers range from 10-15%. For a sold Item(s) any Discounts from the 
 shared between TLV and the Consignor.
                     </li>
 
-                    <li>              
+                    <li>
                     Item(s) made available for sale through TLV include the “Make-an-Offer” functionality. Make-an-Offer allows
 prospective buyers to “Offer” to buy an Item at a price below the Advertised Price. If such an Offer is made the
 Consignor will then have the ability to “accept”, “reject” or “counter” the Offer. Please note that Discounts will
@@ -591,8 +593,8 @@ not be applied when Buyer is utilizing the Make an Offer feature.
 Completed TLV shall retain a commission as a percentage of the “Sale Price” for its services. The Sale Price is
 the price paid by the Buyer for the Item(s) less any transaction fees. The “Net Sale Proceeds” to be received by
 the Consignor is calculated as the Sale Price less TLV commission. The Net Sale Proceeds will be sent to the
-Consignor at the address provided within approximately 14 business days after the sale is Completed. 
- 
+Consignor at the address provided within approximately 14 business days after the sale is Completed.
+
 
 <br>
 For Items that are NOT in Storage TLV’s commission will be 40% of the Sale Price.
@@ -633,7 +635,7 @@ withdrawn from sale Consignor shall pay TLV a Cancellation Fee equal to 50% of t
 any Item(s) in the event there is a sale agreed with a Buyer that is cancelled by Consignor OR where
 Item(s) is withdrawn by Consignor during the Initial Term or any subsequent extensions. In such event
 TLV will charge the Consignor’s credit card provided herein or bill the Consignor for the Cancellation
-Fee.  
+Fee.
                 </b>
 
             <br>
@@ -708,7 +710,7 @@ and within 6 weeks if delivery to the buyer will be by a national shipper. Consi
 coordinate with TLV to ensure that sold Item is Easily Accessible for pick-up. “Easily Accessible” is defined as
 located on the first floor of a multi-story dwelling including the garage. All Items must be prepared for pick up
 (i.e. removal of all personal belongings from the Item(s) sold and beds must be disassembled). If Items are not
-Easily Accessible and prepared for pickup, Consignor may incur costs related to picking up the Items.  
+Easily Accessible and prepared for pickup, Consignor may incur costs related to picking up the Items.
                     </li>
 
                     <li>
@@ -717,7 +719,7 @@ time of delivery should the Item not meet Buyer’s expectation. If Buyer choose
 though it is in the condition that was represented on the TLV website, then Buyer shall be responsible for any
 costs related to the return of the Item. If TLV has misrepresented the Item then TLV will bear the return costs.
 Once Buyer takes possession of Item the Item is no longer eligible for return and the sale is considered
-“Completed”. 
+“Completed”.
                     </li>
 
                     <li>
@@ -730,14 +732,14 @@ insurance coverage.
                     <li>
                        Consignor warrants that he/she/it has full authority to transfer all title and property rights in the consigned
 Item(s) free and clear of all liens, claims and encumbrances, and there are no reserved or hidden security
-interests in any Item(s) that is the subject of this Agreement. 
+interests in any Item(s) that is the subject of this Agreement.
                     </li>
 
                     <li>
                      Consignor shall indemnify and defend TLV from and against any losses, damages, liabilities, and expenses,
 including reasonable attorney’s fees, arising from or relating to any claim alleging any loss or damage to persons
-or property, related to any transaction or interaction with TLV and its agents. 
- 
+or property, related to any transaction or interaction with TLV and its agents.
+
                     </li>
                     <li>
                         Consignor acknowledges and accepts these Storage Terms & Conditions
@@ -750,7 +752,7 @@ accept consignment of and provide storage. Delivery of any other Item(s) may be 
 delivery provider must return the Item(s) to the Consignor. In the event an Item(s) is delivered to the Storage
 Facility for which TLV did not agree to provide storage, that Item(s) becomes the property of TLV and Consignor
 agrees to compensate TLV for any costs related to the disposal of such Item(s) should such costs be incurred.
-Such costs will be either charged to Consignor’s credit card or deducted from Net Sale Proceeds.   
+Such costs will be either charged to Consignor’s credit card or deducted from Net Sale Proceeds.
                         <br/>
                        “Storage Period” - Storage shall commence on the day the Property arrives at the Storage Facility and shall
 continue until Consignor takes back the Property or the Property is otherwise removed from Storage Facility, due
@@ -763,7 +765,7 @@ title to, or any interest in, the Property to the TLV.
 Property. TLV shall not be liable for any loss or damage to Item(s) tendered, stored or handled, however caused,
 unless such loss or damage resulted from the gross negligence or willful misconduct of TLV. TLV provides no
 primary coverage against loss or damage to Property, unless such loss or damage is caused by TLV’s gross
-negligence or willful misconduct. 
+negligence or willful misconduct.
                         <br/>
                         Warranty Disclaimer - TLV PROVIDES THE FACILITY AND THE SERVICES "AS IS" WITHOUT
 WARRANTY OF ANY KIND, EITHER EXPRESS, IMPLIED OR STATUTORY
@@ -782,41 +784,41 @@ unenforceable.
                 Successors and Assignees - This agreement binds and benefits the heirs, successors, and assignees of the parties.
 
                 </p>
-                
+
                 <p>
                 Governing Law -This agreement will be governed by and construed in accordance with the laws of the state of
 Connecticut.
                 </p>
-                
+
                 <p>
                 Dispute Resolution - Any controversy or claim arising out of or relating to this contract, the breach thereof, or the goods
-affected thereby, whether such claims be found in tort or contract shall be settled by arbitration under the rules of the 
+affected thereby, whether such claims be found in tort or contract shall be settled by arbitration under the rules of the
 American Arbitration Association, provided however, that upon any such arbitration the arbitrator(s) may not vary or
 modify any of the foregoing provisions.
                 </p>
-                
+
                 <p>
-                Modification - This agreement may be modified only by a written agreement signed by all the parties.  
+                Modification - This agreement may be modified only by a written agreement signed by all the parties.
                 </p>
-                
+
                 <p>
                 Waiver - If one party waives any term or provision of this agreement at any time, that waiver will only be effective for the
 specific instance and specific purpose for which the waiver was given. If either party fails to exercise or delays exercising
 any of its rights or remedies under this agreement, that party retains the right to enforce that term or provision at a later
 time.
                 </p>
-                
+
                 <p>
                 Entire Agreement - This document represents the entire agreement and understanding between the parties. It replaces and
 supersedes any and all oral agreements between the parties, as well as any prior written agreements
                 </p>
-                
+
                 <p>
                   I have read the foregoing Agreement and understand the contents thereof. I further represent that the statements herein
 made by me are true to the best of my knowledge and that this Agreement contains and sets out the entire Agreement of
 the parties unless this is amended in writing and signed by all parties to this Agreement. It is mutually agreed that this
 Agreement shall be binding and obligatory upon the undersigned, and the separate heirs, administrators, executors, assigns
-and successors of the undersigned: 
+and successors of the undersigned:
 
                 </p>
 
@@ -975,7 +977,7 @@ and successors of the undersigned:
         $request->merge([
             'isForClient' => true
         ]);
-//       
+//
         $greeting = "Dear " . $seller->getFirstName() . ',';
 
 
@@ -1002,7 +1004,7 @@ can be viewed via the link below";
         $ccs[] = 'sell@thelocalvault.com';
         $other_emails = [];
         if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'STORAGE AMENDMENT to CONSIGNMENT AGREEMENT: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-            
+
         }
 
         return 1;
@@ -1107,7 +1109,7 @@ can be viewed via the link below";
 //            app('App\Http\Controllers\EmailController')->sendMail('vaibhav@esparkinfo.com', 'Seller Agreement: ' . $sellerLastname, $myViewData, $attachments, $bccs, $ccs);
 
             if (app('App\Http\Controllers\EmailController')->sendMail('Contract@thelocalvault.com', 'Seller Consignment Agreement with Storage Amendment: ' . $sellerLastname, $myViewData, $attachments, $bccs, $ccs)) {
-                
+
             }
 
             return response()->json('Storage Amendment to consignment Agreement Updated Successfully', 200);
@@ -1115,6 +1117,7 @@ can be viewed via the link below";
     }
 
     public function pdfGenerateSellerAgreementAmendment($data, $signature_image, $file = 'consigment_agreement_with_storage_amendment') {
+        Log::info( public_path() . '/../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image );
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
@@ -1222,9 +1225,9 @@ conditions in Amendment.</b></p>';
         $html .= '<p><b>Consignor and TLV agree as follows:</b></p>';
 
         $html .= '<ol style="list-style: bold;">
-            
+
                     <li>
-                        The “Initial Term” will be that which is defined in the Consignment Agreement. 
+                        The “Initial Term” will be that which is defined in the Consignment Agreement.
                     </li>
                     <li><b>For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price.</b></li>
                     <li>
@@ -1247,11 +1250,11 @@ property leased or owned by TLV for the purpose of storage.
                         <br/><br/>
                         Stored Item(s) -At the Storage Facility TLV only plans to accept delivery of Items for which TLV
 has agreed to accept consignment of and provide storage. Delivery of any other Item(s) may be
-refused by TLV, and the delivery provider must return the Item(s) to the Consignor. In the event 
+refused by TLV, and the delivery provider must return the Item(s) to the Consignor. In the event
 an Item(s) is delivered to the Storage Facility for which TLV did not agree to provide storage,
 that Item(s) becomes the property of TLV and Consignor agrees to compensate TLV for any costs
 related to the disposal of such Item(s) should such costs be incurred. Such costs will be either
-charged to Consignor’s credit card or deducted from Net Sale Proceeds. 
+charged to Consignor’s credit card or deducted from Net Sale Proceeds.
                         <br/><br/>
                         “Storage Period” - Storage shall commence on the day the Property arrives at the Storage Facility
 and shall continue until Consignor takes back the Property or the Property is otherwise removed
@@ -1265,7 +1268,7 @@ interpreted as conveying title to, or any interest in, the Property to the TLV.
 coverage for Property. TLV shall not be liable for any loss or damage to Item(s) tendered, stored
 or handled, however caused, unless such loss or damage resulted from the gross negligence or
 willful misconduct of TLV. TLV provides no primary coverage against loss or damage to
-Property, unless such loss or damage is caused by TLV’s gross negligence or willful misconduct. 
+Property, unless such loss or damage is caused by TLV’s gross negligence or willful misconduct.
                         <br/><br/>
                         Warranty Disclaimer - TLV PROVIDES THE FACILITY AND THE SERVICES "AS IS"
 WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS, IMPLIED OR STATUTORY
@@ -1273,13 +1276,13 @@ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS, IMPLIED OR STATUTORY
 
                 </ol>
 
-              
+
                 <p>
                     I have read the foregoing Amendment and understand the contents thereof. I further represent that the
 statements herein made by me are true to the best of my knowledge and that this Amendment shall now
 be considered to be included as part of the Consignment Agreement. It is mutually agreed that this
 Amendment shall be binding and obligatory upon the undersigned, and the separate heirs, administrators,
-executors, assigns and successors of the undersigned: 
+executors, assigns and successors of the undersigned:
                 </p>';
 
 
@@ -1463,7 +1466,7 @@ Buyer.';
                 $other_emails[] = 'thelocalvaultcomproduction@thelocalvault.freshdesk.com';
 
                 if (app('App\Http\Controllers\EmailController')->sendMail($seller->getEmail(), 'TLV Products for Sale Acknowledgement: ' . $seller->getLastname(), $myViewData, $attachments, $bccs, $ccs, $other_emails)) {
-                    
+
                 }
             }
         }
