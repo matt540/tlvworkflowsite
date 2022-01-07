@@ -409,7 +409,7 @@ EOF;
 
 
         $html .= '<div style = "width: 100%;display: block;text-align: center;">';
-        $html .= '<img src = "' . public_path() . '/assets/images/long-logo.png" style = "height:100px;">';
+        $html .= '<img src = "../../../../assets/images/long-logo.png" style = "height:100px;">';
         $html .= '</div>';
         $html .= '<div style = "font:size:20px;text-align:center;padding:4px;">CONSIGNMENT AGREEMENT with STORAGE</div>';
         $html .= '<p><b>';
@@ -915,7 +915,7 @@ and successors of the undersigned:
         $html .= '<td>';
         $html .= '</td>';
         $html .= '<td style="border:1px solid black;">';
-        $html .= '<img src="' . public_path() . '/../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
+        $html .= '<img src="../../../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
         $html .= '</td>';
         $html .= '</tr>';
 
@@ -1163,7 +1163,7 @@ EOF;
 
 
         $html .= '<div style = "width: 100%;display: block;text-align: center;">';
-        $html .= '<img src = "' . public_path() . '/assets/images/long-logo.png" style = "height:100px;">';
+        $html .= '<img src = "../../../../assets/images/long-logo.png" style = "height:100px;">';
         $html .= '</div>';
         $html .= '<div style = "font:size:20px;text-align:center;padding:4px;">STORAGE AMENDMENT to CONSIGNMENT AGREEMENT</div>';
         $html .= '<p><b>';
@@ -1338,7 +1338,7 @@ executors, assigns and successors of the undersigned:
         $html .= '<td>';
         $html .= '</td>';
         $html .= '<td style="border:1px solid black;">';
-        $html .= '<img src="' . public_path() . '/../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
+        $html .= '<img src="../../../../Uploads/consignment_agreement_with_storage_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
         $html .= '</td>';
         $html .= '</tr>';
 
