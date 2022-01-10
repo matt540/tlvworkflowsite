@@ -10,14 +10,16 @@ use App\Repository\ProductsRepository as product_repo;
 use Illuminate\Support\Facades\Log;
 use App\Repository\OptionRepository as option_repo;
 
-class ConsignmentAgreementWithStorageController extends Controller {
+class ConsignmentAgreementWithStorageController extends Controller
+{
 
     private $product_quote_repo;
     private $consignment_agreement_with_storage_repo;
     private $seller_repo;
     private $product_repo;
 
-    public function __construct(ProductsQuotationRepository $product_quote_repo, ConsignmentAgreementWithStorageRepository $consignment_agreement_with_storage_repo, SellerRepository $seller_repo, product_repo $product_repo, option_repo $option_repo) {
+    public function __construct(ProductsQuotationRepository $product_quote_repo, ConsignmentAgreementWithStorageRepository $consignment_agreement_with_storage_repo, SellerRepository $seller_repo, product_repo $product_repo, option_repo $option_repo)
+    {
 
         $this->product_quote_repo = $product_quote_repo;
         $this->consignment_agreement_with_storage_repo = $consignment_agreement_with_storage_repo;
@@ -26,7 +28,8 @@ class ConsignmentAgreementWithStorageController extends Controller {
         $this->option_repo = $option_repo;
     }
 
-    public function createAndSendConsignmentAgreementWithStorage(Request $request) {
+    public function createAndSendConsignmentAgreementWithStorage(Request $request)
+    {
 
         ini_set('max_execution_time', 300);
         $products = $request->all();
@@ -85,21 +88,21 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
         $attachments = array();
         //   $attachments[] = 'TLV CONSIGNMENT AGREEMENT with STORAGE.pdf';
         $myViewData = \View::make('emails.preliminary_pricing_proposal', [
-                    'agreement_link' => $agreement_link,
-                    'link' => $link,
-                    'product_quots' => $approved_product_quots,
-                    'line1' => $line1,
-                    'line2' => $line2,
-                    'line3' => $line3,
-                    'greeting' => $greeting,
-                    'seller' => $seller,
-                    'level' => 'success',
-                    'outroLines' => [0 => ''],
-                    'introLines' => $introLines,
-                    'note_text' => $note_text,
-                    'agreement_link_text' => $agreement_link_text,
-                    'link_text' => $link_text,
-                ])->render();
+            'agreement_link' => $agreement_link,
+            'link' => $link,
+            'product_quots' => $approved_product_quots,
+            'line1' => $line1,
+            'line2' => $line2,
+            'line3' => $line3,
+            'greeting' => $greeting,
+            'seller' => $seller,
+            'level' => 'success',
+            'outroLines' => [0 => ''],
+            'introLines' => $introLines,
+            'note_text' => $note_text,
+            'agreement_link_text' => $agreement_link_text,
+            'link_text' => $link_text,
+        ])->render();
         $bccs = [];
         $ccs = [];
         $ccs[] = 'sell@thelocalvault.com';
@@ -112,7 +115,8 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
         return $file_name;
     }
 
-    public function SendConsignmentAgreementWithStorageProReview(Request $request) {
+    public function SendConsignmentAgreementWithStorageProReview(Request $request)
+    {
 
         ini_set('max_execution_time', 300);
         $products = $request->all();
@@ -223,25 +227,24 @@ additional Item photographed.';
 Buyer.';
 
 
-
         $attachments = array();
 //        $attachments[] = 'TLV CONSIGNMENT AGREEMENT with STORAGE.pdf';
         $myViewData = \View::make('emails.send_consignment_agreement_with_storage_pro_review', [
-                    'agreement_link' => $agreement_link,
-                    'introLines_if_any_approved' => $introLines_if_any_approved,
+            'agreement_link' => $agreement_link,
+            'introLines_if_any_approved' => $introLines_if_any_approved,
 //                            'line1' => $line1,
 //                            'line2' => $line2,
 //                            'line3' => $line3,
 //                            'introLines_reject' => $introLines_reject,
-                    'introLines_new' => $introLines_new,
-                    'greeting' => $greeting,
-                    'seller' => $seller,
-                    'products_approve' => $approved_product_quots,
-                    'products_reject' => '',
-                    'level' => 'success',
-                    'outroLines' => [0 => ''],
-                    'introLines' => $introLines,
-                ])->render();
+            'introLines_new' => $introLines_new,
+            'greeting' => $greeting,
+            'seller' => $seller,
+            'products_approve' => $approved_product_quots,
+            'products_reject' => '',
+            'level' => 'success',
+            'outroLines' => [0 => ''],
+            'introLines' => $introLines,
+        ])->render();
         $bccs = [];
         $ccs = [];
         $ccs[] = 'sell@thelocalvault.com';
@@ -254,7 +257,8 @@ Buyer.';
         return 1;
     }
 
-    public function checkAgreement(Request $request) {
+    public function checkAgreement(Request $request)
+    {
 
         $data = $request->all();
         $response_data = [];
@@ -281,7 +285,8 @@ Buyer.';
         return response()->json($response_data, 200);
     }
 
-    public function saveAgreement(Request $request) {
+    public function saveAgreement(Request $request)
+    {
 
         $data = $request->all();
 
@@ -361,14 +366,15 @@ Buyer.';
         }
     }
 
-    public function pdfGenerateSellerAgreement($data, $signature_image, $file = 'consigment_agreement_with_storage_', $hideCreditCard = false) {
+    public function pdfGenerateSellerAgreement($data, $signature_image, $file = 'consigment_agreement_with_storage_', $hideCreditCard = false)
+    {
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
 //        $pdf->SetAuthor('Test');
 //        $pdf->SetTitle('Product Reports');
 //        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP - 10, PDF_MARGIN_RIGHT);
 //        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
@@ -444,7 +450,6 @@ EOF;
         $html .= '</table>';
 
 
-
         $html .= '<table>';
         $html .= '<tr>';
         $html .= '<td>';
@@ -463,7 +468,7 @@ EOF;
 
         $html .= '<p>Hereinafter the personal Property placed in consignment through this Consignment Agreement will be described as
 “Item(s)”. Item(s) will be listed for sale on TLV’s website for an “Initial Term” of 6-months. Please review section 12 of
-this Agreement for full listing details. </p>';
+this Agreement for full listing details.</p>';
 
         $html .= '<p>Consignor grants unto TLV the authority to advertise, offer for sale and sell the Item(s) listed in the TLV “Pricing
 Proposal” which you will receive after the Item(s) is photographed, measured and evaluated. Consignor has the right to
@@ -476,15 +481,13 @@ legal owner of, or an agent thereof, and Consignor has the legal right and autho
 Property. Consignor agrees to indemnify and hold TLV harmless from and against any and all claims relating to breach of
 this warranty.</p>';
 
-        $html .= '<p>In the Pricing Proposal, when<b>"Dropoff by Consignor Required"</b> is checked and the Item is not in TLV
-storage facility, the Consignor agrees to drop it off at The Local Vaults office in Cos Cob, CT, within two
-weeks from the date the Item was purchased by the "Buyer." Should the Consignor not drop off the Item
-within these two weeks, TLV will arrange for the Item to be picked up, and the Consignor will be charged
-a $75 fee.</p>';
+        $html .= '<p>In the Pricing Proposal, when<b>"Dropoff by Consignor Required"</b> is checked and the Item is not in TLV storage facility,
+the Consignor agrees to drop it off at The Local Vaults office in Cos Cob, CT, within two weeks from the date the Item
+was purchased by the "Buyer." Should the Consignor not drop off the Item within these two weeks, TLV will arrange for
+            the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 
-        $html .= '<p>For larger Item(s) that are not in storage with TLV Consignor will allow pick-up to take place at the
-location designated below. <b>Please indicate below the location where these larger Item(s) will be
-available for pick-up:</b></p>';
+        $html .= '<p>For larger Item(s) that are not in storage with TLV Consignor will allow pick-up to take place at the location designated
+below. <b>Please indicate below the location where these larger Item(s) will be available for pick-up:</b></p>';
 
         $html .= '<ul style="list-style: bold;list-style: none"><li>';
         $html .= '<table border="0">';
@@ -511,8 +514,8 @@ available for pick-up:</b></p>';
         $html .= '</li></ul>';
 
 
-        $html .= '<p><b>The Item(s) shall be listed for sale, as described below, as soon as practicable and expected to be on
-or about 2 weeks from the date the Pricing Proposal is sent.</b></p>';
+        $html .= '<p><b>The Item(s) shall be listed for sale, as described below, as soon as practicable and expected to be on or about 2
+weeks from the date the Pricing Proposal is sent.</b></p>';
 
         $html .= '<p><b>Consignor and TLV agree as follows:</b></p>';
 
@@ -535,10 +538,20 @@ charges a Production Fee of $50.00 when photographing 10 or less Items plus $5.0
 Items. All Item(s) must be readily accessible during this “Photoshoot”. Any labor costs required to support the
 TLV agent in the photography and measurement of the Item(s) will be passed on to the Consignor. Payment of
 such costs is not conditional on the sale of the Item(s). Consignor confirms that all LIGHTING that is consigned
-is operational unless otherwise noted to TLV agent. <b>Should Item condition change after Photoshoot
-Consignor will notify TLV of such change so listing can be adjusted and, if the Item has sold, change can
-be discussed with buyer prior to TLV arranging pickup of the Item.</b>
+is operational unless otherwise noted to TLV agent.
                     </li>
+                    <li>
+                    For Item not in storage, should Item condition change after Photoshoot Consignor will notify TLV of such
+change so listing can be adjusted and, if the Item has sold, change can be discussed with buyer prior to TLV
+arranging pickup of the Item. If TLV is not notified of condition change and the item is sold then, at the
+discretion of TLV, Consignor will be responsible for shipping charges to deliver and return the Item or will
+accept either a reduction in sale price equal to the cost to repair the Item or any reduction in sale price agreed
+between TLV and the Buyer to Complete the sale.
+For Item in storage with TLV, Consignor will be responsible for any change in Item condition between when
+consignment was accepted by TLV and delivery to TLV Storage Facility. In such situation Consignor, at TLV’s
+discretion, will be responsible for the cost of repair or will accept a reduction of TLV Price as determined by
+TLV.
+</li>
 
                     <li>
                         All photographs and videos which capture the Item(s) can be used in TLV promotional, advertising and
@@ -597,7 +610,7 @@ Consignor at the address provided within approximately 14 business days after th
 <br>
 For Items that are NOT in Storage TLV’s commission will be 40% of the Sale Price.
 <br>
-For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price.
+For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price
             </li>
 
             <li>
@@ -645,7 +658,6 @@ Fee.
             <br>
 
             </li>';
-
 
 
         if (!$hideCreditCard) {
@@ -706,8 +718,7 @@ Fee.
 Vault’s office or the item is in storage with TLV, TLV will schedule with Consignor a date and time for a pickup of sold Item. After the Item’s sale pick-up is expected to occur within 2 weeks for delivery to a local buyer
 and within 6 weeks if delivery to the buyer will be by a national shipper. Consignor will cooperate and
 coordinate with TLV to ensure that sold Item is Easily Accessible for pick-up. “Easily Accessible” is defined as
-located on the first floor of a multi-story dwelling including the garage. All Items must be prepared for pick up
-(i.e. removal of all personal belongings from the Item(s) sold and beds must be disassembled). If Items are not
+located on the first floor of a multi-story dwelling including the garage. All Items must be prepared for pick up (i.e. removal of all personal belongings from the Item(s) sold and beds must be disassembled). If Items are not
 Easily Accessible and prepared for pickup, Consignor may incur costs related to picking up the Items.
                     </li>
 
@@ -721,7 +732,7 @@ Once Buyer takes possession of Item the Item is no longer eligible for return an
                     </li>
 
                     <li>
-                        TLV shall not be liable for any loss or damage to Item(s) tendered, stored or handled, however caused, unless
+                       TLV shall not be liable for any loss or damage to Item(s) tendered, stored or handled, however caused, unless
 such loss or damage resulted from the gross negligence or willful misconduct of TLV. TLV provides no primary
 coverage against loss or damage to Consignor’s Item(s), however caused. Consignor agrees to maintain adequate
 insurance coverage.
@@ -759,7 +770,7 @@ to sale or otherwise, as provided for in Agreement.
                         Ownership of the Property - Nothing contained in this Agreement shall be construed or interpreted as conveying
 title to, or any interest in, the Property to the TLV.
                         <br/>
-                        Consignor’s Property Insurance Requirement - Consignor agrees to maintain adequate insurance coverage for
+                       Consignor’s Property Insurance Requirement - Consignor agrees to maintain adequate insurance coverage for
 Property. TLV shall not be liable for any loss or damage to Item(s) tendered, stored or handled, however caused,
 unless such loss or damage resulted from the gross negligence or willful misconduct of TLV. TLV provides no
 primary coverage against loss or damage to Property, unless such loss or damage is caused by TLV’s gross
@@ -945,7 +956,8 @@ and successors of the undersigned:
         return $pdfs;
     }
 
-    public function sendStorageAmendmentToConsignmentAgreementMail(Request $request) {
+    public function sendStorageAmendmentToConsignmentAgreementMail(Request $request)
+    {
 
         ini_set('max_execution_time', 300);
         $products = $request->all();
@@ -979,7 +991,6 @@ and successors of the undersigned:
         $greeting = "Dear " . $seller->getFirstName() . ',';
 
 
-
         $introLines[0] = "TLV is pleased to be able to provide storage for some or all of the Items that you consign with The
 Local Vault. Please review and complete the Storage Amendment to Consignment Agreement which
 can be viewed via the link below";
@@ -990,13 +1001,13 @@ can be viewed via the link below";
         $attachments = array();
 //        $attachments[] = 'TLV CONSIGNMENT AGREEMENT with STORAGE.pdf';
         $myViewData = \View::make('emails.send_storage_amendment_to_consignment_agreement_mail', [
-                    'agreement_link' => $agreement_link,
-                    'introLines_new' => $introLines_new,
-                    'greeting' => $greeting,
-                    'seller' => $seller,
-                    'level' => 'success',
-                    'introLines' => $introLines,
-                ])->render();
+            'agreement_link' => $agreement_link,
+            'introLines_new' => $introLines_new,
+            'greeting' => $greeting,
+            'seller' => $seller,
+            'level' => 'success',
+            'introLines' => $introLines,
+        ])->render();
         $bccs = [];
         $ccs = [];
         $ccs[] = 'sell@thelocalvault.com';
@@ -1008,7 +1019,8 @@ can be viewed via the link below";
         return 1;
     }
 
-    public function checkAgreementStorageAmendment(Request $request) {
+    public function checkAgreementStorageAmendment(Request $request)
+    {
 
         $data = $request->all();
         $response_data = [];
@@ -1035,7 +1047,8 @@ can be viewed via the link below";
         return response()->json($response_data, 200);
     }
 
-    public function saveAgreementStorageAmendment(Request $request) {
+    public function saveAgreementStorageAmendment(Request $request)
+    {
 
         $data = $request->all();
 
@@ -1114,14 +1127,15 @@ can be viewed via the link below";
         }
     }
 
-    public function pdfGenerateSellerAgreementAmendment($data, $signature_image, $file = 'consigment_agreement_with_storage_amendment') {
+    public function pdfGenerateSellerAgreementAmendment($data, $signature_image, $file = 'consigment_agreement_with_storage_amendment')
+    {
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
 //        $pdf->SetAuthor('Test');
 //        $pdf->SetTitle('Product Reports');
 //        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP - 10, PDF_MARGIN_RIGHT);
 //        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
@@ -1195,7 +1209,6 @@ EOF;
         $html .= '</tr>';
 
         $html .= '</table>';
-
 
 
         $html .= '<table>';
@@ -1356,7 +1369,6 @@ executors, assigns and successors of the undersigned:
         $pdf->lastPage();
 
 
-
         $filename = public_path() . '/../../Uploads/consignment_agreement_with_storage_pdf/' . $file . '.pdf';
 
 
@@ -1365,7 +1377,8 @@ executors, assigns and successors of the undersigned:
         return $pdfs;
     }
 
-    public function ResendAcknowledgementEmailConsignmentAgreementWithStorage(Request $request) {
+    public function ResendAcknowledgementEmailConsignmentAgreementWithStorage(Request $request)
+    {
         $temp = $request->all();
         $products_approve = array();
         $products_reject = array();
@@ -1434,22 +1447,22 @@ Buyer.';
 
 
                 $myViewData = \View::make('emails.product_for_awaiting_contract_status_change', [
-                            'agreement_link' => $agreement_link,
-                            'introLines_if_any_approved' => $introLines_if_any_approved,
+                    'agreement_link' => $agreement_link,
+                    'introLines_if_any_approved' => $introLines_if_any_approved,
 //                            'line1' => $line1,
 //                            'line2' => $line2,
 //                            'line3' => $line3,
 //                            'introLines_reject' => $introLines_reject,
-                            'introLines_new' => $introLines_new,
-                            'greeting' => $greeting,
-                            'seller' => $seller,
-                            'products_approve' => $products_approve,
-                            'products_reject' => $products_reject,
-                            'level' => 'success',
-                            'outroLines' => [0 => ''],
-                            'introLines' => $introLines,
-                            'agreement_link_text' => $agreement_link_text,
-                        ])->render();
+                    'introLines_new' => $introLines_new,
+                    'greeting' => $greeting,
+                    'seller' => $seller,
+                    'products_approve' => $products_approve,
+                    'products_reject' => $products_reject,
+                    'level' => 'success',
+                    'outroLines' => [0 => ''],
+                    'introLines' => $introLines,
+                    'agreement_link_text' => $agreement_link_text,
+                ])->render();
 
                 $bccs = [];
                 $attachments = [];

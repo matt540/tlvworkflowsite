@@ -15,12 +15,14 @@ use App\Repository\OptionRepository as option_repo;
 use App\Repository\ProductQuoteAgreementRepository as product_quote_agreement_repo;
 use App\Repository\ProductStorageAgreementRepository as product_storage_agreement_repo;
 use App\Repository\ProductQuoteRenewRepository as product_quote_renew_repo;
-use Auth,Log;
+use Auth, Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class SellerController extends Controller {
+class SellerController extends Controller
+{
 
-    public function __construct(product_storage_agreement_repo $product_storage_agreement_repo, product_quote_renew_repo $product_quote_renew_repo, product_quote_agreement_repo $product_quote_agreement_repo, option_repo $option_repo, product_quote_repo $product_quote_repo, seller_repo $seller_repo, product_repo $product_repo, user_repo $user_repo, role_repo $role_repo) {
+    public function __construct(product_storage_agreement_repo $product_storage_agreement_repo, product_quote_renew_repo $product_quote_renew_repo, product_quote_agreement_repo $product_quote_agreement_repo, option_repo $option_repo, product_quote_repo $product_quote_repo, seller_repo $seller_repo, product_repo $product_repo, user_repo $user_repo, role_repo $role_repo)
+    {
 
         $this->product_quote_repo = $product_quote_repo;
 
@@ -41,7 +43,8 @@ class SellerController extends Controller {
         $this->product_storage_agreement_repo = $product_storage_agreement_repo;
     }
 
-    public function deleteSeller(Request $request) {
+    public function deleteSeller(Request $request)
+    {
 
         $seller = $this->seller_repo->SellerOfId($request->id);
 
@@ -52,7 +55,8 @@ class SellerController extends Controller {
         $this->seller_repo->delete($seller);
     }
 
-    public function agreeTermsAcknowledgement($seller_encrypted_id) {
+    public function agreeTermsAcknowledgement($seller_encrypted_id)
+    {
 
         try {
 
@@ -71,10 +75,10 @@ class SellerController extends Controller {
             $introLines[] = 'Yes, I agree to your selling terms. Below is the additional information I have on my items:';
 
             $myViewData = \View::make('emails.seller_agreements_agree_terms', [
-                        'level' => 'success',
-                        'outroLines' => [0 => ''],
-                        'greeting' => $greeting,
-                        'introLines' => $introLines])->render();
+                'level' => 'success',
+                'outroLines' => [0 => ''],
+                'greeting' => $greeting,
+                'introLines' => $introLines])->render();
 
             app('App\Http\Controllers\EmailController')->sendMailSellerAgreement('vaibhav@esparkinfo.com', 'Seller agreement accepted:' . $seller->getLastname(), $myViewData);
 
@@ -86,15 +90,14 @@ class SellerController extends Controller {
         } catch (\RuntimeException $e) {
 
 
-
             // Content is not encrypted.
         }
 
         return redirect('./../');
     }
 
-    public function saveuserSellerAgreement($seller_id) {
-
+    public function saveuserSellerAgreement($seller_id)
+    {
 
 
         $seller = $this->seller_repo->SellerOfId($seller_id);
@@ -118,7 +121,8 @@ class SellerController extends Controller {
         return response()->json('Send Mail Successfully', 200);
     }
 
-    public function checkSellerAgreement(Request $request) {
+    public function checkSellerAgreement(Request $request)
+    {
 
         $data = $request->all();
 
@@ -131,13 +135,11 @@ class SellerController extends Controller {
         if (isset($data['product_quote_agreement_id'])) {
 
 
-
             try {
 
                 $product_quote_agreement_id = \Crypt::decrypt($data['product_quote_agreement_id']);
 
                 $product_quote_agreement = $this->product_quote_agreement_repo->ofId($product_quote_agreement_id);
-
 
 
                 if ($product_quote_agreement) {
@@ -152,7 +154,6 @@ class SellerController extends Controller {
             } catch (\RuntimeException $e) {
 
 
-
                 // Content is not encrypted.
             }
         }
@@ -160,7 +161,8 @@ class SellerController extends Controller {
         return response()->json($response_data, 200);
     }
 
-    public function checkSellerStorageAgreement(Request $request) {
+    public function checkSellerStorageAgreement(Request $request)
+    {
 
         $data = $request->all();
         $response_data = [];
@@ -185,10 +187,8 @@ class SellerController extends Controller {
         return response()->json($response_data, 200);
     }
 
-    public function getAllSellerAgreementsOfWpSellerId($wp_seller_id) {
-
-
-
+    public function getAllSellerAgreementsOfWpSellerId($wp_seller_id)
+    {
 
 
         $agreements = $this->product_quote_agreement_repo->getAllSellerAgreementsOfWpSellerId($wp_seller_id);
@@ -198,7 +198,6 @@ class SellerController extends Controller {
         foreach ($agreements as $key => $agreement) {
 
 
-
             if (!file_exists('./../Uploads/user_agreement_pdf_without_card/' . $agreement['pdf'])) {
 
                 $agreements[$key]['pdf_link'] = '';
@@ -206,18 +205,17 @@ class SellerController extends Controller {
         }
 
 
-
         return response()->json($agreements, 200);
     }
 
-    public function saveSellerAgreement(Request $request) {
+    public function saveSellerAgreement(Request $request)
+    {
 
         $data = $request->all();
 
 //        $seller_id = \Crypt::decrypt($data['seller_ageement']['id']);
 
         $product_quote_agreement_id = \Crypt::decrypt($data['seller_ageement']['id']);
-
 
 
         if ($product_quote_agreement_id) {
@@ -245,7 +243,6 @@ class SellerController extends Controller {
 //            $pdf_file_path_with_out_card = self::pdfGenerateOldSellerAgreement($data['seller_ageement'], $imageName, $file, true);
 
 
-
             if (isset($data['seller_ageement']['local_vault_date'])) {
 
                 $data['seller_ageement']['local_vault_date'] = new \DateTime(date('Y-m-d H:i:s', strtotime($data['seller_ageement']['local_vault_date'])));
@@ -257,7 +254,6 @@ class SellerController extends Controller {
             }
 
 
-
             $temp_data['data_json'] = json_encode($data['seller_ageement']);
 
 //            $temp_data['quote_ids_json'] = json_encode($data['quote_ids_json']);
@@ -267,7 +263,6 @@ class SellerController extends Controller {
             $temp_data['is_form_filled'] = 1;
 
             $temp_data['pdf'] = $pdf_file_name;
-
 
 
 //            $seller = $this->seller_repo->SellerOfId($seller_id);
@@ -285,7 +280,6 @@ class SellerController extends Controller {
             $myViewData = \View::make('emails.seller_agreement_filled', ['link' => $link, 'level' => 'success', 'introLines' => $introLines, 'line' => $line])->render();
 
 
-
             $seller = $product_quote_agreement->getSeller_id();
 
             $sellerLastname = '';
@@ -296,7 +290,6 @@ class SellerController extends Controller {
             }
 
 
-
             $attachments = [];
 
             $bccs = [];
@@ -304,7 +297,6 @@ class SellerController extends Controller {
             $ccs = [];
 
             $ccs[] = 'sell@thelocalvault.com';
-
 
 
 //            app('App\Http\Controllers\EmailController')->sendMail('vaibhav@esparkinfo.com', 'Seller Agreement: ' . $sellerLastname, $myViewData, $attachments, $bccs, $ccs);
@@ -317,12 +309,12 @@ class SellerController extends Controller {
             Log::info('File name ' . $link);
 
 
-
             return response()->json('Product Quote Agreement Updated Successfully', 200);
         }
     }
 
-    public function saveSellerStorageAgreement(Request $request) {
+    public function saveSellerStorageAgreement(Request $request)
+    {
 
         $data = $request->all();
 
@@ -376,7 +368,6 @@ class SellerController extends Controller {
             }
 
 
-
             $temp_data['data_json'] = json_encode($data['seller_ageement']);
 
 //            $temp_data['quote_ids_json'] = json_encode($data['quote_ids_json']);
@@ -386,7 +377,6 @@ class SellerController extends Controller {
             $temp_data['is_form_filled'] = 1;
 
             $temp_data['pdf'] = $pdf_file_name;
-
 
 
 //            $seller = $this->seller_repo->SellerOfId($seller_id);
@@ -403,7 +393,6 @@ class SellerController extends Controller {
             $myViewData = \View::make('emails.seller_agreement_filled', ['link' => $link, 'level' => 'success', 'introLines' => $introLines, 'line' => $line])->render();
 
 
-
             $seller = $product_storage_agreement->getSeller_id();
 
             $sellerLastname = '';
@@ -412,7 +401,6 @@ class SellerController extends Controller {
 
                 $sellerLastname = $seller->getLastname();
             }
-
 
 
             $attachments = [];
@@ -436,7 +424,8 @@ class SellerController extends Controller {
         }
     }
 
-    public function getAllMyProductQuoteAgreements(Request $request) {
+    public function getAllMyProductQuoteAgreements(Request $request)
+    {
 
         $seller_id = $request->id;
 
@@ -447,7 +436,8 @@ class SellerController extends Controller {
         return response()->json($agreements, 200);
     }
 
-    public function getAllMyProductQuoteRenews(Request $request) {
+    public function getAllMyProductQuoteRenews(Request $request)
+    {
 
         $seller_id = $request->id;
 
@@ -458,12 +448,8 @@ class SellerController extends Controller {
         return response()->json($renews, 200);
     }
 
-    public function saveWPProductRenewsByWpProductId(Request $request) {
-
-
-
-
-
+    public function saveWPProductRenewsByWpProductId(Request $request)
+    {
 
 
         $data = $request->all();
@@ -473,9 +459,7 @@ class SellerController extends Controller {
         Log::info('saveWPProductRenewsByWpProductId:' . json_encode($data));
 
 
-
         $post_data = json_decode($data['data']);
-
 
 
         if (isset($post_data) && is_array($post_data) && count($post_data) > 0) {
@@ -483,7 +467,6 @@ class SellerController extends Controller {
             foreach ($post_data as $key => $record) {
 
                 $product_quote = $this->product_quote_repo->ProductQuotationOfWpProductId($record->wp_product_id);
-
 
 
                 $product_quote_renew = array();
@@ -505,8 +488,8 @@ class SellerController extends Controller {
         }
     }
 
-    public function pdfGenerateOldSellerAgreement($data, $signature_image, $file = 'seller_agreement_', $hideCreditCard = false) {
-
+    public function pdfGenerateOldSellerAgreement($data, $signature_image, $file = 'seller_agreement_', $hideCreditCard = false)
+    {
 
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -524,10 +507,9 @@ class SellerController extends Controller {
 //        $pdf->SetHeaderData('../../../../../../admin/assets/images/logo.png', PDF_HEADER_LOGO_WIDTH, 'Daily Report for ' . $data['child']['firstname'].' '.$data['child']['lastname'], $date);
 //        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
 
 
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP - 10, PDF_MARGIN_RIGHT);
@@ -539,9 +521,7 @@ class SellerController extends Controller {
         $pdf->setPrintHeader(false);
 
 
-
 //        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
 
 
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -556,9 +536,7 @@ class SellerController extends Controller {
         $pdf->SetFont('helvetica', '', 10);
 
 
-
         $pdf->AddPage();
-
 
 
         $temp = 'Hello!';
@@ -706,7 +684,6 @@ class SellerController extends Controller {
 EOF;
 
 
-
         $html .= '<div style="width: 100%;display: block;text-align: center;">';
 
         $html .= '<img src="' . public_path() . '/assets/images/logo.png" style="height:100px;width:150px;">';
@@ -728,7 +705,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td colspan="3">';
@@ -738,7 +714,6 @@ EOF;
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -764,11 +739,7 @@ EOF;
         $html .= '</tr>';
 
 
-
-
-
         $html .= '</table>';
-
 
 
         $html .= '<table>';
@@ -784,9 +755,6 @@ EOF;
         $html .= '</tr>';
 
 
-
-
-
         $html .= '<tr>';
 
         $html .= '<td>';
@@ -800,13 +768,7 @@ EOF;
         $html .= '</table>';
 
 
-
-
-
-
-
         if (!$hideCreditCard) {
-
 
 
             $html .= '<table>';
@@ -822,7 +784,6 @@ EOF;
             $html .= '</tr>';
 
 
-
             $html .= '<tr>';
 
             $html .= '<td colspan="2">';
@@ -832,7 +793,6 @@ EOF;
             $html .= '</td>';
 
             $html .= '</tr>';
-
 
 
             $html .= '<tr>';
@@ -852,7 +812,6 @@ EOF;
             $html .= '</tr>';
 
 
-
             $html .= '<tr>';
 
             $html .= '<td colspan="2">';
@@ -864,11 +823,7 @@ EOF;
             $html .= '</tr>';
 
 
-
             $html .= '</table>';
-
-
-
 
 
             $html .= '<table>';
@@ -905,13 +860,6 @@ EOF;
         }
 
 
-
-
-
-
-
-
-
         $html .= '<p>';
 
         $html .= 'This Agreement is made by and among <u>  ' . $data['consignor_name2'] . '  </u> ("Consignor") and ';
@@ -925,9 +873,6 @@ EOF;
         $html .= 'Consignor grants unto TLV the authority to advertise, offer for sale and sell the Item(s) listed in the attached Sale Catalog. All Item(s) included in the Sale Catalog are generally described personal property belonging to the Consignor, or, the individual(s) or estate that Consignor is acting as the agent for. Hereinafter the personal property listed within the Sale Catalog will be described as “Item(s)”.';
 
         $html .= '</p>';
-
-
-
 
 
         $html .= '<p>
@@ -947,9 +892,6 @@ EOF;
                     </li>
 
                 </ul>';
-
-
-
 
 
         $html .= '<p>';
@@ -1128,7 +1070,6 @@ EOF;
 //                    obligatory upon the undersigned, and the separate heirs, administrators, executors, assigns and
 //                    successors of the undersigned:
 //                </p>';
-
 
 
         $html .= '<ol style="list-style: bold;">
@@ -1430,7 +1371,6 @@ EOF;
                 </p>';
 
 
-
         $html .= '<table border="0">';
 
         $html .= '<tr>';
@@ -1442,7 +1382,6 @@ EOF;
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -1462,7 +1401,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td>';
@@ -1478,7 +1416,6 @@ EOF;
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -1498,7 +1435,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td colspan="2">';
@@ -1508,7 +1444,6 @@ EOF;
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -1522,7 +1457,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td colspan="2">';
@@ -1534,9 +1468,7 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '</table>';
-
 
 
         $html .= '<table>';
@@ -1568,15 +1500,7 @@ EOF;
         $html .= '<p>*Direct Deposit Available Upon Request</p>';
 
 
-
-
-
-
-
-
-
 //        $html .= '<br>';
-
 
 
         $html .= '<table style="margin-top:0px;">';
@@ -1600,7 +1524,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td>';
@@ -1620,13 +1543,7 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '</table>';
-
-
-
-
-
 
 
         $pdf->writeHTML($html, true, false, true, false, '');
@@ -1650,8 +1567,8 @@ EOF;
         return $pdfs;
     }
 
-    public function pdfGenerateStorageAgreement($data, $signature_image, $file = 'storage_agreement_', $products_storage_agreement) {
-
+    public function pdfGenerateStorageAgreement($data, $signature_image, $file = 'storage_agreement_', $products_storage_agreement)
+    {
 
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -1669,10 +1586,9 @@ EOF;
 //        $pdf->SetHeaderData('../../../../../../admin/assets/images/logo.png', PDF_HEADER_LOGO_WIDTH, 'Daily Report for ' . $data['child']['firstname'].' '.$data['child']['lastname'], $date);
 //        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
 
 
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP - 10, PDF_MARGIN_RIGHT);
@@ -1684,9 +1600,7 @@ EOF;
         $pdf->setPrintHeader(false);
 
 
-
 //        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
 
 
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -1701,9 +1615,7 @@ EOF;
         $pdf->SetFont('helvetica', '', 10);
 
 
-
         $pdf->AddPage();
-
 
 
         $temp = 'Hello!';
@@ -1849,7 +1761,6 @@ EOF;
 
 
 EOF;
-
 
 
         $html .= '<div style="width: 100%;display: block;text-align: center;">';
@@ -2179,13 +2090,11 @@ EOF;
         $html .= '</table>';
 
 
-
         $pdf->writeHTML($html, true, false, true, false, '');
 
         $pdf->lastPage();
 
 //        $file = 'seller_agreement_' . time();
-
 
 
         $filename = public_path() . '/../../Uploads/storage_agreement_pdf/' . $file . '.pdf';
@@ -2198,8 +2107,8 @@ EOF;
         return $pdfs;
     }
 
-    public function pdfGenerateSellerAgreement($data, $signature_image, $file = 'seller_agreement_', $hideCreditCard = false) {
-
+    public function pdfGenerateSellerAgreement($data, $signature_image, $file = 'seller_agreement_', $hideCreditCard = false)
+    {
 
 
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -2212,10 +2121,9 @@ EOF;
 
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
 
 
         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP - 10, PDF_MARGIN_RIGHT);
@@ -2227,9 +2135,7 @@ EOF;
         $pdf->setPrintHeader(false);
 
 
-
 //        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
 
 
         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -2244,9 +2150,7 @@ EOF;
         $pdf->SetFont('helvetica', '', 10);
 
 
-
         $pdf->AddPage();
-
 
 
         $temp = 'Hello!';
@@ -2394,10 +2298,9 @@ EOF;
 EOF;
 
 
-
         $html .= '<div style = "width: 100%;display: block;text-align: center;">';
 
-        $html .= '<img src = "' . public_path() . '/assets/images/long-logo.png" style = "height:100px;">';
+        $html .= '<img src = "/assets/images/long-logo.png" style = "height:100px;">';
 
         $html .= '</div>';
 
@@ -2412,9 +2315,7 @@ EOF;
         $html .= '</b></p>';
 
 
-
         $html .= '<table border = "0">';
-
 
 
         $html .= '<tr>';
@@ -2428,7 +2329,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td colspan="3">';
@@ -2438,7 +2338,6 @@ EOF;
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -2464,13 +2363,10 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '</table>';
 
 
-
         $html .= '<table>';
-
 
 
         $html .= '<tr>';
@@ -2484,7 +2380,6 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '<tr>';
 
         $html .= '<td>';
@@ -2496,9 +2391,7 @@ EOF;
         $html .= '</tr>';
 
 
-
         $html .= '</table>';
-
 
 
         $html .= '<p>Hereinafter the personal property placed in consignment through this Consignment Agreement will be described as
@@ -2506,12 +2399,10 @@ EOF;
 this Agreement for full listing details.</p>';
 
 
-
         $html .= '<p>Consignor grants unto TLV the authority to advertise, offer for sale and sell the Item(s) listed in the TLV “Pricing
 Proposal” which you will receive after the Item(s) is photographed, measured and evaluated. Consignor has the right to
 withdraw any Item(s) from the consignment within 48 hours after the Pricing Proposal is sent. The Pricing Proposal will
-include the sale price at which TLV believes the Item(s) should be listed for sale.
-</p>';
+include the sale price at which TLV believes the Item(s) should be listed for sale.</p>';
 
         $html .= '<p>Consignor confirms that the Item(s) included in the “Pricing Proposal”, and any additional Item(s) which the Consignor
 chooses to consign with TLV, is generally described personal property belonging to the Consignor or the individual(s) or
@@ -2521,7 +2412,7 @@ any and all claims relating to breach of this warranty.</p>';
         $html .= '<p>In the Pricing Proposal, when <b>"Dropoff by Consignor Required"</b> is checked and the Item is not in TLV storage facility,
 the Consignor agrees to drop it off at The Local Vaults office in Cos Cob, CT, within two weeks from the date the Item
 was purchased by the "Buyer." Should the Consignor not drop off the Item within these two weeks, TLV will arrange for
-the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
+            the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 
 //        $html .= '<p>
 //
@@ -2553,7 +2444,6 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
                 </p>';
 
 
-
         $html .= '<ul style="list-style: bold;
             list-style: none">
 
@@ -2566,9 +2456,7 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 //        {
 
 
-
         $html .= '<table border="0">';
-
 
 
         $html .= '<tr>';
@@ -2580,7 +2468,6 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
         $html .= '</td>';
 
         $html .= '</tr>';
-
 
 
         $html .= '<tr>';
@@ -2606,13 +2493,11 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
         $html .= '</tr>';
 
 
-
         $html .= '</table>';
 
 //        }
 
         $html .= '</li></ul>';
-
 
 
         $html .= '<p>
@@ -2621,7 +2506,6 @@ the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 weeks from the date the Pricing Proposal is sent.</b>
 
                 </p>';
-
 
 
         $html .= '<p>
@@ -2634,8 +2518,8 @@ weeks from the date the Pricing Proposal is sent.</b>
             ">
 
                  <li>
-                        TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
-the TLV website at <a href="https://thelocalvault.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
+                       TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
+the TLV website at<a href="https://thelocalvault.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
 partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
 
                     </li>
@@ -2647,15 +2531,21 @@ partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
                     </li>
 
                     <li>
-                        TLV will send a TLV agent(s) to photograph, potentially video, measure and catalog a Consignor’s Item(s). TLV
+                    TLV will send a TLV agent(s) to photograph, potentially video, measure and catalog a Consignor’s Item(s). TLV
 charges a Production Fee of $50.00 when photographing 10 or less Items plus $5.00 for each Item above 10
 Items. All Item(s) must be readily accessible during this “Photoshoot”. Any labor costs required to support the
 TLV agent in the photography and measurement of the Item(s) will be passed on to the Consignor. Payment of
 such costs is not conditional on the sale of the Item(s). Consignor confirms that all LIGHTING that is consigned
-is operational unless otherwise noted to TLV agent.<b>Should Item condition change after Photoshoot
-Consignor will notify TLV of such change so listing can be adjusted and, if the Item has sold, change can
-be discussed with buyer prior to TLV arranging pickup of the Item.</b>
+is operational unless otherwise noted to TLV agent.
                     </li>
+                    <li>
+                    Should Item condition change after Photoshoot Consignor will notify TLV of such change so listing can be
+adjusted and, if the Item has sold, change can be discussed with buyer prior to TLV arranging pickup of the Item.
+If TLV is not notified of condition change and the item is sold then, at the discretion of TLV, Consignor will be
+responsible for shipping charges to deliver and return the Item or will accept either a reduction in sale price equal
+to the cost to repair the Item or any reduction in sale price agreed between TLV and the Buyer to Complete the
+sale.
+</li>
 
                     <li>
                         All photographs and videos which capture the Item(s) can be used in TLV promotional, advertising and
@@ -2695,7 +2585,7 @@ invoice for each Item sold and collect from the Buyer.
                     <li>
                    TLV uses Sales Events, Trade Discounts and Coupons to help drive sales of Items. These "Discounts” offered to
 prospective buyers range from 10-15%. For a sold Item(s) any Discounts from the Advertised Price will be
-shared between TLV and the Consignor.
+shared between TLV and the Consignor
                     </li>
 
                     <li>
@@ -2746,11 +2636,7 @@ Fee.
             </li>';
 
 
-
-
-
         if (!$hideCreditCard) {
-
 
 
             $html .= '<table>';
@@ -2766,7 +2652,6 @@ Fee.
             $html .= '</tr>';
 
 
-
             $html .= '<tr>';
 
             $html .= '<td colspan = "2">';
@@ -2778,7 +2663,6 @@ Fee.
             $html .= '</tr>';
 
 
-
             $html .= '<tr>';
 
             $html .= '<td colspan = "2">';
@@ -2788,7 +2672,6 @@ Fee.
             $html .= '</td>';
 
             $html .= '</tr>';
-
 
 
             $html .= '<tr>';
@@ -2808,7 +2691,6 @@ Fee.
             $html .= '</tr>';
 
 
-
             $html .= '<tr>';
 
             $html .= '<td colspan="2">';
@@ -2820,11 +2702,7 @@ Fee.
             $html .= '</tr>';
 
 
-
             $html .= '</table>';
-
-
-
 
 
             $html .= '<table>';
@@ -2853,7 +2731,6 @@ Fee.
 
             $html .= '</table>';
         }
-
 
 
         $html .= ' <li>
@@ -2910,7 +2787,7 @@ unenforceable.
 
                 <p>
                 Governing Law -This agreement will be governed by and construed in accordance with the laws of the state of
-Connecticut.
+Connecticu
                 </p>
 
                 <p>
@@ -2945,7 +2822,6 @@ and successors of the undersigned:
                 </p>
 
     ';
-
 
 
         $html .= '<table border="0">';
@@ -3011,7 +2887,6 @@ and successors of the undersigned:
         $html .= '</table>';
 
 
-
         $html .= '<table>';
         $html .= '<tr>';
         $html .= '<td>';
@@ -3038,7 +2913,7 @@ and successors of the undersigned:
         $html .= '<td>';
         $html .= '</td>';
         $html .= '<td style="border:1px solid black;">';
-        $html .= '<img src="' . public_path() . '/../../Uploads/user_agreement_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
+        $html .= '<img src="/Uploads/user_agreement_sign/' . $signature_image . '" style="height:100px;width:250px;border:1px solid black;">';
         $html .= '</td>';
         $html .= '</tr>';
 
@@ -3075,7 +2950,8 @@ and successors of the undersigned:
         return $pdfs;
     }
 
-    public function saveSeller(Request $request) {
+    public function saveSeller(Request $request)
+    {
 
         $data = $request->all();
 
@@ -3089,7 +2965,6 @@ and successors of the undersigned:
             $data['firstname'] = str_replace(' ', '', $data['firstname']);
 
             $data['lastname'] = str_replace(' ', '', $data['lastname']);
-
 
 
             $data['update_seller_roles'] = [];
@@ -3114,7 +2989,7 @@ and successors of the undersigned:
                 $seller_details['data'] = json_encode($data);
 
 //                $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-update.php';
-                $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-update.php';
+                $host = env('WP_URL') . '/wp-content/themes/thelocalvault/seller-update.php';
 
 
                 $ch = curl_init();
@@ -3132,7 +3007,6 @@ and successors of the undersigned:
                 $temp = curl_exec($ch);
 
 
-
                 return response()->json('Seller Updated Successfully', 200);
             }
         } else {
@@ -3140,11 +3014,9 @@ and successors of the undersigned:
             $d = $request->all();
 
 
-
             $d['firstname'] = str_replace(' ', '', $d['firstname']);
 
             $d['lastname'] = str_replace(' ', '', $d['lastname']);
-
 
 
             $seller = $d;
@@ -3162,13 +3034,11 @@ and successors of the undersigned:
             }
 
 
-
             $data['data'] = json_encode($d);
 
 
-
 //            $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/new-user.php';
-            $host = env('WP_URL').'/wp-content/themes/thelocalvault/new-user.php';
+            $host = env('WP_URL') . '/wp-content/themes/thelocalvault/new-user.php';
 
             $ch = curl_init();
 
@@ -3183,7 +3053,6 @@ and successors of the undersigned:
             //temp_stop
 
             $temp = curl_exec($ch);
-
 
 
             if ($temp != "User already exists.") {
@@ -3209,14 +3078,14 @@ and successors of the undersigned:
         }
     }
 
-    public function saveWPSeller(Request $request) {
+    public function saveWPSeller(Request $request)
+    {
 
         $data = $request->all();
 
         Log::info(json_encode($data));
 
         $seller_detail = array();
-
 
 
         if (isset($data['account_first_name'])) {
@@ -3232,15 +3101,8 @@ and successors of the undersigned:
             $seller_detail['firstname'] = str_replace(' ', '', $data['firstname']);
         } else if (isset($data['fname'])) {
 
-            $seller_detail['firstname'] = str_replace(' ', '', $data['fname']);
-
-            ;
+            $seller_detail['firstname'] = str_replace(' ', '', $data['fname']);;
         }
-
-
-
-
-
 
 
         if (isset($data['account_last_name'])) {
@@ -3258,9 +3120,6 @@ and successors of the undersigned:
         }
 
 
-
-
-
         if (isset($data['account_email'])) {
 
             $seller_detail['email'] = $data['account_email'];
@@ -3268,7 +3127,6 @@ and successors of the undersigned:
 
             $seller_detail['email'] = $data['email'];
         }
-
 
 
         if (isset($data['display_name'])) {
@@ -3280,14 +3138,10 @@ and successors of the undersigned:
         }
 
 
-
-
-
         if (isset($data['user_id'])) {
 
             $seller_detail['wp_seller_id'] = $data['user_id'];
         }
-
 
 
         if (!empty($data['password_1'])) {
@@ -3386,7 +3240,6 @@ and successors of the undersigned:
         }
 
 
-
         $prepareData = $this->seller_repo->prepareData($seller_detail);
 
         $seller = $this->seller_repo->create($prepareData);
@@ -3394,7 +3247,8 @@ and successors of the undersigned:
 //        self::saveuserSellerAgreement($seller);
     }
 
-    public function deleteWPSeller(Request $request) {
+    public function deleteWPSeller(Request $request)
+    {
 
         $data = $request->all();
 
@@ -3409,12 +3263,12 @@ and successors of the undersigned:
         return 1;
     }
 
-    public function updateWPSeller(Request $request) {
+    public function updateWPSeller(Request $request)
+    {
 
         $data = $request->all();
 
         //  Log::info(json_encode($data));
-
 
 
         $seller_detail = array();
@@ -3422,7 +3276,6 @@ and successors of the undersigned:
 //        $seller_detail['firstname'] = $data['account_first_name'];
 //        $seller_detail['lastname'] = $data['account_last_name'];
 //        $seller_detail['email'] = $data['account_email'];
-
 
 
         if (isset($data['account_first_name'])) {
@@ -3437,9 +3290,6 @@ and successors of the undersigned:
         }
 
 
-
-
-
         if (isset($data['account_last_name'])) {
 
             $seller_detail['lastname'] = str_replace(' ', '', $data['account_last_name']);
@@ -3452,11 +3302,6 @@ and successors of the undersigned:
         }
 
 
-
-
-
-
-
         if (isset($data['email'])) {
 
             $seller_detail['email'] = $data['email'];
@@ -3466,14 +3311,10 @@ and successors of the undersigned:
         }
 
 
-
-
-
         if (isset($data['display_name'])) {
 
             $seller_detail['display_name'] = $data['display_name'];
         }
-
 
 
         if (isset($data['dokan_store_name'])) {
@@ -3485,7 +3326,6 @@ and successors of the undersigned:
 
             $seller_detail['phone'] = $data['dokan_store_phone'];
         }
-
 
 
         $address = '';
@@ -3542,22 +3382,15 @@ and successors of the undersigned:
         }
 
 
-
-
-
         if (!empty($data['surl'])) {
 
             $seller_detail['shopurl'] = $data['surl'];
         }
 
 
-
-
-
         $seller = $this->seller_repo->SellerOfWpId($data['user_id']);
 
         if ($seller && $seller != NULL) {
-
 
 
             $this->seller_repo->removeDeletedAt($seller);
@@ -3578,12 +3411,14 @@ and successors of the undersigned:
         }
     }
 
-    public function getSeller(Request $request) {
+    public function getSeller(Request $request)
+    {
 
         return $this->seller_repo->SellerById($request->id);
     }
 
-    public function getSellerCityState(Request $request) {
+    public function getSellerCityState(Request $request)
+    {
 
         $temp_data = $this->seller_repo->SellerById($request->sellerid);
 
@@ -3593,7 +3428,7 @@ and successors of the undersigned:
         ];
 
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-location-api.php';
-        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-location-api.php';
+        $host = env('WP_URL') . '/wp-content/themes/thelocalvault/seller-location-api.php';
 
 
         $ch = curl_init();
@@ -3615,29 +3450,27 @@ and successors of the undersigned:
         $temp = json_decode($temp, true);
 
 
-
         return $temp;
     }
 
-    public function getAllSellers() {
+    public function getAllSellers()
+    {
 
         return $this->seller_repo->getAllSellers();
     }
 
-    public function getSellers(Request $request) {
+    public function getSellers(Request $request)
+    {
 
         $filter = $request->all();
-
 
 
         $data['draw'] = $filter['draw'];
 
 
-
         $users_data_total = $this->seller_repo->getSellers($filter);
 
         $data['data'] = $users_data_total['data'];
-
 
 
         $data['recordsTotal'] = $users_data_total['total'];
@@ -3647,20 +3480,18 @@ and successors of the undersigned:
         return response()->json($data, 200);
     }
 
-    public function getArchivedSellers(Request $request) {
+    public function getArchivedSellers(Request $request)
+    {
 
         $filter = $request->all();
-
 
 
         $data['draw'] = $filter['draw'];
 
 
-
         $users_data_total = $this->seller_repo->getSellerArchivedProducts($filter);
 
         $data['data'] = $users_data_total['data'];
-
 
 
         $data['recordsTotal'] = $users_data_total['total'];
@@ -3670,14 +3501,13 @@ and successors of the undersigned:
         return response()->json($data, 200);
     }
 
-    public function getProductsInStateSellers(Request $request) {
+    public function getProductsInStateSellers(Request $request)
+    {
 
         $filter = $request->all();
 
 
-
         $data['draw'] = $filter['draw'];
-
 
 
         $users_data_total = $this->seller_repo->getProductsInStateSellers($filter);
@@ -3694,7 +3524,6 @@ and successors of the undersigned:
         $data['data'] = $users_data_total['data'];
 
 
-
         $data['recordsTotal'] = $users_data_total['total'];
 
         $data['recordsFiltered'] = $this->seller_repo->getProductsInStateSellersTotal($filter);
@@ -3702,7 +3531,8 @@ and successors of the undersigned:
         return response()->json($data, 200);
     }
 
-    public function getSellerProduct(Request $request) {
+    public function getSellerProduct(Request $request)
+    {
 
         $filter = $request->all();
 
@@ -3723,7 +3553,6 @@ and successors of the undersigned:
         } else if ($filter['name'] == 'proposal') {
 
 
-
             $users_data_total = $this->seller_repo->getSellerProposals($filter);
 
             foreach ($users_data_total['data'] as $key => $value) {
@@ -3742,7 +3571,6 @@ and successors of the undersigned:
 
                 $users_data_total['data'][$key]['pending_count'] = $this->product_quote_repo->getAllPendingProductForProductionCountOfSellerId($value['id']);
             }
-
 
 
             $data['recordsFiltered'] = $this->seller_repo->getSellerProductForProductionTotal($filter);
@@ -3805,9 +3633,7 @@ and successors of the undersigned:
         }
 
 
-
         $data['data'] = $users_data_total['data'];
-
 
 
         $data['recordsTotal'] = $users_data_total['total'];
@@ -3815,7 +3641,8 @@ and successors of the undersigned:
         return response()->json($data, 200);
     }
 
-    public function updateAllSellerRoles() {
+    public function updateAllSellerRoles()
+    {
 
         $sellers = $this->seller_repo->getAllSellers();
 
@@ -3832,19 +3659,18 @@ and successors of the undersigned:
             $data['update_seller_roles'] = array($this->option_repo->OptionOfId(81));
 
 
-
             $this->seller_repo->update($seller, $data);
         }
     }
 
-    public function insertSeller() {
+    public function insertSeller()
+    {
 
         ini_set('max_execution_time', 30000);
 
 
-
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
-        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
+        $host = env('WP_URL') . '/wp-content/themes/thelocalvault/seller-api.php';
 
 
         $ch = curl_init();
@@ -3860,7 +3686,6 @@ and successors of the undersigned:
         //temp_stop
 
         $temp = curl_exec($ch);
-
 
 
         $temp = json_decode($temp, true);
@@ -3923,13 +3748,11 @@ and successors of the undersigned:
         die;
 
 
-
         echo "<pre>";
 
         print_r($temp);
 
         die;
-
 
 
         foreach ($temp as $key => $value) {
@@ -4084,13 +3907,11 @@ and successors of the undersigned:
         die;
 
 
-
         echo "<pre>";
 
         print_r($temp);
 
         die;
-
 
 
         foreach ($temp as $key => $value) {
@@ -4171,9 +3992,6 @@ and successors of the undersigned:
                 }
 
 
-
-
-
                 $data['address'] = $address;
 
                 $this->seller_repo->update($seller, $data);
@@ -4182,9 +4000,6 @@ and successors of the undersigned:
 //                $prepareData = $this->seller_repo->prepareData($data);
 //                $this->seller_repo->create($prepareData);
             }
-
-
-
 
 
 //            $data['wp_seller_id'] = $value['data']['ID'];
@@ -4203,18 +4018,17 @@ and successors of the undersigned:
         }
 
 
-
         return 'in';
     }
 
-    public function updateSeller() {
+    public function updateSeller()
+    {
 
         ini_set('max_execution_time', 30000);
 
 
-
 //        $host = 'https://localvault.staging.wpengine.com/wp-content/themes/thelocalvault/seller-api.php';
-        $host = env('WP_URL').'/wp-content/themes/thelocalvault/seller-api.php';
+        $host = env('WP_URL') . '/wp-content/themes/thelocalvault/seller-api.php';
 
         $ch = curl_init();
 
@@ -4231,9 +4045,7 @@ and successors of the undersigned:
         $temp = curl_exec($ch);
 
 
-
         $temp = json_decode($temp, true);
-
 
 
         echo "<pre>";
@@ -4243,13 +4055,10 @@ and successors of the undersigned:
         die;
 
 
-
         foreach ($temp as $key => $value) {
 
 
-
             $data['lastname'] = $value['data']['lname'];
-
 
 
             $user = $this->seller_repo->SellerOfWpId($value['data']['ID']);
@@ -4261,11 +4070,11 @@ and successors of the undersigned:
         }
 
 
-
         return 'in';
     }
 
-    private function updateWordpressProductAfterStorageAgreementSave($wpProductIds) {
+    private function updateWordpressProductAfterStorageAgreementSave($wpProductIds)
+    {
 
         $postData = [
             "tlv" => "a1PYB21QaLV43LTlE786eEtUJBlhDti5yN",
@@ -4285,7 +4094,8 @@ and successors of the undersigned:
         curl_exec($ch);
     }
 
-    public function searchSellers(Request $request) {
+    public function searchSellers(Request $request)
+    {
         $query = $request->get('q', null);
 
         if (empty($query) || strlen($query) < 2) {
@@ -4295,7 +4105,8 @@ and successors of the undersigned:
         return $this->seller_repo->searchSeller($query);
     }
 
-    public function assignAgent(Request $request) {
+    public function assignAgent(Request $request)
+    {
 
         $sellerId = $request->get('seller_id');
         $agentId = $request->get('agent_id');
