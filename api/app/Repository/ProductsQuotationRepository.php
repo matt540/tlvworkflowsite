@@ -87,6 +87,8 @@ class ProductsQuotationRepository extends EntityRepository {
         if (isset($data['condition_note'])) {
 
             $product_quotation->setConditionNote($data['condition_note']);
+        }else{
+            $product_quotation->setConditionNote('');
         }
 
         if (isset($data['commission'])) {
@@ -396,12 +398,12 @@ class ProductsQuotationRepository extends EntityRepository {
 
             $product_quotation->setWp_stock_status($data['wp_stock_status']);
         }
-        
+
         if (isset($data['wp_product_expire_date'])) {
 
             $product_quotation->setWp_product_expire_date($data['wp_product_expire_date']);
         }
-        
+
         if (isset($data['seller_to_drop_off'])) {
 
             $product_quotation->setSeller_to_drop_off($data['seller_to_drop_off']);
@@ -2454,7 +2456,7 @@ class ProductsQuotationRepository extends EntityRepository {
 //                )
 //                ->setParameter('status', $status);
 
-        if (isset($filter['start_date_updated']) && isset($filter['end_date_updated'])) {            
+        if (isset($filter['start_date_updated']) && isset($filter['end_date_updated'])) {
             $query->andWhere(
                     $query->expr()->between('p.for_production_created_at', ':start', ':end'));
 
@@ -4137,7 +4139,7 @@ class ProductsQuotationRepository extends EntityRepository {
 
 
 
-        //5 for Copywriter        
+        //5 for Copywriter
 
         if ($auth_user->getRoles()[0]->getId() == 5) {
 
@@ -4571,7 +4573,7 @@ class ProductsQuotationRepository extends EntityRepository {
 //                ->setParameter('is_storage_proposal', 1)
 //                ->setParameter('wp_seller_id', $wp_seller_id)
 //                ->getQuery();
-        
+
          $query = $queryBuilder->from('App\Entities\Products_quotation', 'pq')
                 ->leftJoin('pq.product_id', 'p')
                 ->leftJoin('p.product_pending_images', 'pi')
@@ -4606,7 +4608,7 @@ class ProductsQuotationRepository extends EntityRepository {
 
     public function getAllSyncProduct($filter) {
 
-          
+
         if (!empty($filter['order'])) {
             if ($filter['order'][0]['column'] == 0) {
 
@@ -4688,7 +4690,7 @@ class ProductsQuotationRepository extends EntityRepository {
         if (isset($filter['category']) && count($filter['category']) > 0) {
 
             if (isset($filter['subcategoryid']) && count($filter['subcategoryid']) > 0) {
-                
+
             } else {
                 $query = $query->andWhere($queryBuilder->expr()->in('sub_cat.id', ':category'))
                         ->setParameter('category', $filter['category']);
@@ -4721,8 +4723,8 @@ class ProductsQuotationRepository extends EntityRepository {
         }
 
         if (isset($filter['start_date_new']) && isset($filter['end_date_new']) && $filter['start_date_new'] != null && $filter['end_date_new'] != null && $filter['start_date_new'] != 'Invalid date' && $filter['end_date_new'] != 'Invalid date') {
-          
-         
+
+
             $query = $query->andwhere('p.wp_published_date BETWEEN :start AND :end')
                     ->setParameter('start', $filter['start_date_new'])
                     ->setParameter('end', $filter['end_date_new']);
@@ -4730,7 +4732,7 @@ class ProductsQuotationRepository extends EntityRepository {
 
 
         if (isset($filter['start_date_order']) && isset($filter['end_date_order']) && $filter['start_date_order'] != null && $filter['end_date_order'] != null && $filter['start_date_order'] != 'Invalid date' && $filter['end_date_order'] != 'Invalid date') {
-            
+
             $query = $query->andwhere('o.date_created BETWEEN :startorder AND :endorder')
                     ->setParameter('startorder', $filter['start_date_order'])
                     ->setParameter('endorder', $filter['end_date_order']);
@@ -4788,7 +4790,7 @@ class ProductsQuotationRepository extends EntityRepository {
         if (isset($filter['category']) && count($filter['category']) > 0) {
 
             if (isset($filter['subcategoryid']) && count($filter['subcategoryid']) > 0) {
-                
+
             } else {
                 $query = $query->andWhere($queryBuilder->expr()->in('sub_cat.id', ':category'))
                         ->setParameter('category', $filter['category']);
@@ -4924,8 +4926,8 @@ class ProductsQuotationRepository extends EntityRepository {
                 ->getQuery();
 
 
-        
-        
+
+
         $data = $query->getResult(Query::HYDRATE_ARRAY);
 
 
@@ -5008,7 +5010,7 @@ class ProductsQuotationRepository extends EntityRepository {
                 ->setParameter('id', 18)
                 ->andWhere('p.wp_product_id != :wp_product_id')
                 ->setParameter('wp_product_id', '');
-                
+
 
 
 
@@ -5027,7 +5029,7 @@ class ProductsQuotationRepository extends EntityRepository {
         if (isset($filter['category']) && count($filter['category']) > 0) {
 
             if (isset($filter['subcategoryid']) && count($filter['subcategoryid']) > 0) {
-                
+
             } else {
                 $query = $query->andWhere($queryBuilder->expr()->in('sub_cat.id', ':category'))
                         ->setParameter('category', $filter['category']);
@@ -5066,25 +5068,25 @@ class ProductsQuotationRepository extends EntityRepository {
                     ->setParameter('start', $filter['start_date_new'])
                     ->setParameter('end', $filter['end_date_new']);
         }
-      
+
         if (isset($filter['start_date_order']) && isset($filter['end_date_order']) && $filter['start_date_order'] != null && $filter['end_date_order'] != null && $filter['start_date_order'] != 'Invalid date' && $filter['end_date_order'] != 'Invalid date') {
-          
+
             $query = $query->andwhere('o.date_created BETWEEN :startorder AND :endorder')
                     ->setParameter('startorder', $filter['start_date_order'])
                     ->setParameter('endorder', $filter['end_date_order']);
         }
-        
+
         $query = $query->orderBy('u.created_at', 'desc');
 
         $query = $query->getQuery();
 
-         
-         
+
+
         $data = $query->getResult(Query::HYDRATE_ARRAY);
 
 
 
-         
+
 
         return array('data' => $data);
     }
@@ -5100,12 +5102,12 @@ class ProductsQuotationRepository extends EntityRepository {
                 ->getQuery();
 
         $data = $query->getResult(Query::HYDRATE_ARRAY);
-        
-        
+
+
         return $data;
 }
 
-  
+
 }
 
 ?>
