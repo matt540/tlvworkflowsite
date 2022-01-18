@@ -5299,6 +5299,11 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                 $order = $this->product_quotation_repo->getSyncProductOrder($value['wp_product_id']);
 
+                if($value['product_id']['sellerid'] != ''){
+                    $seller_name = $value['product_id']['sellerid']['firstname'] . ' ' . $value['product_id']['sellerid']['lastname'];
+                }else{
+                    $seller_name = '';
+                }
 
                 if (count($order['data']) > 0) {
 
@@ -5389,7 +5394,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
                         $products[] = array(
-                            $value['product_id']['sellerid']['firstname'] . ' ' . $value['product_id']['sellerid']['lastname'],
+                            $seller_name,
                             $value['product_id']['name'],
                             $category_list,
                             $subcategory_list,
@@ -5454,7 +5459,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
 
                     $products[] = array(
-                        $value['product_id']['sellerid']['firstname'] . ' ' . $value['product_id']['sellerid']['lastname'],
+                        $seller_name,
                         $value['product_id']['name'],
                         $category_list,
                         $subcategory_list,
