@@ -97,7 +97,7 @@ app.controller('SyncProductListController', function ($document, $mdDialog, $roo
 
         if (full.wp_published_date !== null && full.wp_published_date.date !== '-0001-11-30 00:00:00.000000')
         {
-            return moment.utc(full.wp_published_date.date).local().format('MM/DD/YYYY');
+            return moment(full.wp_published_date.date).local().format('MM/DD/YYYY');
         } else
         {
             return '--';
@@ -559,7 +559,7 @@ app.controller('SyncProductOrderController', function ($document, $mdDialog, $ro
                 {
                     if (data)
                     {
-                            return moment.utc(data).local().format('MM/DD/YYYY');
+                            return moment(data).local().format('MM/DD/YYYY');
                     } else
                     {
                         return '-----';
@@ -574,7 +574,7 @@ app.controller('SyncProductOrderController', function ($document, $mdDialog, $ro
                 {
                     if (data)
                     {
-                        return moment.utc(data).local().format('MM/DD/YYYY');
+                        return moment(data).local().format('MM/DD/YYYY');
                     } else
                     {
                         return '-----';
