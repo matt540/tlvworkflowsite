@@ -5094,12 +5094,13 @@ class ProductsQuotationRepository extends EntityRepository {
      public function webhooks_workflow_wpproductid() {
 
         $query = $this->em->createQueryBuilder()
-                ->select('p.wp_product_id')
+                ->select('u.name','p.wp_product_id','p.wp_published_date')
                 ->from('App\Entities\Products_quotation', 'p')
                 ->leftJoin('p.product_id', 'u')
                 ->where('p.wp_product_id != :wp_product_id')
                 ->setParameter('wp_product_id', '')
-                ->getQuery();
+            ->andWhere('p.wp_published_date IS NULL')
+            ->getQuery();
 
         $data = $query->getResult(Query::HYDRATE_ARRAY);
 

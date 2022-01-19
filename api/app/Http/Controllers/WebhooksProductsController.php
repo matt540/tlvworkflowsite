@@ -109,7 +109,7 @@ class WebhooksProductsController extends Controller {
 
                 $cat_product = $this->sub_category_repo->SubCategoryOfWpId($categories_val['id']);
 
-                if (count($cat_product) > 0) {
+                if (!empty($cat_product)) {
                     $data_product['product_category'][] = $cat_product;
                 }
 
