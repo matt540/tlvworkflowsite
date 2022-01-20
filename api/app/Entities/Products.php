@@ -76,7 +76,7 @@ class Products
 
     /**
 
-     * 
+     *
 
      * @ORM\Column(type="string", nullable=true)
 
@@ -88,7 +88,7 @@ class Products
 
     /**
 
-     * 
+     *
 
      * @ORM\Column(type="text", nullable=true)
 
@@ -100,7 +100,7 @@ class Products
 
     /**
 
-     * 
+     *
 
      * @ORM\Column(type="string", nullable=true)
 
@@ -112,7 +112,7 @@ class Products
 
     /**
 
-     * 
+     *
 
      * @ORM\Column(type="string", nullable=true)
 
@@ -139,7 +139,7 @@ class Products
      */
 
     protected $price;
-    
+
     /**
 
      * @ORM\Column(type="string", nullable=true)
@@ -517,8 +517,8 @@ class Products
      */
 
     protected $category;
-    
-    
+
+
     /**
      *
      * @ORM\ManyToOne(targetEntity="subcategory",inversedBy="products")
@@ -677,7 +677,7 @@ class Products
      */
 
     protected $local_drop_off;
-    
+
      /**
 
      * @ORM\Column(type="string", nullable=true)
@@ -789,7 +789,7 @@ class Products
 
 
 
-        $this->approved_date = isset($data['is_set_approved_date']) ? new \DateTime() : NULL;
+        $this->approved_date = isset($data['is_set_approved_date']) ? $data['is_set_approved_date'] : NULL;
 
         $this->is_touched = isset($data['is_touched']) ? $data['is_touched'] : 0;
 
@@ -800,7 +800,7 @@ class Products
         $this->ship_cat = isset($data['ship_cat']) ? $data['ship_cat'] : '';
 
         $this->flat_rate_packaging_fee = isset($data['flat_rate_packaging_fee']) ? $data['flat_rate_packaging_fee'] : '';
-        
+
         $this->product_material = isset($data['product_material']) ? $data['product_material'] : null;
         $this->product_materials = isset($data['product_materials']) ? $data['product_materials'] : null;
 
@@ -1218,7 +1218,7 @@ class Products
         $this->price = $price;
 
     }
-    
+
     function getTLVPrice()
 
     {
@@ -1765,7 +1765,7 @@ class Products
     function set_product_material($product_material) {
         $this->product_material = $product_material;
     }
-    
+
         // many to many
     function get_product_materials() {
         return $this->product_materials;
@@ -1784,7 +1784,7 @@ class Products
     {
         $this->local_drop_off = $value;
     }
-    
+
     function getLocal_drop_off_city()
     {
         return $this->local_drop_off_city;
