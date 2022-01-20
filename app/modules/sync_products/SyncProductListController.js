@@ -480,9 +480,9 @@ app.controller('SyncProductOrderController', function ($document, $mdDialog, $ro
 
                     var order_list = JSON.parse(value.order_list);
 
-                    $scope.orders[key].date_created = formatDate(value.created_at);
+                    $scope.orders[key].date_created = formatDate(value.date_created);
 
-                   
+                   console.log(value.created_at);
 
                     angular.forEach(order_list, function (value_order_list, key_order_list) {
 
