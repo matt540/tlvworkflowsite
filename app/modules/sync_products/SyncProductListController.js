@@ -468,8 +468,8 @@ app.controller('SyncProductOrderController', function ($document, $mdDialog, $ro
                 }
                 
                 
-                //  console.log($scope.wp_published_date);
-                
+                  console.log(response.data.data);
+
 
                 angular.forEach($scope.orders, function (value, key) {
                     $scope.orders[key].billing = JSON.parse(value.billing);
@@ -480,9 +480,9 @@ app.controller('SyncProductOrderController', function ($document, $mdDialog, $ro
 
                     var order_list = JSON.parse(value.order_list);
 
-                    $scope.orders[key].date_created = formatDate(value.date_created);
+                    $scope.orders[key].date_created = formatDate(value.date_created.date);
 
-                   console.log(value.created_at);
+
 
                     angular.forEach(order_list, function (value_order_list, key_order_list) {
 
