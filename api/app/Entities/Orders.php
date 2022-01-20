@@ -391,7 +391,7 @@ class Orders
     */
 
     protected $buyer_user_role;
-    
+
      /**
 
      * @ORM\Column(type="string", nullable=true)
@@ -423,8 +423,8 @@ class Orders
         $this->product_id = isset($data['product_id']) ? $data['product_id'] : '';
         $this->status = isset($data['status']) ? $data['status'] : '';
         $this->currency = isset($data['currency']) ? $data['currency'] : '';
-        $this->date_created = isset($data['date_created']) ? new \DateTime() : NULL;
-        $this->date_modified = isset($data['date_modified']) ? new \DateTime() : NULL;
+        $this->date_created = isset($data['date_created']) ? $data['date_created'] : NULL;
+        $this->date_modified = isset($data['date_modified']) ? $data['date_modified'] : NULL;
         $this->discount_total = isset($data['discount_total']) ? $data['discount_total'] : '';
         $this->discount_tax = isset($data['discount_tax']) ? $data['discount_tax'] : '';
         $this->shipping_total = isset($data['shipping_total']) ? $data['shipping_total'] : '';
@@ -440,8 +440,8 @@ class Orders
         $this->payment_method = isset($data['payment_method']) ? $data['payment_method'] : '';
         $this->payment_method_title = isset($data['payment_method_title']) ? $data['payment_method_title'] : '';
         $this->transaction_id = isset($data['transaction_id']) ? $data['transaction_id'] : '';
-        $this->date_paid = isset($data['date_paid']) ? new \DateTime() : NULL;
-        $this->date_completed = isset($data['date_completed']) ? new \DateTime() : NULL;
+        $this->date_paid = isset($data['date_paid']) ? $data['date_paid'] : NULL;
+        $this->date_completed = isset($data['date_completed']) ? $data['date_completed'] : NULL;
         $this->cart_hash = isset($data['cart_hash']) ? $data['cart_hash'] : '';
         $this->meta_data = isset($data['meta_data']) ? $data['meta_data'] : '';
         $this->line_items = isset($data['line_items']) ? $data['line_items'] : '';
@@ -1043,7 +1043,7 @@ class Orders
         $this->buyer_user_role = $value;
 
     }
-    
+
     function getTlv_make_an_offer()
     {
 

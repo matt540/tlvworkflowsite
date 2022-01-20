@@ -91,9 +91,9 @@ class WebhooksOrdersController extends Controller {
                     $this->orders_repo->create($prepared_data);
                 }
             } else {
-   
-                foreach ($request->line_items as $key => $line_items) {                    
-                    
+
+                foreach ($request->line_items as $key => $line_items) {
+
                         $orders_product = $this->orders_repo->getProductOrderSelect($request->id, $line_items['product_id']);
                         $data['product_id'] = $line_items['product_id'];
                         $data['line_items_product'] = json_encode($line_items);
@@ -104,7 +104,7 @@ class WebhooksOrdersController extends Controller {
 
                             $this->orders_repo->create($prepared_data);
                         }
-                   
+
                 }
             }
         }
