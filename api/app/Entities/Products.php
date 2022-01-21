@@ -789,7 +789,7 @@ class Products
 
 
 
-        $this->approved_date = isset($data['is_set_approved_date']) ? $data['is_set_approved_date'] : NULL;
+        $this->approved_date = isset($data['is_set_approved_date']) ? new \DateTime() : NULL;
 
         $this->is_touched = isset($data['is_touched']) ? $data['is_touched'] : 0;
 
