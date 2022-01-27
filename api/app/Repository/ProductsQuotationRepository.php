@@ -87,8 +87,6 @@ class ProductsQuotationRepository extends EntityRepository {
         if (isset($data['condition_note'])) {
 
             $product_quotation->setConditionNote($data['condition_note']);
-        }else{
-            $product_quotation->setConditionNote('');
         }
 
         if (isset($data['commission'])) {

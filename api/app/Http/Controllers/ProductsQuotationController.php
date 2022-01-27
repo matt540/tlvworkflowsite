@@ -4160,6 +4160,8 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 $data['assign_agent_id'] = $this->user_repo->UserOfId($data['assign_agent_id']);
             }
 
+            $data['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
+
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 
                 return response()->json('Product Updated Successfully', 200);
@@ -4503,10 +4505,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 $data2['dimension_description'] = $data['dimension_description'];
             }
 
-            if (isset($data['condition_note'])) {
-
-                $data2['condition_note'] = $data['condition_note'];
-            }
+            $data2['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
 
             if (isset($data['delivery_option'])) {
 
