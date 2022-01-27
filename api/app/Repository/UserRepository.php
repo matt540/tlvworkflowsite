@@ -119,12 +119,12 @@ class UserRepository extends EntityRepository {
     public function getAllAgents() {
         $ids = [3];
 
-        // 43 - Kyla Sullivan 
-        // 25 - Anna Brown 
+        // 43 - Kyla Sullivan
+        // 25 - Anna Brown
         // 6 - Betsy Perry
         // 7 - Patricia Espinosa
-        
-        $user_ids = [43, 25, 6, 7];
+
+        $user_ids = [43, 25, 6, 7, 50];
 
         $query = $this->em->createQueryBuilder()
                 ->select('u')
@@ -457,8 +457,8 @@ class UserRepository extends EntityRepository {
     }
 
     public function getUserByEmail($email) {
-        
-        
+
+
         $query = $this->em->createQueryBuilder()
                 ->select('u', 'r')
                 ->from('App\Entities\Users', 'u')
@@ -467,8 +467,8 @@ class UserRepository extends EntityRepository {
                 ->where('u.email = :email')
                 ->setParameter('email', $email)
                 ->getQuery();
-        
-      
+
+
         $data = $query->getResult(Query::HYDRATE_ARRAY);
 
         if (count($data) > 0) {
