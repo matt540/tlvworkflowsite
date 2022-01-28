@@ -3345,6 +3345,9 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
             unset($data['product_id']);
 
+            $data['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
+            $data['price'] =  isset($data['price']) ? $data['price'] : '';
+
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 
                 return response()->json('Product Updated Successfully', 200);
@@ -4161,6 +4164,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             }
 
             $data['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
+            $data['price'] =  isset($data['price']) ? $data['price'] : '';
 
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 
