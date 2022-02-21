@@ -3347,6 +3347,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
             $data['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
             $data['price'] =  isset($data['price']) ? $data['price'] : '';
+            $data['note'] =  isset($data['note']) ? $data['note'] : '';
 
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 
@@ -4165,6 +4166,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
             $data['condition_note'] =  isset($data['condition_note']) ? $data['condition_note'] : '';
             $data['price'] =  isset($data['price']) ? $data['price'] : '';
+            $data['note'] =  isset($data['note']) ? $data['note'] : '';
 
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 

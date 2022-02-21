@@ -473,9 +473,9 @@ class ExportController extends Controller {
     .border_bottom{
         border-bottom: 1px;
     }
-                
-                
-</style>            
+
+
+</style>
 EOF;
         $html = '';
         $html .= '<table width="100%" cellpadding="2" cellspacing="2">';
@@ -560,7 +560,7 @@ EOF;
                 $html .= '$' . $product_quote['tlv_price'];
                 $html .= '  </td>';
                 $html .= '</tr>';
-                
+
                  $html .= '<tr>';
                 $html .= '  <th align="center" style="border-left:1px solid black;">';
                 $html .= '  <b>Dropoff by Consignor Required </b>';
@@ -571,12 +571,12 @@ EOF;
                 }else{
                     $html .=   '-';
                 }
-                
+
                 $html .= '  </td>';
                 $html .= '</tr>';
 
                 if (isset($details['isForClient']) && $details['isForClient'] == true) {
-                    
+
                 } else {
                     $html .= '<tr>';
                     $html .= '  <th align="center" style="border-left:1px solid black;">';
@@ -618,9 +618,9 @@ EOF;
                 "verify_peer_name" => false,
             ]
         ];
-        
+
         $content = file_get_contents($filename, false, stream_context_create($stream_opts));
-        
+
         $file_size = \File::size($filename);
 
         // 68 mb
@@ -737,18 +737,18 @@ EOF;
     .border_bottom{
         border-bottom: 1px;
     }
-                
-                
+
+
 </style>
-                
-              
-                
+
+
+
 EOF;
 
 //        $pdf->writeHTML($html, true, false, true, false, '');
 
 //        $html = '
-//<div style="text-align: center; color: #000;">            
+//<div style="text-align: center; color: #000;">
 //<h3 style="color: black;">' . $seller->getFirstname() . ' ' . $seller->getLastname() . '</h3><br>
 //<h4 style="color: black;">' . $seller->getAddress() . '</h4><br>
 //<h4 style="color: black;">' . $seller->getPhone() . '</h4><br>
@@ -869,7 +869,7 @@ EOF;
                 $html .= '$' . $product_quote['tlv_price'];
                 $html .= '  </td>';
                 $html .= '</tr>';
-                
+
                  $html .= '<tr>';
                 $html .= '  <th align="center" style="border-left:1px solid black;">';
                 $html .= '  <b>Dropoff by Consignor Required </b>';
@@ -880,12 +880,12 @@ EOF;
                 }else{
                     $html .=   '-';
                 }
-                
+
                 $html .= '  </td>';
                 $html .= '</tr>';
 
                 if (isset($details['isForClient']) && $details['isForClient'] == true) {
-                    
+
                 } else {
                     $html .= '<tr>';
                     $html .= '  <th align="center" style="border-left:1px solid black;">';
@@ -1068,18 +1068,18 @@ EOF;
     .border_bottom{
         border-bottom: 1px;
     }
-                
-                
+
+
 </style>
-                
-              
-                
+
+
+
 EOF;
 
         $pdf->writeHTML($html, true, false, true, false, '');
 
 //        $html = '
-//<div style="text-align: center; color: #000;">            
+//<div style="text-align: center; color: #000;">
 //<h3 style="color: black;">' . $seller->getFirstname() . ' ' . $seller->getLastname() . '</h3><br>
 //<h4 style="color: black;">' . $seller->getAddress() . '</h4><br>
 //<h4 style="color: black;">' . $seller->getPhone() . '</h4><br>
@@ -1203,7 +1203,7 @@ EOF;
             $html .= '</tr>';
 
             if (isset($details['isForClient']) && $details['isForClient'] == true) {
-                
+
             } else {
                 $html .= '<tr>';
                 $html .= '  <th align="center" style="border-left:1px solid black;">';
@@ -1335,7 +1335,7 @@ EOF;
         $suggested_tlv_price_rows = [];
         $count = 11;
         foreach ($data['details']['products'] as $key => $value) {
-            
+
             if ($value['is_send_mail'] == 1) {
                 $product_quote = $this->product_quotation_repo->getProductQuotationById($value['id']);
 
@@ -1382,7 +1382,7 @@ EOF;
 
         // $file_name = 'demo.xlsx';
         // $file = 'public/exports/'.$file_name;
-        
+
         // $export = new ProductWordProposalExport($data);
         $export = new ProductWordProposalExport($export_data, $data['seller'], $suggested_tlv_price_rows);
 
@@ -1390,10 +1390,10 @@ EOF;
         ob_start();
         // Excel::store(new StorageProductsExport, $file);
         Excel::store($export, $file);
-        
+
         $path = asset('api/storage/exports/'.$file_name);
         return $path;
-        
+
 
 // dd($data);
         // return Excel::download(new ProductWordProposalExport, 'users.xlsx');
@@ -1564,7 +1564,7 @@ EOF;
 //                        ));
 //                        $j++;
                         if (isset($data['details']['isForClient']) && $data['details']['isForClient'] == true) {
-                            
+
                         } else {
                             $sheet->row($j, array(
                                 'Internal Note',
@@ -1659,7 +1659,7 @@ EOF;
 
             $this->mail_record_repo->create($prepared_data2);
         } else {
-            
+
         }
 
 
@@ -1739,7 +1739,7 @@ EOF;
 //                        'height' => 100,
 //                        'marginLeft' => 100,
 //                        'marginTop' => 200));
-//                    
+//
 //                }
 //            }
 //        }
@@ -1910,7 +1910,7 @@ EOF;
 //                        ));
 //                        $j++;
                     if (isset($data['details']['isForClient']) && $data['details']['isForClient'] == true) {
-                        
+
                     } else {
                         $sheet->row($j, array(
                             'Internal Note',
@@ -2006,7 +2006,7 @@ EOF;
 
             $this->mail_record_repo->create($prepared_data2);
         } else {
-            
+
         }
 
 
@@ -2086,7 +2086,7 @@ EOF;
 //                        'height' => 100,
 //                        'marginLeft' => 100,
 //                        'marginTop' => 200));
-//                    
+//
 //                }
 //            }
 //        }
@@ -2441,7 +2441,7 @@ EOF;
 //        $file_content=readfile($filename);
 //        header('Content-Disposition: inline');
 //        header('Content-Type: appication/msword'  );
-//        $content1 = readfile(config('app.url') . '/api/../Uploads/word/' . $file . '.docx'); 
+//        $content1 = readfile(config('app.url') . '/api/../Uploads/word/' . $file . '.docx');
 //        $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Word2007');
 //        $content1 = $objReader->load(config('app.url') . '/api/../Uploads/word/' . $file . '.docx');
 //        $content1 = file_get_contents(config('app.url') . '/api/../Uploads/word/' . $file . '.docx');
@@ -2622,15 +2622,15 @@ EOF;
         text-transform: capitalize;
     }
 </style>
-                
-              
-                
+
+
+
 EOF;
 
         $pdf->writeHTML($html, true, false, true, false, '');
 
         $html = '
-<div style="text-align: center; color: #000;">            
+<div style="text-align: center; color: #000;">
 <h3 style="color: black;">' . $seller->getFirstname() . ' ' . $seller->getLastname() . '</h3><br>
 <h4 style="color: black;">' . $seller->getAddress() . '</h4><br>
 <h4 style="color: black;">' . $seller->getPhone() . '</h4><br>
@@ -2724,9 +2724,9 @@ EOF;
     }
     .border_bottom{
         border-bottom: 1px;
-    }         
-</style>       
-                
+    }
+</style>
+
 EOF;
 
         $pdf->writeHTML($html, true, false, true, false, '');
