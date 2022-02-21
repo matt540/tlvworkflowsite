@@ -26,14 +26,14 @@ class EmailController extends Controller
 
     public function sendMail($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-       // $email = 'webdeveloper1011@gmail.com';
+        // $email = 'webdeveloper1011@gmail.com';
         $mail = null;
 
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
 
         try {
-           // $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
+            // $mail->SMTPDebug = 1;
+            $mail->isSMTP();
 //            $mail->Host = 'smtp.dreamhost.com'; // smtp host
 //            $mail->SMTPAuth = true;
 //            $mail->Username = 'developer@esparkbizmail.com'; // sender username
@@ -45,7 +45,7 @@ class EmailController extends Controller
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = 'The Local Vault';
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -54,7 +54,7 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-      //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
             $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
@@ -95,7 +95,7 @@ class EmailController extends Controller
                     // Content is not encrypted.
                 } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
                     Log::info($e);
-                   // Content is not encrypted.
+                    // Content is not encrypted.
                 } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
                     Log::info($e);
                 } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
@@ -106,7 +106,7 @@ class EmailController extends Controller
             Log::info($e);
             return 0;
         } catch (Exception $e) {
-           Log::info($e);
+            Log::info($e);
             return 0;
         }
 
@@ -115,13 +115,13 @@ class EmailController extends Controller
 
     public function sendMailONLY($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-     //   $email = 'webdeveloper1011@gmail.com';
+        //   $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
-           // $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
+            // $mail->SMTPDebug = 1;
+            $mail->isSMTP();
 //            $mail->Host = 'smtp.dreamhost.com'; // smtp host
 //            $mail->SMTPAuth = true;
 //            $mail->Username = 'developer@esparkbizmail.com'; // sender username
@@ -133,7 +133,7 @@ class EmailController extends Controller
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = 'The Local Vault';
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -143,7 +143,7 @@ class EmailController extends Controller
                 }
             }
 
-    //        $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            //        $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
             $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
@@ -193,14 +193,14 @@ class EmailController extends Controller
 
     public function sendMailSellerAgreement($email, $subject, $message, $attachments = array(), $bccs = array(), $ccs = array(), $other_emails = array())
     {
-       // $email = 'webdeveloper1011@gmail.com';
+        // $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
 
-           // $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
+            // $mail->SMTPDebug = 1;
+            $mail->isSMTP();
 //            $mail->Host = 'smtp.dreamhost.com'; // smtp host
 //            $mail->SMTPAuth = true;
 //            $mail->Username = 'developer@esparkbizmail.com'; // sender username
@@ -212,7 +212,7 @@ class EmailController extends Controller
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = 'The Local Vault';
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
 
             $folder_path = '../Uploads/default_pdf/';
 
@@ -221,7 +221,7 @@ class EmailController extends Controller
                     $mail->AddAttachment($folder_path . $value, 'File');
                 }
             }
-      //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            //      $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
             $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
@@ -255,13 +255,13 @@ class EmailController extends Controller
 
     public function sendMail1($email, $subject, $message, $attachments = array(), $bccs = array())
     {
-      //  $email = 'webdeveloper1011@gmail.com';
+        //  $email = 'webdeveloper1011@gmail.com';
 
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
-          //  $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
+            //  $mail->SMTPDebug = 1;
+            $mail->isSMTP();
 //            $mail->Host = 'smtp.dreamhost.com'; // smtp host
 //            $mail->SMTPAuth = true;
 //            $mail->Username = 'developer@esparkbizmail.com'; // sender username
@@ -273,11 +273,11 @@ class EmailController extends Controller
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = 'The Local Vault';
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
 
-         //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
-           $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
+            $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
             $mail->MsgHTML($message);
 //            $mail->addAddress('sell@thelocalvault.com');
@@ -314,8 +314,8 @@ class EmailController extends Controller
         $mail = null;
         $mail = new PHPMailer(true); // notice the \  you have to use root namespace here
         try {
-         //   $mail->SMTPDebug = 1;
-//            $mail->isSMTP();
+            //   $mail->SMTPDebug = 1;
+            $mail->isSMTP();
 //            $mail->Host = 'smtp.dreamhost.com'; // smtp host
 //            $mail->SMTPAuth = true;
 //            $mail->Username = 'developer@esparkbizmail.com'; // sender username
@@ -327,14 +327,14 @@ class EmailController extends Controller
             $mail->Host = 'smtp.mandrillapp.com';
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = 'The Local Vault';
-            $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+            $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
 
             if (count($attachments) > 0) {
                 foreach ($attachments as $key => $value) {
                     $mail->AddAttachment($path . $value, 'File');
                 }
             }
-         //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
+            //   $mail->setFrom("developer@esparkbizmail.com", "The Local Vault");
 
             $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
             $mail->Subject = $subject;
@@ -357,3 +357,4 @@ class EmailController extends Controller
         return 1;
     }
 }
+

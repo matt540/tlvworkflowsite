@@ -764,9 +764,10 @@ Route::get('testroute', function()
 
         $subject = 'test subject111';
         $message = 'test message222';
-        $email = 'ashvin.dudhat@esparkbizmail.com';
+        $email = 'jaykishan@esparkinfo.com';
 
-//        $mail->isSMTP();
+        $mail->isSMTP();
+        //    $mail->SMTPDebug = true;
 //        $mail->SMTPAuth = true;  // use smpt auth
 //        $mail->Host = 'smtp.mandrillapp.com';
 //        $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
@@ -781,7 +782,7 @@ Route::get('testroute', function()
         $mail->Host = 'smtp.mandrillapp.com';
         $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
         $mail->Username = 'The Local Vault';
-        $mail->Password = 'NurhoIS1lMhoQLWKep1ebA';
+        $mail->Password = 'qvDgdRzAVBHadrQX28K8zw';
         $mail->setFrom("sell@thelocalvault.com", "The Local Vault");
 
         $mail->Subject = $subject;
@@ -813,9 +814,11 @@ Route::get('testroute', function()
         }
     } catch (phpmailerException $e) {
         Log::info($e);
+        dd($e);
         return 0;
     } catch (Exception $e) {
         Log::info($e);
+        dd($e);
         return 0;
     }
 

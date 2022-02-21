@@ -3349,6 +3349,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $data['price'] =  isset($data['price']) ? $data['price'] : '';
             $data['note'] =  isset($data['note']) ? $data['note'] : '';
 
+
             if ($this->product_quotation_repo->update($product_quot, $data)) {
 
                 return response()->json('Product Updated Successfully', 200);
