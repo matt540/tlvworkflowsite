@@ -470,17 +470,17 @@ class ProductController extends Controller {
 
         if (isset($data['product_condition_cat'])) {
 
-            $productDetails['product_con'] = $this->sub_category_repo->SubCategoryOfId($data['product_condition_cat']);
+            $productDetails['product_con'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_condition_cat']);
         }
 
         if (isset($data['product_color_cat'])) {
 
-            $productDetails['product_color'] = $this->sub_category_repo->SubCategoryOfId($data['product_color_cat']);
+            $productDetails['product_color'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_color_cat']);
         }
 
         if (isset($data['product_material_cat'])) {
 
-            $productDetails['product_materials'] = $this->sub_category_repo->SubCategoryOfId($data['product_material_cat']);
+            $productDetails['product_materials'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_material_cat']);
         }
 
 
