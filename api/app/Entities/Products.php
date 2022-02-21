@@ -686,6 +686,14 @@ class Products
 
     protected $local_drop_off_city;
 
+    /**
+
+     * @ORM\Column(type="string", nullable=true)
+
+     */
+
+    protected $pending_sell_measurment;
+
 
 
     public function __construct($data)
@@ -806,6 +814,7 @@ class Products
 
         $this->local_drop_off = isset($data['local_drop_off']) ? $data['local_drop_off'] : 0;
         $this->local_drop_off_city = isset($data['local_drop_off_city']) ? $data['local_drop_off_city'] : NULL;
+        $this->pending_sell_measurment = isset($data['pending_sell_measurment']) ? $data['pending_sell_measurment'] : NULL;
 
     }
 
@@ -1793,6 +1802,16 @@ class Products
     function setLocal_drop_off_city($value)
     {
         $this->local_drop_off_city = $value;
+    }
+
+    function getPending_sell_measurment()
+    {
+        return $this->pending_sell_measurment;
+    }
+
+    function setPending_sell_measurment($value)
+    {
+        $this->pending_sell_measurment = $value;
     }
 
 }

@@ -426,23 +426,23 @@ class ProductController extends Controller {
 //
 //            $productDetails['brand_local'] = $data['product_brand'];
 //        }
-
-        if (isset($data['product_condition'])) {
-
-            if ($data['product_condition'] == "4361") {
-
-                $productDetails['condition_local'] = "Excellent";
-            } else if ($data['product_condition'] == "4815") {
-
-                $productDetails['condition_local'] = "Very Good";
-            } else if ($data['product_condition'] == "4363") {
-
-                $productDetails['condition_local'] = "Good";
-            } else if ($data['product_condition'] == "4364") {
-
-                $productDetails['condition_local'] = "Fair";
-            }
-        }
+//
+//        if (isset($data['product_condition'])) {
+//
+//            if ($data['product_condition'] == "4361") {
+//
+//                $productDetails['condition_local'] = "Excellent";
+//            } else if ($data['product_condition'] == "4815") {
+//
+//                $productDetails['condition_local'] = "Very Good";
+//            } else if ($data['product_condition'] == "4363") {
+//
+//                $productDetails['condition_local'] = "Good";
+//            } else if ($data['product_condition'] == "4364") {
+//
+//                $productDetails['condition_local'] = "Fair";
+//            }
+//        }
 
         if (isset($data['product_cat'])) {
 
@@ -466,6 +466,23 @@ class ProductController extends Controller {
                 $productDetails['category_local'] = "Accessories";
             }
         }
+
+
+        if (isset($data['product_condition_cat'])) {
+
+            $productDetails['product_con'][] = $this->sub_category_repo->SubCategoryOfId($data['product_condition_cat']);
+        }
+
+        if (isset($data['product_color_cat'])) {
+
+            $productDetails['product_color'][] = $this->sub_category_repo->SubCategoryOfId($data['product_color_cat']);
+        }
+
+        if (isset($data['product_material_cat'])) {
+
+            $productDetails['product_materials'][] = $this->sub_category_repo->SubCategoryOfId($data['product_material_cat']);
+        }
+
 
         if (isset($data['loc_type'])) {
 
@@ -601,6 +618,11 @@ class ProductController extends Controller {
         if (isset($data['pending-sell-city'])) {
 
             $productDetails['city'] = $data['pending-sell-city'];
+        }
+
+        if (isset($data['pending_sell_measurment'])) {
+
+            $productDetails['pending_sell_measurment'] = $data['pending_sell_measurment'];
         }
 
         if (isset($data['pending-sell-ship-size'])) {
