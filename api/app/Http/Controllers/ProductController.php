@@ -404,21 +404,16 @@ class ProductController extends Controller {
 
         $data = $request->all();
 
-
-
         Log::info(json_encode($data));
 
         $productDetails = array();
-
         $productDetails['wp_product_id'] = $data['pending-sell-id'];
 
         if (isset($data['image_src'])) {
-
             $productDetails['wp_image_url'] = $data['image_src'];
         }
 
         if (isset($data['petfree'])) {
-
             $productDetails['pet_free'] = $data['petfree'];
         }
 
@@ -445,200 +440,113 @@ class ProductController extends Controller {
 //        }
 
         if (isset($data['product_cat'])) {
-
             if ($data['product_cat'] == "2926") {
-
                 $productDetails['category_local'] = "Seating";
             } else if ($data['product_cat'] == "2929") {
-
                 $productDetails['category_local'] = "Tables";
             } else if ($data['product_cat'] == "2941") {
-
                 $productDetails['category_local'] = "Storage";
             } else if ($data['product_cat'] == "2935") {
-
                 $productDetails['category_local'] = "Lighting";
             } else if ($data['product_cat'] == "2977") {
-
                 $productDetails['category_local'] = "Rugs";
             } else if ($data['product_cat'] == "2932") {
-
                 $productDetails['category_local'] = "Accessories";
             }
         }
-
-
         if (isset($data['product_condition_cat'])) {
-
             $productDetails['product_con'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_condition_cat']);
         }
-
         if (isset($data['product_color_cat'])) {
-
             $productDetails['product_color'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_color_cat']);
         }
-
         if (isset($data['product_material_cat'])) {
-
             $productDetails['product_materials'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_material_cat']);
         }
 
-
         if (isset($data['loc_type'])) {
-
             if ($data['loc_type'] == 'sellerhome') {
-
                 $productDetails['pick_up_location'] = $this->option_repo->OptionOfId(22);
             }
-
 //            else if ($data['loc_type'] == 'sellerhome')
 //            {
 //                 $productDetails['pick_up_location'] = $this->option_repo->OptionOfId(22);
 //            }
         }
-
-
-
         $productDetails['product_pending_images'] = array();
 
         if (isset($data['image_src'])) {
 
             $filename_main = str_random(25) . '.' . pathinfo($data['image_src'], PATHINFO_EXTENSION);
-
             $destinationPath_main = public_path() . '/../../Uploads/product/' . $filename_main;
-
             copy($data['image_src'], $destinationPath_main);
 
-
-
-
-
             //create thumb start
-
             @mkdir(public_path() . '/../../Uploads/product/' . 'thumb', 0777);
-
             $img = Image::make($destinationPath_main);
-
             $img->resize(150, 150);
-
             $img->save(public_path() . '/../../Uploads/product/' . 'thumb/' . $filename_main);
-
             //create thumb end
-
-
-
             $imageData_main = array();
-
             $imageData_main['name'] = $filename_main;
-
             $preparedData_main = $this->image_repo->prepareData($imageData_main);
-
-
-
-
-
             $imageid_main = $this->image_repo->create($preparedData_main);
-
             $productDetails['product_pending_images'][] = $this->image_repo->ImageOfId($imageid_main);
         }
 
-
-
         if (count(json_decode($data['gallery_imgs'])) > 0) {
-
             foreach (json_decode($data['gallery_imgs']) as $key => $value) {
 
                 $filename = str_random(25) . '.' . pathinfo($value, PATHINFO_EXTENSION);
-
                 $destinationPath = public_path() . '/../../Uploads/product/' . $filename;
-
                 copy($value, $destinationPath);
-
-
-
                 //create thumb start
-
                 @mkdir(public_path() . '/../../Uploads/product/' . 'thumb', 0777);
-
                 $img = Image::make($destinationPath);
-
                 $img->resize(150, 150);
-
-
-
                 $img->save(public_path() . '/../../Uploads/product/' . 'thumb/' . $filename);
-
                 //create thumb end
 
-
-
-
-
                 $imageData = array();
-
                 $imageData['name'] = $filename;
-
                 $preparedData = $this->image_repo->prepareData($imageData);
-
                 $imageid = $this->image_repo->create($preparedData);
 
                 $productDetails['product_pending_images'][] = $this->image_repo->ImageOfId($imageid);
             }
         }
-
-
-
-
-
         if (array_key_exists('pending-sell-title', $data)) {
-
             $productDetails['name'] = $data['pending-sell-title'];
         }
-
         if (array_key_exists('pending-sell-price', $data)) {
-
             $productDetails['price'] = $data['pending-sell-price'];
         }
-
         if (array_key_exists('pending-sell-quan', $data)) {
-
             $productDetails['quantity'] = $data['pending-sell-quan'];
         }
-
         if (array_key_exists('pending-sell-desc', $data)) {
-
             $productDetails['description'] = $data['pending-sell-desc'];
         }
-
         if (isset($data['pending-sell-state'])) {
-
             $productDetails['state'] = $data['pending-sell-state'];
         }
-
         if (isset($data['pending-sell-city'])) {
-
             $productDetails['city'] = $data['pending-sell-city'];
         }
-
         if (isset($data['pending_sell_measurment'])) {
-
             $productDetails['pending_sell_measurment'] = $data['pending_sell_measurment'];
         }
-
         if (isset($data['pending-sell-ship-size'])) {
-
             $productDetails['ship_size'] = $data['pending-sell-ship-size'];
         }
-
         if (isset($data['pending-sell-ship-material'])) {
             if ($data['pending-sell-ship-material'] == 'on') {
-
                 $productDetails['ship_material'] = 1;
             } else {
-
                 $productDetails['ship_material'] = 0;
             }
         }
+
 
 //        $productDetails['room'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_room_tax']);
 //        $productDetails['look'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_look_tax']);
@@ -656,54 +564,78 @@ class ProductController extends Controller {
             $productDetails['brand'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_brand']);
         }
 
-
         $productDetails['status'] = $this->option_repo->OptionOfId(6);
-
         $productDetails['sellerid'] = $this->seller_repo->SellerOfWpId($data['seller_id']);
 
         if ($productDetails['sellerid']->getFirstname() != '' && $productDetails['sellerid']->getLastname() != '') {
-
             $productDetails['sku'] = substr($productDetails['sellerid']->getFirstname(), 0, 3) . substr($productDetails['sellerid']->getLastname(), 0, 3);
         } else {
-
             $productDetails['sku'] = substr($productDetails['sellerid']->getDisplayname(), 0, 3);
         }
 
         $sku_number = $productDetails['sellerid']->getLastSku();
-
         $sku_number += 1;
-
         $seller_updated_sku['is_update_last_sku'] = 1;
-
         $seller_updated_sku['last_sku'] = $sku_number;
-
         $this->seller_repo->update($productDetails['sellerid'], $seller_updated_sku);
-
-
 
 //        $productDetails['sku'] = $productDetails['sku'] . rand(1000, 100000);
 
         if ($sku_number < 100) {
-
             if ($sku_number < 10) {
-
                 $sku_number = '00' . $sku_number;
             } else {
-
                 $sku_number = '0' . $sku_number;
             }
         }
 
+        if (isset($data['units'])) {
+            $productDetails_quo['units'] = $data['units'];
+        }
+        if (isset($data['age'])) {
+            $productDetails['age'] = $this->sub_category_repo->SubCategoryOfWpId($data['age']);
+        }
+        if (isset($data['category'])) {
+            $productDetails['product_category'][] = $this->sub_category_repo->SubCategoryOfWpId($data['category']);
+        }
+
+        if (isset($data['condition_note'])) {
+            $productDetails_quo['condition_note'] = $data['condition_note'];
+        }
+        if (isset($data['width'])) {
+            $productDetails_quo['width'] = $data['width'];
+        }
+        if (isset($data['depth'])) {
+            $productDetails_quo['depth'] = $data['depth'];
+        }
+        if (isset($data['height'])) {
+            $productDetails_quo['height'] = $data['height'];
+        }
+        if (isset($data['seat_height'])) {
+            $productDetails_quo['seat_height'] = $data['seat_height'];
+        }
+        if (isset($data['arm_height'])) {
+            $productDetails_quo['arm_height'] = $data['arm_height'];
+        }
+        if (isset($data['inside_seat_depth'])) {
+            $productDetails_quo['inside_seat_depth'] = $data['inside_seat_depth'];
+        }
+        if (isset($data['dimension_description'])) {
+            $productDetails_quo['dimension_description'] = $data['dimension_description'];
+        }
+        if (isset($data['internal_notes'])) {
+            $productDetails['note'] = $data['internal_notes'];
+            $productDetails_quo['note'] = $data['internal_notes'];
+        }
+
         $productDetails['sku'] = $this->cleanString($productDetails['sku'] . $productDetails['sellerid']->getWp_seller_id() . $sku_number);
-
-
-
         $prepared_data = $this->product_repo->prepareData($productDetails);
-
-
-
         $product = $this->product_repo->create($prepared_data);
+        $product_created = $this->product_repo->ProductOfId($product);
+        $productDetails_quo['product_id'] = $product_created;
 
+        $production_quotation_prepared = $this->product_quotation_repo->prepareData($productDetails_quo);
+        $product_quotations = $this->product_quotation_repo->create($production_quotation_prepared);
 
 
 //        $introLines = array();
@@ -715,7 +647,6 @@ class ProductController extends Controller {
 //        {
 //
 //        }
-
         return response()->json($productDetails['sku'], 200);
     }
 
