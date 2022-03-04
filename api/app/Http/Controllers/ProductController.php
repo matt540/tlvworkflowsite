@@ -566,7 +566,7 @@ class ProductController extends Controller {
 
         if (isset($data['showroom_user']) && $data['showroom_user'] == 1) {
             $productDetails['status'] = $this->option_repo->OptionOfId(7);
-            $productDetails['is_awaiting_contract'] = 1;
+            $productDetails_quo['is_awaiting_contract'] = 1;
         }else{
             $productDetails['status'] = $this->option_repo->OptionOfId(6);
         }
