@@ -523,6 +523,7 @@ class ProductController extends Controller {
         }
         if (array_key_exists('pending-sell-quan', $data)) {
             $productDetails['quantity'] = $data['pending-sell-quan'];
+            $productDetails_quo['quantity'] = $data['pending-sell-quan'];
         }
         if (array_key_exists('pending-sell-desc', $data)) {
             $productDetails['description'] = $data['pending-sell-desc'];
