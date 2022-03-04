@@ -564,7 +564,7 @@ class ProductController extends Controller {
             $productDetails['brand'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_brand']);
         }
 
-        $productDetails['status'] = $this->option_repo->OptionOfId(6);
+        $productDetails['status'] = $this->option_repo->OptionOfId(7);
         $productDetails['sellerid'] = $this->seller_repo->SellerOfWpId($data['seller_id']);
 
         if ($productDetails['sellerid']->getFirstname() != '' && $productDetails['sellerid']->getLastname() != '') {
