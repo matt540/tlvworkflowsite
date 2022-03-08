@@ -520,6 +520,7 @@ class ProductController extends Controller {
         }
         if (array_key_exists('pending-sell-price', $data)) {
             $productDetails['price'] = $data['pending-sell-price'];
+            $productDetails_quo['price'] = $data['pending-sell-quan'];
         }
         if (array_key_exists('pending-sell-quan', $data)) {
             $productDetails['quantity'] = $data['pending-sell-quan'];
@@ -616,6 +617,7 @@ class ProductController extends Controller {
             $productDetails_quo['depth'] = $data['depth'];
         }
         if (isset($data['height'])) {
+
             $productDetails_quo['height'] = $data['height'];
         }
         if (isset($data['seat_height'])) {

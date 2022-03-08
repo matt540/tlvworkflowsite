@@ -5278,6 +5278,12 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             }
             $subcategory_list = implode(',', $subcategory_arr);
 
+            $brand = '';
+
+            if(!empty($value['product_id']['brand'])){
+                $brand = $value['product_id']['brand']['sub_category_name'];
+            }
+
             if (!empty($value['wp_published_date'])) {
 
                 if ($value['wp_published_date']->format('Y-m-d H:i:s') !== '-0001-11-30 00:00:00') {
@@ -5404,6 +5410,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                             $value['product_id']['name'],
                             $category_list,
                             $subcategory_list,
+                            $brand,
                             $value['product_id']['sku'],
                             $value['product_id']['quantity'],
                             $value['sort_description'],
@@ -5469,6 +5476,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                         $value['product_id']['name'],
                         $category_list,
                         $subcategory_list,
+                        $brand,
                         $value['product_id']['sku'],
                         $value['product_id']['quantity'],
                         $value['sort_description'],
