@@ -5313,8 +5313,10 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                 if($value['product_id']['sellerid'] != ''){
                     $seller_name = $value['product_id']['sellerid']['firstname'] . ' ' . $value['product_id']['sellerid']['lastname'];
+                    $seller_address = $value['product_id']['sellerid']['address'];
                 }else{
                     $seller_name = '';
+                    $seller_address = '';
                 }
 
                 if (count($order['data']) > 0) {
@@ -5407,6 +5409,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                         $products[] = array(
                             $seller_name,
+                            $seller_address,
                             $value['product_id']['name'],
                             $category_list,
                             $subcategory_list,
@@ -5473,6 +5476,7 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                     $products[] = array(
                         $seller_name,
+                        $seller_address,
                         $value['product_id']['name'],
                         $category_list,
                         $subcategory_list,
