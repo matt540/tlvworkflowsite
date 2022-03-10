@@ -558,7 +558,7 @@ class ProductController extends Controller {
             $productDetails['category'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_cat']);
         }
         if (isset($data['product_sub_cat'])) {
-            $productDetails['product_category'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_sub_cat']);
+            $productDetails['product_category'][] = $this->sub_category_repo->SubCategoryOfWpId($data['product_sub_cat']);
         }
 //        $productDetails['collection'] = $this->sub_category_repo->SubCategoryOfWpId($data['product_coll_tax']);
         if (isset($data['product_condition'])) {
