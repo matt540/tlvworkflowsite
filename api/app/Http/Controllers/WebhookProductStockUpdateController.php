@@ -51,15 +51,19 @@ class WebhookProductStockUpdateController extends Controller
 
             $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($data_val['id']);
 
-            if (isset($data_val['stock_quantity'])) {
-                $data_product_quo['wp_stock_quantity'] = $data_val['stock_quantity'];
-            }
+            if($product_quot !== null) {
 
-            if (isset($data_val['stock_status'])) {
-                $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
-            }
 
-            $this->product_quotation_repo->update($product_quot, $data_product_quo);
+                if (isset($data_val['stock_quantity'])) {
+                    $data_product_quo['wp_stock_quantity'] = $data_val['stock_quantity'];
+                }
+
+                if (isset($data_val['stock_status'])) {
+                    $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
+                }
+
+                $this->product_quotation_repo->update($product_quot, $data_product_quo);
+            }
 
         }
 
