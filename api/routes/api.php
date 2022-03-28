@@ -182,6 +182,7 @@ Route::post('webhooks_products', 'WebhooksProductsController@WebhooksProducts');
 Route::post('webhooks_orders', 'WebhooksOrdersController@WebhooksOrders');
 Route::post('webhooks_products_old', 'WebhooksProductsOldController@webhooks_products_old');
 Route::get('webhooks_workflow_wpproductid', 'WebhooksProductsOldController@webhooks_workflow_wpproductid');
+Route::post('webhooks_products_stock_update', 'WebhookProductStockUpdateController@WebhooksProductStockUpdate');
 
 
 

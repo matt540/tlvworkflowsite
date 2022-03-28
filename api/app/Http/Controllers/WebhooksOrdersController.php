@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\ProductsQuotationRepository as product_quotation_repo;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Entities\Users;
@@ -13,10 +14,11 @@ use Illuminate\Support\Facades\Log;
 
 class WebhooksOrdersController extends Controller {
 
-    public function __construct(orders_repo $orders_repo) {
-
+    public function __construct(orders_repo $orders_repo, product_quotation_repo $product_quotation_repo) {
 
         $this->orders_repo = $orders_repo;
+        $this->product_quotation_repo = $product_quotation_repo;
+
     }
 
     public function WebhooksOrders(Request $request) {
@@ -105,6 +107,23 @@ class WebhooksOrdersController extends Controller {
                             $this->orders_repo->create($prepared_data);
                         }
 
+                }
+            }
+            if (!empty($data['order_list']) && $data['order_list'] !== null) {
+                foreach ($data['order_list'] as $order_list){
+                    $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($order_list->lv_order_item_id);
+
+                    if (isset($request->stock_quantity)) {
+                        $data_product_quo['wp_stock_quantity'] = $request->stock_quantity;
+                    }
+
+                    if (isset($request->stock_status)) {
+                        $data_product_quo['wp_stock_status'] = $request->stock_status;
+                    }
+
+                    if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
+
+                    }
                 }
             }
         }
