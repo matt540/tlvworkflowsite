@@ -27,25 +27,41 @@ class WebhookProductStockUpdateController extends Controller
     {
 
         Log::info(json_encode($request->all()));
-
+        $data = $request->all();
         $data_product_quo = array();
 
-        $wp_product_id = $request->id;
+//        $wp_product_id = $request->id;
+//
+//        $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($wp_product_id);
+//
+//        if (isset($request->stock_quantity)) {
+//            $data_product_quo['wp_stock_quantity'] = $request->stock_quantity;
+//        }
+//
+//        if (isset($request->stock_status)) {
+//            $data_product_quo['wp_stock_status'] = $request->stock_status;
+//        }
+//
+//        if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
+//
+//            return response()->json('Product Updated Successfully', 200);
+//        }
 
-        $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($wp_product_id);
+        foreach ($data as $data_val) {
 
-            if (isset($request->stock_quantity)) {
-                $data_product_quo['wp_stock_quantity'] = $request->stock_quantity;
+            $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($data_val['id']);
+
+            if (isset($data_val['stock_quantity'])) {
+                $data_product_quo['wp_stock_quantity'] = $data_val['stock_quantity'];
             }
 
-            if (isset($request->stock_status)) {
-                $data_product_quo['wp_stock_status'] = $request->stock_status;
+            if (isset($data_val['stock_status'])) {
+                $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
             }
 
-            if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
+            $this->product_quotation_repo->update($product_quot, $data_product_quo);
 
-                return response()->json('Product Updated Successfully', 200);
-            }
+        }
 
     }
 
