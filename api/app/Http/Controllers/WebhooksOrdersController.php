@@ -113,12 +113,12 @@ class WebhooksOrdersController extends Controller {
                 foreach ($data['order_list'] as $order_list){
                     $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($order_list->lv_order_item_id);
 
-                    if (isset($request->stock_quantity)) {
-                        $data_product_quo['wp_stock_quantity'] = $request->stock_quantity;
+                    if (isset($order_list->lv_product_stock)) {
+                        $data_product_quo['wp_stock_quantity'] = $order_list->lv_product_stock;
                     }
 
-                    if (isset($request->stock_status)) {
-                        $data_product_quo['wp_stock_status'] = $request->stock_status;
+                    if (isset($order_list->lv_product_stock_status)) {
+                        $data_product_quo['wp_stock_status'] = $order_list->lv_product_stock_status;
                     }
 
                     if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
