@@ -95,6 +95,7 @@ class WebhooksOrdersController extends Controller {
             } else {
 
                 foreach ($request->line_items as $key => $line_items) {
+                    $data_product_quo = array();
 
                         $orders_product = $this->orders_repo->getProductOrderSelect($request->id, $line_items['product_id']);
                         $data['product_id'] = $line_items['product_id'];
@@ -107,28 +108,50 @@ class WebhooksOrdersController extends Controller {
                             $this->orders_repo->create($prepared_data);
                         }
 
-                }
-            }
-            $data_product_quo = array();
+                    $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($line_items['product_id']);
 
-            if (!empty($request->order['tlv_custom_meta']) && $request->order['tlv_custom_meta'] !== null) {
-                foreach ($request->order['tlv_custom_meta'] as $order_list){
-                    $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($order_list['lv_order_product_id']);
                     if($product_quot !== null) {
-                        if (isset($order_list['lv_product_stock'])) {
-                            $data_product_quo['wp_stock_quantity'] = $order_list['lv_product_stock'];
+                        if (isset($line_items['quantity'])) {
+                            if($product_quot->getWp_stock_quantity() > 0){
+                                $data_product_quo['wp_stock_quantity'] = $product_quot->getWp_stock_quantity() - $line_items['quantity'];
+                            }else{
+                                $data_product_quo['wp_stock_quantity'] = 0;
+                            }
                         }
 
-                        if (isset($order_list['lv_product_stock_status'])) {
-                            $data_product_quo['wp_stock_status'] = $order_list['lv_product_stock_status'];
+                        if (isset($data_product_quo['wp_stock_quantity']) && $data_product_quo['wp_stock_quantity'] == 0) {
+                            $data_product_quo['wp_stock_status'] = 'outofstock';
+                        }else{
+                            $data_product_quo['wp_stock_status'] = 'instock';
                         }
 
                         if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
-
+                            return response()->json('Successfully', 200);
                         }
                     }
+
                 }
             }
+
+//            if (!empty($request->order['tlv_custom_meta']) && $request->order['tlv_custom_meta'] !== null) {
+//                foreach ($request->order['tlv_custom_meta'] as $order_list){
+//                    $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($order_list['lv_order_product_id']);
+//                    if($product_quot !== null) {
+//                        if (isset($order_list['lv_product_stock'])) {
+//                            $data_product_quo['wp_stock_quantity'] = $order_list['lv_product_stock'];
+//                        }
+//
+//                        if (isset($order_list['lv_product_stock_status'])) {
+//                            $data_product_quo['wp_stock_status'] = $order_list['lv_product_stock_status'];
+//                        }
+//
+//                        if ($this->product_quotation_repo->update($product_quot, $data_product_quo)) {
+//
+//                        }
+//                    }
+//                }
+//            }
+
         }
     }
 
