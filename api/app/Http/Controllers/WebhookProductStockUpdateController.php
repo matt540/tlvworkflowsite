@@ -29,6 +29,7 @@ class WebhookProductStockUpdateController extends Controller
         Log::info(json_encode($request->all()));
         $data = $request->all();
         $data_product_quo = array();
+        $data_product = array();
 
 //        $wp_product_id = $request->id;
 //
@@ -51,21 +52,24 @@ class WebhookProductStockUpdateController extends Controller
 
             $product_quot = $this->product_quotation_repo->ProductQuotationOfWpProductId($data_val['id']);
 
-            if($product_quot !== null) {
+
+            $product = $this->product_repo->ProductOfId($product_quot->getProductId());
+            if($product !== null) {
 
 
-                if (isset($data_val['stock_quantity'])) {
-                    $data_product_quo['wp_stock_quantity'] = $data_val['stock_quantity'];
-                }
-
-                if (isset($data_val['stock_status'])) {
-                    $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
-                }
+//                if (isset($data_val['stock_quantity'])) {
+//                    $data_product_quo['wp_stock_quantity'] = $data_val['stock_quantity'];
+//                }
+//
+//                if (isset($data_val['stock_status'])) {
+//                    $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
+//                }
                 if (isset($data_val['lv_pro_city_name'])) {
-                    $data_product_quo['city'] = $data_val['lv_pro_city_name'];
+                    $data_product['city'] = $data_val['lv_pro_city_name'];
                 }
 
-                $this->product_quotation_repo->update($product_quot, $data_product_quo);
+//                $this->product_quotation_repo->update($product_quot, $data_product_quo);
+                $this->product_repo->update($product, $data_product);
             }
 
         }
