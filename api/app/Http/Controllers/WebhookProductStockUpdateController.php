@@ -61,6 +61,9 @@ class WebhookProductStockUpdateController extends Controller
                 if (isset($data_val['stock_status'])) {
                     $data_product_quo['wp_stock_status'] = $data_val['stock_status'];
                 }
+                if (isset($data_val['lv_pro_city_name'])) {
+                    $data_product_quo['city'] = $data_val['lv_pro_city_name'];
+                }
 
                 $this->product_quotation_repo->update($product_quot, $data_product_quo);
             }
