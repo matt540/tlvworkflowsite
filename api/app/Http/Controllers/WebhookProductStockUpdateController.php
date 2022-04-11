@@ -69,6 +69,7 @@ class WebhookProductStockUpdateController extends Controller
             }
 
         }
+        return response()->json('Successfully', 200);
 
     }
 
