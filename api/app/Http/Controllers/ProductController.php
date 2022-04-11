@@ -494,7 +494,7 @@ class ProductController extends Controller {
             $productDetails['product_pending_images'][] = $this->image_repo->ImageOfId($imageid_main);
         }
 
-        if (count(json_decode($data['gallery_imgs'])) > 0) {
+        if (isset($data['gallery_imgs']) && count(json_decode($data['gallery_imgs'])) > 0 && $data['gallery_imgs'] != '') {
             foreach (json_decode($data['gallery_imgs']) as $key => $value) {
 
                 $filename = str_random(25) . '.' . pathinfo($value, PATHINFO_EXTENSION);
