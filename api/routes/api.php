@@ -184,6 +184,8 @@ Route::post('webhooks_products_old', 'WebhooksProductsOldController@webhooks_pro
 Route::get('webhooks_workflow_wpproductid', 'WebhooksProductsOldController@webhooks_workflow_wpproductid');
 Route::post('webhooks_products_stock_update', 'WebhookProductStockUpdateController@WebhooksProductStockUpdate');
 
+Route::get('product_stuck_remove/{sku}', 'ProductStuckRemoveController@product_stuck_remove');
+
 
 
 
