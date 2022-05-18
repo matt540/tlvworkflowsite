@@ -930,6 +930,53 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
 
     }
 
+    $scope.SendDesignerConsignmentAgreement = function ()
+    {
+        var approved = [];
+        for (var i = 0; i < $scope.productStatus.length; i++)
+        {
+            if ($scope.productStatus[i].product_status_id == 7)
+            {
+                approved.push($scope.productStatus[i]);
+            }
+        }
+        console.log(approved);
+        if (approved.length > 0)
+        {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to Send designer consignment Agreement email?')
+                .ok('Yes')
+                .cancel('No');
+
+            $mdDialog.show(confirm).then(function ()
+            {
+                $rootScope.loader = true;
+                $http.post(site_settings.api_url + 'designer_consignment_agreement/send_designer_consignment_agreement', {product_status: approved, is_send_mail: 'yes'})
+                    .then(function (response)
+                    {
+                        $scope.productStatus = [];
+
+                        $rootScope.message = 'Successfully send.';
+                        $rootScope.loader = false;
+                        $rootScope.$emit("notification");
+                        $rootScope.$emit("reloadProductTable");
+                    }).catch(function (error)
+                {
+                    $rootScope.loader = false;
+                    $rootScope.message = 'Something Went Wrong.';
+                    $rootScope.$emit("notification");
+                });
+            }, function ()
+            {
+
+            });
+        } else
+        {
+            $rootScope.message = 'Please select at least one Accept.';
+            $rootScope.$emit("notification");
+        }
+    }
+
     $scope.sendPricingProposal = function ()
     {
 
@@ -3736,6 +3783,8 @@ app.controller('ProductViewController', function (product, $timeout, $mdDialog, 
     {
         $mdDialog.hide();
     };
+
+
 
 
 });

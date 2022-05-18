@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\ConsignmentAgreementWithStorageRepository;
+use App\Repository\ProductsQuotationRepository;
 use Log;
 //use App\Library\Log as MailLog;
 use Illuminate\Http\Request;
@@ -28,7 +30,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductController extends Controller {
 
-    public function __construct(product_quote_agreement_repo $product_quote_agreement_repo, mail_record_repo $mail_record_repo, seller_repo $seller_repo, schedule_repo $schedule_repo, product_quotation_repo $product_quotation_repo, image_repo $image_repo, product_approved_repo $product_approved_repo, email_template_repo $email_template_repo, option_repo $option_repo, sub_category_repo $sub_category_repo, sell_repo $sell_repo, product_repo $product_repo, user_repo $user_repo, role_repo $role_repo) {
+    public function __construct(product_quote_agreement_repo $product_quote_agreement_repo, mail_record_repo $mail_record_repo, seller_repo $seller_repo, schedule_repo $schedule_repo, product_quotation_repo $product_quotation_repo, image_repo $image_repo, product_approved_repo $product_approved_repo, email_template_repo $email_template_repo, option_repo $option_repo, sub_category_repo $sub_category_repo, sell_repo $sell_repo, product_repo $product_repo, user_repo $user_repo, role_repo $role_repo, ConsignmentAgreementWithStorageRepository $consignment_agreement_with_storage_repo, ProductsQuotationRepository $product_quote_repo) {
 
 
 
@@ -61,6 +63,9 @@ class ProductController extends Controller {
         $this->seller_repo = $seller_repo;
 
         $this->product_quote_agreement_repo = $product_quote_agreement_repo;
+        $this->consignment_agreement_with_storage_repo = $consignment_agreement_with_storage_repo;
+        $this->product_quote_repo = $product_quote_repo;
+
     }
 
     public function deleteUser(Request $request) {
@@ -1958,4 +1963,6 @@ Please let us know if you are interested!';
 //        }
 //        return preg_replace('/[^A-Za-z0-9-]/', '', $string); // Removes special chars.
 //    }
+
+
 }

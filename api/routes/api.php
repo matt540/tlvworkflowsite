@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DesignerConsignmentAgreement;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PHPMailer\PHPMailer\Exception;
@@ -66,6 +68,11 @@ Route::post('consignment_agreement_with_storage/check_agreement', 'ConsignmentAg
 Route::post('consignment_agreement_with_storage/save_agreement', 'ConsignmentAgreementWithStorageController@saveAgreement');
 
 Route::post('consignment_agreement_with_storage/send_consignment_agreement_with_storage_pro_review', 'ConsignmentAgreementWithStorageController@SendConsignmentAgreementWithStorageProReview');
+// Designer Consignment agreement
+Route::post('designer_consignment_agreement/send_designer_consignment_agreement', [DesignerConsignmentAgreement::class,'sendDesignerConsignmentAgreement']);
+Route::post('designer_consignment_agreement/check_designer_consignment_agreement', [DesignerConsignmentAgreement::class,'checkDesignerConsignmentAgreement']);
+Route::post('designer_consignment_agreement/save_designer_consignment_agreement', [DesignerConsignmentAgreement::class,'saveDesignerConsignmentAgreement']);
+
 
 
 Route::post('consignment_agreement_with_storage/send_storage_amendment_to_consignment_agreement_mail', 'ConsignmentAgreementWithStorageController@sendStorageAmendmentToConsignmentAgreementMail');
