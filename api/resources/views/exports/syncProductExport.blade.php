@@ -1,9 +1,9 @@
-<table cellpadding="0" cellspacing="0">
-    <tr class="information">
-        <td colspan="5">
+<table>
+    <tr>
+        <td>
             <table>
                 <tr>
-                    <td colspan="8"></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><b>Seller Name</b></td>
