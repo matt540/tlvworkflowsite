@@ -7,6 +7,7 @@
                 </tr>
                 <tr>
                     <td><b>Seller Name</b></td>
+                    <td><b>Seller Email</b></td>
                     <td><b>Seller Address</b></td>
                     <td><b>Product Name</b></td>
                     <td><b>Category</b></td>
@@ -77,8 +78,8 @@
                         <td>{{$value[6]}}</td>
                         <td>{{$value[7]}}</td>
                         <td>{{$value[8]}}</td>
-                        <td>{!! $value[9] !!}</td>
-                        <td>{{$value[10]}}</td>
+                        <td>{{$value[9]}}</td>
+                        <td>{!! $value[10] !!}</td>
                         <td>{{$value[11]}}</td>
                         <td>{{$value[12]}}</td>
                         <td>{{$value[13]}}</td>
@@ -96,32 +97,32 @@
                         <td>{{$value[25]}}</td>
                         <td>{{$value[26]}}</td>
                         <td>{{$value[27]}}</td>
+                        <td>{{$value[28]}}</td>
                         <td>
-                            @if($value[28] == 'TLV Storage - Bridgeport' || $value[28] == 'TLV Storage - Cos Cob Office')
-                                {{$value[28]}}
-                            @elseif($value[28] != '')
+                            @if($value[29] == 'TLV Storage - Bridgeport' || $value[29] == 'TLV Storage - Cos Cob Office')
+                                {{$value[29]}}
+                            @elseif($value[29] != '')
                                 Non - Storage Location
                             @endif
                         </td>
                         <td>
-                            @if($value[28] != 'TLV Storage - Bridgeport' && $value[28] != 'TLV Storage - Cos Cob Office' && $value[28] != '')
-                                {{$value[28]}}
-                            @endif
-                        </td>
-                        <td>
-                            @if($value[28] != 'TLV Storage - Bridgeport' && $value[28] != 'TLV Storage - Cos Cob Office')
+                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob Office' && $value[29] != '')
                                 {{$value[29]}}
                             @endif
                         </td>
-                        <td>{{$value[30]}}</td>
+                        <td>
+                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob Office')
+                                {{$value[30]}}
+                            @endif
+                        </td>
                         <td>{{$value[31]}}</td>
                         <td>{{$value[32]}}</td>
-                        <td>@if(isset($value[33]) && $value[33] !== '') {{ $value[33]->format('Y-m-d H:i:s') }} @endif</td>
-                        <td>@if(isset($value[34]) && $value[34] !== '') {{ $value[34] }} @endif</td>
+                        <td>{{$value[33]}}</td>
+                        <td>@if(isset($value[34]) && $value[34] !== '') {{ $value[34]->format('Y-m-d H:i:s') }} @endif</td>
                         <td>@if(isset($value[35]) && $value[35] !== '') {{ $value[35] }} @endif</td>
                         <td>@if(isset($value[36]) && $value[36] !== '') {{ $value[36] }} @endif</td>
-                        <td>@if(isset($value[37]) && $value[37] !== '') {{ $value[37]->format('Y-m-d H:i:s') }} @endif</td>
-                        <td>@if(isset($value[38]) && $value[38] !== '') {{ $value[38] }} @endif</td>
+                        <td>@if(isset($value[37]) && $value[37] !== '') {{ $value[37] }} @endif</td>
+                        <td>@if(isset($value[38]) && $value[38] !== '') {{ $value[38]->format('Y-m-d H:i:s') }} @endif</td>
                         <td>@if(isset($value[39]) && $value[39] !== '') {{ $value[39] }} @endif</td>
                         <td>@if(isset($value[40]) && $value[40] !== '') {{ $value[40] }} @endif</td>
                         <td>@if(isset($value[41]) && $value[41] !== '') {{ $value[41] }} @endif</td>
@@ -140,6 +141,7 @@
                         <td>@if(isset($value[54]) && $value[54] !== '') {{ $value[54] }} @endif</td>
                         <td>@if(isset($value[55]) && $value[55] !== '') {{ $value[55] }} @endif</td>
                         <td>@if(isset($value[56]) && $value[56] !== '') {{ $value[56] }} @endif</td>
+                        <td>@if(isset($value[57]) && $value[57] !== '') {{ $value[57] }} @endif</td>
 
 
                     </tr>
