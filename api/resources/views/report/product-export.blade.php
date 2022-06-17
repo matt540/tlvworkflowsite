@@ -51,9 +51,10 @@
                     <th class="border" style="width:10%;padding: 5px;font-size: 13px;">SKU</th>
                     <th class="border" style="width:10%;padding: 5px;font-size: 13px;">Name</th>
                     <th class="border" style="width:10%;padding: 5px;font-size: 13px;">TLV Price</th>
-                    <th class="border" style="width:10%;padding: 5px;font-size: 13px;">Location</th>
+{{--                    <th class="border" style="width:10%;padding: 5px;font-size: 13px;">Location</th>--}}
                     <th class="border" style="width:30%;padding: 5px;font-size: 13px;">Description</th>
-                    <th class="border" style="width:15%;padding: 5px;font-size: 13px;">Dimension</th>
+                    <th class="border" style="width:10%;padding: 5px;font-size: 13px;">Dimension</th>
+                    <th class="border" style="width:15%;padding: 5px;font-size: 13px;">Condition Notes</th>
                     <th class="border" style="width:15%;padding: 5px;font-size: 13px;">Image</th>
                 </tr>
             </thead>
@@ -63,9 +64,9 @@
                     <td class="border" style="width:10%;padding: 5px;font-size: 13px;">{{$product['product_id']['sku']}}</td>
                     <td class="border" style="width:10%;padding: 5px;font-size: 13px;">{{$product['product_id']['name']}}</td>
                     <td class="border" style="width:10%;padding: 5px;font-size: 13px;">{{$product['product_id']['tlv_price']}}</td>
-                    <td class="border" style="width:10%;padding: 5px;font-size: 13px;">{{$product['product_id']['location']}}</td>
+{{--                    <td class="border" style="width:10%;padding: 5px;font-size: 13px;">{{$product['product_id']['location']}}</td>--}}
                     <td class="border" style="width:30%;padding: 5px;font-size: 13px;padding: 5px;">{{$product['dimension_description']}}</td>
-                    <td class="border" style="width:15%;padding: 5px;font-size: 13px;">
+                    <td class="border" style="width:10%;padding: 5px;font-size: 13px;">
                         @if($product['units'])
                         <span><b>Units:</b>{{$product['units']}}</span><br/>
                         @endif
@@ -85,6 +86,7 @@
                         <span><b>Arm Height:</b>{{$product['arm_height']}}</span><br/>
                         @endif
                     </td>
+                    <td class="border" style="width:15%;padding: 5px;font-size: 13px;padding: 5px;">{{$product['condition_note']}}</td>
                     <td class="border" style="width:15%">
                         @if(count($product['product_id']['product_pending_images'])>0)
                         <img width="100" height="100" src="{{config('app.url').'/Uploads/product/'.$product['product_id']['product_pending_images'][0]['name']}}" />
