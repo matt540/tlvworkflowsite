@@ -1264,7 +1264,9 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $line2 = "IN THE MEANTIME...";
             $line3 = "";
 
-            $line4 = "Your items are being synced to the site. Please allow 2-3 business days before checking them out on our New Arrivals page!";
+            $line4 = "Your items are being synced to the site in the next 2-3 business days!";
+            $line5 = 'Please note: Your items will first be visible as a sneak peek "perk" for only our trade customers, who can start actively shopping for these pieces. You will not see them on our New Arrivals page, or in your Dashboard, until we make them available for all retail clients, about 5- 7 days after syncing.';
+
 
             $introLines = array();
             $introLines[0] = 'As a TLV Seller, you have your own customized Seller "Dashboard" on the site which enables you to monitor your Item(s) listed for sale, offers received and Item(s) sold!';
@@ -1277,13 +1279,13 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $outroLines[3] = 'Click "Lost Your Password?" to reset a password to your liking.';
             $outroLines[4] = 'Once you have finished setting up your Account, click on "My Account" in the top right corner of the Home Page.';
             $outroLines[5] = 'From here, you can click "Dashboard" and have the ability to monitor your Item(s), Item(s) Sold and Offers Received.';
-            $outroLines[6] = 'When you receive an offer, you have the option to Accept, Counter or Decline from this dashboard... but just remember, all offers expire after 48 hours!';
+            $outroLines[6] = 'When you receive an offer, you have the option to Accept, Counter or Reject from this dashboard... but just remember, all offers expire after 48 hours!';
             $outroLines[7] = 'When an Item has sold that is noted as "Dropoff by Consignor Required" in your TLV Pricing Proposal you will need to drop it off at The Local Vault Office in Cos Cob, CT. Otherwise, you will be contacted by our logistics coordinator to arrange a date and time for pick up. This does not apply for Items that have been moved to the TLV Storage Facility.';
             $outroLines[8] = 'Once the Item has been received and accepted by the buyer, your payment will be issued!';
 
             $attachments = array();
 //        $attachments[] = 'TLV Client Sale Agreement_04_05_2020.pdf';
-            $myViewData = \View::make('emails.product_synchronize', ['agreement_link' => '', 'link' => '', 'product_quots' => '', 'line1' => $line1, 'line2' => $line2, 'line3' => $line3, 'line4' => $line4, 'greeting' => $greeting, 'seller' => $seller_data, 'level' => 'success', 'outroLines' => $outroLines, 'introLines' => $introLines])->render();
+            $myViewData = \View::make('emails.product_synchronize', ['agreement_link' => '', 'link' => '', 'product_quots' => '', 'line1' => $line1, 'line2' => $line2, 'line3' => $line3, 'line4' => $line4, 'line5' => $line5, 'greeting' => $greeting, 'seller' => $seller_data, 'level' => 'success', 'outroLines' => $outroLines, 'introLines' => $introLines])->render();
 
             $bccs = [];
             $ccs = [];
@@ -1355,7 +1357,8 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             //$line3 = "HAPPY SELLING!";
             $line3 = "";
 
-            $line4 = "Your items are being synced to the site. Please allow 2-3 business days before checking them out on our New Arrivals page!";
+            $line4 = "Your items are being synced to the site in the next 2-3 business days!";
+            $line5 = 'Please note: Your items will first be visible as a sneak peek "perk" for only our trade customers, who can start actively shopping for these pieces. You will not see them on our New Arrivals page, or in your Dashboard, until we make them available for all retail clients, about 5- 7 days after syncing.';
 
             $introLines = array();
             $introLines[0] = 'As a TLV Seller, you have your own customized Seller "Dashboard" on the site which enables you to monitor your Item(s) listed for sale, offers received and Item(s) sold!';
@@ -1368,13 +1371,13 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             $outroLines[3] = 'Click "Lost Your Password?" to reset a password to your liking.';
             $outroLines[4] = 'Once you have finished setting up your Account, click on "My Account" in the top right corner of the Home Page.';
             $outroLines[5] = 'From here, you can click "Dashboard" and have the ability to monitor your Item(s), Item(s) Sold and Offers Received.';
-            $outroLines[6] = 'When you receive an offer, you have the option to Accept, Counter or Decline from this dashboard... but just remember, all offers expire after 48 hours!';
+            $outroLines[6] = 'When you receive an offer, you have the option to Accept, Counter or Reject from this dashboard... but just remember, all offers expire after 48 hours!';
             $outroLines[7] = 'When an Item has sold that is noted as "Dropoff by Consignor Required" in your TLV Pricing Proposal you will need to drop it off at The Local Vault Office in Cos Cob, CT. Otherwise, you will be contacted by our logistics coordinator to arrange a date and time for pick up. This does not apply for Items that have been moved to the TLV Storage Facility.';
             $outroLines[8] = 'Once the Item has been received and accepted by the buyer, your payment will be issued!';
 
             $attachments = array();
             //        $attachments[] = 'TLV Client Sale Agreement_04_05_2020.pdf';
-            $myViewData = \View::make('emails.product_synchronize', ['agreement_link' => '', 'link' => '', 'product_quots' => '', 'line1' => $line1, 'line2' => $line2, 'line3' => $line3, 'line4' => $line4, 'greeting' => $greeting, 'seller' => $seller_data, 'level' => 'success', 'outroLines' => $outroLines, 'introLines' => $introLines])->render();
+            $myViewData = \View::make('emails.product_synchronize', ['agreement_link' => '', 'link' => '', 'product_quots' => '', 'line1' => $line1, 'line2' => $line2, 'line3' => $line3, 'line4' => $line4, 'line5' => $line5, 'greeting' => $greeting, 'seller' => $seller_data, 'level' => 'success', 'outroLines' => $outroLines, 'introLines' => $introLines])->render();
 
             $bccs = [];
             $ccs = [];

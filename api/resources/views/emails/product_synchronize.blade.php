@@ -97,20 +97,25 @@
                                             @endif
                                             <p>
 
-                                                @if (! empty($line1))   
+                                                @if (! empty($line1))
                                             <p style="{{ $style['paragraph_header'] }}">
-                                                {{ $line1 }} 
+                                                {{ $line1 }}
                                             </p>
                                             @endif
                                             @if (! empty($line4))
                                             <p style="{{ $style['paragraph_content'] }}">
                                                 <i>{{ $line4 }}</i>
                                             </p>
+                                            @endif
+                                            @if (! empty($line5))
+                                                <p style="{{ $style['paragraph_content'] }}">
+                                                    <i>{{ $line5 }}</i>
+                                                </p>
 
                                             @if (! empty($line2))
                                             <p style="{{ $style['paragraph_header'] }}">
-                                                {{ $line2 }} 
-                                            </p> 
+                                                {{ $line2 }}
+                                            </p>
                                             @endif
                                             @foreach ($introLines as $line)
                                             <p style="{{ $style['paragraph_content'] }}">
@@ -129,7 +134,7 @@
                                                     </ul>
                                                 </div>
 
-                                                <div style="float: right;width: 30%;">     
+                                                <div style="float: right;width: 30%;">
                                                     <img style="width: auto;height: 300px;" src="{{asset('public/assets/images/baby_doll_product.png')}}" alt="" />
                                                 </div>
                                             </div>
@@ -145,7 +150,7 @@
                                             <!-- Salutation -->
                                             <p style="{{ $style['paragraph'] }}">
                                                 Cheers,<br>{{ config('app.name') }} Team
-                                            </p>                                       
+                                            </p>
 
                                         </td>
                                     </tr>
