@@ -62,6 +62,7 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
         msNavigationService.deleteItem('product_final');
         msNavigationService.deleteItem('archived');
         msNavigationService.deleteItem('sync_products');
+        msNavigationService.deleteItem('training_videos');
         msNavigationService.deleteItem('schedule');
         msNavigationService.deleteItem('product_scheduling');
         msNavigationService.deleteItem('email_template');
@@ -364,6 +365,7 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
                         msNavigationService.deleteItem('sync_products');
                     }
                 });
+
               
 //        $auth.hasAnyPermission(['product_scheduling.show'])
 //                .then(function (hasPermission)
@@ -699,7 +701,29 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
                         msNavigationService.deleteItem('notification_mail');
                     }
                 });
+        $auth.hasAnyPermission(['training_videos'])
+            .then(function (hasPermission)
+            {
 
+                if (hasPermission)
+                {
+
+                    msNavigationService.saveItem('training_videos', {
+                        title: 'Training Videos',
+                        icon: 'icon-layers',
+                        class: 'navigation-users',
+                        weight: 8,
+                        state: 'training_videos',
+                        stateParams: {'name': 'training_videos'}
+                    });
+
+                } else
+                {
+//                        msNavigationService.deleteItem('proposals');
+//                        msNavigationService.deleteItem('product_quotations');
+                    msNavigationService.deleteItem('training_videos');
+                }
+            });
     }
 
 

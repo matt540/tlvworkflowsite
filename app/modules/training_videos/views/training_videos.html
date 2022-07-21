@@ -1,0 +1,128 @@
+<div layout="column" class="page-layout simple fullwidth  layout-column" id="calendar">
+    <div class="header header_nov">
+
+        <div layout-align="space-between" layout="column"
+             class="header-content layout-align-space-between-stretch layout-column">
+            <div layout-xs="column" layout-align="space-between center" layout="row"
+                 class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+                <div class="breadcrumb" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-home" ui-sref="dashboard" class="s16"></md-icon>
+                    <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                    <span class="parent">Training Videos</span>
+                </div>
+                <button ng-click="goBack()" type="button"
+                        class="md-fab md-primary md-button  md-custom-theme md-ink-ripple"
+                        style="width: 36px !important; height: 36px !important;" aria-label="Search">
+                    <md-icon md-font-icon="icon-arrow-left-bold-circle-outline"
+                             class=" md-custom-theme md-font material-icons icon-arrow-left-bold-circle-outline"
+                             aria-hidden="true"></md-icon>
+                    <md-tooltip><span>BACK</span></md-tooltip>
+                </button>
+            </div>
+            <div layout-xs="column" layout-align="space-between center" layout="row"
+                 class="header-top layout-xs-column layout-align-space-between-center layout-row">
+
+
+                <div layout-align="start center" layout="row" class="logo layout-align-start-center layout-row">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-email" class="md-custom-theme md-font material-icons icon-layers"
+                                 aria-hidden="true"></md-icon>
+                    </span>
+                    <div layout="column">
+                        <span class="logo-text ">Training Videos</span>
+                    </div>
+                </div>
+                <div layout-align="start center" layout="row" class="toolbar layout-align-start-center layout-row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div calendar="main" id="calendarView"
+             class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty fc fc-ltr fc-unthemed"
+             aria-invalid="false">
+            <div class="white-bg md-whiteframe-4dp">
+                <div>
+                    <table class="row-border hover approval_table ng-isolate-scope dataTable no-footer">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Video Link</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="odd ng-scope">
+                            <td>Creating a Manual Order + Refund</td>
+                            <td><a href="https://share.getcloudapp.com/5zurBkbb" target="_blank">https://share.getcloudapp.com/5zurBkbb</a>
+                            </td>
+                        </tr>
+                        <tr class="odd ng-scope">
+                            <td>Manual Order, Removing Tax</td>
+                            <td><a href="https://share.getcloudapp.com/kpu8nKzE" target="_blank">https://share.getcloudapp.com/kpu8nKzE</a>
+                            </td>
+                        </tr>
+                        <tr class="odd ng-scope">
+                            <td>Viewing and Updating Vault, Rewards/TLV Dollars</td>
+                            <td><a href="https://share.getcloudapp.com/9ZuoxO6m" target="_blank">https://share.getcloudapp.com/9ZuoxO6m</a></td>
+                        </tr>
+                        <tr class="odd ng-scope">
+                            <td>Using the App in Airplane Mode</td>
+                            <td><a href="https://share.getcloudapp.com/X6uROApz" target="_blank">https://share.getcloudapp.com/X6uROApz</a></td>
+                        </tr>
+                        <tr class="odd ng-scope">
+                            <td>Creating Designer Pages</td>
+                            <td><a href="https://share.getcloudapp.com/xQuwz729" target="_blank">https://share.getcloudapp.com/xQuwz729</a></td>
+                        </tr>
+                        <tr class="odd ng-scope">
+                            <td>Inside the Vault - Slider & Pages</td>
+                            <td><a href="https://share.getcloudapp.com/kpu88r18" target="_blank">https://share.getcloudapp.com/kpu88r18</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table.dataTable tbody tr {
+        height: 50px !important;
+    }
+
+    .approval_table tr td {
+        /*height: 40px;*/
+        padding: 10px;
+    }
+
+    .approval_table tr td:first-child {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .approval_table tr td:last-child {
+        /*        position:relative;
+                padding-top:0 !important;
+                padding-bottom:0 !important;
+                margin-top:0 !important;
+                margin-bottom:0 !important;*/
+    }
+
+    md-fab-speed-dial.md-fab-top-right {
+        transform: translate(-110px, 0px);
+        -webkit-transform: translate(-110px, 0px);
+        -ms-transform: translate(-110px, 0px);
+
+        left: 0;
+        top: 0;
+    }
+
+    /*    md-fab-speed-dial.md-fab-top-right {
+            transform: unset;
+        }*/
+
+
+</style>

@@ -556,6 +556,26 @@ app.run(function ($rootScope, $window, $state, $stateParams, $http, $location, s
                         authenticated: true
                     }
             })
+            .state('training_videos', {
+                parent: 'index',
+                url: '/training_videos',
+                views: {
+                    'content': {
+                        templateUrl: 'app/modules/training_videos/views/training_videos.html',
+                        controller: 'TrainingVideosController'
+                    },
+                },
+                resolve: {
+                    dep: ['$ocLazyLoad',
+                        function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['app/modules/training_videos/TrainingVideosController.js']);
+                        }]
+                },
+                data:
+                    {
+                        authenticated: true
+                    }
+            })
             .state('schedule', {
                 parent: 'index',
                 url: '/schedules',
