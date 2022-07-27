@@ -175,6 +175,10 @@ Route::post('get_all_sync_order', 'ProductsQuotationController@getAllSyncOrder')
 Route::post('get_sync_order_detail', 'ProductsQuotationController@getSyncOrderDetail');
 Route::post('get_sync_order_report', 'ProductsQuotationController@getSyncOrderReport');
 
+Route::post('get-consignment-report', 'ConsignmentReportController@getAllConsignmentReport');
+Route::post('consignment-report-export', 'ConsignmentReportController@ConsignmentReportExport');
+
+
 Route::post('import_product', 'ProductsImportController@importProduct');
 
 Route::get('getProposalInProposalProduction', 'ProductsQuotationController@getProposalInProposalProduction');
