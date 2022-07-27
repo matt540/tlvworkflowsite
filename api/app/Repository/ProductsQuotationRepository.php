@@ -4847,7 +4847,7 @@ class ProductsQuotationRepository extends EntityRepository
         $total = $query->getQuery()->getSingleScalarResult();
 
         $queryBuilder = $this->em->createQueryBuilder();
-        $query = $queryBuilder->select('pq,p,s,b,sub_cat')
+        $query = $queryBuilder->select("CONCAT(s.firstname, ' ', s.lastname) AS seller_name", 's.email','p.sku', 'p.name', 'p.tlv_price','pq.wp_published_date')
             ->from('App\Entities\Products_quotation', 'pq')
             ->leftJoin('pq.product_id', 'p')
             ->leftjoin('p.sellerid', 's')

@@ -25,13 +25,24 @@ app.controller('ConsignmentReportController', function ($document, $mdDialog, $r
                         $compile(nRow)($scope);
                     });
 
+
+    // $scope.dtColumns = [
+    //     DTColumnBuilder.newColumn('product_id.sellerid').withTitle('Seller Name').renderWith(renderSellerName),
+    //     DTColumnBuilder.newColumn('product_id.sellerid').withTitle('Seller Email').renderWith(renderSellerEmail),
+    //     DTColumnBuilder.newColumn('product_id.sku').withTitle('SKU'),
+    //     DTColumnBuilder.newColumn('product_id.name').withTitle('Product Name').withOption('width', '15%'),
+    //     DTColumnBuilder.newColumn('product_id.tlv_price').withTitle('Price').renderWith(renderprice),
+    //     DTColumnBuilder.newColumn('product_id.wp_published_date').withTitle('Publish Date').renderWith(renderPublishDate),
+    //
+    // ];
+
     $scope.dtColumns = [
-        DTColumnBuilder.newColumn('product_id.sellerid').withTitle('Seller Name').renderWith(renderSellerName),
-        DTColumnBuilder.newColumn('product_id.sellerid').withTitle('Seller Email').renderWith(renderSellerEmail),
-        DTColumnBuilder.newColumn('product_id.sku').withTitle('SKU'),
-        DTColumnBuilder.newColumn('product_id.name').withTitle('Product Name').withOption('width', '15%'),
-        DTColumnBuilder.newColumn('product_id.tlv_price').withTitle('Price').renderWith(renderprice),
-        DTColumnBuilder.newColumn('product_id.wp_published_date').withTitle('Publish Date').renderWith(renderPublishDate),
+        DTColumnBuilder.newColumn('seller_name').withTitle('Seller Name'),
+        DTColumnBuilder.newColumn('email').withTitle('Seller Email'),
+        DTColumnBuilder.newColumn('sku').withTitle('SKU'),
+        DTColumnBuilder.newColumn('name').withTitle('Product Name').withOption('width', '15%'),
+        DTColumnBuilder.newColumn('tlv_price').withTitle('Price').renderWith(renderprice),
+        DTColumnBuilder.newColumn('wp_published_date').withTitle('Publish Date').renderWith(renderPublishDate),
 
     ];
 
@@ -110,8 +121,8 @@ app.controller('ConsignmentReportController', function ($document, $mdDialog, $r
         }
     }
     function renderprice(data, type, full, meta) {
-        if (full.product_id.tlv_price !== '' && full.product_id.tlv_price !== null) {
-            return full.product_id.tlv_price + ' USD';
+        if (full.tlv_price !== '' && full.tlv_price !== null) {
+            return full.tlv_price + ' USD';
         } else
         {
             return '--';
