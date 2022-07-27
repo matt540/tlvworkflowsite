@@ -400,6 +400,26 @@ app.run(function ($rootScope, $window, $state, $stateParams, $http, $location, s
 //                                    }
                 }
             })
+            .state('consignment_report', {
+                parent: 'index',
+                url: '/consignment-report',
+                views: {
+                    'content': {
+                        templateUrl: 'app/modules/consignment_report/views/list.html',
+                        controller: 'ConsignmentReportController'
+                    },
+                },
+                resolve: {
+                    dep: ['$ocLazyLoad',
+                        function ($ocLazyLoad) {
+                            return $ocLazyLoad.load(['app/modules/consignment_report/ConsignmentReportController.js']);
+                        }]
+                },
+                data:
+                    {
+                        authenticated: true
+                    }
+            })
 
             .state('archivedseller', {
                 parent: 'index',

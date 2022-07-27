@@ -62,6 +62,7 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
         msNavigationService.deleteItem('product_final');
         msNavigationService.deleteItem('archived');
         msNavigationService.deleteItem('sync_products');
+        msNavigationService.deleteItem('consignment_report');
         msNavigationService.deleteItem('training_videos');
         msNavigationService.deleteItem('schedule');
         msNavigationService.deleteItem('product_scheduling');
@@ -365,6 +366,29 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
                         msNavigationService.deleteItem('sync_products');
                     }
                 });
+        $auth.hasAnyPermission(['consignment_report'])
+            .then(function (hasPermission)
+            {
+
+                if (hasPermission)
+                {
+
+                    msNavigationService.saveItem('consignment_report', {
+                        title: 'Consignment Report',
+                        icon: 'icon-layers',
+                        class: 'navigation-users',
+                        weight: 8,
+                        state: 'consignment_report',
+                        stateParams: {'name': 'consignment_report'}
+                    });
+
+                } else
+                {
+//                        msNavigationService.deleteItem('proposals');
+//                        msNavigationService.deleteItem('product_quotations');
+                    msNavigationService.deleteItem('sync_products');
+                }
+            });
 
               
 //        $auth.hasAnyPermission(['product_scheduling.show'])
