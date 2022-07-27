@@ -4,8 +4,8 @@ var app = angular.module('ng-app');
 app.controller('SyncProductListController', function ($document, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder, ngAAToken) {
     $scope.category = [];
     $scope.subcategoryid = [];
-    $scope.start_date = null;
-    $scope.end_date = null;
+    // $scope.start_date = null;
+    // $scope.end_date = null;
     $scope.start_date_ord = null;
     $scope.end_date_ord = null;
     $scope.authuser = $auth.getProfile().$$state.value;
@@ -13,6 +13,12 @@ app.controller('SyncProductListController', function ($document, $mdDialog, $roo
     $scope.users = [];
     $scope.select = [];
     $scope.productStatus = [];
+
+    $scope.start_date = new Date();
+
+    let date = new Date();
+    $scope.start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+    $scope.end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
     $scope.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', {
         dataSrc: "data",
@@ -406,6 +412,8 @@ app.controller('SyncProductListController', function ($document, $mdDialog, $roo
                 });
 
     }
+
+
 });
 
 app.controller('SyncProductOrderController', function ($document, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder, ngAAToken) {
