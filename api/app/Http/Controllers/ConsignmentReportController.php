@@ -29,11 +29,10 @@ class ConsignmentReportController extends Controller
 
         $product_data = $this->product_quotation_repo->getConsignmentReport($filter);
 
-//        $data['recordsFiltered'] = $this->product_quotation_repo->getConsignmentReportTotal($filter);
+        $data['recordsFiltered'] = $this->product_quotation_repo->getConsignmentReportTotal($filter);
 
         $data['data'] = $product_data['data'];
         $data['recordsTotal'] = $product_data['total'];
-        $data['recordsFiltered'] = $product_data['recordsFiltered'];
         return response()->json($data, 200);
     }
 

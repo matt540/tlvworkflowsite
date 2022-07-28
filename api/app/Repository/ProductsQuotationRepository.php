@@ -4883,8 +4883,7 @@ class ProductsQuotationRepository extends EntityRepository
         }
 
         $data = $query->getResult(Query::HYDRATE_ARRAY);
-        $recordsFiltered = count($data);
-        return array('data' => $data, 'total' => $total, 'recordsFiltered' => $recordsFiltered);
+        return array('data' => $data, 'total' => $total);
     }
 
 //    public function getConsignmentReportTotal($filter)
