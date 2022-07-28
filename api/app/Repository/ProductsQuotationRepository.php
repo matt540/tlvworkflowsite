@@ -4883,40 +4883,41 @@ class ProductsQuotationRepository extends EntityRepository
         }
 
         $data = $query->getResult(Query::HYDRATE_ARRAY);
-        return array('data' => $data, 'total' => $total);
+        $recordsFiltered = count($data);
+        return array('data' => $data, 'total' => $total, 'recordsFiltered' => $recordsFiltered);
     }
 
-    public function getConsignmentReportTotal($filter)
-    {
-        $query = $this->em->createQueryBuilder();
-
-        $query->select($query->expr()->count('pq.id'))
-            ->from('App\Entities\Products_quotation', 'pq')
-            ->leftJoin('pq.product_id', 'p')
-            ->leftjoin('p.sellerid', 's')
-            ->leftJoin('p.brand', 'b')
-            ->leftJoin('p.product_category', 'sub_cat')
-            ->where('pq.wp_product_id != :wp_product_id')
-            ->setParameter('wp_product_id', '')
-            ->andWhere(
-                $query->expr()->orX(
-                    $query->expr()->like('p.sku', ':filter'),
-                    $query->expr()->like('p.name', ':filter'),
-                    $query->expr()->like('s.firstname', ':filter'),
-                    $query->expr()->like('s.lastname', ':filter'),
-                    $query->expr()->like('s.email', ':filter'),
-                    $query->expr()->like('p.price', ':filter'),
-                    $query->expr()->like('pq.wp_published_date', ':filter')
-                )
-            )
-            ->setParameter('filter', '%' . $filter['search']['value'] . '%')
-            ->groupBy('p.id');
-
-        $query = $query->getQuery();
-        $data = $query->getResult(Query::HYDRATE_ARRAY);
-
-        return count($data);
-    }
+//    public function getConsignmentReportTotal($filter)
+//    {
+//        $query = $this->em->createQueryBuilder();
+//
+//        $query->select($query->expr()->count('pq.id'))
+//            ->from('App\Entities\Products_quotation', 'pq')
+//            ->leftJoin('pq.product_id', 'p')
+//            ->leftjoin('p.sellerid', 's')
+//            ->leftJoin('p.brand', 'b')
+//            ->leftJoin('p.product_category', 'sub_cat')
+//            ->where('pq.wp_product_id != :wp_product_id')
+//            ->setParameter('wp_product_id', '')
+//            ->andWhere(
+//                $query->expr()->orX(
+//                    $query->expr()->like('p.sku', ':filter'),
+//                    $query->expr()->like('p.name', ':filter'),
+//                    $query->expr()->like('s.firstname', ':filter'),
+//                    $query->expr()->like('s.lastname', ':filter'),
+//                    $query->expr()->like('s.email', ':filter'),
+//                    $query->expr()->like('p.price', ':filter'),
+//                    $query->expr()->like('pq.wp_published_date', ':filter')
+//                )
+//            )
+//            ->setParameter('filter', '%' . $filter['search']['value'] . '%')
+//            ->groupBy('p.id');
+//
+//        $query = $query->getQuery();
+//        $data = $query->getResult(Query::HYDRATE_ARRAY);
+//
+//        return count($data);
+//    }
 
     public function getConsignmentReportExport()
     {
