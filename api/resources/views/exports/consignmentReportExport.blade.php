@@ -3,9 +3,6 @@
         <td>
             <table>
                 <tr>
-                    <td></td>
-                </tr>
-                <tr>
                     <td><b>Seller Name</b></td>
                     <td><b>Seller Email</b></td>
                     <td><b>Seller Address</b></td>
