@@ -4838,13 +4838,31 @@ class ProductsQuotationRepository extends EntityRepository
             $orderbyclm = '';
         }
 
+//        $query = $this->em->createQueryBuilder();
+//        $query->select($query->expr()->count('pq.id'))
+//            ->from('App\Entities\Products_quotation', 'pq')
+//            ->leftJoin('pq.product_id', 'p')
+//            ->where('pq.wp_product_id != :wp_product_id')
+//            ->setParameter('wp_product_id', '');
+//        $total = $query->getQuery()->getSingleScalarResult();
+//
+
         $query = $this->em->createQueryBuilder();
+
         $query->select($query->expr()->count('pq.id'))
             ->from('App\Entities\Products_quotation', 'pq')
             ->leftJoin('pq.product_id', 'p')
+            ->leftjoin('p.sellerid', 's')
+            ->leftJoin('p.brand', 'b')
+            ->leftJoin('p.product_category', 'sub_cat')
             ->where('pq.wp_product_id != :wp_product_id')
-            ->setParameter('wp_product_id', '');
-        $total = $query->getQuery()->getSingleScalarResult();
+            ->setParameter('wp_product_id', '')
+            ->groupBy('p.id');
+
+        $query = $query->getQuery();
+        $data = $query->getResult(Query::HYDRATE_ARRAY);
+
+        $total = count($data);
 
         $queryBuilder = $this->em->createQueryBuilder();
         $query = $queryBuilder->select("CONCAT(s.firstname, ' ', s.lastname) AS seller_name", 's.email','p.sku', 'p.name', 'p.tlv_price','pq.wp_published_date')
