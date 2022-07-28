@@ -151,6 +151,9 @@ app.controller('ConsignmentReportController', function ($document, $mdDialog, $r
             .catch(function (error)
             {
                 $rootScope.loader = false;
+                $rootScope.message = 'Something Went Wrong.';
+                $rootScope.$emit("notification");
+
             });
     }
 });
