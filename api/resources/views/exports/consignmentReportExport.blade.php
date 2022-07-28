@@ -12,6 +12,7 @@
                     <td><b>Brand</b></td>
                     <td><b>Product SKU</b></td>
                     <td><b>Quantity</b></td>
+                    <td><b>Units</b></td>
                     <td><b>Retail Price</b></td>
                     <td><b>TLV Price</b></td>
                     <td><b>Storage Price</b></td>
@@ -20,6 +21,7 @@
                     <td><b>Is this a pet free home?</b></td>
                     <td><b>Delivery Option</b></td>
                     <td><b>Flat Rate Packaging Fee</b></td>
+                    <td><b>Location Type</b></td>
                     <td><b>City</b></td>
                     <td><b>State</b></td>
                     <td><b>Curator or Referral Name</b></td>
@@ -72,6 +74,7 @@
                         </td>
                         <td>{{$value['product_id']['sku']}}</td>
                         <td>{{$value['product_id']['quantity']}}</td>
+                        <td>{{$value['units']}}</td>
                         <td>{{$value['price']}}</td>
                         <td>{{$value['tlv_price']}}</td>
                         <td>{{$value['storage_pricing']}}</td>
@@ -80,6 +83,7 @@
                         <td>{{$value['product_id']['pet_free']}}</td>
                         <td>{{$value['delivery_option']}}</td>
                         <td>{{$value['product_id']['flat_rate_packaging_fee']}}</td>
+                        <td>{{$value['product_id']['location']}}</td>
                         <td>{{$value['product_id']['city']}}</td>
                         <td>{{$value['product_id']['state']}}</td>
                         <td>{{$value['curator_name']}}</td>

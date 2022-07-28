@@ -4939,12 +4939,13 @@ class ProductsQuotationRepository extends EntityRepository
     public function getConsignmentReportExport()
     {
         $queryBuilder = $this->em->createQueryBuilder();
-        $query = $queryBuilder->select('pq,p,s,b,sub_cat')
+        $query = $queryBuilder->select('pq,p,s,b,sub_cat,location')
             ->from('App\Entities\Products_quotation', 'pq')
             ->leftJoin('pq.product_id', 'p')
             ->leftjoin('p.sellerid', 's')
             ->leftJoin('p.brand', 'b')
             ->leftJoin('p.product_category', 'sub_cat')
+            ->leftJoin('p.pick_up_location', 'location')
             ->where('pq.wp_product_id != :wp_product_id')
             ->setParameter('wp_product_id', '')
             ->orderBy('pq.wp_published_date', 'desc')
