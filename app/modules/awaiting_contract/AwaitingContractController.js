@@ -2003,7 +2003,7 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
                         $rootScope.loader = false;
                         $scope.product_quotation = response.data;
 
-                        if ($scope.product_quotation.product_id.city == 'TLV Storage - Bridgeport' || $scope.product_quotation.product_id.city == 'TLV Storage - Cos Cob Office') {
+                        if ($scope.product_quotation.product_id.city == 'TLV Storage - Bridgeport' || $scope.product_quotation.product_id.city == 'TLV Storage - Cos Cob') {
                             $scope.product_quotation.product_id.cities = $scope.product_quotation.product_id.city;
                         } else if ($scope.product_quotation.product_id.city != '')
                         {
@@ -2241,7 +2241,7 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
         $scope.product_quotation.images = $scope.product_pending_images;
         $scope.product_quotation.passfrom = 'product_for_production';
         
-        if ($scope.product_quotation.product_id.cities == 'TLV Storage - Bridgeport' || $scope.product_quotation.product_id.cities == 'TLV Storage - Cos Cob Office') {
+        if ($scope.product_quotation.product_id.cities == 'TLV Storage - Bridgeport' || $scope.product_quotation.product_id.cities == 'TLV Storage - Cos Cob') {
             $scope.product_quotation.product_id.city = $scope.product_quotation.product_id.cities;
             $scope.product_quotation.product_id.state = "CT";
         }

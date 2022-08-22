@@ -1960,7 +1960,7 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
 ////                $scope.product.seller_lastname = temp[1].substr(0, 3);
 //            }
 //        }
-        if ($scope.product.products[0].cities == 'TLV Storage - Bridgeport' || $scope.product.products[0].cities == 'TLV Storage - Cos Cob Office') {
+        if ($scope.product.products[0].cities == 'TLV Storage - Bridgeport' || $scope.product.products[0].cities == 'TLV Storage - Cos Cob') {
             $scope.product.products[0].city = $scope.product.products[0].cities;
             $scope.product.products[0].state = "CT";
         }
@@ -3301,7 +3301,7 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                     $scope.product = response.data;
 
                     $scope.sellers = [$scope.product.sellerid];
-                    if ($scope.product.city == 'TLV Storage - Bridgeport' || $scope.product.city == 'TLV Storage - Cos Cob Office') {
+                    if ($scope.product.city == 'TLV Storage - Bridgeport' || $scope.product.city == 'TLV Storage - Cos Cob') {
                         $scope.product.cities = $scope.product.city;
                     }
                     else if($scope.product.city != '')
@@ -3516,7 +3516,7 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
     {
         $scope.product.products = $scope.products_combo;
         $scope.product.product_pending_images = $scope.product_pending_images;
-        if ($scope.product.cities == 'TLV Storage - Bridgeport' || $scope.product.cities == 'TLV Storage - Cos Cob Office') {
+        if ($scope.product.cities == 'TLV Storage - Bridgeport' || $scope.product.cities == 'TLV Storage - Cos Cob') {
             $scope.product.city = $scope.product.cities;
             $scope.product.state = "CT";
 

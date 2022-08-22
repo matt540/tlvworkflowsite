@@ -277,7 +277,7 @@
                                 </md-select>        
                             </md-input-container>
                         </div>
-                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob Office' && v_p.cities != ''">
+                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob' && v_p.cities != ''">
                             <md-input-container class="md-block" >
                                 <label>City</label>
                                 <input type="text" name="city"   ng-model="v_p.city">
@@ -288,10 +288,10 @@
                                 </div>
                             </md-input-container>
                         </div>
-                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob Office' && v_p.cities != ''">
+                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob' && v_p.cities != ''">
                             <md-input-container class="md-block" >
                                 <label>Zipcode</label>
-                                <input type="text" name="zipcode"   ng-model="v_p.zipcode">
+                                <input type="text" name="zipcode"   ng-model="v_p.zipcode" required>
                                 <div ng-messages="productForm.zipcode.$error" ng-show="productForm.zipcode.$invalid" role="alert">
                                     <div ng-message="required">
                                         <span>Zipcode is required</span>
@@ -299,7 +299,7 @@
                                 </div>
                             </md-input-container>
                         </div>
-                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob Office'">
+                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob'">
                             <md-input-container class="md-block" >
                                 <label>State</label>
                                 <md-select name="state" ng-model="v_p.state" >

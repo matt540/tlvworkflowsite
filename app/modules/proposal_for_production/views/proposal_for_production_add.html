@@ -601,12 +601,12 @@
                             <label>Location</label>
                             <md-select ng-model="product_quotation.product_id.cities" ng-disabled="isPricer">
                                 <md-option value="TLV Storage - Bridgeport"><em>TLV Storage - Bridgeport</em></md-option>   
-                                <md-option value="TLV Storage - Cos Cob Office"><em>TLV Storage - Cos Cob</em></md-option>   
+                                <md-option value="TLV Storage - Cos Cob"><em>TLV Storage - Cos Cob</em></md-option>
                                 <md-option value="Non - Storage Location"><em>Non - Storage Location</em></md-option>                               
                             </md-select>        
                         </md-input-container>
                     </div>
-                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob Office' && product_quotation.product_id.cities != ''">
+                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob' && product_quotation.product_id.cities != ''">
                         <md-input-container class="md-block" >
                             <label>City</label>
                             <input type="text" name="city"  ng-model="product_quotation.product_id.city" ng-disabled="isPricer">
@@ -617,10 +617,10 @@
                             </div>
                         </md-input-container>
                     </div>
-                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob Office' && product_quotation.product_id.cities != ''">
+                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob' && product_quotation.product_id.cities != ''">
                         <md-input-container class="md-block" >
                             <label>Zipcode</label>
-                            <input type="text" name="zipcode"   ng-model="product_quotation.product_id.zipcode" ng-disabled="isPricer">
+                            <input type="text" name="zipcode"   ng-model="product_quotation.product_id.zipcode" ng-disabled="isPricer" required>
                             <div ng-messages="productForm.zipcode.$error" ng-show="productForm.zipcode.$invalid" role="alert">
                                 <div ng-message="required">
                                     <span>Zipcode is required</span>
@@ -628,7 +628,7 @@
                             </div>
                         </md-input-container>
                     </div>
-                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob Office'">
+                    <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob'">
                         <md-input-container class="md-block" >
                             <label>State</label>
                             <md-select name="state" ng-model="product_quotation.product_id.state" ng-disabled="isPricer">
