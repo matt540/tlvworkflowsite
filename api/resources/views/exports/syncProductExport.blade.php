@@ -99,19 +99,19 @@
                         <td>{{$value[27]}}</td>
                         <td>{{$value[28]}}</td>
                         <td>
-                            @if($value[29] == 'TLV Storage - Bridgeport' || $value[29] == 'TLV Storage - Cos Cob')
+                            @if($value[29] == 'TLV Storage - Bridgeport' || $value[29] == 'TLV Storage - Cos Cob' || $value[29] == 'TLV Storage - Cos Cob Office')
                                 {{$value[29]}}
                             @elseif($value[29] != '')
                                 Non - Storage Location
                             @endif
                         </td>
                         <td>
-                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob' && $value[29] != '')
+                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob'  && $value[29] != 'TLV Storage - Cos Cob Office' && $value[29] != '')
                                 {{$value[29]}}
                             @endif
                         </td>
                         <td>
-                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob')
+                            @if($value[29] != 'TLV Storage - Bridgeport' && $value[29] != 'TLV Storage - Cos Cob'  && $value[29] != 'TLV Storage - Cos Cob Office')
                                 {{$value[30]}}
                             @endif
                         </td>
