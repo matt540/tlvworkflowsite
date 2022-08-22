@@ -213,6 +213,23 @@ class Products
     protected $city;
 
 
+    /**
+
+     * @ORM\Column(type="string", nullable=true)
+
+     */
+
+    protected $zipcode;
+
+    /**
+
+     * @ORM\Column(type="string", nullable=true)
+
+     */
+
+    protected $region;
+
+
 
     /**
 
@@ -762,6 +779,10 @@ class Products
         $this->state = isset($data['state']) ? $data['state'] : '';
 
         $this->city = isset($data['city']) ? $data['city'] : '';
+
+        $this->zipcode = isset($data['zipcode']) ? $data['zipcode'] : '';
+
+        $this->region = isset($data['region']) ? $data['region'] : '';
 
         $this->ship_size = isset($data['ship_size']) ? $data['ship_size'] : '';
 
@@ -1563,6 +1584,26 @@ class Products
 
         $this->city = $city;
 
+    }
+
+    function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    function getRegion()
+    {
+        return $this->region;
+    }
+
+    function setRegion($region)
+    {
+        $this->region = $region;
     }
 
 

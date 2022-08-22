@@ -24,7 +24,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
                 .then(function (response)
                 {
                     $scope.seller = response.data;
-                    console.log(response.data);
 //                    $scope.user.password = '********';
 //                    console.log($scope.user);
                 }).catch(function (error)
@@ -225,7 +224,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             $rootScope.loader = false;
 //                $rootScope.message = 'Something Went Wrong';
 //                $rootScope.$emit("notification");
-            console.log(error);
         });
 
     }
@@ -383,7 +381,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
 
     function statusHtml(data, type, full, meta)
     {
-        console.log(full);
         if (full.status_id != 7 && full.status_id != 8 && full.status_id != 20 && full.status_id != 31)
         {
             $scope.select[full.id] = full.status_id;
@@ -418,7 +415,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(rejected);
         if (rejected.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -468,7 +464,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(rejected);
         if (rejected.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -628,7 +623,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(rejected);
         if (rejected.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -678,7 +672,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(approved);
         if (approved.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -709,7 +702,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
                             $rootScope.$emit("reloadProductTable");
                         }).catch(function (error)
                 {
-                    console.log(error);
                     $rootScope.message = 'Something Went Wrong.';
                     $rootScope.$emit("notification");
                 });
@@ -736,7 +728,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(archived);
         if (archived.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -785,7 +776,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(approved);
         if (approved.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -834,7 +824,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(approved);
         if (approved.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -889,7 +878,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log($scope);
         if (approved.length > 0)
         {
 
@@ -940,7 +928,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
                 approved.push($scope.productStatus[i]);
             }
         }
-        console.log(approved);
         if (approved.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -989,7 +976,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             }
 
         }
-        console.log(approved);
         if (approved.length > 0)
         {
             var confirm = $mdDialog.confirm()
@@ -1084,7 +1070,6 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
     {
         $window.location.reload();
         $scope.select = [];
-        console.log('reload');
 
         reloadData();
     });
@@ -1301,7 +1286,6 @@ app.controller('SellerAddController', function ($timeout, $mdDialog, $rootScope,
                             $scope.user.not_available = false;
                         }
                         $rootScope.loader = false;
-                        console.log(response);
 //                    $rootScope.$emit("newSeller", response);
 //
 //                    $rootScope.message = 'User Saved Successfully';
@@ -1310,7 +1294,6 @@ app.controller('SellerAddController', function ($timeout, $mdDialog, $rootScope,
                     }).catch(function (error)
             {
                 $rootScope.loader = false;
-                console.log(error)
                 $rootScope.message = 'Something Went Wrong';
                 $rootScope.$emit("notification");
             });
@@ -1334,7 +1317,6 @@ app.controller('SellerAddController', function ($timeout, $mdDialog, $rootScope,
                         {
                             $scope.user.not_available_email = false;
                         }
-                        console.log(response);
 //                    $rootScope.$emit("newSeller", response);
 //
 //                    $rootScope.message = 'User Saved Successfully';
@@ -1343,7 +1325,6 @@ app.controller('SellerAddController', function ($timeout, $mdDialog, $rootScope,
                     }).catch(function (error)
             {
                 $rootScope.loader = false;
-                console.log(error)
                 $rootScope.message = 'Something Went Wrong';
                 $rootScope.$emit("notification");
             });
@@ -1377,8 +1358,6 @@ app.controller('SellerAddController', function ($timeout, $mdDialog, $rootScope,
         $http.post(site_settings.api_url + 'seller/add_seller', $scope.user)
                 .then(function (response)
                 {
-                    console.log(response);
-                    console.log(response.data);
 //                    response.data.data.displayname = response.data.data.display_name;
                     $rootScope.$emit("newSeller", response.data);
 
@@ -1433,8 +1412,6 @@ app.controller('PickUpLocationAddController', function (seller_id, $parse, $docu
         $http.post(site_settings.api_url + 'option/saveOption', $scope.pick_up_location)
                 .then(function (response)
                 {
-                    console.log(response);
-                    console.log(response.data);
                     $rootScope.$emit("newPickUpLocation", response.data);
 
                     $rootScope.message = 'Pick Up Location Saved Successfully';
@@ -1699,6 +1676,24 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
         }
     ];
 
+    $scope.regions = [
+        {
+            "name": "Atlanta"
+        },
+        {
+            "name": "Boston"
+        },
+        {
+            "name": "CT/NY/NJ"
+        },
+        {
+            "name": "Palm Beach"
+        },
+        {
+            "name": "Other"
+        }
+    ]
+
     var count = 30;
     $scope.totalquantitys = [];
     for (var z = 1; z <= count; z++)
@@ -1713,7 +1708,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
     $rootScope.$on("newPickUpLocation", function (event, pick_up_location)
     {
 
-        console.log(pick_up_location);
 //        $scope.pick_up_locations.push(pick_up_location);
         $scope.getAllPickUpLocations();
         $scope.products_combo[0].pick_up_location = pick_up_location.id;
@@ -1783,7 +1777,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
     };
     $scope.getAllPickUpLocations = function ()
     {
-        console.log($scope.product.sellerid);
 
         $scope.pick_up_locations = [];
         $http.get(site_settings.api_url + 'getPickUpLocationsBySelectIdSellerId/6/' + $scope.product.sellerid)
@@ -1833,7 +1826,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
                 })
                 .catch(function (response)
                 {
-                    console.log(response);
                 });
     };
 
@@ -1879,7 +1871,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
                         {
                             $scope.seller_state_city = response.data;
                         }
-                        console.log(response.data);
                     }).catch(function (error)
             {
                 $rootScope.loader = false;
@@ -1969,7 +1960,7 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
 ////                $scope.product.seller_lastname = temp[1].substr(0, 3);
 //            }
 //        }
-        if ($scope.product.products[0].cities == 'TLV Storage - Bridgeport' || $scope.product.products[0].cities == 'TLV Storage - Cos Cob Office') {
+        if ($scope.product.products[0].cities == 'TLV Storage - Bridgeport' || $scope.product.products[0].cities == 'TLV Storage - Cos Cob') {
             $scope.product.products[0].city = $scope.product.products[0].cities;
             $scope.product.products[0].state = "CT";
         }
@@ -2095,7 +2086,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
         'success': function (file, xhr)
         {
 
-            console.log($scope.current_dropzone_index);
             // var xhrJson = JSON.parse(xhr);
             var xhrJson = xhr;
 
@@ -2113,7 +2103,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
             }
 
             //show preview
-            console.log($scope.current_dropzone_index);
             if ($scope.products_combo[$scope.current_dropzone_index]['images_name'] != undefined)
             {
 
@@ -2121,8 +2110,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
             {
                 $scope.products_combo[$scope.current_dropzone_index]['images_name'] = [];
             }
-            console.log($scope.current_dropzone_index);
-            console.log(xhrJson.id);
             if (xhrJson != null)
             {
                 $scope.products_combo[$scope.current_dropzone_index]['images_name'].push(xhrJson);
@@ -2191,8 +2178,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
             $http.post('/api/product/deleteImageForFirstAdd', data)
                     .then(function (response)
                     {
-                        console.log('deleted');
-                        console.log($scope.products_combo);
                     }).catch(function (error)
             {
             });
@@ -2211,10 +2196,8 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
             $scope.products_combo[$scope.current_dropzone_index]['images'] = temp_arr;
             $http.post(site_settings.api_url + 'updateImagePriority', $scope.products_combo[$scope.current_dropzone_index]['images'])
                     .then(function (response) {
-                        console.log(response);
                     })
                     .catch(function (error) {
-                        console.log(error);
                     });
         }
     };
@@ -2252,7 +2235,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
     $scope.search = [];
     $scope.product = {};
     $scope.product.sellerid = seller;
-    console.log($scope.product);
     $scope.categorys = {};
     $scope.subcategorys = {};
 
@@ -2266,7 +2248,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
 
     $rootScope.$on("newSeller", function (event, user)
     {
-        console.log(user);
 //        console.log($scope.sellers.length);
 //        $scope.sellers.push(user);
 //        console.log($scope.sellers);
@@ -2278,8 +2259,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
     });
     $rootScope.$on("newPickUpLocation", function (event, pick_up_location)
     {
-
-        console.log(pick_up_location);
         $scope.pick_up_locations.push(pick_up_location);
         $scope.products_combo[0].pick_up_location = pick_up_location.id;
 
@@ -2344,8 +2323,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
 
     $scope.getAllPickUpLocations = function ()
     {
-        console.log($scope.product.sellerid);
-
         $scope.pick_up_locations = [];
         $http.get(site_settings.api_url + 'getPickUpLocationsBySelectIdSellerId/6/' + $scope.product.sellerid)
                 .then(function (response)
@@ -2394,7 +2371,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
                 })
                 .catch(function (response)
                 {
-                    console.log(response);
                 });
     };
 
@@ -2624,7 +2600,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
 
             var xhrJson = JSON.parse(xhr);
 
-            console.log($scope.current_dropzone_index);
             if ($scope.products_combo[$scope.current_dropzone_index]['images'] != undefined)
             {
 
@@ -2714,8 +2689,6 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
             $http.post('/api/product/deleteImageForFirstAdd', data)
                     .then(function (response)
                     {
-                        console.log('deleted');
-                        console.log($scope.products_combo);
                     }).catch(function (error)
             {
             });
@@ -2734,10 +2707,8 @@ app.controller('ProductAddWithSellerController', function (seller, $parse, $docu
             $scope.products_combo[$scope.current_dropzone_index]['images'] = temp_arr;
             $http.post(site_settings.api_url + 'updateImagePriority', $scope.products_combo[$scope.current_dropzone_index]['images'])
                     .then(function (response) {
-                        console.log(response);
                     })
                     .catch(function (error) {
-                        console.log(error);
                     });
         }
     };
@@ -2814,7 +2785,7 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
     $scope.search = [];
     $scope.product = {};
     $scope.products_count = 1;
-    $scope.products_combo = [{name: '', price: '', description: ''}];
+    $scope.products_combo = [{name: '', price: '', description: '', zipcode: ''}];
     $scope.product = {};
     $scope.seller_state_city = {};
 //    $scope.product.cat = [];
@@ -3060,6 +3031,24 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
         }
     ];
 
+    $scope.regions = [
+        {
+            "name": "Atlanta"
+        },
+        {
+            "name": "Boston"
+        },
+        {
+            "name": "CT/NY/NJ"
+        },
+        {
+            "name": "Palm Beach"
+        },
+        {
+            "name": "Other"
+        }
+    ]
+
     var count = 30;
     $scope.totalquantitys = [];
     for (var z = 1; z <= count; z++)
@@ -3103,7 +3092,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
     $rootScope.$on("newPickUpLocation", function (event, pick_up_location)
     {
 
-        console.log(pick_up_location);
 //        $scope.pick_up_locations.push(pick_up_location);
         $scope.getAllPickUpLocations();
         $scope.product.pick_up_location = pick_up_location.id;
@@ -3174,7 +3162,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                 })
                 .catch(function (response)
                 {
-                    console.log(response);
                 });
     };
 
@@ -3218,7 +3205,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                         {
                             $scope.seller_state_city = response.data;
                         }
-                        console.log(response.data);
                     }).catch(function (error)
             {
                 $rootScope.loader = false;
@@ -3315,7 +3301,7 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                     $scope.product = response.data;
 
                     $scope.sellers = [$scope.product.sellerid];
-                    if ($scope.product.city == 'TLV Storage - Bridgeport' || $scope.product.city == 'TLV Storage - Cos Cob Office') {
+                    if ($scope.product.city == 'TLV Storage - Bridgeport' || $scope.product.city == 'TLV Storage - Cos Cob') {
                         $scope.product.cities = $scope.product.city;
                     }
                     else if($scope.product.city != '')
@@ -3360,7 +3346,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                                     {name: $scope.product.product_pending_images[i].name, id: $scope.product.product_pending_images[i].id, size: 5000, isMock: true, serverImgUrl: '/Uploads/product/' + $scope.product.product_pending_images[i].name}
                             );
                         }
-                        console.log($scope.mockFiles);
 
                         $timeout(function ()
                         {
@@ -3377,7 +3362,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                                 $scope.myDz.options.maxFiles = $scope.myDz.options.maxFiles - 1;
                                 $scope.myDz.files.push(mockFile);
                             });
-                            console.log($scope.myDz.files);
                         });
 
 
@@ -3411,7 +3395,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
                 .catch(function (error)
                 {
                     $rootScope.loader = false;
-                    console.log(error);
 
                 });
 
@@ -3429,10 +3412,8 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
         $scope.product_pending_images = temp_arr;
         $http.post(site_settings.api_url + 'updateImagePriority', $scope.product_pending_images)
                 .then(function (response) {
-                    console.log(response);
                 })
                 .catch(function (error) {
-                    console.log(error);
                 });
     }
 
@@ -3498,8 +3479,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
             $http.post('/api/product/deleteImagePending', data)
                     .then(function (response)
                     {
-                        console.log('deleted');
-                        console.log($scope.product_pending_images);
                     }).catch(function (error)
             {
             });
@@ -3511,8 +3490,6 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
         },
         'addedfile': function (file)
         {
-            console.log($scope.myDz);
-
             if (file.isMock)
             {
                 $scope.myDz.createThumbnailFromUrl(file, file.serverImgUrl, null, true);
@@ -3539,7 +3516,7 @@ app.controller('ProductEditController', function (product, $document, $timeout, 
     {
         $scope.product.products = $scope.products_combo;
         $scope.product.product_pending_images = $scope.product_pending_images;
-        if ($scope.product.cities == 'TLV Storage - Bridgeport' || $scope.product.cities == 'TLV Storage - Cos Cob Office') {
+        if ($scope.product.cities == 'TLV Storage - Bridgeport' || $scope.product.cities == 'TLV Storage - Cos Cob') {
             $scope.product.city = $scope.product.cities;
             $scope.product.state = "CT";
 
@@ -3647,7 +3624,6 @@ app.controller('ProductViewController', function (product, $timeout, $mdDialog, 
                                 .then(function (response)
                                 {
                                     $scope.product = response.data;
-                                    console.log($scope.product);
 //                                    $scope.product.sell_name = response.data.sell_id.name;
                                     for (var i in $scope.sellers)
                                     {
@@ -3688,7 +3664,6 @@ app.controller('ProductViewController', function (product, $timeout, $mdDialog, 
                                 }).catch(function (error)
                         {
                             $rootScope.loader = false;
-                            console.log(error);
 
                         });
 
@@ -3699,7 +3674,6 @@ app.controller('ProductViewController', function (product, $timeout, $mdDialog, 
                 })
                 .catch(function (response)
                 {
-                    console.log(response);
                     $rootScope.loader = false;
                 });
     };
@@ -3737,7 +3711,6 @@ app.controller('ProductViewController', function (product, $timeout, $mdDialog, 
                                 }).catch(function (error)
                         {
                             $rootScope.loader = false;
-                            console.log(error);
 
                         });
 
