@@ -467,7 +467,7 @@ EOF;
 
 
         $html .= '<p>Hereinafter the personal Property placed in consignment through this Consignment Agreement will be described as
-“Item(s)”. Item(s) will be listed for sale on TLV’s website for an “Initial Term” of 6-months. Please review section 12 of
+“Item(s)”. Item(s) will be listed for sale on TLV’s website for an “Initial Term” of 6-months. Please review all sections of
 this Agreement for full listing details.</p>';
 
         $html .= '<p>Consignor grants unto TLV the authority to advertise, offer for sale and sell the Item(s) listed in the TLV “Pricing
@@ -484,7 +484,7 @@ this warranty.</p>';
         $html .= '<p>In the Pricing Proposal, when<b>"Dropoff by Consignor Required"</b> is checked and the Item is not in TLV storage facility,
 the Consignor agrees to drop it off at The Local Vaults office in Cos Cob, CT, within two weeks from the date the Item
 was purchased by the "Buyer." Should the Consignor not drop off the Item within these two weeks, TLV will arrange for
-            the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
+        the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 
         $html .= '<p>For larger Item(s) that are not in storage with TLV Consignor will allow pick-up to take place at the location designated
 below. <b>Please indicate below the location where these larger Item(s) will be available for pick-up:</b></p>';
@@ -523,7 +523,7 @@ weeks from the date the Pricing Proposal is sent.</b></p>';
                  <li>
                       TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
 the TLV website at <a href="http://tlv-workflowapp.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
-partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
+partner sites include, but are not limited to, eBay and social media.
                     </li>
 
                     <li>
@@ -587,9 +587,9 @@ invoice for each Item sold and collect from the Buyer.
                     </li>
 
                     <li>
-                   TLV uses Sales Events, Trade Discounts and Coupons to help drive sales of Items. These "Discounts” offered to
-prospective buyers range from 10-15%. For a sold Item(s) any Discounts from the Advertised Price will be
-shared between TLV and the Consignor.
+                   TLV uses Sales Events, including early access for Trade members, Trade Discounts, and Coupons to help drive
+sales of Items. These Discounts and Coupons offered to prospective buyers range from 10-15%. For a sold
+Item(s) any reduction from the Advertised Price will be shared between TLV and the Consignor.
                     </li>
 
                     <li>
@@ -610,11 +610,11 @@ Consignor at the address provided within approximately 14 business days after th
 <br>
 For Items that are NOT in Storage TLV’s commission will be 40% of the Sale Price.
 <br>
-For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price
+For Items that ARE in Storage TLV’s commission will be 50% of the Sale Price.
             </li>
 
             <li>
-            This Consignment Agreement is for an “Initial Term” of 6-months.<br>
+            This Consignment Agreement is for an “Initial Term” of 6-months<br>
                For any Item(s) that is NOT in Storage, prior to the end of this Initial Term TLV will notify the Consignor via
 email that an unsold Item(s) will be removed from the site unless Consignor extends the sale. If the Consignor
 wishes to continue to list their unsold Item(s) the sale will be extended for an additional 3-month term at the
@@ -629,11 +629,11 @@ within the 2 week period then the Item(s) become the property of TLV.</b>
 <b>For any Item(s) where the Consignor leaves the Item(s) in Storage TLV shall continue the sale on
 thelocalvault.com for an additional 3 months – the “Extended Term”. During this period any Offer(s)
 received on the Item(s) will be managed by TLV and TLV has the sole authority to accept, reject, or
-counter the Offer(s). </b>
+counter the Offer(s).</b>
 <b>For any Item(s) that remains in Storage at the conclusion of the Extended Term the Consignor may pick
 up the Item(s) from Storage within 2 weeks. The Item(s) will remain on the website and available for
 purchase until it is picked up. Should the Item(s) not be picked up within the 2 week period then the items
-become the property of TLV.  </b>
+become the property of TLV.</b>
 
             </li>
 
@@ -718,7 +718,8 @@ Fee.
 Vault’s office or the item is in storage with TLV, TLV will schedule with Consignor a date and time for a pickup of sold Item. After the Item’s sale pick-up is expected to occur within 2 weeks for delivery to a local buyer
 and within 6 weeks if delivery to the buyer will be by a national shipper. Consignor will cooperate and
 coordinate with TLV to ensure that sold Item is Easily Accessible for pick-up. “Easily Accessible” is defined as
-located on the first floor of a multi-story dwelling including the garage. All Items must be prepared for pick up (i.e. removal of all personal belongings from the Item(s) sold and beds must be disassembled). If Items are not
+located on the first floor of a multi-story dwelling including the garage. All Items must be prepared for pick up
+(i.e. removal of all personal belongings from the Item(s) sold and beds must be disassembled). If Items are not
 Easily Accessible and prepared for pickup, Consignor may incur costs related to picking up the Items.
                     </li>
 

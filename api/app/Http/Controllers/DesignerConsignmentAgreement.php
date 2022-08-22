@@ -495,7 +495,7 @@ EOF;
 
 
         $html .= '<p>Hereinafter the personal property placed in consignment through this Consignment Agreement will be described as
-“Item(s)”. Item(s) will be listed for sale on TLV’s website for an “Initial Term” of 6-months. Please review section 12 of
+“Item(s)”. Item(s) will be listed for sale on TLV’s website for an “Initial Term” of 6-months. Please review all sections of
 this Agreement for full listing details.</p>';
 
 
@@ -512,7 +512,7 @@ any and all claims relating to breach of this warranty.</p>';
         $html .= '<p>In the Pricing Proposal, when <b>"Dropoff by Consignor Required"</b> is checked and the Item is not in TLV storage facility,
 the Consignor agrees to drop it off at The Local Vaults office in Cos Cob, CT, within two weeks from the date the Item
 was purchased by the "Buyer." Should the Consignor not drop off the Item within these two weeks, TLV will arrange for
-            the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
+        the Item to be picked up, and the Consignor will be charged a $75 fee.</p>';
 
 //        $html .= '<p>
 //
@@ -620,7 +620,7 @@ weeks from the date the Pricing Proposal is sent.</b>
                  <li>
                        TLV will facilitate the sale of Item(s) consigned through the use of an online (internet) sale accessible through
 the TLV website at<a href="https://thelocalvault.com" target="_blank">www.thelocalvault.com</a> and, as TLV deems appropriate, through our partner sites. Our
-partner sites include, but are not limited to, Houzz, eBay and 1stDibs.
+partner sites include, but are not limited to, eBay and social media.
 
                     </li>
 
@@ -677,15 +677,15 @@ during this initial 3-month period, the Advertised Price for the Item(s) will au
                     </li>
 
                     <li>
-The Advertised Price listed for each Item excludes applicable sales tax, which TLV will add to the Buyers
+The Advertised Price listed for each Item excludes applicable sales tax, which TLV will add to the Buyer s
 invoice for each Item sold and collect from the Buyer.
 
                     </li>
 
                     <li>
-                   TLV uses Sales Events, Trade Discounts and Coupons to help drive sales of Items. These "Discounts” offered to
-prospective buyers range from 10-15%. For a sold Item(s) any Discounts from the Advertised Price will be
-shared between TLV and the Consignor
+                   TLV uses Sales Events, including early access for Trade members, Trade Discounts, and Coupons to help drive
+sales of Items. The Discounts and Coupons offered to prospective buyers range from 10-15%. For a sold Item(s)
+any reduction from the Advertised Price will be shared between TLV and the Consignor.
                     </li>
 
                     <li>
@@ -887,7 +887,7 @@ unenforceable.
 
                 <p>
                 Governing Law -This agreement will be governed by and construed in accordance with the laws of the state of
-Connecticu
+Connecticut.
                 </p>
 
                 <p>
