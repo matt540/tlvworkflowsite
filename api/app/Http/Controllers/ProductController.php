@@ -202,6 +202,14 @@ class ProductController extends Controller {
                     $data_product['city'] = $value['city'];
                 }
 
+                if (isset($value['region'])) {
+                    $data_product['region'] = $value['region'];
+                }
+
+                if (isset($value['zipcode'])) {
+                    $data_product['zipcode'] = $value['zipcode'];
+                }
+
 
                 if (isset($value['location'])) {
 
@@ -699,6 +707,13 @@ class ProductController extends Controller {
         if (isset($data['city'])) {
 
             $data_product['city'] = $data['city'];
+        }
+
+        if (isset($data['zipcode'])) {
+            $data_product['zipcode'] = $data['zipcode'];
+        }
+        if (isset($data['region'])) {
+            $data_product['region'] = $data['region'];
         }
 
 

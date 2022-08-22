@@ -288,6 +288,17 @@
                                 </div>
                             </md-input-container>
                         </div>
+                        <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob Office' && v_p.cities != ''">
+                            <md-input-container class="md-block" >
+                                <label>Zipcode</label>
+                                <input type="text" name="zipcode"   ng-model="v_p.zipcode">
+                                <div ng-messages="productForm.zipcode.$error" ng-show="productForm.zipcode.$invalid" role="alert">
+                                    <div ng-message="required">
+                                        <span>Zipcode is required</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
                         <div flex ng-if="v_p.cities != 'TLV Storage - Bridgeport' && v_p.cities != 'TLV Storage - Cos Cob Office'">
                             <md-input-container class="md-block" >
                                 <label>State</label>
@@ -297,6 +308,21 @@
                                 <div ng-messages="productForm.state.$error" ng-show="productForm.state.$invalid" role="alert">
                                     <div ng-message="required">
                                         <span>State is required</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px;" layout="row" layout-xs="column">
+                        <div flex>
+                            <md-input-container class="md-block">
+                                <label>Region</label>
+                                <md-select name="region" ng-model="v_p.region" >
+                                    <md-option ng-repeat="region in regions"  value="{{region.name}}"><em>{{region.name}}</em></md-option>
+                                </md-select>
+                                <div ng-messages="productForm.region.$error" ng-show="productForm.region.$invalid" role="alert">
+                                    <div ng-message="required">
+                                        <span>Region is required</span>
                                     </div>
                                 </div>
                             </md-input-container>

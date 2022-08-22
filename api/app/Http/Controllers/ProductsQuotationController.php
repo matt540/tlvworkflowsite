@@ -2235,6 +2235,14 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
                 $data_product['city'] = $data['product_id']['city'];
             }
 
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
+            }
+
             if (isset($data['product_id']['ship_size'])) {
 
                 $data_product['ship_size'] = $data['product_id']['ship_size'];
@@ -2804,6 +2812,12 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                 $data_product['city'] = $data['product_id']['city'];
             }
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
+            }
 
             if (isset($data['product_id']['location'])) {
 
@@ -3033,6 +3047,12 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             if (isset($data['product_id']['city'])) {
 
                 $data_product['city'] = $data['product_id']['city'];
+            }
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
             }
 
             if (isset($data['product_id']['ship_size'])) {
@@ -3612,6 +3632,12 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
 
                 $data_product['city'] = $data['product_id']['city'];
             }
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
+            }
 
             if (isset($data['product_id']['location'])) {
 
@@ -3858,6 +3884,14 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             if (isset($data['product_id']['city'])) {
 
                 $data_product['city'] = $data['product_id']['city'];
+            }
+
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
             }
 
             if (isset($data['product_id']['ship_size'])) {
@@ -4401,6 +4435,14 @@ Photoshoot where we come to photograph, measure and catalog your collection.";
             if (isset($data['product_id']['city'])) {
 
                 $data_product['city'] = $data['product_id']['city'];
+            }
+
+            if (isset($data['product_id']['zipcode'])) {
+                $data_product['zipcode'] = $data['product_id']['zipcode'];
+            }
+
+            if (isset($data['product_id']['region'])) {
+                $data_product['region'] = $data['product_id']['region'];
             }
 
             if (isset($data['product_id']['location'])) {

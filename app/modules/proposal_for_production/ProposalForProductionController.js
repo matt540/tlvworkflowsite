@@ -1657,6 +1657,25 @@ app.controller('ProposalForProductionAddController', function (product_quotation
         }
     ];
 
+    $scope.regions = [
+        {
+            "name": "Atlanta"
+        },
+        {
+            "name": "Boston"
+        },
+        {
+            "name": "CT/NY/NJ"
+        },
+        {
+            "name": "Palm Beach"
+        },
+        {
+            "name": "Other"
+        }
+    ]
+
+
     $scope.clearResult = function (cat_name)
     {
         $scope.product_quotation.product_id.cat[cat_name] = null;

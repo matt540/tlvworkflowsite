@@ -23,7 +23,9 @@
                     <td><b>Flat Rate Packaging Fee</b></td>
                     <td><b>Location Type</b></td>
                     <td><b>City</b></td>
+                    <td><b>Zipcode</b></td>
                     <td><b>State</b></td>
+                    <td><b>Region</b></td>
                     <td><b>Curator or Referral Name</b></td>
                     <td><b>Curator or Referral Commission</b></td>
                     <td><b>Publish Date</b></td>
@@ -85,7 +87,9 @@
                         <td>{{$value['product_id']['flat_rate_packaging_fee']}}</td>
                         <td>{{$value['product_id']['location']}}</td>
                         <td>{{$value['product_id']['city']}}</td>
+                        <td>{{$value['product_id']['zipcode']}}</td>
                         <td>{{$value['product_id']['state']}}</td>
+                        <td>{{$value['product_id']['region']}}</td>
                         <td>{{$value['curator_name']}}</td>
                         <td>{{$value['curator_commission']}}</td>
                         <td>

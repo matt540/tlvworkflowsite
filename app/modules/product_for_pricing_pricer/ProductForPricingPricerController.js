@@ -476,6 +476,24 @@ app.controller('ProductForPricingPricerEditController', function (product_quotat
         }
     ];
 
+    $scope.regions = [
+        {
+            "name": "Atlanta"
+        },
+        {
+            "name": "Boston"
+        },
+        {
+            "name": "CT/NY/NJ"
+        },
+        {
+            "name": "Palm Beach"
+        },
+        {
+            "name": "Other"
+        }
+    ]
+
     var count = 30;
     $scope.totalquantitys = [];
     for (var z = 1; z <= count; z++)

@@ -1503,6 +1503,24 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
             "abbreviation": "WY"
         }
     ];
+
+    $scope.regions = [
+        {
+            "name": "Atlanta"
+        },
+        {
+            "name": "Boston"
+        },
+        {
+            "name": "CT/NY/NJ"
+        },
+        {
+            "name": "Palm Beach"
+        },
+        {
+            "name": "Other"
+        }
+    ]
     
     $scope.clearResult = function (cat_name) 
     {

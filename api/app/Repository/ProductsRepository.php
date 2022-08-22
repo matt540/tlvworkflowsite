@@ -244,6 +244,14 @@ class ProductsRepository extends EntityRepository {
             $option->setCity($data['city']);
         }
 
+        if (isset($data['zipcode'])) {
+            $option->setZipcode($data['zipcode']);
+        }
+
+        if (isset($data['region'])) {
+            $option->setRegion($data['region']);
+        }
+
         if (isset($data['pick_up_location'])) {
 
             $option->setPick_up_location($data['pick_up_location']);
