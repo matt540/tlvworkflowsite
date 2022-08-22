@@ -17,4 +17,3 @@ yarn-error.log
 .idea/
 /Uploads
 api/storage/*
-app/config.constant.js
