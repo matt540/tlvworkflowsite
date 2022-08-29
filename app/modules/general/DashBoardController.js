@@ -12,8 +12,6 @@ app.controller('DashBoardController', function ($scope, $mdDialog, $document, $r
     $scope.hideDashboardItems = false;
 
     $auth.getProfile().then(function (profile) {
-        console.log('hrhr');
-        console.log(profile);
         for (var i = 0; i < profile.roles.length; i++) {
             if (profile.roles[i].id == 3 || profile.roles[i].id == 5 || profile.roles[i].id == 6 || profile.roles[i].id == 7) {
                 $scope.hideDashboardItems = true;

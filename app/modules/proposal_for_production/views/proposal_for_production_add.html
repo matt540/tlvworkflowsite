@@ -620,7 +620,7 @@
                     <div flex ng-if="product_quotation.product_id.cities != 'TLV Storage - Bridgeport' && product_quotation.product_id.cities != 'TLV Storage - Cos Cob' && product_quotation.product_id.cities != ''">
                         <md-input-container class="md-block" >
                             <label>Zipcode</label>
-                            <input type="text" name="zipcode"   ng-model="product_quotation.product_id.zipcode" ng-disabled="isPricer" required>
+                            <input type="text" name="zipcode"   ng-model="product_quotation.product_id.zipcode" ng-disabled="isPricer">
                             <div ng-messages="productForm.zipcode.$error" ng-show="productForm.zipcode.$invalid" role="alert">
                                 <div ng-message="required">
                                     <span>Zipcode is required</span>

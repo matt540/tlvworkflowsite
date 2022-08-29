@@ -1025,7 +1025,6 @@ app.controller('AwaitingContractController', function ($document, $mdDialog, $ro
 
         }
     };
-
     $scope.openProductQuotationAddDialog = function (product_quotation)
     {
         $mdDialog.show({
@@ -1034,7 +1033,8 @@ app.controller('AwaitingContractController', function ($document, $mdDialog, $ro
             parent: angular.element($document.body),
             clickOutsideToClose: true,
             locals: {
-                product_quotation: product_quotation
+                product_quotation: product_quotation,
+                seller: $scope.seller
             }
         });
     };
@@ -1240,7 +1240,7 @@ app.controller('AwaitingContractController', function ($document, $mdDialog, $ro
     };
 });
 
-app.controller('AwaitingContractAddController', function (product_quotation, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
+app.controller('AwaitingContractAddController', function (product_quotation, seller, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
 {
     $scope.product_quotation = {};
     $scope.product_pending_images_name = [];
@@ -1250,8 +1250,7 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
     $scope.ship_sizes = {};
     $scope.sub_categorys = [];
     $scope.product_quotation.cities = '';
-
-
+    $scope.seller = {};
     $scope.isPricer = false;
 
     $auth.getProfile().then(function (profile) {
@@ -2082,10 +2081,15 @@ app.controller('AwaitingContractAddController', function (product_quotation, $pa
 //                            $scope.product_quotation.product_id = {};
 //                        }
             $scope.product_quotation.quantity = "1";
+            $scope.product_quotation.product_id = {};
             $scope.getAllPickUpLocations(null);
             $scope.getCategorys();
             $scope.getSubCategorys();
             $scope.action = 'Add';
+            if (seller) {
+                $scope.sellers = [seller];
+                $scope.product_quotation.product_id.seller_id = seller.id;
+            }
         }
     };
 

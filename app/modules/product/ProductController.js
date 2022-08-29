@@ -1026,7 +1026,7 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
 
     }
 
-    $scope.openProductAddDialog = function (product)
+    $scope.openProductAddDialog = function (product, seller)
     {
         $mdDialog.show({
             controller: 'ProductAddController',
@@ -1035,7 +1035,7 @@ app.controller('ProductController', function ($document, $mdDialog, $rootScope, 
             clickOutsideToClose: true,
             locals: {
                 product: product,
-                seller: null,
+                seller: seller,
             }
         });
     }
@@ -1720,7 +1720,6 @@ app.controller('ProductAddController', function (seller, product, $parse, $docum
     $scope.edit = false;
     $scope.action = 'Add';
     $scope.searchTerm = '';
-
     if (seller) {
         $scope.sellers = [seller];
         $scope.product.sellerid = seller.id;

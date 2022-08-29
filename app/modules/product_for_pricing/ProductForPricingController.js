@@ -751,7 +751,8 @@ app.controller('ProductForPricingController', function ($document, $mdDialog, $r
             parent: angular.element($document.body),
             clickOutsideToClose: true,
             locals: {
-                product_quotation: product_quotation
+                product_quotation: product_quotation,
+                seller: $scope.seller
             }
         });
     };
@@ -1205,7 +1206,7 @@ app.controller('ProductForPricingController', function ($document, $mdDialog, $r
     };
 
 });
-app.controller('ProductForPricingAddController', function (product_quotation, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
+app.controller('ProductForPricingAddController', function (product_quotation, seller, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
 {
     $scope.product_quotation = {};
     $scope.product_pending_images_name = [];
@@ -1222,6 +1223,7 @@ app.controller('ProductForPricingAddController', function (product_quotation, $p
     $scope.commissions = [100, 80, 70, 60, 50, 40];
     $scope.product_quotation.commission = '60';
     $scope.product_quotation.cities = '';
+    $scope.seller = {};
 
     $scope.removeSub = function (category_name)
     {
@@ -1849,7 +1851,6 @@ app.controller('ProductForPricingAddController', function (product_quotation, $p
 //                $scope.product_quotation.product_id.cat[$scope.categorys[i].category_name] = $scope.product_quotation.product_id['category'].id;
 //            }
         }
-        console.log($scope.product_quotation.product_id.cat);
     };
 
     $scope.getSellersFromWP = function ()
@@ -2061,10 +2062,15 @@ app.controller('ProductForPricingAddController', function (product_quotation, $p
 //                            $scope.product_quotation.product_id = {};
 //                        }
             $scope.product_quotation.quantity = "1";
+            $scope.product_quotation.product_id = {};
             $scope.getAllPickUpLocations(null);
             $scope.getCategorys();
             $scope.getSubCategorys();
             $scope.action = 'Add';
+            if (seller) {
+                $scope.sellers = [seller];
+                $scope.product_quotation.product_id.seller_id = seller.id;
+            }
         }
     }
 

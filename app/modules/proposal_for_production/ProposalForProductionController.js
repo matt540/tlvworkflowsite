@@ -1098,7 +1098,8 @@ app.controller('ProposalForProductionController', function ($document, $mdDialog
             parent: angular.element($document.body),
             clickOutsideToClose: true,
             locals: {
-                product_quotation: product_quotation
+                product_quotation: product_quotation,
+                seller: $scope.seller
             }
         });
     };
@@ -1376,7 +1377,7 @@ app.controller('importProductStoreController', function (seller, $parse, $docume
 
 });
 
-app.controller('ProposalForProductionAddController', function (product_quotation, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
+app.controller('ProposalForProductionAddController', function (product_quotation, seller, $parse, $document, $timeout, $mdDialog, $rootScope, $state, $compile, $resource, $scope, $auth, $q, $stateParams, $http, site_settings, DTColumnDefBuilder, DTOptionsBuilder, DTColumnBuilder)
 {
     $scope.isAgentUser = false;
     $scope.agent_user_id = 0;
@@ -1409,6 +1410,8 @@ app.controller('ProposalForProductionAddController', function (product_quotation
     $scope.commissions = [100, 80, 70, 60, 50, 40];
     $scope.product_quotation.commission = '60';
     $scope.product_quotation.cities = '';
+    $scope.seller = {};
+
 
     $scope.removeSub = function (category_name)
     {
@@ -2108,6 +2111,7 @@ app.controller('ProposalForProductionAddController', function (product_quotation
 //                            $scope.product_quotation.product_id = {};
 //                        }
             $scope.product_quotation.quantity = "1";
+            $scope.product_quotation.product_id = {};
             $scope.getAllPickUpLocations(null);
             $scope.getCategorys();
             $scope.getSubCategorys();
@@ -2115,6 +2119,10 @@ app.controller('ProposalForProductionAddController', function (product_quotation
 
             if ($scope.isAgentUser && $scope.agent_user_id !== 0) {
                 $scope.product_quotation.assign_agent_id = $scope.agent_user_id;
+            }
+            if (seller) {
+                $scope.sellers = [seller];
+                $scope.product_quotation.product_id.seller_id = seller.id;
             }
 
         }
